@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+
 import {
   GButton,
   GIcons,
@@ -7,7 +8,16 @@ import {
   GDropdown,
   GDropdownMenu,
   GDropdownItem,
-} from './components/';
+} from 'gt-front-ui';
+
+// import {
+//   GButton,
+//   GIcons,
+//   GTitle,
+//   GDropdown,
+//   GDropdownMenu,
+//   GDropdownItem,
+// } from './components/';
 
 const icons = [
   'up',
@@ -43,7 +53,7 @@ const icons = [
             >
             <template #dropdown>
               <g-dropdown-menu>
-                <g-dropdown-item>a</g-dropdown-item>
+                <g-dropdown-item>wa</g-dropdown-item>
                 <g-dropdown-item>Action 1111111</g-dropdown-item>
                 <g-dropdown-item>Action 2222222</g-dropdown-item>
                 <g-dropdown-item>Action 3333333</g-dropdown-item>
@@ -194,4 +204,5 @@ const icons = [
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
