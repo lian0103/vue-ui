@@ -4,3 +4,5 @@ export { default as GTitle } from './GTitle.vue';
 export { default as GDropdown } from './GDropdown.vue';
 export { default as GDropdownMenu } from './GDropdownMenu.vue';
 export { default as GDropdownItem } from './GDropdownItem.vue';
+export { default as GTabs } from './GTabs.vue';
+export { default as GTabPane } from './GTabPane.vue';

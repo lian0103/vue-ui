@@ -56,7 +56,7 @@ const { name } = defineProps({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .svg-icon{
   width: 100%;
   fill:currentColor !important;

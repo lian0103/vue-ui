@@ -41,10 +41,11 @@ const typeStr = computed(() => {
 <template>
   <button class="btn" :class="classStr + ' ' + typeStr">
     <slot></slot>
+    <div class="textLine"></div>
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .btnPrimary {
   --btn-color: #32a03d;
   --btn-color-hover: #eef5eb;
@@ -82,6 +83,26 @@ const typeStr = computed(() => {
 .btnFlat {
   @apply cursor-pointer;
   color: var(--btn-color);
+  &:hover {
+    .textLine {
+      position: absolute;
+      bottom: 10px;
+      left: 10%;
+      width: 0%;
+      height: 0px;
+      border: 1px solid var(--btn-color);
+      animation: textLine .3s forwards;
+    }
+  }
+}
+
+@keyframes textLine {
+  from{
+    width: 0;
+  }
+  to{
+    width: 80%;
+  }
 }
 
 .btnPill {

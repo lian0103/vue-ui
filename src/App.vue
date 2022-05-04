@@ -1,15 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 
-import {
-  GButton,
-  GIcons,
-  GTitle,
-  GDropdown,
-  GDropdownMenu,
-  GDropdownItem,
-} from 'gt-front-ui';
-
 // import {
 //   GButton,
 //   GIcons,
@@ -17,7 +8,18 @@ import {
 //   GDropdown,
 //   GDropdownMenu,
 //   GDropdownItem,
-// } from './components/';
+// } from 'gt-front-ui';
+
+import {
+  GButton,
+  GIcons,
+  GTitle,
+  GDropdown,
+  GDropdownMenu,
+  GDropdownItem,
+  GTabs,
+  GTabPane
+} from './components/';
 
 const icons = [
   'up',
@@ -40,10 +42,30 @@ const icons = [
   'x',
 ];
 
+const activeName = ref('first')
+
+const handleClick = (tab, event) => {
+  // console.log(tab, event)
+}
+
 </script>
 
 <template>
   <div class="py-12 flex justify-center items-center h-full flex-col">
+    <div class="mb-8 w-full md:w-1/2 mx-auto h-32">
+      <g-tabs  v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="VeryLongTabName" name="first">
+          <span class="mx-4 leading-10 font-bold"
+            >{{ `<g-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tab-pane label="TAB" name="first">TAB</el-tab-pane>
+                <el-tab-pane label="VeryLongTabName" name="second">VeryLongTabName</el-tab-pane>
+              </g-tabs>` }}
+            </span>
+        </el-tab-pane>
+        <el-tab-pane label="TAB" name="second">TAB</el-tab-pane>
+      </g-tabs>
+    </div>
+
     <div class="mb-4 px-2 w-full md:w-1/2">
       <div class="flex justify-start mb-4">
         <span class="w-1/2 md:w-1/3">
@@ -134,14 +156,28 @@ const icons = [
     <div class="mb-4 px-2 w-full md:w-1/2">
       <div class="flex justify-start mb-4">
         <span class="w-1/2 md:w-1/3"><g-button pill>按鈕</g-button></span>
-        <span class="mx-4 leading-10 font-semibold text-primaryDarker"
+        <span class="mx-4 leading-10 text-primaryDarker"
           >{{ '<g-button pill>按鈕</g-button>' }}</span
         >
       </div>
       <div class="flex justify-start mb-4">
         <span class="w-1/2 md:w-1/3"><g-button flat>文字按鈕</g-button></span>
-        <span class="mx-4 leading-10 font-semibold text-primaryDarker"
+        <span class="mx-4 leading-10 text-primaryDarker"
           >{{ '<g-button flat>文字按鈕</g-button> ' }}</span
+        >
+      </div>
+
+      <div class="flex justify-start mb-4">
+        <span class="w-1/2 md:w-1/3"><g-button flat><g-icons name="chevronLeft" class="text-primary w-8" />上一頁</g-button></span>
+        <span class="mx-4 leading-10 text-primaryDarker"
+          >{{ '<g-button flat><g-icons name="chevronLeft" class="text-primary w-8" /> 上一頁</g-button> ' }}</span
+        >
+      </div>
+
+      <div class="flex justify-start mb-4">
+        <span class="w-1/2 md:w-1/3"><g-button flat><g-icons name="chevronRight" class="text-primary w-8" />下一頁</g-button></span>
+        <span class="mx-4 leading-10 text-primaryDarker"
+          >{{ '<g-button flat><g-icons name="chevronRight" class="text-primary w-8" /> 下一頁</g-button> ' }}</span
         >
       </div>
 
@@ -185,18 +221,18 @@ const icons = [
       <span class="flex justify-start mb-2" v-for="(item,idx) in icons" :key="item">
         <template v-if="idx%2 == 0">
           <span class="w-1/2 md:w-1/3"
-            ><g-icons :name="item" class="text-primary w-12"
+            ><g-icons :name="item" class="text-primary w-8"
           /></span>
           <span class="text-gray-600 leading-10">
-            {{ '<g-icons name="'}} {{item}} {{'" class="text-primary w-12" />'}}
+            {{ '<g-icons name="'}} {{item}} {{'" class="text-primary w-8" />'}}
           </span>
         </template>
         <template v-else>
           <span class="w-1/2 md:w-1/3"
-            ><g-icons :name="item" class="text-second w-12"
+            ><g-icons :name="item" class="text-second w-8"
           /></span>
           <span class="text-gray-600 leading-10">
-            {{ '<g-icons name="'}} {{item}} {{'" class="text-second w-12" />'}}
+            {{ '<g-icons name="'}} {{item}} {{'" class="text-second w-8" />'}}
           </span>
         </template>
       </span>
