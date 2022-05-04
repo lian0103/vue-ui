@@ -2,7 +2,7 @@
 const { level } = defineProps({
   level: {
     type: Number,
-    default: 1,
+    defult: 0,
   },
 });
 </script>
@@ -16,15 +16,23 @@ const { level } = defineProps({
   color: #303236;
 }
 
+.level0 {
+  @apply text-base leading-6;
+  word-spacing: 0.8px;
+}
+
 .level1 {
-  @apply font-bold text-2xl leading-8 tracking-wider;
+  @apply font-bold text-2xl leading-8;
+  word-spacing: 1.2px;
 }
 
 .level2 {
-  @apply font-medium text-xl leading-7 tracking-wide;
+  @apply font-medium text-xl leading-7;
+  word-spacing: 1px;
 }
 
 .level3 {
-  @apply font-light text-lg leading-6 tracking-normal;
+  @apply font-light text-lg leading-6;
+  word-spacing: 0.9px;
 }
 </style>

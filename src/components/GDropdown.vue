@@ -1,15 +1,6 @@
-<script setup>
-const { type } = defineProps({
-  type: {
-    type: String,
-  },
-});
-</script>
-
 <template>
   <el-dropdown class="gt-dropdown" type="primary"
     ><slot></slot>
-
     <template #dropdown>
       <slot name="dropdown" />
     </template>
