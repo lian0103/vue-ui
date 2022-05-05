@@ -67,8 +67,10 @@ export default ({ mode }) => {
   };
 
   if (mode === 'demo') {
-    delete config['build'];
-    // console.log(config);
+    config.build = {
+      outDir: './demo',
+    };
+    console.log("config.build",config.build)
   }
 
   return defineConfig(config);
