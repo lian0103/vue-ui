@@ -90,7 +90,7 @@ const typeStr = computed(() => {
       left: 10%;
       width: 0%;
       height: 0px;
-      border: 1px solid var(--btn-color);
+      border-bottom: 2px solid var(--btn-color);
       animation: textLine .3s forwards;
     }
   }

@@ -30,8 +30,6 @@ module.exports = {
             soft:'#E0F2DE',
             btnHover:'#EEF5EB',
             tableHover:'#F1F9F3'
-
-
         },
         spacing: {
             px: '1px',

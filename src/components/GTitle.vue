@@ -2,7 +2,7 @@
 const { level } = defineProps({
   level: {
     type: Number,
-    defult: 0,
+    default: 0,
   },
 });
 </script>
