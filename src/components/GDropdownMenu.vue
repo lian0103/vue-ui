@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-.gt-dropdown-menu {
-  @apply px-2 rounded-lg;
-}
+// .gt-dropdown-menu {
+//   @apply px-2 rounded-lg;
+// }
 </style>

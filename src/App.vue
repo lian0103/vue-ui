@@ -52,7 +52,7 @@ const handleClick = (tab, event) => {
 <template>
   <div class="py-12 flex justify-center items-center h-full flex-col">
     <div class="mb-8 w-full md:w-1/2 mx-auto">
-      <g-title :level="1">樣式全域變數</g-title>
+      <g-title :level="2" class="mb-4">樣式全域變數</g-title>
       <p class="">
         方式1:在 sre/assets/index.scss設定scss參數 ex. $color:#f00;
       </p>
@@ -70,23 +70,20 @@ const handleClick = (tab, event) => {
       </p>
     </div>
     <div class="mb-16 w-full md:w-1/2 mx-auto h-32">
-      <g-title :level="1">ElementPlus組件修改(測試..)</g-title>
+      <g-title :level="2" class="mb-4"
+        >ElementPlus純改樣式<br/>*各自專案還是需引入原本的Element樣式</g-title
+      >
       <g-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="VeryLongTabName" name="first">
-          <span class="mx-4 leading-10 font-bold"
-            >{{ `<g-tabs v-model="activeName" @tab-click="handleClick">
-              <el-tab-pane label="TAB" name="first">TAB</el-tab-pane>
-              <el-tab-pane label="VeryLongTabName" name="second"
-                >VeryLongTabName</el-tab-pane
-              > </g-tabs
-            >` }}
-          </span>
+          <span class="mx-4 leading-10">內容1 </span>
         </el-tab-pane>
-        <el-tab-pane label="TAB" name="second">TAB</el-tab-pane>
+        <el-tab-pane label="TAB" name="second">
+          <span class="mx-4 leading-10">內容2</span></el-tab-pane
+        >
       </g-tabs>
     </div>
 
-    <div class="mb-4 px-2 w-full md:w-1/2">
+    <div class="mb-16 px-2 w-full md:w-1/2">
       <div class="flex justify-start mb-4">
         <span class="w-1/2 md:w-1/3">
           <g-dropdown type="primary" size="large" :hide-on-click="false">
@@ -106,15 +103,7 @@ const handleClick = (tab, event) => {
             </template>
           </g-dropdown>
         </span>
-        <span class="mx-4 leading-10 font-bold"
-          >{{ `<g-dropdown type="primary">///</g-dropdown>` }}</span
-        >
-      </div>
-    </div>
-
-    <div class="mb-4 px-2 w-full md:w-1/2">
-      <div class="flex justify-start mb-4">
-        <div class="w-1/2 md:w-1/3">
+        <span class="mx-4 leading-10 font-bold">
           <g-dropdown type="primary" size="large" :hide-on-click="false">
             <g-button flat>
               <g-icons
@@ -130,18 +119,13 @@ const handleClick = (tab, event) => {
                 <g-dropdown-item>Action 3333333</g-dropdown-item>
               </g-dropdown-menu>
             </template>
-          </g-dropdown>
-        </div>
-        <div class="mx-4 leading-10 font-bold">
-          {{`<g-dropdown type="primary" size="large" :hide-on-click="false"
-            >///</g-dropdown
-          >`}}
-        </div>
+          </g-dropdown></span
+        >
       </div>
     </div>
 
     <div class="mb-4 px-2 w-full md:w-1/2">
-      <g-title :level="1">手刻設計的基礎元件</g-title>
+      <g-title :level="2" class="mb-4">手刻設計的基礎元件</g-title>
     </div>
 
     <div class="mb-4 px-2 w-full md:w-1/2">

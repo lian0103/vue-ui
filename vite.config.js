@@ -11,7 +11,7 @@ export default ({ mode }) => {
   let config = {
     build: {
       lib: {
-        entry: path.resolve(__dirname, 'src/components/index.js'),
+        entry: path.resolve(__dirname, 'src/components/indexProd.js'),
         name: 'gt-UI',
         fileName: (format) => `gt-UI.${format}.js`,
       },

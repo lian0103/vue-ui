@@ -8,8 +8,8 @@
 </template>
 
 <style lang="scss">
-.gt-dropdown {
-  @apply rounded-md;
-  border-radius: 6px !important;
-}
+// .gt-dropdown {
+//   @apply rounded-md;
+//   border-radius: 6px !important;
+// }
 </style>
