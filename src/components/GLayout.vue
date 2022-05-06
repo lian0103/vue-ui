@@ -67,6 +67,9 @@ import GTitle from './GTitle.vue';
       flex-grow: 2;
       height: calc(100vh - 150px);
       overflow-y: scroll;
+      .el-menu{
+        height: 100%
+      }
     }
 
     .gt-bottomLogo {
