@@ -8,3 +8,4 @@ export { default as GTabs } from './GTabs.vue';
 export { default as GTabPane } from './GTabPane.vue';
 export { default as GLayout } from './GLayout.vue';
 export { default as GMenu } from './GMenu.vue';
+export { default as GLoading } from './GLoading.vue';

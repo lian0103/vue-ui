@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, getCurrentInstance } from 'vue';
 
 // import {
 //   GButton,
@@ -20,7 +20,8 @@ import {
   GTabs,
   GTabPane,
   GLayout,
-  GMenu
+  GMenu,
+  GLoading,
 } from './components/';
 
 const icons = [
@@ -46,8 +47,18 @@ const icons = [
 
 const activeName = ref('first');
 
+const instance = getCurrentInstance();
+
+const handleLoading = () => {
+  instance.appContext.config.globalProperties.handleLoadingTrigger(true);
+};
+
 const handleClick = (tab, event) => {
   // console.log(tab, event)
+};
+
+const handleLoadTrigger = (show) => {
+  console.log(show.value);
 };
 </script>
 
@@ -58,8 +69,14 @@ const handleClick = (tab, event) => {
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
-        <span class="flex leading-8 mr-4 cursor-pointer"><g-icons name="search" class="text-primary w-8 " /><span>搜尋</span></span>
-        <span class="cursor-pointer"><g-icons name="calendar" class="text-primary w-8" /></span>
+        <span class="flex leading-8 mr-4 cursor-pointer"
+          ><g-icons name="search" class="text-primary w-8" /><span
+            >搜尋</span
+          ></span
+        >
+        <span class="cursor-pointer"
+          ><g-icons name="calendar" class="text-primary w-8"
+        /></span>
       </div>
     </template>
     <template #content>
@@ -136,6 +153,16 @@ const handleClick = (tab, event) => {
 
         <div class="mb-4 px-2 w-full md:w-1/2">
           <g-title :level="1" class="mb-4">手刻設計的基礎元件</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-1/2">
+          <div class="flex justify-start mb-4">
+            <span class="w-1/2 md:w-1/3"
+              ><g-button pill @click="handleLoading"
+                >顯示Loading效果</g-button
+              ></span
+            >
+          </div>
         </div>
 
         <div class="mb-4 px-2 w-full md:w-1/2">
@@ -285,6 +312,7 @@ const handleClick = (tab, event) => {
       </div>
     </template>
   </g-layout>
+  <g-loading :trigger="handleLoadTrigger" />
 </template>
 
 <style lang="scss" scoped>
