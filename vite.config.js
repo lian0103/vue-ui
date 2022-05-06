@@ -68,7 +68,7 @@ export default ({ mode }) => {
 
   if (mode === 'demo') {
     config.build = {
-      outDir: './demo',
+      outDir: './docs',
     };
     console.log("config.build",config.build)
   }
