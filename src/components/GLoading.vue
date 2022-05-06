@@ -2,18 +2,22 @@
 import { ref, getCurrentInstance, computed } from 'vue';
 
 const instance = getCurrentInstance();
+const gLoadinfShow = ref(false);
 
-const show = computed(() => {
-  console.log(
-    instance.appContext.config.globalProperties.handleLoadingTrigger().value
-  );
-  return instance.appContext.config.globalProperties.handleLoadingTrigger()
-    .value;
-});
+instance.appContext.config.globalProperties.handleLoadingTrigger = (bool, time = 3000) => {
+  if (bool) {
+    gLoadinfShow.value = bool;
+    setTimeout(() => {
+      gLoadinfShow.value = false;
+    }, 2000);
+  }
+  return "isLoading:" + gLoadinfShow.value ;
+};
+
 </script>
 
 <template>
-  <div v-if="show" class="gt-loading-wrapper">
+  <div v-if="gLoadinfShow" class="gt-loading-wrapper">
     <div class="gt-loadBox relative">
       <div class="gt-loadAni"></div>
       <div class="gt-loadText">載入中</div>
