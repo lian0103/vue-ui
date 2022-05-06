@@ -19,6 +19,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^1.1.4",
     "autoprefixer": "^10.4.7",
     "element-plus": "^2.1.11",
     "gt-front-ui": "^0.0.2",
