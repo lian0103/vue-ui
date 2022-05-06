@@ -1,11 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 
-:root {
-  --color4: #444;
-  --color5: #f66;
-  --color6: #66f;
+* {
+  font-family: 'Noto Sans TC';
 }
 
 .gt-dropdown {
@@ -22,7 +18,7 @@
 }
 
 .el-tabs__nav-wrap::after {
-  /* width: 0; */
+  width: 0;
 }
 
 .el-tabs__item {

@@ -34,7 +34,7 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "~/assets/elementPlus.scss" as *;`,
+          additionalData: `@use "~/assets/elementPlusInit.scss" as *;`,
         },
       },
     },

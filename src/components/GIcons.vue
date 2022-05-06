@@ -52,12 +52,12 @@ const { name } = defineProps({
 <template>
   <div class="text-center">
     <!-- <img class="w-full" :src="iconNameMap[name]" alt="icon" /> -->
-    <component class="svg-icon" :is="iconNameMap[name]" />
+    <component class="gt-svg-icon" :is="iconNameMap[name]" />
   </div>
 </template>
 
 <style lang="scss">
-.svg-icon{
+.gt-svg-icon{
   width: 100%;
   fill:currentColor !important;
 }

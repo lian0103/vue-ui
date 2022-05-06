@@ -1,5 +1,5 @@
 <script>
-import '../assets/index.css'
+import '../assets/elementPlus.css'
 </script>
 
 <style lang="scss">

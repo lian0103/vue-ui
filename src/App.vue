@@ -52,26 +52,18 @@ const handleClick = (tab, event) => {
 <template>
   <div class="py-12 flex justify-center items-center h-full flex-col">
     <div class="mb-8 w-full md:w-1/2 mx-auto">
-      <g-title :level="2" class="mb-4">樣式全域變數</g-title>
-      <p class="">
-        方式1:在 sre/assets/index.scss設定scss參數 ex. $color:#f00;
-      </p>
-      <p class="">
-        方式2:在 sre/assets/index.scss設定css參數 ex. :root { --color4: #444;
-        --color5: #f66; --color6: #66f; }
-      </p>
-      <p class="">
-        方式3:在tailwind.config.js中設定tailwind語法的對應參數 ex: primary:
+      <g-title :level="1" class="mb-4">v0.0.2說明</g-title>
+      <p>1.class目前使用規則:前綴加"gt-"，後踩駝峰 ex. gt-title、gt-btnFlat</p>
+      <p>
+        2.這包有使用tailwind.config.js來設定設計上要求的對應參數 ex: primary:
         '#32A03D'
       </p>
-      <p class="">
-        其他:elementPlus:依官方文件可在蓋掉定義在var.scss中的變數
-        ex.elementPlus.scss
-      </p>
+      <p>3.目前不重複打包ElementPlus UI庫。只打包在'assets/elementPlus.css'中覆寫樣式<br/>
+      (尚未在其他element專案中引入測試，而實際專案修改elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。)</p>
     </div>
     <div class="mb-16 w-full md:w-1/2 mx-auto h-32">
-      <g-title :level="2" class="mb-4"
-        >ElementPlus純改樣式<br/>*各自專案還是需引入原本的Element樣式</g-title
+      <g-title :level="1" class="mb-4"
+        >ElementPlus純改樣式<br />*各自專案還是需引入原本的Element樣式</g-title
       >
       <g-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="VeryLongTabName" name="first">
@@ -125,7 +117,7 @@ const handleClick = (tab, event) => {
     </div>
 
     <div class="mb-4 px-2 w-full md:w-1/2">
-      <g-title :level="2" class="mb-4">手刻設計的基礎元件</g-title>
+      <g-title :level="1" class="mb-4">手刻設計的基礎元件</g-title>
     </div>
 
     <div class="mb-4 px-2 w-full md:w-1/2">
@@ -278,24 +270,5 @@ const handleClick = (tab, event) => {
 div > p {
   margin-bottom: 10px;
   padding: 4px 10px;
-}
-.test {
-  color: $color1;
-  background: $color2;
-  border: 2px solid $color3;
-}
-
-.test2 {
-  color: var(--color4);
-  background: var(--color5);
-  border: 2px solid var(--color6);
-}
-
-.test3 {
-  @apply text-primary bg-soft border border-red-600;
-}
-
-.code {
-  @apply bg-gray-600 text-white;
 }
 </style>
