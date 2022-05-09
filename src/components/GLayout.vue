@@ -1,6 +1,17 @@
 <script setup>
 import GIcons from './GIcons.vue';
 import GTitle from './GTitle.vue';
+
+const { headText, title } = defineProps({
+  headText: {
+    type: String,
+    default: '',
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+});
 </script>
 
 <template>
@@ -8,7 +19,7 @@ import GTitle from './GTitle.vue';
     <div class="gt-sidebar">
       <div class="flex flex-col">
         <div class="gt-headline">
-          <g-icons name="down" class="w-8" />Headline
+          {{ headText }}
         </div>
         <div class="gt-menu"><slot name="sidebar" /></div>
         <div class="gt-bottomLogo">
@@ -19,7 +30,9 @@ import GTitle from './GTitle.vue';
     </div>
 
     <div class="gt-header">
-      <div class="w:1/3"><g-title :level="1">headtitle</g-title></div>
+      <div class="w:1/3">
+        <g-title :level="1">{{ title }}</g-title>
+      </div>
       <slot name="header" />
     </div>
     <div class="gt-content"><slot name="content" /></div>
@@ -67,8 +80,8 @@ import GTitle from './GTitle.vue';
       flex-grow: 2;
       height: calc(100vh - 150px);
       overflow-y: scroll;
-      .el-menu{
-        height: 100%
+      .el-menu {
+        height: 100%;
       }
     }
 

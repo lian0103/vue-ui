@@ -1,5 +1,5 @@
 <script setup>
-import { ref, getCurrentInstance } from 'vue';
+import { ref, getCurrentInstance, reactive } from 'vue';
 
 // import {
 //   GButton,
@@ -10,19 +10,9 @@ import { ref, getCurrentInstance } from 'vue';
 //   GDropdownItem,
 // } from 'gt-front-ui';
 
-import {
-  GButton,
-  GIcons,
-  GTitle,
-  GDropdown,
-  GDropdownMenu,
-  GDropdownItem,
-  GTabs,
-  GTabPane,
-  GLayout,
-  GMenu,
-  GLoading,
-} from './components/';
+import { GButton, GIcons, GTitle, GLayout, GLoading } from './components/';
+
+import VMenu from './views/VMenu.vue';
 
 const icons = [
   'up',
@@ -60,12 +50,23 @@ const handleClick = (tab, event) => {
 const handleLoadTrigger = (show) => {
   console.log(show.value);
 };
+
+const rules = {
+  input2: [{ required: true, message: '必填', trigger: 'blur' }],
+};
+
+const inputs = reactive({
+  search0: '',
+  input0: '',
+  input1: '',
+  input2: '',
+});
 </script>
 
 <template>
-  <g-layout>
+  <g-layout headText="HeadText" title="title">
     <template #sidebar>
-      <g-menu />
+      <v-menu />
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
@@ -96,24 +97,128 @@ const handleLoadTrigger = (show) => {
             (尚未在其他element專案中引入測試，而實際專案修改elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。)
           </p>
         </div>
-        <div class="mb-16 w-full md:w-1/2 mx-auto h-32">
+        <div class="w-full md:w-1/2 mx-auto">
           <g-title :level="1" class="mb-4"
-            >ElementPlus純改樣式<br />*各自專案還是需引入原本的Element樣式</g-title
+            >覆寫ElementPlus樣式<br />*各自專案還是需引入原本的Element樣式
+            <br />*方式:元件上加上gt樣式名稱 <br />
+          </g-title>
+        </div>
+        <div class="w-full md:w-1/2 mx-auto pb-10 flex">
+          <div class="w-1/2">
+            <p>不同類型input</p>
+            <el-form
+              ref="addEditForm"
+              :model="inputs"
+              :rules="rules"
+              label-width="65px"
+              @submit.prevent
+            >
+              <el-form-item prop="search0" label="搜尋0">
+                <div class="relative">
+                  <el-input
+                    class="mb-4 gt-inputSearch"
+                    v-model="inputs.search0"
+                    placeholder="我是搜尋"
+                  />
+                  <g-icons
+                    name="search"
+                    class="text-primary w-5 absolute left-2.5 top-2"
+                  />
+                </div>
+              </el-form-item>
+              <el-form-item prop="input0" label="輸入0">
+                <el-input
+                  class="mb-4 gt-inputPlain"
+                  v-model="inputs.input0"
+                  placeholder="我是輸入框"
+                />
+              </el-form-item>
+              <el-form-item prop="input1" label="輸入1">
+                <el-input
+                  class="mb-4 gt-input"
+                  v-model="inputs.input1"
+                  placeholder="我是輸入框"
+                />
+              </el-form-item>
+              <el-form-item prop="input2" label="輸入2">
+                <el-input
+                  class="mb-4 gt-input"
+                  v-model="inputs.input2"
+                  placeholder="我是輸入框"
+                />
+              </el-form-item>
+            </el-form>
+          </div>
+          <div class="w-1/2 flex flex-col">
+            <p>
+              {{
+                `
+              <el-input
+                class="`
+              }}<sapn class="redText">gt-inputSearch</sapn
+              >{{
+                `"
+                v-model="inputs.search0"
+                placeholder="我是搜尋"
+              /> (icon另外用)`
+              }}
+            </p>
+            <p>
+              {{
+                `
+              <el-input
+                class="`
+              }}<sapn class="redText">gt-inputPlain</sapn
+              >{{
+                `"
+                v-model="inputs.input0"
+                placeholder="我是輸入框"
+              />`
+              }}
+            </p>
+            <p>
+              {{
+                `
+              <el-input
+                class="`
+              }}<sapn class="redText">gt-input</sapn
+              >{{
+                `"
+                v-model="inputs.input1"
+                placeholder="我是輸入框"
+              />`
+              }}
+            </p>
+            <p>驗證欄位錯誤提示</p>
+          </div>
+        </div>
+        <div class="mb-16 px-2 w-full md:w-1/2">
+          <el-tabs
+            class="gt-tabs"
+            v-model="activeName"
+            @tab-click="handleClick"
           >
-          <g-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="VeryLongTabName" name="first">
-              <span class="mx-4 leading-10">內容1 </span>
+              <span class="mx-4 leading-10"
+                >{{ `<el-tabs class="` }}<sapn class="redText">gt-tabs</sapn
+                >{{ `">` }}</span
+              >
             </el-tab-pane>
             <el-tab-pane label="TAB" name="second">
               <span class="mx-4 leading-10">內容2</span></el-tab-pane
             >
-          </g-tabs>
+          </el-tabs>
         </div>
 
         <div class="mb-16 px-2 w-full md:w-1/2">
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3">
-              <g-dropdown type="primary" size="large" :hide-on-click="false">
+              <el-dropdown
+                class="gt-dropdown"
+                type="primary"
+                size="large"
+                :hide-on-click="false"
+              >
                 <g-button>
                   <g-icons
                     name="ellipsis"
@@ -121,17 +226,31 @@ const handleLoadTrigger = (show) => {
                   />假裝是很長的下拉選單</g-button
                 >
                 <template #dropdown>
-                  <g-dropdown-menu>
-                    <g-dropdown-item>wa</g-dropdown-item>
-                    <g-dropdown-item>Action 1111111</g-dropdown-item>
-                    <g-dropdown-item>Action 2222222</g-dropdown-item>
-                    <g-dropdown-item>Action 3333333</g-dropdown-item>
-                  </g-dropdown-menu>
+                  <el-dropdown-menu class="gt-dropdown-menu">
+                    <el-dropdown-item class="gt-dropdown-item">
+                      <div class="redText">依el元件設計 要分開寫class</div>
+                    </el-dropdown-item>
+                    <el-dropdown-item class="gt-dropdown-item"
+                      >{{ `class="` }}
+                      <div class="redText">gt-dropdown</div>
+                      {{ `"` }}</el-dropdown-item
+                    >
+                    <el-dropdown-item class="gt-dropdown-item"
+                      >{{ `class="` }}
+                      <div class="redText">gt-dropdown-menu</div>
+                      {{ `"` }}</el-dropdown-item
+                    >
+                    <el-dropdown-item class="gt-dropdown-item"
+                      >{{ `class="` }}
+                      <div class="redText">gt-dropdown-item</div>
+                      {{ `"` }}</el-dropdown-item
+                    >
+                  </el-dropdown-menu>
                 </template>
-              </g-dropdown>
+              </el-dropdown>
             </span>
             <span class="mx-4 leading-10 font-bold">
-              <g-dropdown type="primary" size="large" :hide-on-click="false">
+              <el-dropdown type="primary" size="large" :hide-on-click="false">
                 <g-button flat>
                   <g-icons
                     name="ellipsis"
@@ -139,20 +258,41 @@ const handleLoadTrigger = (show) => {
                   />假裝是很長的下拉選單</g-button
                 >
                 <template #dropdown>
-                  <g-dropdown-menu>
-                    <g-dropdown-item>a</g-dropdown-item>
-                    <g-dropdown-item>Action 1111111</g-dropdown-item>
-                    <g-dropdown-item>Action 2222222</g-dropdown-item>
-                    <g-dropdown-item>Action 3333333</g-dropdown-item>
-                  </g-dropdown-menu>
+                  <el-dropdown-menu>
+                    <el-dropdown-item>未加class</el-dropdown-item>
+                    <el-dropdown-item>Action 1111111</el-dropdown-item>
+                    <el-dropdown-item>Action 2222222</el-dropdown-item>
+                    <el-dropdown-item>Action 3333333</el-dropdown-item>
+                  </el-dropdown-menu>
                 </template>
-              </g-dropdown></span
+              </el-dropdown></span
             >
           </div>
         </div>
 
         <div class="mb-4 px-2 w-full md:w-1/2">
           <g-title :level="1" class="mb-4">手刻設計的基礎元件</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-1/2">
+          <div class="mb-4">
+            <g-title :level="2" class="mb-4">layout版型使用</g-title>
+            {{`<g-layout headText="HeadText" title="title"
+              >`}} <br />
+              <div class="redText pl-6">
+                {{`<template #sidebar> ... </template>`}}
+              </div>
+              <div class="redText pl-6">
+                {{`<template #header> ... </template>`}}
+              </div>
+              <div class="redText pl-6">
+                {{`<template #content> ... </template>`}}
+              </div>
+
+              {{`</g-layout
+            >
+            `}}
+          </div>
         </div>
 
         <div class="mb-4 px-2 w-full md:w-1/2">
@@ -316,10 +456,12 @@ const handleLoadTrigger = (show) => {
 </template>
 
 <style lang="scss" scoped>
-@import './assets/index';
-
 div > p {
   margin-bottom: 10px;
   padding: 4px 10px;
+}
+
+.redText {
+  @apply text-red-500;
 }
 </style>

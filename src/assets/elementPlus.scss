@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+* {
+  font-family: 'Noto Sans TC';
+}
+
+.gt-dropdown {
+  @apply rounded-md;
+  border-radius: 6px !important;
+}
+
+.gt-dropdown-item {
+  @apply px-2 rounded-lg;
+}
+
+.gt-dropdown-menu {
+  @apply px-2 rounded-lg;
+}
+
+.gt-tabs {
+  .el-tabs__nav-wrap::after {
+    width: 0;
+  }
+
+  .el-tabs__item {
+    min-width: 120px;
+    height: 32px;
+    text-align: center;
+    background: #fbfbf9;
+    color: #303236;
+    @apply text-lg;
+  }
+}
+
+.gt-input {
+  .el-input__wrapper {
+    @apply rounded-lg bg-tableHover text-base;
+    max-width: 300px;
+    height: 36px;
+    padding: 10px 15px;
+  }
+}
+
+.gt-inputSearch {
+  .el-input__wrapper {
+    @apply text-sm;
+    border-radius: 37px;
+    max-width: 220px;
+    height: 36px;
+    padding: 8px 0px 8px 32px;
+  }
+}
+
+.gt-inputPlain {
+  .el-input__wrapper {
+    @apply text-base;
+    max-width: 280px;
+    height: 36px;
+    padding: 14px 8px;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 4px rgba(59, 176, 137, 0.2);
+    border: 1px solid #d9d9d9;
+  }
+}
