@@ -49,14 +49,14 @@ const { headText, title } = defineProps({
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 100vh;
-  background: #edf2f7;
+  background: #D9D9D9;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #cbd5e0;
-  border-radius: 100vh;
-  border: 0px solid #edf2f7;
+  border-radius: 5px;
+  border: 0px solid #D9D9D9;
 }
 
 .gt-wrapper {
@@ -78,11 +78,10 @@ const { headText, title } = defineProps({
     }
     .gt-menu {
       flex-grow: 2;
+      width: 85%;
+      margin: auto;
       height: calc(100vh - 150px);
       overflow-y: scroll;
-      .el-menu {
-        height: 100%;
-      }
     }
 
     .gt-bottomLogo {

@@ -64,7 +64,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <g-layout headText="HeadText" title="title">
+  <g-layout headText="Great Tree UI" title="Demo">
     <template #sidebar>
       <v-menu />
     </template>
@@ -93,15 +93,15 @@ const inputs = reactive({
           </p>
           <p>
             3.目前不重複打包ElementPlus
-            UI庫。只打包在'assets/elementPlus.css'中覆寫樣式<br />
-            (尚未在其他element專案中引入測試，而實際專案修改elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。)
+            UI庫。只打包在'assets/elementPlus.css'中覆寫樣式，各自專案還是需引入原本的Element樣式，使用方式為元件上加上指定的gt樣式名稱。
+          </p>
+          <p>
+            4.
+            實際專案修改elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。
           </p>
         </div>
         <div class="w-full md:w-1/2 mx-auto">
-          <g-title :level="1" class="mb-4"
-            >覆寫ElementPlus樣式<br />*各自專案還是需引入原本的Element樣式
-            <br />*方式:元件上加上gt樣式名稱 <br />
-          </g-title>
+          <g-title :level="1" class="mb-4">覆寫ElementPlus樣式 </g-title>
         </div>
         <div class="w-full md:w-1/2 mx-auto pb-10 flex">
           <div class="w-1/2">
@@ -193,6 +193,7 @@ const inputs = reactive({
           </div>
         </div>
         <div class="mb-16 px-2 w-full md:w-1/2">
+          <g-title :level="2" class="mb-4">el-tabs & el-tab-pane</g-title>
           <el-tabs
             class="gt-tabs"
             v-model="activeName"
@@ -211,6 +212,9 @@ const inputs = reactive({
         </div>
 
         <div class="mb-16 px-2 w-full md:w-1/2">
+          <g-title :level="2" class="mb-4"
+            >el-dropdown-menu & el-dropdown-item</g-title
+          >
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3">
               <el-dropdown
@@ -271,13 +275,9 @@ const inputs = reactive({
         </div>
 
         <div class="mb-4 px-2 w-full md:w-1/2">
-          <g-title :level="1" class="mb-4">手刻設計的基礎元件</g-title>
-        </div>
-
-        <div class="mb-4 px-2 w-full md:w-1/2">
           <div class="mb-4">
-            <g-title :level="2" class="mb-4">layout版型使用</g-title>
-            {{`<g-layout headText="HeadText" title="title"
+            <g-title :level="2" class="mb-4">大樹後台layout Grid排版</g-title>
+            {{`<g-layout headText="Great Tree UI" title="Demo"
               >`}} <br />
               <div class="redText pl-6">
                 {{`<template #sidebar> ... </template>`}}
@@ -293,6 +293,25 @@ const inputs = reactive({
             >
             `}}
           </div>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-1/2">
+          <div class="mb-4">
+            <g-title :level="2" class="mb-4">layout版型中el-menu使用</g-title>
+            {{`<g-layout headText="HeadText" title="title"
+              >`}} <br />
+              <div class="redText pl-6">
+                //樣式如左方所示 <br />
+                {{`<template #sidebar> <el-menu /> </template>`}}
+              </div>
+              {{`</g-layout
+            >
+            `}}
+          </div>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-1/2">
+          <g-title :level="1" class="mb-4">手刻設計的基礎元件</g-title>
         </div>
 
         <div class="mb-4 px-2 w-full md:w-1/2">
