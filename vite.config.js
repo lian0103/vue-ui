@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import svgLoader from 'vite-svg-loader';
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -39,7 +40,8 @@ export default ({ mode }) => {
       },
     },
     plugins: [
-      vue(),
+      vue({ template: { transformAssetUrls } }),
+      quasar(),
       AutoImport({
         resolvers: [
           ElementPlusResolver({

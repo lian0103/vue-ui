@@ -54,7 +54,7 @@ const { headText, title } = defineProps({
     grid-row-start: 1;
     grid-row-end: 3;
     .gt-headline {
-      @apply text-primary font-bold text-lg leading-6 flex justify-center items-center w-full;
+      @apply text-main font-bold text-lg leading-6 flex justify-center items-center w-full;
       height: 80px;
     }
     .gt-menuBox {
