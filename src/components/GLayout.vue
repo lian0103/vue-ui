@@ -39,7 +39,7 @@ const { headText, title } = defineProps({
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* width */
 ::-webkit-scrollbar {
   width: 2px;

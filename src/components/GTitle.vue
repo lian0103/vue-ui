@@ -11,7 +11,7 @@ const { level } = defineProps({
   <div class="w-full gt-title" :class="'gt-level' + level"><slot></slot></div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .gt-title {
   color: #303236;
 }

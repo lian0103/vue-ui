@@ -90,16 +90,19 @@ const inputs = reactive({
             1.class目前使用規則:前綴加"gt-"，後踩駝峰 ex. gt-title、gt-btnFlat
           </p>
           <p>
-            2.這包有使用tailwind.config.js來設定設計上要求的對應參數 ex:
-            primary: '#32A03D'
+            2.可使用tailwind.config.js來設定設計上要求的對應參數 ex: primary:
+            '#32A03D'
           </p>
           <p>
-            3.目前不重複打包ElementPlus
-            UI庫。只打包在'assets/elementPlus.css'中覆寫樣式，各自專案還是需引入原本的Element樣式，使用方式為元件上加上指定的gt樣式名稱。
+            3.目前不重複打包ElementPlus，只打包在'assets/elementPlus.css'中覆寫樣式，各自專案還是需引入原本的Element樣式。
           </p>
           <p>
-            4.
-            實際專案修改elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。
+            4.實際專案引入elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。<br />
+            <a
+              class="text-second"
+              href="https://element-plus.org/zh-CN/guide/theming.html#%E5%A6%82%E4%BD%95%E8%A6%86%E7%9B%96%E5%AE%83%EF%BC%9F"
+              >element-plus. doc</a
+            >
           </p>
         </div>
         <div class="paragraphHead">
