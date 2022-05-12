@@ -40,25 +40,6 @@ const { headText, title } = defineProps({
 </template>
 
 <style lang="scss" scoped>
-/* width */
-::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 100vh;
-  background: #d9d9d9;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #cbd5e0;
-  border-radius: 5px;
-  border: 0px solid #d9d9d9;
-}
-
 .gt-wrapper {
   display: grid;
   height: 100vh;
@@ -66,7 +47,7 @@ const { headText, title } = defineProps({
   min-width: 1280px;
   grid-template-columns: 300px 1fr;
   grid-auto-rows: minmax(80px, auto);
-  background-color: #fbfbf9;
+  background-color: var(--gt-bg-color);
   .gt-sidebar {
     grid-column-start: 1;
     grid-column-end: 2;
@@ -78,15 +59,23 @@ const { headText, title } = defineProps({
     }
     .gt-menuBox {
       flex-grow: 2;
-      width: 85%;
+      width: 100%;
       margin: auto;
       height: calc(100vh - 150px);
       overflow-y: scroll;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE 10+ */
+      position: relative;
       &::-webkit-scrollbar {
-        background: transparent !important; /* Chrome/Safari/Webkit */
         width: 0px !important;
+      }
+      &::after {
+        content: '';
+        width: 1px;
+        height: calc(100vh - 150px);
+        background-color: var(--gt-bg-color);
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
 
