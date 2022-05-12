@@ -64,11 +64,11 @@
 }
 
 .gt-menu {
+  height: 100%;
+  --el-menu-bg-color: #fbfbf9;
   .el-menu {
-    height: 100%;
-    background: #fbfbf9;
+    --el-menu-bg-color: #fbfbf9;
   }
-
   .el-sub-menu__title,
   .el-menu-item {
     @apply leading-6 text-base;
@@ -84,6 +84,8 @@
   .el-menu-item {
     height: 32px;
     padding-left: 30px;
+    border-radius: 5px;
+    margin-bottom: 5px;
   }
 
   .el-menu-item:hover,
@@ -94,7 +96,6 @@
   .el-menu-item.is-active {
     background-color: #e0f2de;
     color: #3bb071 !important;
-    border-radius: 5px;
   }
 
   .el-menu--inline {

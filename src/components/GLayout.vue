@@ -21,7 +21,7 @@ const { headText, title } = defineProps({
         <div class="gt-headline">
           {{ headText }}
         </div>
-        <div class="gt-menu"><slot name="sidebar" /></div>
+        <div class="gt-menuBox"><slot name="sidebar" /></div>
         <div class="gt-bottomLogo">
           <img src="../assets/images/gt-logo.png" alt="" />
           <img src="../assets/images/gt-logo-text.png" alt="" />
@@ -49,14 +49,14 @@ const { headText, title } = defineProps({
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 100vh;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #cbd5e0;
   border-radius: 5px;
-  border: 0px solid #D9D9D9;
+  border: 0px solid #d9d9d9;
 }
 
 .gt-wrapper {
@@ -76,12 +76,18 @@ const { headText, title } = defineProps({
       @apply text-primary font-bold text-lg leading-6 flex justify-center items-center w-full;
       height: 80px;
     }
-    .gt-menu {
+    .gt-menuBox {
       flex-grow: 2;
       width: 85%;
       margin: auto;
       height: calc(100vh - 150px);
       overflow-y: scroll;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+      &::-webkit-scrollbar {
+        background: transparent !important; /* Chrome/Safari/Webkit */
+        width: 0px !important;
+      }
     }
 
     .gt-bottomLogo {

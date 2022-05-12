@@ -66,7 +66,7 @@ const inputs = reactive({
 <template>
   <g-layout headText="Great Tree UI" title="Demo">
     <template #sidebar>
-      <v-menu />
+      <v-menu class="gt-menu" />
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
@@ -82,8 +82,10 @@ const inputs = reactive({
     </template>
     <template #content>
       <div class="py-12 flex justify-center items-center flex-col">
-        <div class="mb-8 w-full md:w-1/2 mx-auto">
+        <div class="paragraphHead">
           <g-title :level="1" class="mb-4">v0.0.2說明</g-title>
+        </div>
+        <div class="mb-8 w-full md:w-3/4 mx-auto">
           <p>
             1.class目前使用規則:前綴加"gt-"，後踩駝峰 ex. gt-title、gt-btnFlat
           </p>
@@ -100,12 +102,14 @@ const inputs = reactive({
             實際專案修改elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。
           </p>
         </div>
-        <div class="w-full md:w-1/2 mx-auto">
+        <div class="paragraphHead">
           <g-title :level="1" class="mb-4">覆寫ElementPlus樣式 </g-title>
         </div>
-        <div class="w-full md:w-1/2 mx-auto pb-10 flex">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">不同類型el-input</g-title>
+        </div>
+        <div class="w-full md:w-3/4 mx-auto pb-10 flex">
           <div class="w-1/2">
-            <p>不同類型input</p>
             <el-form
               ref="addEditForm"
               :model="inputs"
@@ -192,8 +196,11 @@ const inputs = reactive({
             <p>驗證欄位錯誤提示</p>
           </div>
         </div>
-        <div class="mb-16 px-2 w-full md:w-1/2">
+
+        <div class="w-full md:w-3/4 mx-auto">
           <g-title :level="2" class="mb-4">el-tabs & el-tab-pane</g-title>
+        </div>
+        <div class="mb-16 px-2 w-full md:w-3/4">
           <el-tabs
             class="gt-tabs"
             v-model="activeName"
@@ -211,10 +218,13 @@ const inputs = reactive({
           </el-tabs>
         </div>
 
-        <div class="mb-16 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
           <g-title :level="2" class="mb-4"
             >el-dropdown-menu & el-dropdown-item</g-title
           >
+        </div>
+
+        <div class="mb-16 px-2 w-full md:w-3/4">
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3">
               <el-dropdown
@@ -274,9 +284,12 @@ const inputs = reactive({
           </div>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">大樹後台layout Grid排版</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <div class="mb-4">
-            <g-title :level="2" class="mb-4">大樹後台layout Grid排版</g-title>
             {{`<g-layout headText="Great Tree UI" title="Demo"
               >`}} <br />
               <div class="redText pl-6">
@@ -295,26 +308,32 @@ const inputs = reactive({
           </div>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">layout版型中el-menu使用</g-title>
+        </div>
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <div class="mb-4">
-            <g-title :level="2" class="mb-4">layout版型中el-menu使用</g-title>
             {{`<g-layout headText="HeadText" title="title"
               >`}} <br />
               <div class="redText pl-6">
                 //樣式如左方所示 <br />
-                {{`<template #sidebar> <el-menu /> </template>`}}
+                {{`<template #sidebar> <el-menu class="gt-menu" /> </template
+                >`}}
               </div>
               {{`</g-layout
             >
             `}}
           </div>
         </div>
-
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="paragraphHead">
           <g-title :level="1" class="mb-4">手刻設計的基礎元件</g-title>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">頁面過場</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3"
               ><g-button pill @click="handleLoading"
@@ -324,7 +343,11 @@ const inputs = reactive({
           </div>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">標題文字</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3"
               ><g-title :level="1">Bold / 24 / 文字樣式</g-title></span
@@ -360,7 +383,11 @@ const inputs = reactive({
           </div>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">按鈕</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3"><g-button pill>按鈕</g-button></span>
             <span class="mx-4 leading-10 text-primaryDarker"
@@ -416,7 +443,7 @@ const inputs = reactive({
           </div>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <div class="flex justify-start mb-4">
             <span class="w-1/2 md:w-1/3"
               ><g-button pill type="second">按鈕</g-button></span
@@ -444,7 +471,11 @@ const inputs = reactive({
           </div>
         </div>
 
-        <div class="mb-4 px-2 w-full md:w-1/2">
+        <div class="w-full md:w-3/4 mx-auto">
+          <g-title :level="2" class="mb-4">svg icon</g-title>
+        </div>
+
+        <div class="mb-4 px-2 w-full md:w-3/4">
           <span
             class="flex justify-start mb-2"
             v-for="(item, idx) in icons"
@@ -455,7 +486,7 @@ const inputs = reactive({
                 ><g-icons :name="item" class="text-primary w-8"
               /></span>
               <span class="text-gray-600 leading-10">
-                {{ `<g-icons name="'${item}'" class="text-primary w-8" />`}}
+                {{ `<g-icons name="${item}" class="text-primary w-8" />`}}
               </span>
             </template>
             <template v-else>
@@ -482,5 +513,9 @@ div > p {
 
 .redText {
   @apply text-red-500;
+}
+
+.paragraphHead {
+  @apply w-full pl-14 py-8 text-left;
 }
 </style>
