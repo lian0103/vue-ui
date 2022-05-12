@@ -83,27 +83,58 @@ const inputs = reactive({
     <template #content>
       <div class="py-12 flex justify-center items-center flex-col">
         <div class="paragraphHead">
-          <g-title :level="1" class="mb-4">v0.0.2說明</g-title>
+          <g-title :level="1" class="mb-4">開發</g-title>
+        </div>
+        <div class="mb-8 w-full md:w-3/4 mx-auto">
+          <p>1.使用vue3語法撰寫元件功能</p>
+          <p>2.elementPlus版本:'^2.1.11'</p>
+          <p>3.Quasar版本:''</p>
+        </div>
+      </div>
+
+      <div class="py-12 flex justify-center items-center flex-col">
+        <div class="paragraphHead">
+          <g-title :level="1" class="mb-4">安裝</g-title>
         </div>
         <div class="mb-8 w-full md:w-3/4 mx-auto">
           <p>
-            1.class目前使用規則:前綴加"gt-"，後踩駝峰 ex. gt-title、gt-btnFlat
+            1.npm i gt-front-ui <br /><a
+              class="text-second"
+              href="https://www.npmjs.com/package/gt-front-ui"
+              >npm package</a
+            >
           </p>
           <p>
-            2.可使用tailwind.config.js來設定設計上要求的對應參數 ex: primary:
-            '#32A03D'
+            2.引入該版本號的css檔<br /><a
+              class="text-second"
+              href="https://unpkg.com/browse/gt-front-ui@0.0.2/dist/"
+              >選擇最新版本號</a
+            ><br />兩種方式:<br />{{`<link
+              rel="stylesheet"
+              href="https://unpkg.com/gt-front-ui@0.0.2/dist/style.css"
+            />`}}<br />
+            {{ `import 'https://unpkg.com/gt-front-ui@0.0.2/dist/style.css'` }}
           </p>
           <p>
-            3.目前不重複打包ElementPlus，只打包在'assets/elementPlus.css'中覆寫樣式，各自專案還是需引入原本的Element樣式。
-          </p>
-          <p>
-            4.實際專案引入elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。<br />
+            3.實際專案引入elementPlus的設定參照官網文件，需要如'assets/elementPlusInit.scss'覆寫基礎的變數定義。<br />
             <a
               class="text-second"
               href="https://element-plus.org/zh-CN/guide/theming.html#%E5%A6%82%E4%BD%95%E8%A6%86%E7%9B%96%E5%AE%83%EF%BC%9F"
               >element-plus. doc</a
             >
           </p>
+        </div>
+      </div>
+
+      <div class="py-12 flex justify-center items-center flex-col">
+        <div class="paragraphHead">
+          <g-title :level="1" class="mb-4">使用</g-title>
+        </div>
+        <div class="mb-8 w-full md:w-3/4 mx-auto">
+          <p>
+            1.class目前使用規則:前綴加"gt-"，後踩駝峰 ex. gt-title、gt-btnFlat
+          </p>
+          <p>2.新元件或覆寫Element或Quasar元件樣式的使用參照各元件的說明</p>
         </div>
         <div class="paragraphHead">
           <g-title :level="1" class="mb-4">覆寫ElementPlus樣式 </g-title>
