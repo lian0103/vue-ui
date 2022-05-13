@@ -14,7 +14,7 @@ body {
 }
 
 div > p {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 4px 10px;
 }
 
