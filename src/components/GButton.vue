@@ -39,7 +39,7 @@ const typeStr = computed(() => {
 </script>
 
 <template>
-  <button class="gt-btn" :class="classStr + ' ' + typeStr">
+  <button class="gt-btn" :class="[classStr, typeStr]">
     <slot></slot>
     <div class="textLine"></div>
   </button>
@@ -91,16 +91,16 @@ const typeStr = computed(() => {
       width: 0%;
       height: 0px;
       border-bottom: 2px solid var(--btn-color);
-      animation: textLine .3s forwards;
+      animation: textLine 0.3s forwards;
     }
   }
 }
 
 @keyframes textLine {
-  from{
+  from {
     width: 0;
   }
-  to{
+  to {
     width: 80%;
   }
 }

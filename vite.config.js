@@ -30,6 +30,9 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         '~/': `${path.resolve(__dirname, 'src')}/`,
+        ...(mode === 'production' && {
+          'vue-types': 'vue-types/shim',
+        }),
       },
     },
     css: {
