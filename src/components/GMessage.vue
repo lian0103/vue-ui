@@ -17,7 +17,8 @@ const TYPES = ['info', 'warning', 'error'];
 
 const list = computed(() => {
   //   console.log(' toRefs(msgArr.value)', toRefs(msgArr.value));
-  return msgArr.arr;
+  const hasMsg = msgArr.arr.filter((item) => item.show).length > 0;
+  return hasMsg ? msgArr.arr : null;
 });
 
 instance.appContext.config.globalProperties.handleMessageTrigger = ({
@@ -26,10 +27,12 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   title = 'hello world',
   time = 4000,
 }) => {
+  msgArr.arr = msgArr.arr.filter((item) => item.show);
+
   let obj = {
     id: uuidv4(),
     msgType: TYPES.includes(type) ? type : TYPES[0],
-    classArr: ['gt-msg', TYPES.includes(type) ? type : TYPES[0], 'ani'],
+    classArr: ['gt-msg', TYPES.includes(type) ? type : TYPES[0], 'aniIn'],
     msgTitle: title,
     msgText: msg || uuidv4(),
     show: true,
@@ -38,13 +41,24 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   msgArr.arr = [...msgArr.arr, obj];
 
   setTimeout(() => {
-    msgArr.arr = msgArr.arr.filter((item) => item.id != obj.id);
-  }, 2000 + msgArr.arr.length * 1000);
+    msgArr.arr = msgArr.arr.map((item) => {
+      if (item.id == obj.id) {
+        return {
+          ...item,
+          classArr: item.classArr.map((cItem) =>
+            cItem == 'aniIn' ? 'aniOut' : cItem
+          ),
+          show: false,
+        };
+      }
+      return item;
+    });
+  }, 2000 + msgArr.arr.length * 500);
 };
 </script>
 
 <template>
-  <div class="gt-msgBox">
+  <div class="gt-msgBox" v-if="list">
     <div class="relative">
       <div v-for="item in list" :key="item.id" :class="item.classArr">
         <div class="title" v-if="item.msgTitle">{{ item.msgTitle }}</div>
@@ -99,16 +113,35 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   }
 }
 
-.ani {
-  animation: msgMove 1s linear forwards;
+.aniIn {
+  animation: fadeInDown 1s linear forwards;
 }
 
-@keyframes msgMove {
-  from {
-    opacity: 0.3;
-  }
-  to {
+.aniOut {
+  animation: fadeOutUp 1s linear forwards;
+}
+
+@keyframes fadeOutUp {
+  0% {
     opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
   }
 }
 </style>
