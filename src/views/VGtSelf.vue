@@ -1,6 +1,13 @@
 <script setup>
 import { ref, getCurrentInstance, reactive } from 'vue';
-import { GButton, GIcons, GTitle, GLayout, GLoading } from '../components/';
+import {
+  GButton,
+  GIcons,
+  GTitle,
+  GLayout,
+  GLoading,
+  GMessage,
+} from '../components/';
 
 const instance = getCurrentInstance();
 const icons = [
@@ -26,8 +33,10 @@ const icons = [
 const handleLoading = () => {
   instance.appContext.config.globalProperties.handleLoadingTrigger(true);
 };
-const handleLoadTrigger = (show) => {
-  // console.log(show.value);
+const handleMsg = (type) => {
+  instance.appContext.config.globalProperties.handleMessageTrigger({
+    type,
+  });
 };
 </script>
 
@@ -69,6 +78,47 @@ const handleLoadTrigger = (show) => {
         <span class="w-1/2 md:w-1/3"
           ><g-button pill @click="handleLoading"
             >顯示Loading效果</g-button
+          ></span
+        >
+      </div>
+    </div>
+
+    <div class="mb-4 px-2 w-full md:w-3/4">
+      <div class="flex justify-start mb-4">
+        <span class="w-1/2 md:w-1/3"
+          ><g-button
+            pill
+            type="second"
+            @click="
+              () => {
+                handleMsg('info');
+              }
+            "
+            >顯示Message info</g-button
+          ></span
+        >
+        <span class="w-1/2 md:w-1/3"
+          ><g-button
+            pill
+            type="second"
+            @click="
+              () => {
+                handleMsg('warning');
+              }
+            "
+            >顯示Message warning</g-button
+          ></span
+        >
+        <span class="w-1/2 md:w-1/3"
+          ><g-button
+            pill
+            type="second"
+            @click="
+              () => {
+                handleMsg('error');
+              }
+            "
+            >顯示Message error</g-button
           ></span
         >
       </div>
@@ -229,7 +279,8 @@ const handleLoadTrigger = (show) => {
     </div>
   </div>
 
-  <g-loading :trigger="handleLoadTrigger" />
+  <g-message />
+  <g-loading />
 </template>
 
 <style lang="scss" scoped></style>
