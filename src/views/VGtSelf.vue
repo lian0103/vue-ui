@@ -42,7 +42,7 @@ const handleLoadTrigger = (show) => {
 
     <div class="mb-4 px-2 w-full md:w-3/4">
       <div class="mb-4">
-        {{`<g-layout headText="Great Tree UI" title="Demo"
+        {{`<g-layout headText="Great Tree UI" title="GT開發"
           >`}} <br />
           <div class="redText pl-6">
             {{`<template #sidebar> ... </template>`}}
@@ -54,23 +54,6 @@ const handleLoadTrigger = (show) => {
             {{`<template #content> ... </template>`}}
           </div>
 
-          {{`</g-layout
-        >
-        `}}
-      </div>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto">
-      <g-title :level="2" class="mb-4">layout版型中el-menu使用</g-title>
-    </div>
-    <div class="mb-4 px-2 w-full md:w-3/4">
-      <div class="mb-4">
-        {{`<g-layout headText="HeadText" title="title"
-          >`}} <br />
-          <div class="redText pl-6">
-            //樣式如左方所示 <br />
-            {{`<template #sidebar> <el-menu class="gt-menu" /> </template>`}}
-          </div>
           {{`</g-layout
         >
         `}}

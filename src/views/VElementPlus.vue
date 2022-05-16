@@ -21,6 +21,27 @@ const inputs = reactive({
 <template>
   <div class="py-12 flex justify-center items-center flex-col">
     <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">版型</g-title>
+    </div>
+
+    <div class="w-full md:w-3/4 mx-auto">
+      <g-title :level="2" class="mb-4">layout版型中el-menu使用</g-title>
+    </div>
+    <div class="mb-4 px-2 w-full md:w-3/4">
+      <div class="mb-4">
+        {{`<g-layout headText="HeadText" title="title"
+          >`}} <br />
+          <div class="redText pl-6">
+            //樣式如左方所示 <br />
+            {{`<template #sidebar> <el-menu class="gt-menu" /> </template>`}}
+          </div>
+          {{`</g-layout
+        >
+        `}}
+      </div>
+    </div>
+
+    <div class="paragraphHead">
       <g-title :level="1" class="mb-4">不同類型el-input </g-title>
     </div>
     <div class="w-full md:w-3/4 mx-auto pb-10 flex">

@@ -22,6 +22,16 @@ const quasarText = `\`\`\` scss
   $primary   : #3bb071
   $warning : #FC806F
  \`\`\``;
+
+const useText = {
+  lib: `\`\`\` html
+  // class定義的規則:前綴加"gt-"，後踩駝峰。ex gt-inputPlain
+  <el-input class="gt-inputPlain" v-model="inputs.input0" placeholder="我是輸入框" />
+ \`\`\``,
+  gt: `\`\`\` js
+  import { GButton, GIcons, GTitle, GLayout, GLoading } from 'gt-front-ui';
+ \`\`\``,
+};
 </script>
 
 <template>
@@ -38,13 +48,18 @@ const quasarText = `\`\`\` scss
 
   <div class="pb-8 flex justify-center items-center flex-col">
     <div class="paragraphHead" id="dev">
-      <g-title :level="1" class="mb-4">使用</g-title>
+      <g-title :level="1" class="mb-4">使用方式</g-title>
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
-      <p>1.使用ElementPlus或Quasar元件，加上由gt ui重新覆寫的class名稱</p>
-      <p>2.使用GT另外開發的元件，如layout、過場效果</p>
       <p>
-        兩者class定義的規則:前綴加"gt-"，後踩駝峰: gt-tabs、gt-title、gt-btnFlat
+        1.ElementPlus或Quasar元件，加上覆寫樣式的class名稱
+        <v-md-editor v-model="useText.lib" mode="preview"></v-md-editor>
+      </p>
+
+      <p>
+        2.import GT另外開發的元件，如layout、過場效果
+
+        <v-md-editor v-model="useText.gt" mode="preview"></v-md-editor>
       </p>
     </div>
   </div>
