@@ -1,8 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 @import 'index'; 
 
-.gt-aaa{
-    .q-list{
-        color: #ff1;
+body.desktop{
+    .gt-button{
+        &:hover{
+            > .q-focus-helper{
+                opacity: 0;
+            }
+        }
+        $color-array: (
+            primary:  $gt-primary-hover,
+            positive: $gt-positive-hover,
+            warning:  $gt-warning-hover,
+            negative: $gt-negative-hover
+        );
+        @each $key, $value in $color-array {
+            &.bg-#{$key} {
+                &:hover{
+                    background: $value !important;
+                }
+            }
+        }
     }
 }

@@ -44,7 +44,9 @@ export default ({ mode }) => {
     },
     plugins: [
       vue({ template: { transformAssetUrls } }),
-      quasar(),
+      quasar({
+        sassVariables: 'src/assets/quasar-variables.scss'
+      }),
       AutoImport({
         resolvers: [
           ElementPlusResolver({
