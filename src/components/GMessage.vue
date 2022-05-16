@@ -13,12 +13,12 @@ const instance = getCurrentInstance();
 const msgArr = reactive({
   arr: [],
 });
+const isFinished = ref(false);
 const TYPES = ['info', 'warning', 'error'];
 
 const list = computed(() => {
-  //   console.log(' toRefs(msgArr.value)', toRefs(msgArr.value));
-  const hasMsg = msgArr.arr.filter((item) => item.show).length > 0;
-  return hasMsg ? msgArr.arr : null;
+  // console.log(' msgArr.arr)', msgArr.arr);
+  return msgArr.arr;
 });
 
 instance.appContext.config.globalProperties.handleMessageTrigger = ({
@@ -27,6 +27,7 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   title = 'hello world',
   time = 4000,
 }) => {
+  isFinished.value = false;
   msgArr.arr = msgArr.arr.filter((item) => item.show);
 
   let obj = {
@@ -48,17 +49,28 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
           classArr: item.classArr.map((cItem) =>
             cItem == 'aniIn' ? 'aniOut' : cItem
           ),
+          aniEndStart: new Date().getTime(),
           show: false,
         };
       }
       return item;
     });
+    if (msgArr.arr.filter((item) => item.show).length == 0) {
+      setTimeout(() => {
+        if (
+          new Date().getTime() - msgArr.arr[msgArr.arr.length - 1].aniEndStart >
+          1500
+        ) {
+          isFinished.value = true;
+        }
+      }, 1500);
+    }
   }, 2000 + msgArr.arr.length * 500);
 };
 </script>
 
 <template>
-  <div class="gt-msgBox" v-if="list">
+  <div class="gt-msgBox" v-if="!isFinished">
     <div class="relative">
       <div v-for="item in list" :key="item.id" :class="item.classArr">
         <div class="title" v-if="item.msgTitle">{{ item.msgTitle }}</div>
