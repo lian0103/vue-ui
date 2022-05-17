@@ -14,7 +14,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build-Ele": "vite build --mode Element",
+    "build-Qua": "vite build --mode Quasar",
+    "build-GT": "vite build --mode GT",
     "build-demo": "vite build --mode demo",
     "preview": "vite preview"
   },

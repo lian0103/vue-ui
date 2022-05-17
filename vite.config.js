@@ -46,20 +46,25 @@ const silenceSomeSassDeprecationWarnings = {
   },
 };
 
+const libTarget = {
+  GT: 'src/components/indexGT.js',
+  Element: 'src/components/indexElement.js',
+  Quasar: 'src/components/indexQuasar.js',
+};
+
 // https://vitejs.dev/config/
 export default ({ mode }) => {
   let config = {
     build: {
       lib: {
-        entry: path.resolve(__dirname, 'src/components/indexProd.js'),
+        entry: path.resolve(__dirname, libTarget[mode]),
         name: 'gt-UI',
-        fileName: (format) => `gt-UI.${format}.js`,
+        fileName: (format) => `gt-UI.${mode}.${format}.js`,
       },
+      outDir:`./dist/${mode}`,
       rollupOptions: {
         external: ['vue'],
         output: {
-          // Provide global variables to use in the UMD build
-          // Add external deps here
           globals: {
             vue: 'Vue',
           },
@@ -77,7 +82,7 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         sass: {
-          ...silenceSomeSassDeprecationWarnings
+          ...silenceSomeSassDeprecationWarnings,
         },
         scss: {
           additionalData: `@use "~/assets/elementPlusInit.scss" as *;`,
