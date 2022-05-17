@@ -57,7 +57,7 @@ export default ({ mode }) => {
   let config = {
     build: {
       lib: {
-        entry: path.resolve(__dirname, libTarget[mode]),
+        entry: path.resolve(__dirname, libTarget[mode] || ''),
         name: 'gt-UI',
         fileName: (format) => `gt-UI.${mode}.${format}.js`,
       },
