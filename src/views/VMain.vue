@@ -11,7 +11,7 @@ const Router = useRouter();
     :title="Router.currentRoute._value.meta.title"
   >
     <template #sidebar>
-      <v-menu class="gt-menu" />
+      <v-menu class="gt-e-menu" />
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">

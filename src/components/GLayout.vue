@@ -21,7 +21,7 @@ const { headText, title } = defineProps({
         <div class="gt-headline">
           {{ headText }}
         </div>
-        <div class="gt-menuBox"><slot name="sidebar" /></div>
+        <div class="gt-menu-box"><slot name="sidebar" /></div>
         <div class="gt-bottomLogo">
           <img src="../assets/images/gt-logo.png" alt="" />
           <img src="../assets/images/gt-logo-text.png" alt="" />
@@ -57,7 +57,7 @@ const { headText, title } = defineProps({
       @apply text-main font-bold text-lg leading-6 flex justify-center items-center w-full;
       height: 80px;
     }
-    .gt-menuBox {
+    .gt-menu-box {
       flex-grow: 2;
       width: 100%;
       margin: auto;

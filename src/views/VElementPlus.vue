@@ -33,7 +33,7 @@ const inputs = reactive({
           >`}} <br />
           <div class="redText pl-6">
             //樣式如左方所示 <br />
-            {{`<template #sidebar> <el-menu class="gt-menu" /> </template>`}}
+            {{`<template #sidebar> <el-menu class="gt-e-menu" /> </template>`}}
           </div>
           {{`</g-layout
         >
@@ -56,7 +56,7 @@ const inputs = reactive({
           <el-form-item prop="search0" label="搜尋0">
             <div class="relative">
               <el-input
-                class="mb-4 gt-inputSearch"
+                class="mb-4 gt-e-input-search"
                 v-model="inputs.search0"
                 placeholder="我是搜尋"
               />
@@ -68,21 +68,21 @@ const inputs = reactive({
           </el-form-item>
           <el-form-item prop="input0" label="輸入0">
             <el-input
-              class="mb-4 gt-inputPlain"
+              class="mb-4 gt-e-input-plain"
               v-model="inputs.input0"
               placeholder="我是輸入框"
             />
           </el-form-item>
           <el-form-item prop="input1" label="輸入1">
             <el-input
-              class="mb-4 gt-input"
+              class="mb-4 gt-e-input"
               v-model="inputs.input1"
               placeholder="我是輸入框"
             />
           </el-form-item>
           <el-form-item prop="input2" label="輸入2">
             <el-input
-              class="mb-4 gt-input"
+              class="mb-4 gt-e-input"
               v-model="inputs.input2"
               placeholder="我是輸入框"
             />
@@ -95,7 +95,7 @@ const inputs = reactive({
             `
               <el-input
                 class="`
-          }}<span class="redText">gt-inputSearch</span
+          }}<span class="redText">gt-e-input-search</span
           >{{
             `"
                 v-model="inputs.search0"
@@ -108,7 +108,7 @@ const inputs = reactive({
             `
               <el-input
                 class="`
-          }}<span class="redText">gt-inputPlain</span
+          }}<span class="redText">gt-e-input-plain</span
           >{{
             `"
                 v-model="inputs.input0"
@@ -121,7 +121,7 @@ const inputs = reactive({
             `
               <el-input
                 class="`
-          }}<span class="redText">gt-input</span
+          }}<span class="redText">gt-e-input</span
           >{{
             `"
                 v-model="inputs.input1"
@@ -138,10 +138,10 @@ const inputs = reactive({
     </div>
 
     <div class="mb-16 px-2 w-full md:w-3/4">
-      <el-tabs class="gt-tabs" v-model="activeName" @tab-click="handleClick">
+      <el-tabs class="gt-e-tabs" v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="VeryLongTabName" name="first">
           <span class="mx-4 leading-10"
-            >{{ `<el-tabs class="` }}<span class="redText">gt-tabs</span
+            >{{ `<el-tabs class="` }}<span class="redText">gt-e-tabs</span
             >{{ `">` }}</span
           >
         </el-tab-pane>
@@ -161,7 +161,7 @@ const inputs = reactive({
       <div class="flex justify-start mb-4">
         <span class="w-1/2 md:w-1/3">
           <el-dropdown
-            class="gt-dropdown"
+            class="gt-e-dropdown"
             type="primary"
             size="large"
             :hide-on-click="false"
@@ -173,23 +173,23 @@ const inputs = reactive({
               />假裝是很長的下拉選單</g-button
             >
             <template #dropdown>
-              <el-dropdown-menu class="gt-dropdown-menu">
-                <el-dropdown-item class="gt-dropdown-item">
+              <el-dropdown-menu class="gt-e-dropdown-menu">
+                <el-dropdown-item class="gt-e-dropdown-item">
                   <div class="redText">依el元件設計 要分開寫class</div>
                 </el-dropdown-item>
-                <el-dropdown-item class="gt-dropdown-item"
+                <el-dropdown-item class="gt-e-dropdown-item"
                   >{{ `class="` }}
-                  <div class="redText">gt-dropdown</div>
+                  <div class="redText">gt-e-dropdown</div>
                   {{ `"` }}</el-dropdown-item
                 >
-                <el-dropdown-item class="gt-dropdown-item"
+                <el-dropdown-item class="gt-e-dropdown-item"
                   >{{ `class="` }}
-                  <div class="redText">gt-dropdown-menu</div>
+                  <div class="redText">gt-e-dropdown-menu</div>
                   {{ `"` }}</el-dropdown-item
                 >
-                <el-dropdown-item class="gt-dropdown-item"
+                <el-dropdown-item class="gt-e-dropdown-item"
                   >{{ `class="` }}
-                  <div class="redText">gt-dropdown-item</div>
+                  <div class="redText">gt-e-dropdown-item</div>
                   {{ `"` }}</el-dropdown-item
                 >
               </el-dropdown-menu>

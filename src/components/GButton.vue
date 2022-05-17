@@ -16,22 +16,22 @@ const { flat, pill, type } = defineProps({
 
 const classStr = computed(() => {
   if (flat) {
-    return 'gt-btnFlat';
+    return 'gt-btn-flat';
   }
   if (pill) {
-    return 'gt-btnPill';
+    return 'gt-btn-pill';
   }
-  return 'gt-btnRound';
+  return 'gt-btn-round';
 });
 
 const typeStr = computed(() => {
   switch (type) {
     case 'primary': {
-      return 'gt-btnPrimary';
+      return 'gt-btn-primary';
       break;
     }
     case 'second': {
-      return 'gt-btnSecond';
+      return 'gt-btn-second';
       break;
     }
   }
@@ -46,12 +46,12 @@ const typeStr = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-.gt-btnPrimary {
+.gt-btn-primary {
   --btn-color: #32a03d;
   --btn-color-hover: #eef5eb;
 }
 
-.gt-btnSecond {
+.gt-btn-second {
   --btn-color: #517bba;
   --btn-color-hover: #dad9f3;
 }
@@ -68,7 +68,7 @@ const typeStr = computed(() => {
   color: var(--btn-color);
 }
 
-.gt-btnRound {
+.gt-btn-round {
   @apply font-semibold rounded-lg shadow-md;
   color: #fff;
   background: var(--btn-color);
@@ -80,7 +80,7 @@ const typeStr = computed(() => {
   }
 }
 
-.gt-btnFlat {
+.gt-btn-flat {
   @apply cursor-pointer;
   color: var(--btn-color);
   &:hover {
@@ -105,7 +105,7 @@ const typeStr = computed(() => {
   }
 }
 
-.gt-btnPill {
+.gt-btn-pill {
   @apply bg-white rounded-3xl;
   border: 1px solid var(--btn-color);
 

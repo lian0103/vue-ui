@@ -25,8 +25,9 @@ const quasarText = `\`\`\` scss
 
 const useText = {
   lib: `\`\`\` html
-  // class定義的規則:前綴加"gt-"，後踩駝峰。ex gt-inputPlain
-  <el-input class="gt-inputPlain" v-model="inputs.input0" placeholder="我是輸入框" />
+  //ex gt-e-input-plain 、 gt-q-btn
+  <el-input class="gt-e-input-plain" v-model="inputs.input0" placeholder="我是輸入框" />
+  <q-btn class="gt-q-btn" color="primary" label="原生primary" />
  \`\`\``,
   gt: `\`\`\` js
   import { GButton, GIcons, GTitle, GLayout, GLoading } from 'gt-front-ui';
@@ -52,7 +53,7 @@ const useText = {
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
       <p>
-        1.ElementPlus或Quasar元件，加上覆寫樣式的class名稱
+        1.ElementPlus或Quasar元件，加上套件英文小寫(e、q)，和覆寫樣式的class名稱
         <v-md-editor v-model="useText.lib" mode="preview"></v-md-editor>
       </p>
 

@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 @import 'index'; 
 
-.gt-dropdown {
+.gt-e-dropdown {
   // @apply rounded-md;
   border-radius: 6px !important;
 }
 
-.gt-dropdown-item {
+.gt-e-dropdown-item {
   @apply px-2 rounded-lg;
 }
 
-.gt-dropdown-menu {
+.gt-e-dropdown-menu {
   // @apply px-2 rounded-lg;
   padding-left:.5rem !important;
   padding-right:.5rem !important;
   border-radius: .5rem !important;
 }
 
-.gt-tabs {
+.gt-e-tabs {
   .el-tabs__nav-wrap::after {
     // width: 0;
   }
@@ -32,7 +32,7 @@
   }
 }
 
-.gt-input {
+.gt-e-input {
   .el-input__wrapper {
     @apply rounded-lg bg-tableHover text-base;
     max-width: 300px;
@@ -41,7 +41,7 @@
   }
 }
 
-.gt-inputSearch {
+.gt-e-input-search {
   .el-input__wrapper {
     @apply text-sm;
     border-radius: 37px;
@@ -51,7 +51,7 @@
   }
 }
 
-.gt-inputPlain {
+.gt-e-input-plain {
   .el-input__wrapper {
     @apply text-base;
     max-width: 280px;
@@ -63,7 +63,7 @@
   }
 }
 
-.gt-menu {
+.gt-e-menu {
   height: 100%;
   --el-menu-bg-color: var(--gt-bg-color) !important;
   .el-menu {
