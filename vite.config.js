@@ -7,6 +7,45 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import svgLoader from 'vite-svg-loader';
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 
+const silenceSomeSassDeprecationWarnings = {
+  verbose: true,
+  logger: {
+    warn(message, options) {
+      const { stderr } = process;
+      const span = options.span ?? undefined;
+      const stack =
+        (options.stack === 'null' ? undefined : options.stack) ?? undefined;
+
+      if (options.deprecation) {
+        if (
+          message.startsWith(
+            'Using / for division outside of calc() is deprecated'
+          )
+        ) {
+          // silences above deprecation warning
+          return;
+        }
+        stderr.write('DEPRECATION ');
+      }
+      stderr.write(`WARNING: ${message}\n`);
+
+      if (span !== undefined) {
+        // output the snippet that is causing this warning
+        stderr.write(`\n"${span.text}"\n`);
+      }
+
+      if (stack !== undefined) {
+        // indent each line of the stack
+        stderr.write(
+          `    ${stack.toString().trimEnd().replace(/\n/gm, '\n    ')}\n`
+        );
+      }
+
+      stderr.write('\n');
+    },
+  },
+};
+
 // https://vitejs.dev/config/
 export default ({ mode }) => {
   let config = {
@@ -37,6 +76,9 @@ export default ({ mode }) => {
     },
     css: {
       preprocessorOptions: {
+        sass: {
+          ...silenceSomeSassDeprecationWarnings
+        },
         scss: {
           additionalData: `@use "~/assets/elementPlusInit.scss" as *;`,
         },
@@ -45,7 +87,7 @@ export default ({ mode }) => {
     plugins: [
       vue({ template: { transformAssetUrls } }),
       quasar({
-        sassVariables: 'src/assets/quasar-variables.scss'
+        sassVariables: 'src/assets/quasar-variables.scss',
       }),
       AutoImport({
         resolvers: [
