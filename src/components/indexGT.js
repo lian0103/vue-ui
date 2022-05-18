@@ -5,3 +5,6 @@ export { default as GTitle } from './GTitle.vue';
 export { default as GLayout } from './GLayout.vue';
 export { default as GLoading } from './GLoading.vue';
 export { default as GMessage } from './GMessage.vue';
+export { default as GCheckbox } from './GCheckbox.vue';
+export { default as GRadiobox } from './GRadiobox.vue';
+export { default as GSwitch } from './GSwitch.vue';

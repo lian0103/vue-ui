@@ -7,6 +7,9 @@ import {
   GLayout,
   GLoading,
   GMessage,
+  GCheckbox,
+  GRadiobox,
+  GSwitch,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -46,7 +49,7 @@ const handleLoading = () => {
 const handleMsg = (type) => {
   instance.appContext.config.globalProperties.handleMessageTrigger({
     type,
-    title:'hello~'
+    title: 'hello~',
   });
 };
 
@@ -80,10 +83,62 @@ const msgText = `\`\`\` js
  \`\`\`
 
  `;
+
+const inputs = reactive({
+  checked0: true,
+  checked1: false,
+  checked2: true,
+  checked3: false,
+  radio0: true,
+  radio1: false,
+  radio2: true,
+  radio3: false,
+  switch0: false,
+  switch1: true,
+  switch2: false,
+  switch3: true,
+});
 </script>
 
 <template>
   <div class="py-12 flex justify-center items-center flex-col">
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">輸入</g-title>
+    </div>
+    <div class="w-full md:w-3/4 mx-auto">
+      <g-title :level="2" class="mb-4">checkbox</g-title>
+    </div>
+    <div class="mb-4 px-2 w-full md:w-3/4">
+      <div class="mb-4 flex w-full">
+        <g-checkbox class="mr-4" v-model="inputs.checked0" />
+        <g-checkbox class="mr-4" v-model="inputs.checked3" />
+        <g-checkbox class="mr-4" v-model="inputs.checked1" disabled />
+        <g-checkbox class="mr-4" v-model="inputs.checked2" disabled />
+      </div>
+    </div>
+    <div class="w-full md:w-3/4 mx-auto">
+      <g-title :level="2" class="mb-4">radiobox</g-title>
+    </div>
+    <div class="mb-4 px-2 w-full md:w-3/4">
+      <div class="mb-4 flex w-full">
+        <g-radiobox class="mr-4" v-model="inputs.radio0" />
+        <g-radiobox class="mr-4" v-model="inputs.radio1" />
+        <g-radiobox class="mr-4" v-model="inputs.radio2" disabled />
+        <g-radiobox class="mr-4" v-model="inputs.radio3" disabled />
+      </div>
+    </div>
+    <div class="w-full md:w-3/4 mx-auto">
+      <g-title :level="2" class="mb-4">swich</g-title>
+    </div>
+    <div class="mb-4 px-2 w-full md:w-3/4">
+      <div class="mb-4 flex w-full">
+        <g-switch class="mr-4" v-model="inputs.switch0" />
+        <g-switch class="mr-4" v-model="inputs.switch1" />
+        <g-switch class="mr-4" v-model="inputs.switch2" statusLabel />
+        <g-switch class="mr-4" v-model="inputs.switch3" statusLabel />
+      </div>
+    </div>
+
     <div class="paragraphHead">
       <g-title :level="1" class="mb-4">版型</g-title>
     </div>

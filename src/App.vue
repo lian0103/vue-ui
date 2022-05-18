@@ -18,12 +18,6 @@ div > p {
   @apply w-full pl-14 py-8 text-left;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
 .vuepress-markdown-body {
   padding: 0 !important;
 }
