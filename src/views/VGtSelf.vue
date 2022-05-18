@@ -41,13 +41,45 @@ const icons = [
   'x',
 ];
 const handleLoading = () => {
-  instance.appContext.config.globalProperties.handleLoadingTrigger(true);
+  instance.appContext.config.globalProperties.handleLoadingTrigger();
 };
 const handleMsg = (type) => {
   instance.appContext.config.globalProperties.handleMessageTrigger({
     type,
+    title:'hello~'
   });
 };
+
+const loadText = `\`\`\` js
+  import { getCurrentInstance } from 'vue';
+  const instance = getCurrentInstance();
+  instance.appContext.config.globalProperties.handleLoadingTrigger({
+    time:1000 //Number(ms)
+  });
+ \`\`\`
+
+ \`\`\` html
+  <!-- 在頁面中加入 -->
+  <g-loading />
+ \`\`\`
+ `;
+
+const msgText = `\`\`\` js
+  import { getCurrentInstance } from 'vue';
+  const instance = getCurrentInstance();
+  instance.appContext.config.globalProperties.handleMessageTrigger({
+    type, //'info', 'warning', 'error'
+    title, //String
+    msg, //String
+  });
+ \`\`\`
+
+ \`\`\` html
+  <!-- 在頁面中加入 -->
+  <g-message />
+ \`\`\`
+
+ `;
 </script>
 
 <template>
@@ -91,6 +123,11 @@ const handleMsg = (type) => {
           ></span
         >
       </div>
+      <v-md-editor v-model="loadText" mode="preview"></v-md-editor>
+    </div>
+
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">通知</g-title>
     </div>
 
     <div class="mb-4 px-2 w-full md:w-3/4">
@@ -110,7 +147,7 @@ const handleMsg = (type) => {
         <span class="w-1/2 md:w-1/3"
           ><g-button
             pill
-            type="second"
+            type="yellow"
             @click="
               () => {
                 handleMsg('warning');
@@ -122,7 +159,7 @@ const handleMsg = (type) => {
         <span class="w-1/2 md:w-1/3"
           ><g-button
             pill
-            type="second"
+            type="red"
             @click="
               () => {
                 handleMsg('error');
@@ -132,6 +169,7 @@ const handleMsg = (type) => {
           ></span
         >
       </div>
+      <v-md-editor v-model="msgText" mode="preview"></v-md-editor>
     </div>
 
     <div class="paragraphHead">
@@ -178,84 +216,105 @@ const handleMsg = (type) => {
     </div>
 
     <div class="mb-4 px-2 w-full md:w-3/4">
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"><g-button pill>按鈕</g-button></span>
-        <span class="mx-4 leading-10 text-mainDarker"
-          >{{ '<g-button pill>按鈕</g-button>' }}</span
-        >
+      <div class="mb-8">
+        <div class="w-1/2 flex justify-between mb-4">
+          <g-button pill>按鈕</g-button>
+          <g-button pill type="second">按鈕</g-button>
+          <g-button pill type="yellow">按鈕</g-button>
+          <g-button pill type="red">按鈕</g-button>
+          <g-button pill type="white">按鈕</g-button>
+        </div>
+
+        <div class="leading-10 text-mainDarker">
+          {{ '<g-button pill>按鈕</g-button>' }}<br /><span class=""
+            >Type:default , second , yellow , red , white</span
+          >
+        </div>
       </div>
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"><g-button flat>按鈕</g-button></span>
-        <span class="mx-4 leading-10 text-mainDarker"
-          >{{ '<g-button flat>按鈕</g-button> ' }}</span
-        >
+      <div class="mb-8">
+        <div class="w-1/2 flex justify-between mb-4">
+          <g-button flat>按鈕</g-button>
+          <g-button flat type="second">按鈕</g-button>
+          <g-button flat type="yellow">按鈕</g-button>
+          <g-button flat type="red">按鈕</g-button>
+          <g-button flat type="white">按鈕</g-button>
+        </div>
+
+        <div class="leading-10 text-mainDarker">
+          {{ '<g-button flat>按鈕</g-button> ' }}<br /><span class=""
+            >Type:default , second , yellow , red , white</span
+          >
+        </div>
       </div>
 
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button flat
+      <div class="mb-8">
+        <div class="w-1/2 flex justify-between mb-4">
+          <g-button flat
             ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-          ></span
-        >
-        <span class="mx-4 leading-10 text-mainDarker"
-          >{{ `<g-button flat
-            ><g-icons name="chevronLeft" class="w-8" /> 上一頁</g-button
           >
-          ` }}</span
-        >
-      </div>
-
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button flat
-            ><g-icons
-              name="chevronRight"
-              class="text-main w-8"
-            />下一頁</g-button
-          ></span
-        >
-        <span class="mx-4 leading-10 text-mainDarker"
-          >{{ `<g-button flat
-            ><g-icons name="chevronRight" class="text-main w-8" />
-            下一頁</g-button
+          <g-button flat type="second"
+            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
           >
-          ` }}</span
-        >
+          <g-button flat type="yellow"
+            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+          >
+          <g-button flat type="red"
+            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+          >
+          <g-button flat type="white"
+            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+          >
+        </div>
+
+        <div class="w-1/2 flex justify-between mb-4">
+          <g-button flat
+            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+          >
+          <g-button flat type="second"
+            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+          >
+          <g-button flat type="yellow"
+            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+          >
+          <g-button flat type="red"
+            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+          >
+          <g-button flat type="white"
+            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+          >
+        </div>
+
+        <div class="leading-10 text-mainDarker">
+          <span>
+            {{`<g-button flat
+              ><g-icons name="chevronLeft" class="w-8" /> 上一頁</g-button
+            >
+            `}} </span
+          ><br />
+          <span>
+            {{`
+            <g-button flat
+              ><g-icons name="chevronRight" class="w-8" /> 下一頁</g-button
+            >`}} </span
+          ><br /><span class=""
+            >Type:default , second , yellow , red , white</span
+          >
+        </div>
       </div>
 
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"><g-button>預設按鈕</g-button></span>
-        <span class="mx-4 leading-10 font-semibold text-mainDarker"
-          >{{ ' <g-button>預設按鈕</g-button> ' }}</span
-        >
-      </div>
-    </div>
-
-    <div class="mb-4 px-2 w-full md:w-3/4">
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button pill type="second">按鈕</g-button></span
-        >
-        <span class="mx-4 leading-10 font-semibold text-second"
-          >{{ '<g-button pill type="second">按鈕</g-button>' }}</span
-        >
-      </div>
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button flat type="second">按鈕</g-button></span
-        >
-        <span class="mx-4 leading-10 font-semibold text-second"
-          >{{ '<g-button flat type="second">按鈕</g-button> ' }}</span
-        >
-      </div>
-
-      <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button type="second">預設按鈕</g-button></span
-        >
-        <span class="mx-4 leading-10 font-semibold text-second"
-          >{{ ' <g-button type="second">預設按鈕</g-button> ' }}</span
-        >
+      <div class="mb-8">
+        <div class="w-1/2 flex justify-between mb-4">
+          <g-button round>按鈕</g-button>
+          <g-button round type="second">按鈕</g-button>
+          <g-button round type="yellow">按鈕</g-button>
+          <g-button round type="red">按鈕</g-button>
+          <g-button round type="white">按鈕</g-button>
+        </div>
+        <div class="leading-10 text-mainDarker">
+          {{ ' <g-button round>按鈕</g-button> ' }}<br /><span class=""
+            >Type:default , second , yellow , red , white</span
+          >
+        </div>
       </div>
     </div>
 
@@ -274,7 +333,7 @@ const handleMsg = (type) => {
             ><g-icons :name="item" class="text-main w-8"
           /></span>
           <span class="text-gray-600 leading-10">
-            {{ `<g-icons name="${item}" class="text-main w-8" />`}}
+            {{ `<g-icons name="${item}" />`}}
           </span>
         </template>
         <template v-else>
@@ -282,7 +341,7 @@ const handleMsg = (type) => {
             ><g-icons :name="item" class="text-second w-8"
           /></span>
           <span class="text-gray-600 leading-10">
-            {{ `<g-icons name="${item}" class="text-second w-8" />`}}
+            {{ `<g-icons name="${item}" />`}}
           </span>
         </template>
       </span>

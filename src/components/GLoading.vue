@@ -4,16 +4,15 @@ import { ref, getCurrentInstance, computed } from 'vue';
 const instance = getCurrentInstance();
 const gLoadingShow = ref(false);
 
-instance.appContext.config.globalProperties.handleLoadingTrigger = (bool, time = 3000) => {
-  if (bool) {
-    gLoadingShow.value = bool;
-    setTimeout(() => {
-      gLoadingShow.value = false;
-    }, 2000);
-  }
-  return "isLoading:" + gLoadingShow.value ;
+instance.appContext.config.globalProperties.handleLoadingTrigger = ({
+  time = 3000,
+} = {}) => {
+  time = typeof parseInt(time) == 'number' ? parseInt(time) : 3000;
+  gLoadingShow.value = true;
+  setTimeout(() => {
+    gLoadingShow.value = false;
+  }, time);
 };
-
 </script>
 
 <template>

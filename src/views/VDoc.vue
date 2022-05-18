@@ -155,7 +155,4 @@ const useText = {
 </template>
 
 <style lang="scss">
-.vuepress-markdown-body {
-  padding: 0 !important;
-}
 </style>

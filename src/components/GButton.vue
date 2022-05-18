@@ -34,6 +34,18 @@ const typeStr = computed(() => {
       return 'gt-btn-second';
       break;
     }
+    case 'yellow': {
+      return 'gt-btn-yellow';
+      break;
+    }
+    case 'red': {
+      return 'gt-btn-red';
+      break;
+    }
+    case 'white': {
+      return 'gt-btn-white';
+      break;
+    }
   }
 });
 </script>
@@ -49,11 +61,33 @@ const typeStr = computed(() => {
 .gt-btn-primary {
   --btn-color: #32a03d;
   --btn-color-hover: #eef5eb;
+  --text-color: #fff;
 }
 
 .gt-btn-second {
   --btn-color: #517bba;
   --btn-color-hover: #dad9f3;
+  --text-color: #fff;
+}
+
+.gt-btn-yellow {
+  --btn-color: #faaf1d;
+  --btn-color-hover: #fdedcd;
+  --text-color: #fff;
+}
+
+.gt-btn-red {
+  --btn-color: #fc806f;
+  --btn-color-hover: #fcd8d8;
+  --text-color: #fff;
+}
+
+.gt-btn-white {
+  --btn-color: #55585E;
+  --btn-color-hover: #ccc;
+  --text-color: #55585E;
+  border: 1px solid #55585E;
+  color: #55585E ;
 }
 
 .gt-btn {
@@ -61,11 +95,12 @@ const typeStr = computed(() => {
   justify-content: center;
   align-items: center;
   min-width: 76px;
+  height: 36px;
   overflow: hidden;
   text-align: center;
   white-space: nowrap;
-  @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
   color: var(--btn-color);
+  @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
 }
 
 .gt-btn-round {
@@ -81,18 +116,28 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-flat {
+  border:none !important;
   @apply cursor-pointer;
   color: var(--btn-color);
   &:hover {
     .textLine {
       position: absolute;
-      bottom: 10px;
+      bottom: 2px;
       left: 10%;
       width: 0%;
       height: 0px;
-      border-bottom: 2px solid var(--btn-color);
+      border-bottom: 1px solid var(--btn-color);
       animation: textLine 0.3s forwards;
     }
+  }
+}
+
+.gt-btn-pill {
+  @apply bg-white rounded-3xl;
+  border: 1px solid var(--btn-color);
+
+  &:hover {
+    background: var(--btn-color-hover);
   }
 }
 
@@ -105,12 +150,4 @@ const typeStr = computed(() => {
   }
 }
 
-.gt-btn-pill {
-  @apply bg-white rounded-3xl;
-  border: 1px solid var(--btn-color);
-
-  &:hover {
-    background: var(--btn-color-hover);
-  }
-}
 </style>

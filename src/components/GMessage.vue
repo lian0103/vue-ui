@@ -1,12 +1,5 @@
 <script setup>
-import {
-  ref,
-  getCurrentInstance,
-  computed,
-  reactive,
-  toRef,
-  toRefs,
-} from 'vue';
+import { ref, getCurrentInstance, computed, reactive } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const instance = getCurrentInstance();
@@ -24,9 +17,8 @@ const list = computed(() => {
 instance.appContext.config.globalProperties.handleMessageTrigger = ({
   msg,
   type = 'info',
-  title = 'hello world',
-  time = 4000,
-}) => {
+  title = '',
+} = {}) => {
   isFinished.value = false;
   msgArr.arr = msgArr.arr.filter((item) => item.show);
 
@@ -88,6 +80,7 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 100;
 }
 .gt-msg {
   width: 100%;
@@ -98,7 +91,6 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   letter-spacing: 0.8px;
   border-radius: 8px;
   opacity: 0.3;
-  z-index: 100;
 
   &.info {
     border-color: #bac7e2;

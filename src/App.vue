@@ -5,14 +5,6 @@
 </template>
 
 <style lang="scss">
-* {
-  font-family: 'Noto Sans TC';
-}
-
-body {
-  font-size: 16px;
-}
-
 div > p {
   margin-bottom: 20px;
   padding: 4px 10px;
@@ -32,21 +24,7 @@ div > p {
   height: 6px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 100vh;
-  background: #edf2f7;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #cbd5e0;
-  border-radius: 100vh;
-  border: 1px solid #edf2f7;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #a0aec0;
+.vuepress-markdown-body {
+  padding: 0 !important;
 }
 </style>
