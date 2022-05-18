@@ -25,7 +25,7 @@ instance.appContext.config.globalProperties.handleLoadingTrigger = (bool, time =
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .gt-loading-wrapper {
   width: 100vw;
   height: 100%;

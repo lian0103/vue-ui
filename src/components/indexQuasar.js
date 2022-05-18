@@ -1,5 +1,1 @@
-import { default as Quasar } from './Quasar.vue';
-
-exports.default = {
-  Quasar,
-};
+export { default as Quasar } from './Quasar.vue';

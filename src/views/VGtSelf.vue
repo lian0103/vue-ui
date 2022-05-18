@@ -7,7 +7,17 @@ import {
   GLayout,
   GLoading,
   GMessage,
-} from '../components/';
+} from '../components/indexGT';
+
+// 打包後引入測試
+// import {
+//   GButton,
+//   GIcons,
+//   GTitle,
+//   GLayout,
+//   GLoading,
+//   GMessage,
+// } from 'gt-front-ui';
 
 const instance = getCurrentInstance();
 const icons = [

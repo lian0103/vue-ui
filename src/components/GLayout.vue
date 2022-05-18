@@ -39,7 +39,7 @@ const { headText, title } = defineProps({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .gt-wrapper {
   display: grid;
   height: 100vh;

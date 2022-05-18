@@ -1,9 +1,46 @@
 <script setup>
-const installText = '\`\`\` bash \n  npm install gt-front-ui \n \`\`\`';
-const importCss1 =
-  '\`\`\` js \n  \/\/ index.html  \n <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.2/dist/style.css"/> \n \`\`\`';
-const importCss2 =
-  '\`\`\` js \n  \/\/ main.js  \n import "https://unpkg.com/gt-front-ui@0.0.2/dist/style.css" \n \`\`\`';
+const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.12 \n \`\`\`';
+const importCss0 = `
+GT元件樣式引入擇一載入
+\`\`\` html
+  <!-- index.html -->
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.12/dist/GT/style.css"/>
+\`\`\`
+
+\`\`\` js
+  // main.js
+  import "https://unpkg.com/gt-front-ui@0.0.12/dist/GT/style.css"
+\`\`\`
+
+`;
+
+const importCss1 = `
+Element覆寫擇一種載入
+\`\`\` html
+  <!-- index.html -->
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.12/dist/Element/style.css"/>
+\`\`\`
+
+\`\`\` js
+  // main.js
+  import "https://unpkg.com/gt-front-ui@0.0.12/dist/Element/style.css"
+\`\`\`
+
+`;
+
+const importCss2 = `
+Quasar覆寫擇一種載入
+\`\`\` html
+  <!-- index.html -->
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.12/dist/Quasar/style.css"/>
+\`\`\`
+
+\`\`\` js
+  // main.js
+  import "https://unpkg.com/gt-front-ui@0.0.12/dist/Quasar/style.css"
+\`\`\`
+
+`;
 
 const tailwindText = `\`\`\` scss  
   @forward 'element-plus/theme-chalk/src/common/var.scss' with ( 
@@ -38,6 +75,14 @@ const useText = {
 <template>
   <div class="pb-8 flex justify-center items-center flex-col">
     <div class="paragraphHead" id="dev">
+      <g-title :level="1" class="mb-4">版號</g-title>
+    </div>
+    <div class="mb-8 w-full md:w-3/4 mx-auto">
+      <p>v0.0.12</p>
+      <p>打包方式調整、class名稱規則調整</p>
+    </div>
+
+    <div class="paragraphHead" id="dev">
       <g-title :level="1" class="mb-4">支援</g-title>
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
@@ -71,20 +116,17 @@ const useText = {
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
       <p>
-        1.有使用到GT開發的元件<br /><a
-          class="text-second"
-          href="https://www.npmjs.com/package/gt-front-ui"
-          >npm package</a
-        >
+        1.使用到GT開發的元件
         <v-md-editor v-model="installText" mode="preview"></v-md-editor>
+        <v-md-editor v-model="importCss0" mode="preview"></v-md-editor>
       </p>
 
       <p>
-        2.有使用ElementPlus覆寫樣式、Quasar覆寫樣式、GT開發元件<br /><a
+        2.使用ElementPlus覆寫樣式或Quasar覆寫樣式 (<a
           class="text-second"
-          href="https://unpkg.com/browse/gt-front-ui@0.0.2/dist/"
+          href="https://unpkg.com/browse/gt-front-ui@0.0.12/dist/"
           >原則上選擇最新版本號</a
-        ><br />兩種引入方式可擇一<br />
+        >)
         <v-md-editor v-model="importCss1" mode="preview"></v-md-editor>
         <v-md-editor v-model="importCss2" mode="preview"></v-md-editor>
       </p>

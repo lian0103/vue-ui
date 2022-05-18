@@ -45,7 +45,7 @@ const typeStr = computed(() => {
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .gt-btn-primary {
   --btn-color: #32a03d;
   --btn-color-hover: #eef5eb;

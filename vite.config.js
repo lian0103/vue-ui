@@ -54,14 +54,17 @@ const libTarget = {
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
+  const isGtMode = mode == 'GT';
+
   let config = {
     build: {
       lib: {
         entry: path.resolve(__dirname, libTarget[mode] || ''),
-        name: 'gt-UI',
-        fileName: (format) => `gt-UI.${mode}.${format}.js`,
+        name: 'gt-ui',
+        fileName: (format) =>
+          isGtMode ? `gt-ui.${format}.js` : `gt-ui-${mode}.${format}.js`,
       },
-      outDir:`./dist/${mode}`,
+      outDir: `./dist/${mode}`,
       rollupOptions: {
         external: ['vue'],
         output: {

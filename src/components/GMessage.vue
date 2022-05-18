@@ -80,7 +80,7 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .gt-msgBox {
   width: 500px;
   overflow: hidden;
