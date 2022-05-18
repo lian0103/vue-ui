@@ -104,7 +104,7 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-round {
-  @apply font-semibold rounded-lg shadow-md;
+  @apply rounded-lg shadow-md;
   color: #fff;
   background: var(--btn-color);
   border: 1px solid transparent;
