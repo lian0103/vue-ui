@@ -14,9 +14,10 @@ const { modelValue, statusLabel } = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const isChecked = ref(modelValue);
 const onClick = () => {
-  isChecked.value = !isChecked.value;
-  // console.log('!modelValue', !isChecked.value);
-  emit('update:modelValue', !isChecked.value);
+    let val = !isChecked.value;
+    // console.log('val', val);
+    isChecked.value = val;
+    emit('update:modelValue', val);
 };
 </script>
 
