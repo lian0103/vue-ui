@@ -24,7 +24,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="gt-checkobx" @click="onClick">
+  <div class="gt-checkobx" @click.prevent="onClick">
     <input type="checkbox" :checked="modelValue" />
     <div
       class="checkmark"

@@ -23,7 +23,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="gt-radiobox" @click="onClick">
+  <div class="gt-radiobox" @click.prevent="onClick">
     <input type="radio" :checked="modelValue" />
     <div
       class="checkmark"

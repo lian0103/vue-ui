@@ -21,7 +21,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="gt-switch-input" @click="onClick">
+  <div class="gt-switch-input" @click.prevent="onClick">
     <div class="relative">
       <input type="checkbox" :checked="modelValue" />
       <div class="bar" :class="modelValue ? 'bg-open' : 'bg-close'"></div>
@@ -67,6 +67,7 @@ const onClick = () => {
     line-height: 23px;
     color: #aaaaaa;
     letter-spacing: 0.8px;
+    user-select: none;
   }
 }
 </style>

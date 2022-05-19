@@ -10,6 +10,9 @@ import {
   GCheckbox,
   GRadiobox,
   GSwitch,
+  GLoadingIcon,
+  GUploadIcon,
+  GDownloadIcon,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -172,15 +175,41 @@ const inputs = reactive({
 
     <div class="mb-4 px-2 w-full md:w-3/4">
       <div class="flex justify-start mb-4">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button pill @click="handleLoading"
-            >顯示Loading效果</g-button
-          ></span
-        >
+        <div class="w-1/2 md:w-1/3">
+          <g-title :level="2" class="mb-4">page Loading效果</g-title>
+          <g-button pill @click="handleLoading">顯示</g-button>
+        </div>
       </div>
       <v-md-editor v-model="loadText" mode="preview"></v-md-editor>
-    </div>
+      <div class="flex justify-start mb-4">
+        <g-title :level="2" class="mb-4">icon Loading效果</g-title>
+        <g-loading-icon />
+      </div>
 
+      <div class="flex justify-start mb-4">
+        <g-title :level="2" class="mb-4">icon Upload效果</g-title>
+      </div>
+      <div class="mb-4 px-2 w-full md:w-3/4">
+        <div class="mb-4 flex w-full">
+          <g-upload-icon class="mr-2" />
+          <g-upload-icon class="mr-2" :percent="20" />
+          <g-upload-icon class="mr-2" :percent="80" />
+          <g-upload-icon class="mr-2" :percent="0" auto />
+        </div>
+      </div>
+
+      <div class="flex justify-start mb-4">
+        <g-title :level="2" class="mb-4">icon Download效果</g-title>
+      </div>
+      <div class="mb-4 px-2 w-full md:w-3/4">
+        <div class="mb-4 flex w-full">
+          <g-download-icon class="mr-2" />
+          <g-download-icon class="mr-2" :percent="20" />
+          <g-download-icon class="mr-2" :percent="100" />
+          <g-download-icon class="mr-2" :percent="0" :auto='true' />
+        </div>
+      </div>
+    </div>
     <div class="paragraphHead">
       <g-title :level="1" class="mb-4">通知</g-title>
     </div>

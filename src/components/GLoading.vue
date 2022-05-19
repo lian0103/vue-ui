@@ -48,7 +48,6 @@ instance.appContext.config.globalProperties.handleLoadingTrigger = ({
     height: 85px;
     text-align: center;
     line-height: 140px;
-    @apply rounded-3xl;
     border: 4px solid transparent;
     border-left-color: #fff;
     border-radius: 70px;

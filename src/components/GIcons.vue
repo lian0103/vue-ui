@@ -17,6 +17,9 @@ import search from '../assets/icons/search.svg';
 import sequence from '../assets/icons/sequence.svg';
 import trash from '../assets/icons/trash.svg';
 import x from '../assets/icons/x.svg';
+import loading from '../assets/icons/loading.svg';
+import upload from '../assets/icons/upload.svg';
+import download_sm from '../assets/icons/download_sm.svg'
 
 import { computed } from 'vue';
 
@@ -39,6 +42,9 @@ const iconNameMap = {
   sequence,
   trash,
   x,
+  loading,
+  upload,
+  download_sm
 };
 
 const { name } = defineProps({
@@ -57,9 +63,8 @@ const { name } = defineProps({
 </template>
 
 <style lang="scss">
-.gt-svg-icon{
+.gt-svg-icon {
   width: 100%;
-  fill:currentColor !important;
+  fill: currentColor !important;
 }
-
 </style>

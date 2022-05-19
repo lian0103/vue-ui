@@ -8,3 +8,7 @@ export { default as GMessage } from './GMessage.vue';
 export { default as GCheckbox } from './GCheckbox.vue';
 export { default as GRadiobox } from './GRadiobox.vue';
 export { default as GSwitch } from './GSwitch.vue';
+export { default as GLoadingIcon } from './GLoadingIcon.vue';
+export { default as GUploadIcon } from './GUploadIcon.vue';
+export { default as GDownloadIcon } from './GDownloadIcon.vue';
+
