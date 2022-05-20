@@ -1,21 +1,49 @@
+<script>
+export default {
+  name: 'gt-checkbox',
+  inheritAttrs: false,
+  customOptions: {},
+};
+</script>
+
 <script setup>
 import { computed, ref } from 'vue';
 import GIcons from './GIcons.vue';
 
-const { disabled, modelValue } = defineProps({
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
-});
-const isChecked = ref(modelValue);
+const { disabled, modelValue, label, value, parentValue, handleChildClick } =
+  defineProps({
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    label: {
+      default: null,
+    },
+    value: {
+      default: null,
+    },
+    parentValue: {
+      default: null,
+    },
+    handleChildClick: {
+      default: null,
+    },
+  });
+
+const isChecked = parentValue
+  ? computed(() => parentValue?.value?.includes(value))
+  : ref(modelValue);
+
 const emit = defineEmits(['update:modelValue']);
 const onClick = () => {
-  if (!disabled) {
+  if (!disabled && handleChildClick) {
+    handleChildClick(value);
+  }
+  if (!disabled && !handleChildClick) {
     let val = !isChecked.value;
     // console.log('val', val);
     isChecked.value = val;
@@ -25,22 +53,26 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="gt-checkobx" @click.prevent="onClick">
-    <input type="checkbox" :checked="modelValue" />
+  <div class="gt-checkbox" @click.prevent="onClick">
+    <input type="checkbox" :checked="isChecked" />
     <div
       class="checkmark"
-      :class="
-        (modelValue ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')
-      "
+      :class="(isChecked ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')"
     >
-      <g-icons v-show="modelValue" class="icon" name="check" />
+      <g-icons v-show="isChecked" class="icon" name="check" />
     </div>
+    <span
+      class="label"
+      :class="disabled ? 'label-disabled' : ''"
+      v-if="label"
+      >{{ label }}</span
+    >
   </div>
 </template>
 
 <style lang="scss">
-.gt-checkobx {
-  width: 18px;
+.gt-checkbox {
+  min-width: 18px;
   height: 18px;
   @apply relative block;
   cursor: pointer;
@@ -75,6 +107,13 @@ const onClick = () => {
     @apply cursor-not-allowed;
     .icon {
       color: #aaaaaa;
+    }
+  }
+  .label {
+    padding: 0 10px 0 20px;
+    &.label-disabled {
+      @apply cursor-not-allowed;
+      color: #aaa;
     }
   }
 }

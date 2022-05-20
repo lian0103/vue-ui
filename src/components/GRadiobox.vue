@@ -61,9 +61,12 @@ const onClick = () => {
     >
       <div v-show="isChecked" class="circle"></div>
     </div>
-    <span v-if="label" :class="disabled ? 'sapnDisabled' : ''">{{
-      label
-    }}</span>
+    <span
+      class="label"
+      v-if="label"
+      :class="disabled ? 'label-disabled' : ''"
+      >{{ label }}</span
+    >
   </div>
 </template>
 
@@ -115,9 +118,9 @@ const onClick = () => {
       background: #aaa;
     }
   }
-  span {
+  .label {
     user-select: none;
-    &.sapnDisabled {
+    &.label-disabled {
       @apply cursor-not-allowed;
       color: #aaa;
     }

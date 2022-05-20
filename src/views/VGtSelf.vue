@@ -14,6 +14,7 @@ import {
   GUploadIcon,
   GDownloadIcon,
   GRadioboxGroup,
+  GCheckboxGroup,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -49,6 +50,7 @@ const icons = [
 ];
 
 const inputs = reactive({
+  checkedArr: ['2', 22, 2, 8],
   checked0: true,
   checked1: false,
   checked2: true,
@@ -87,6 +89,7 @@ const showTextSwitch = reactive({
   msgText: false,
   loadText: false,
   inputsText0: false,
+  inputsText0_1: false,
   inputsText1: false,
   inputsText1_1: false,
   inputsText2: false,
@@ -101,7 +104,7 @@ const showTextSwitch = reactive({
 });
 
 const layoutText = `\`\`\` html
-<g-layout headText="Great Tree UI" title="GT開發"> 
+<g-layout headText="Great Tree UI" title="GT開發">
   <template #sidebar> ... </template>
   <template #header> ... </template>
   <template #content> ... </template>
@@ -145,6 +148,15 @@ const inputsText0 = `\`\`\` html
 <g-checkbox class="mr-4" v-model="inputs.checked3" />
 <g-checkbox class="mr-4" v-model="inputs.checked1" disabled />
 <g-checkbox class="mr-4" v-model="inputs.checked2" disabled />
+ \`\`\`
+`;
+const inputsText0_1 = `\`\`\` html
+<g-checkbox-group v-model="inputs.checkedArr">
+  <g-checkbox class="mr-4" :value="2" label="選項2" />
+  <g-checkbox class="mr-4" :value="4" label="選項4" />
+  <g-checkbox class="mr-4" :value="6" label="選項6" disabled />
+  <g-checkbox class="mr-4" :value="8" label="選項8" disabled />
+</g-checkbox-group>
  \`\`\`
 `;
 
@@ -266,7 +278,7 @@ const buttonText3 = `\`\`\` html
       <g-title :level="1" class="mb-3">輸入</g-title>
     </div>
     <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">勾選欄</g-title>
+      <g-title :level="2" class="mb-3">單勾選欄</g-title>
       <g-switch
         class="absolute right-0 top-0"
         v-model="showTextSwitch.inputsText0"
@@ -275,10 +287,20 @@ const buttonText3 = `\`\`\` html
     </div>
     <div class="mb-3 px-2 w-full md:w-3/4">
       <div class="mb-3 flex w-full">
-        <g-checkbox class="mr-4" v-model="inputs.checked0" />
-        <g-checkbox class="mr-4" v-model="inputs.checked3" />
-        <g-checkbox class="mr-4" v-model="inputs.checked1" disabled />
-        <g-checkbox class="mr-4" v-model="inputs.checked2" disabled />
+        <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />
+        <g-checkbox class="mr-4" v-model="inputs.checked3" label="選項2" />
+        <g-checkbox
+          class="mr-4"
+          v-model="inputs.checked1"
+          label="選項3"
+          disabled
+        />
+        <g-checkbox
+          class="mr-4"
+          v-model="inputs.checked2"
+          label="選項4"
+          disabled
+        />
       </div>
       <v-md-editor
         v-if="showTextSwitch.inputsText0"
@@ -286,6 +308,33 @@ const buttonText3 = `\`\`\` html
         mode="preview"
       ></v-md-editor>
     </div>
+
+    <div class="w-full md:w-3/4 mx-auto relative">
+      <g-title :level="2" class="mb-3">群組勾選欄</g-title>
+      <g-switch
+        class="absolute right-0 top-0"
+        v-model="showTextSwitch.inputsText0_1"
+        statusLabel
+      />
+    </div>
+
+    <div class="mb-3 px-2 w-full md:w-3/4">
+      <g-checkbox-group class="mb-3 flex w-full" v-model="inputs.checkedArr">
+        <g-checkbox class="mr-4" :value="2" label="選項2" />
+        <g-checkbox class="mr-4" :value="4" label="選項4" />
+        <g-checkbox class="mr-4" :value="6" label="選項6" disabled />
+        <g-checkbox class="mr-4" :value="8" label="選項8" disabled />
+      </g-checkbox-group>
+      <span v-if="showTextSwitch.inputsText0_1"
+        >inputs.checkedArr:{{ inputs.checkedArr }}</span
+      >
+      <v-md-editor
+        v-if="showTextSwitch.inputsText0_1"
+        v-model="inputsText0_1"
+        mode="preview"
+      ></v-md-editor>
+    </div>
+
     <div class="w-full md:w-3/4 mx-auto relative">
       <g-title :level="2" class="mb-3">單選欄</g-title>
       <g-switch

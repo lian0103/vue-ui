@@ -12,6 +12,7 @@ export { default as GLoadingIcon } from './GLoadingIcon.vue';
 export { default as GUploadIcon } from './GUploadIcon.vue';
 export { default as GDownloadIcon } from './GDownloadIcon.vue';
 export { default as GRadioboxGroup } from './GRadioboxGroup.vue';
+export { default as GCheckboxGroup } from './GCheckboxGroup.vue';
 
 
 
