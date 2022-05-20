@@ -40,7 +40,7 @@ const isChecked = parentValue
 const emit = defineEmits(['update:modelValue']);
 
 const onClick = () => {
-  if (handleChildClick && value) {
+  if (!disabled && handleChildClick && value) {
     handleChildClick(value);
   }
 
@@ -61,7 +61,9 @@ const onClick = () => {
     >
       <div v-show="isChecked" class="circle"></div>
     </div>
-    <span v-if="label">{{ label }}</span>
+    <span v-if="label" :class="disabled ? 'sapnDisabled' : ''">{{
+      label
+    }}</span>
   </div>
 </template>
 
@@ -115,6 +117,10 @@ const onClick = () => {
   }
   span {
     user-select: none;
+    &.sapnDisabled {
+      @apply cursor-not-allowed;
+      color: #aaa;
+    }
   }
 }
 </style>
