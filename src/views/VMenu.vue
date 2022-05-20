@@ -13,8 +13,16 @@ const Router = useRouter();
         <span>文件</span>
       </template>
 
-      <router-link to="/doc#dev">
-        <el-menu-item index="1-1">使用說明</el-menu-item></router-link
+      <router-link to="/doc">
+        <el-menu-item index="1-1">介紹</el-menu-item></router-link
+      >
+
+      <router-link to="/use">
+        <el-menu-item index="1-2">使用</el-menu-item></router-link
+      >
+
+      <router-link to="/install">
+        <el-menu-item index="1-3">安裝</el-menu-item></router-link
       >
     </el-sub-menu>
     <el-sub-menu index="2">

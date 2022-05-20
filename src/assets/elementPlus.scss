@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
-@import 'index'; 
+@import 'index';
 
 .gt-e-dropdown {
   // @apply rounded-md;
@@ -12,9 +12,9 @@
 
 .gt-e-dropdown-menu {
   // @apply px-2 rounded-lg;
-  padding-left:8px !important;
-  padding-right:8px !important;
-  border-radius:8px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  border-radius: 8px !important;
 }
 
 .gt-e-tabs {
@@ -26,7 +26,7 @@
     min-width: 120px;
     height: 32px;
     text-align: center;
-    background: #FBFBF9;
+    background: #fbfbf9;
     color: #303236;
     @apply text-lg;
   }
@@ -88,8 +88,11 @@
     margin-bottom: 5px;
   }
 
-  .el-menu-item:hover,
   .el-sub-menu__title:hover {
+    --el-menu-hover-bg-color: none !important;
+  }
+
+  .el-menu-item:hover {
     --el-menu-hover-bg-color: #e0f2de !important;
   }
 

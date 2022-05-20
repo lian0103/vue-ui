@@ -21,6 +21,20 @@ export const routes = [
         meta: { title: '文件', idx: '1-1' },
       },
       {
+        path: 'use',
+        components: {
+          mainView: () => import('../views/VUse.vue'),
+        },
+        meta: { title: '使用', idx: '1-2' },
+      },
+      {
+        path: 'install',
+        components: {
+          mainView: () => import('../views/VInstall.vue'),
+        },
+        meta: { title: '安裝', idx: '1-3' },
+      },
+      {
         path: 'elementPlus',
         components: {
           mainView: () => import('../views/VElementPlus.vue'),
