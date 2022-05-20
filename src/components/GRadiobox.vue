@@ -1,22 +1,51 @@
+<script>
+export default {
+  name: 'gt-radiobox',
+  inheritAttrs: false,
+  customOptions: {},
+};
+</script>
+
 <script setup>
 import { computed, ref } from 'vue';
 
-const { disabled, modelValue } = defineProps({
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
-});
-const isChecked = ref(modelValue);
+const { disabled, modelValue, value, parentValue, handleChildClick } =
+  defineProps({
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    label: {
+      default: null,
+    },
+    value: {
+      default: null,
+    },
+    parentValue: {
+      default: null,
+    },
+    handleChildClick: {
+      default: null,
+    },
+  });
+const isChecked = parentValue
+  ? computed(() => {
+      return value === parentValue.value;
+    })
+  : ref(modelValue);
 const emit = defineEmits(['update:modelValue']);
+
 const onClick = () => {
-  if (!disabled) {
+  if (handleChildClick && value) {
+    handleChildClick(value);
+  }
+
+  if (!disabled && !handleChildClick) {
     let val = !isChecked.value;
-    // console.log('val', val);
     isChecked.value = val;
     emit('update:modelValue', val);
   }
@@ -25,22 +54,20 @@ const onClick = () => {
 
 <template>
   <div class="gt-radiobox" @click.prevent="onClick">
-    <input type="radio" :checked="modelValue" />
+    <input type="radio" :checked="isChecked" />
     <div
       class="checkmark"
-      :class="
-        (modelValue ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')
-      "
+      :class="(isChecked ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')"
     >
-      <div v-show="modelValue" class="circle"></div>
+      <div v-show="isChecked" class="circle"></div>
     </div>
+    <span v-if="label">{{ label }}</span>
   </div>
 </template>
 
 <style lang="scss">
 .gt-radiobox {
-  width: 20px;
-  height: 20px;
+  padding: 0 10px 0 22px;
   border-radius: 50%;
   @apply relative block;
   cursor: pointer;
@@ -85,6 +112,9 @@ const onClick = () => {
       border-radius: 50%;
       background: #aaa;
     }
+  }
+  span {
+    user-select: none;
   }
 }
 </style>
