@@ -15,6 +15,8 @@ import {
   GDownloadIcon,
   GRadioboxGroup,
   GCheckboxGroup,
+  GDropdown,
+  GDropdownItem,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -64,6 +66,8 @@ const inputs = reactive({
   switch1: true,
   switch2: false,
   switch3: true,
+  dropdown0: 2,
+  dropdown1: 3,
 });
 
 // watch(
@@ -101,6 +105,8 @@ const showTextSwitch = reactive({
   buttonText1: false,
   buttonText2: false,
   buttonText3: false,
+  dropdown0: false,
+  dropdown1: false,
 });
 
 const layoutText = `\`\`\` html
@@ -254,6 +260,33 @@ const buttonText3 = `\`\`\` html
 <g-button round type="white">按鈕</g-button>
  \`\`\`
 `;
+
+const dropdown0Text = `\`\`\` html
+<g-dropdown
+  class="mr-4"
+  v-model="inputs.dropdown0"
+  :options="[
+    { label: 'Aaaa', value: 1 },
+    { label: 'Bbbb', value: 2 },
+    { label: 'Gggggeeeeewwww', value: 3 },
+  ]"
+  clicked
+/>
+ \`\`\`
+`;
+
+const dropdown1Text = `\`\`\` html
+<g-dropdown
+  v-model="inputs.dropdown1"
+  :options="[
+    { label: 'Aaaa', value: 1 },
+    { label: 'Bbbb', value: 2 },
+    { label: 'Gggggeeeeewwww', value: 3 },
+  ]"
+  hover
+/>
+ \`\`\`
+`;
 </script>
 
 <template>
@@ -277,6 +310,62 @@ const buttonText3 = `\`\`\` html
     <div class="paragraphHead">
       <g-title :level="1" class="mb-3">輸入</g-title>
     </div>
+
+    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+      <g-title :level="2" class="mb-3">下拉選項點擊模式</g-title>
+      <g-switch
+        class="absolute right-0 top-0"
+        v-model="showTextSwitch.dropdown0"
+        statusLabel
+      />
+      <g-dropdown
+        class="mr-4"
+        v-model="inputs.dropdown0"
+        :options="[
+          { label: 'Aaaa', value: 1 },
+          { label: 'Bbbb', value: 2 },
+          { label: 'Gggggeeeeewwww', value: 3 },
+        ]"
+        clicked
+      />
+      <span v-if="showTextSwitch.dropdown0"
+        >v-model:{{ inputs.dropdown0 }}</span
+      >
+      <v-md-editor
+        v-if="showTextSwitch.dropdown0"
+        v-model="dropdown0Text"
+        mode="preview"
+      ></v-md-editor>
+    </div>
+
+    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+      <g-title :level="2" class="mb-3">下拉選項停留模式</g-title>
+      <g-switch
+        class="absolute right-0 top-0"
+        v-model="showTextSwitch.dropdown1"
+        statusLabel
+      />
+
+      <g-dropdown
+        v-model="inputs.dropdown1"
+        :options="[
+          { label: 'Aaaa', value: 1 },
+          { label: 'Bbbb', value: 2 },
+          { label: 'Gggggeeeeewwww', value: 3 },
+        ]"
+        hover
+      />
+
+      <span v-if="showTextSwitch.dropdown1"
+        >v-model:{{ inputs.dropdown1 }}</span
+      >
+      <v-md-editor
+        v-if="showTextSwitch.dropdown1"
+        v-model="dropdown1Text"
+        mode="preview"
+      ></v-md-editor>
+    </div>
+
     <div class="w-full md:w-3/4 mx-auto relative">
       <g-title :level="2" class="mb-3">單勾選欄</g-title>
       <g-switch
