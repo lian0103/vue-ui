@@ -126,7 +126,7 @@ export default ({ mode }) => {
   if (mode === 'demo') {
     config.base = '/vue-ui/';
     config.build = {
-      outDir: './docs',
+      outDir: './demo',
     };
     console.log('config.build', config.build);
   }

@@ -2,12 +2,13 @@ set -e
 
 npm run build-demo
 
-cd docs
+cd demo
 
+git init
 git add -A
 
 git commit -m 'deploy'
 
-git push -f origin main:gh-pages
+git push -f https://github.com/lian0103/vue-ui.git master:gh-pages
 
 cd -
