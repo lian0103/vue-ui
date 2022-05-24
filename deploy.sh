@@ -8,6 +8,6 @@ git add -A
 
 git commit -m 'deploy'
 
-git push -f git@github.com:lian0103/vue-ui.git master:gh-pages
+git push -f origin master:gh-pages
 
 cd -
