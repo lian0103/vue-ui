@@ -8,6 +8,6 @@ git add -A
 
 git commit -m 'deploy'
 
-git push -f origin master:gh-pages
+git push -f origin main:gh-pages
 
 cd -
