@@ -15,3 +15,5 @@ export { default as GRadioboxGroup } from './GRadioboxGroup.vue';
 export { default as GCheckboxGroup } from './GCheckboxGroup.vue';
 export { default as GDropdown } from './GDropdown.vue';
 export { default as GDropdownItem } from './GDropdownItem.vue';
+export { default as GInput } from './GInput.vue';
+export { default as GForm } from './GForm.vue';

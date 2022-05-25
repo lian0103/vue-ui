@@ -16,7 +16,7 @@ export default {
     const isShow = ref(false);
     const isHover = ref(false);
     const handleIsShow = (childClick = false) => {
-      console.log('childClick', childClick);
+      // console.log('childClick', childClick);
       if (props.clicked || childClick) {
         let show = !isShow.value;
         isShow.value = show;

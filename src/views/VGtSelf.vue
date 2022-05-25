@@ -17,6 +17,8 @@ import {
   GCheckboxGroup,
   GDropdown,
   GDropdownItem,
+  GInput,
+  GForm,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -68,14 +70,39 @@ const inputs = reactive({
   switch3: true,
   dropdown0: 2,
   dropdown1: 3,
+  input0: 'hello',
+  input2: 123,
+  input1: '',
+  test1: 'hi~',
+  test2: 123,
+  test3: '',
 });
 
-// watch(
-//   () => inputs.radio4,
-//   (newValue, oldVal) => {
-//     console.log('in~~~radio4', newValue, oldVal);
-//   }
-// );
+const formRule = {
+  test1: [
+    {
+      require: true,
+      message: '必填',
+      trigger: 'blur',
+    },
+    {
+      valid: (val) => ('' + val).length > 3,
+      message: '長度大於3',
+      trigger: 'blur',
+    },
+  ],
+  test2: [
+    {
+      valid: (val) => ('' + val).length > 10,
+      message: '長度大於10',
+    },
+  ],
+};
+
+const handleSubmit = () => {
+  // console.log("instance.appContext.config.globalProperties.gForms",instance.appContext.config.globalProperties)
+  instance.appContext.config.globalProperties['gForms-form1'].callValid();
+};
 
 const handleLoading = () => {
   instance.appContext.config.globalProperties.handleLoadingTrigger();
@@ -107,6 +134,8 @@ const showTextSwitch = reactive({
   buttonText3: false,
   dropdown0: false,
   dropdown1: false,
+  inputsText3: false,
+  inputsText4: false,
 });
 
 const layoutText = `\`\`\` html
@@ -287,6 +316,51 @@ const dropdown1Text = `\`\`\` html
 />
  \`\`\`
 `;
+
+const inputsText3 = `\`\`\` html
+<g-form v-model="inputs" :rules="formRule" name="form1">
+  <g-input label="驗證1" name="test1" green clearable />
+  <g-input label="驗證2" name="test2" green clearable />
+  <g-input label="驗證3" name="test3" green clearable />
+</g-form>
+ \`\`\`
+
+ \`\`\` js
+const formRule = {
+  test1: [
+    {
+      require: true,
+      message: '必填',
+      trigger: 'blur',
+    },
+    {
+      valid: (val) => ('' + val).length > 3,
+      message: '長度大於3',
+      trigger: 'blur'
+    },
+  ],
+  test2: [
+    {
+      valid: (val) => ('' + val).length > 10,
+      message: '長度大於10',
+    },
+  ],
+};
+ \`\`\`
+`;
+
+const inputsText4 = `\`\`\` html
+<g-input v-model="inputs.input0" />
+<g-input v-model="inputs.input0" label="文字0" />
+<g-input v-model="inputs.input2" type="number" label="數字0" />
+<g-input v-model="inputs.input1" type="password" label="密碼0" />
+
+<g-input v-model="inputs.input0" green />
+<g-input v-model="inputs.input0" green label="文字1" />
+<g-input v-model="inputs.input2" type="number" green label="數字1" />
+<g-input v-model="inputs.input1" green type="password" label="密碼1" />
+ \`\`\`
+`;
 </script>
 
 <template>
@@ -308,7 +382,66 @@ const dropdown1Text = `\`\`\` html
       ></v-md-editor>
     </div>
     <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">輸入</g-title>
+      <g-title :level="1" class="mb-3">操作</g-title>
+    </div>
+
+    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+      <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
+      <g-switch
+        class="absolute right-0 top-0"
+        v-model="showTextSwitch.inputsText3"
+        statusLabel
+      />
+
+      <g-form v-model="inputs" :rules="formRule" name="form1">
+        <g-input label="驗證1" name="test1" green clearable />
+        <g-input label="驗證2" name="test2" green clearable />
+        <g-input label="驗證3" name="test3" green clearable />
+      </g-form>
+      <g-button
+        class="mb-4"
+        @click="
+          () => {
+            handleSubmit();
+          }
+        "
+        >欄位驗證</g-button
+      >
+      <div v-if="showTextSwitch.inputsText3">
+        <p>inputs.test1:{{ inputs.test1 }}</p>
+        <p>inputs.test2:{{ inputs.test2 }}</p>
+        <p>inputs.test3:{{ inputs.test3 }}</p>
+      </div>
+      <v-md-editor
+        v-if="showTextSwitch.inputsText3"
+        v-model="inputsText3"
+        mode="preview"
+      ></v-md-editor>
+    </div>
+
+    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+      <g-title :level="2" class="mb-3">輸入框-樣式</g-title>
+      <g-switch
+        class="absolute right-0 top-0"
+        v-model="showTextSwitch.inputsText4"
+        statusLabel
+      />
+
+      <g-input v-model="inputs.input0" />
+      <g-input v-model="inputs.input0" label="文字0" />
+      <g-input v-model="inputs.input2" type="number" label="數字0" />
+      <g-input v-model="inputs.input1" type="password" label="密碼0" />
+
+      <g-input v-model="inputs.input0" green />
+      <g-input v-model="inputs.input0" green label="文字1" />
+      <g-input v-model="inputs.input2" type="number" green label="數字1" />
+      <g-input v-model="inputs.input1" green type="password" label="密碼1" />
+
+      <v-md-editor
+        v-if="showTextSwitch.inputsText4"
+        v-model="inputsText4"
+        mode="preview"
+      ></v-md-editor>
     </div>
 
     <div class="w-full md:w-3/4 mx-auto mb-6 relative">
