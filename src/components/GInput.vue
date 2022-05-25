@@ -153,9 +153,9 @@ const handleClear = () => {
   }
   .gt-input {
     width: 100%;
-    max-width: 300px;
+    max-width: 240px;
     height: 36px;
-    padding: 10px 0 10px 20px;
+    padding: 10px 0px 10px 20px;
     font-size: 16px;
     color: #303236;
     background: #f0f0f0;
@@ -183,13 +183,15 @@ const handleClear = () => {
 
   .gt-input:focus ~ .clear-icon {
     opacity: 1;
+    z-index: 1;
   }
 
   .clear-icon {
     width: 22px;
     color: #aaa;
     opacity: 0;
-    @apply absolute cursor-pointer;
+    z-index: -1;
+    @apply absolute cursor-pointer transition-all duration-300;
     right: 0;
     top: 7px;
   }
