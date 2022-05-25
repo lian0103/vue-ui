@@ -70,7 +70,9 @@ export default {
     };
 
     const handleRulesValid = async (value, name, triggerType = 'submit') => {
-      console.log('handleRulesValid', value);
+      if (validResult[name]) {
+        validResult[name] = null;
+      }
       let rules = props.rules;
       return new Promise((resolve, reject) => {
         if (rules[name] && Array.isArray(rules[name])) {
@@ -83,7 +85,7 @@ export default {
               arr.push(ruleValid(value, itemObj));
             }
           });
-          //   console.log('promiseArr', arr);
+          // console.log('promiseArr', arr);
           Promise.all(arr)
             .then((res) => {
               validResult[name] = null;

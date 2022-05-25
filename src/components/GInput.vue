@@ -96,7 +96,7 @@ const inputVal = ref(modelValue || parentValue?.value || '');
 
 const handleInput = (evt) => {
   if (parentValue) {
-    // console.log('inputVal.value', inputVal.value);
+    // console.log('~~~', inputVal.value);
     handleValChange(inputVal.value, name);
   } else {
     emit('update:modelValue', inputVal.value);
@@ -112,6 +112,7 @@ const handleBlur = async () => {
 
 const handleClear = () => {
   inputVal.value = '';
+  handleValChange('', name);
 };
 </script>
 
