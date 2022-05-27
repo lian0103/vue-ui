@@ -39,6 +39,14 @@ const isChecked = parentValue
   : ref(modelValue);
 
 const emit = defineEmits(['update:modelValue']);
+
+const classComputed = computed(() => {
+  let arr = ['checkmark'];
+  if (isChecked.value) arr.push('checked');
+  if (disabled) arr.push('disabled');
+  return arr;
+});
+
 const onClick = () => {
   if (!disabled && handleChildClick) {
     handleChildClick(value);
@@ -55,10 +63,7 @@ const onClick = () => {
 <template>
   <div class="gt-checkbox" @click.prevent="onClick">
     <input type="checkbox" :checked="isChecked" />
-    <div
-      class="checkmark"
-      :class="(isChecked ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')"
-    >
+    <div :class="classComputed">
       <g-icons v-show="isChecked" class="icon" name="check" />
     </div>
     <span
@@ -74,46 +79,39 @@ const onClick = () => {
 .gt-checkbox {
   min-width: 18px;
   height: 18px;
-  @apply relative block;
-  cursor: pointer;
+  @apply relative block cursor-pointer;
   input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    cursor: pointer;
+    @apply absolute w-0 h-0 opacity-0 cursor-pointer;
   }
   .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 2px;
     width: 18px;
     height: 18px;
-    border: 1.5px solid #32a03d;
-    background: #eef5eb;
+    @apply absolute top-0 left-0 rounded-sm;
+    border-width: 1.5px;
+    @apply border-solid border-main;
+    @apply bg-color1;
     @apply transition-all duration-300;
   }
 
   .checked {
-    background: #32a03d;
+    @apply bg-main;
     .icon {
-      color: #fff;
+      @apply text-white;
     }
   }
   .disabled {
-    border: 1.5px solid #aaaaaa !important;
-    background-color: #ffffff !important;
+    border-width: 1.5px;
+    @apply border border-solid border-gray0;
+    @apply bg-white;
     @apply cursor-not-allowed;
     .icon {
-      color: #aaaaaa;
+      @apply text-color1;
     }
   }
   .label {
     padding: 0 10px 0 20px;
     &.label-disabled {
-      @apply cursor-not-allowed;
-      color: #aaa;
+      @apply cursor-not-allowed text-gray0;
     }
   }
 }

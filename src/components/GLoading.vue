@@ -26,41 +26,29 @@ instance.appContext.config.globalProperties.handleLoadingTrigger = ({
 
 <style lang="scss">
 .gt-loading-wrapper {
-  width: 100vw;
-  height: 100%;
+  @apply w-screen h-full;
   min-width: 1280px;
-  position: absolute;
-  z-index: 9990;
-  left: 0;
-  top: 0;
   background: rgba(0, 0, 0, 0.1);
+  @apply absolute left-0 top-0 z-top-10;
   @apply flex justify-center items-center;
   .gt-loadBox {
     width: 140px;
     height: 140px;
-    background: #f7e488;
     border-radius: 30px;
+    @apply bg-color5;
   }
 
   .gt-loadAni {
-    z-index: 9999 !important;
+    @apply z-top text-center border-4 border-solid border-transparent border-l-white rounded-full;
     width: 85px;
     height: 85px;
-    text-align: center;
-    line-height: 140px;
-    border: 4px solid transparent;
-    border-left-color: #fff;
-    border-radius: 70px;
-    animation: namemf 1s linear infinite;
     @apply absolute;
     left: 28px;
     top: 28px;
+    animation: namemf 1s linear infinite;
   }
   .gt-loadText {
-    @apply absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
   }
 }
 

@@ -5,12 +5,6 @@ export default {
   props: ['modelValue'],
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
-    // watch(
-    //   () => props.modelValue,
-    //   (newValue) => {
-    //     console.log('in~~~', newValue);
-    //   }
-    // );
     const validChilds = slots.default()
       ? slots
           .default()
@@ -27,7 +21,6 @@ export default {
           })
       : [];
     // console.log(validChilds);
-
     return () => h('div', validChilds);
   },
 };

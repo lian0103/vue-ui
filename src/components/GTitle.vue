@@ -13,7 +13,7 @@ const { level } = defineProps({
 
 <style lang="scss">
 .gt-title {
-  color: #303236;
+  @apply text-gray4;
 }
 
 .gt-level0 {

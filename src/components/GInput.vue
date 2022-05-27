@@ -148,52 +148,44 @@ const handleClear = () => {
   @apply flex justify-start items-center;
   .gt-input-label {
     height: 36px;
-    font-size: 16px;
-    padding: 0 12px;
-    line-height: 2.4;
+    @apply text-base leading-9 px-3;
   }
   .gt-input {
-    width: 100%;
+    @apply w-full text-base text-gray4 bg-color2 rounded-lg;
+    @apply outline outline-1 outline-color3;
     max-width: 240px;
     height: 36px;
     padding: 10px 22px 10px 20px;
-    font-size: 16px;
-    color: #303236;
-    background: #f0f0f0;
-    outline: #d9d9d9 1px solid;
-    border-radius: 8px;
+
+    &:focus {
+      @apply outline-main;
+    }
 
     &.gt-input-green {
-      background: #f1f9f3;
+      @apply bg-color4;
       &:focus {
-        outline: #dbe9d8 1px solid;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
       }
     }
 
     &.gt-input-error {
-      outline: #fc806f 1px solid !important;
+      @apply outline-danger;
     }
   }
 
   .gt-input-error-msg {
-    @apply absolute left-0.5 -bottom-5;
-    color: #fc806f;
+    @apply absolute left-0.5 -bottom-5 text-danger;
     letter-spacing: 0.6px;
   }
 
   .gt-input:focus ~ .clear-icon {
-    opacity: 1;
-    z-index: 1;
+    @apply opacity-100 z-10;
   }
 
   .clear-icon {
     width: 22px;
-    color: #aaa;
-    opacity: 0;
-    z-index: -1;
-    @apply absolute cursor-pointer transition-all duration-300;
-    right: 0;
+    @apply text-gray0 opacity-0 -z-10;
+    @apply absolute right-0 cursor-pointer transition-all duration-300;
     top: 7px;
   }
 }

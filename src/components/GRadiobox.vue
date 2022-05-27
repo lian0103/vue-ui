@@ -73,56 +73,34 @@ const onClick = () => {
 <style lang="scss">
 .gt-radiobox {
   padding: 0 10px 0 22px;
-  border-radius: 50%;
-  @apply relative block;
-  cursor: pointer;
+  @apply relative block rounded-full cursor-pointer;
   input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    cursor: pointer;
+    @apply absolute w-0 h-0 opacity-0 cursor-pointer;
   }
   .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 2px;
     width: 20px;
     height: 20px;
-    border-radius: 50%;
-    border-width: 1.5px;
-    border-style: solid;
-    border-color: #32a03d;
-    background: #eef5eb;
+    @apply absolute top-0 left-0;
+    @apply rounded-full border-1.5 border-solid border-main bg-color1;
     @apply transition-all duration-300;
   }
 
   .checked {
     @apply flex justify-center items-center;
     .circle {
-      width: 50%;
-      height: 50%;
-      border-radius: 50%;
-      background: #32a03d;
+      @apply w-1/2 h-1/2 bg-main rounded-full;
     }
   }
   .disabled {
-    border: 1.5px solid #aaaaaa !important;
-    background-color: #ffffff !important;
-    @apply cursor-not-allowed;
+    @apply cursor-not-allowed bg-white border-1.5 border-solid border-gray0;
     .circle {
-      width: 50%;
-      height: 50%;
-      border-radius: 50%;
-      background: #aaa;
+      @apply w-1/2 h-1/2 rounded-full bg-gray0;
     }
   }
   .label {
-    user-select: none;
+    @apply select-none;
     &.label-disabled {
-      @apply cursor-not-allowed;
-      color: #aaa;
+      @apply cursor-not-allowed text-gray0;
     }
   }
 }

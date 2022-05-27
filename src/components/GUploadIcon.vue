@@ -45,26 +45,19 @@ onMounted(() => {
 .gt-upload-icon {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background-color: #aaa;
-  overflow: hidden;
-  @apply relative;
+  @apply rounded-full bg-gray0 overflow-hidden relative;
   .pie {
-    @apply absolute;
-    left: 0px;
-    top: 0px;
+    @apply absolute left-0 top-0;
     width: 29px;
     height: 29px;
     // background: conic-gradient(#55585e 0 40%, #aaa 0 100%);
   }
   .inner {
-    @apply absolute;
+    @apply absolute rounded-full bg-gray3;
     left: 3px;
     top: 3px;
     width: 22px;
     height: 22px;
-    border-radius: 50%;
-    background-color: var(--gt-bg-color);
   }
   .svgbox {
     width: 28px;
@@ -73,11 +66,7 @@ onMounted(() => {
   svg {
     width: 10px;
     height: 12px;
-    color: #55585e;
-    @apply relative;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    @apply relative text-gray1 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
   }
 }
 </style>

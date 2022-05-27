@@ -31,7 +31,6 @@ const { option, label, value, icon, parentValue, handleChildClick } =
       default: () => {},
     },
   });
-// console.log('label', label);
 const isCurrent = computed(() => {
   return parentValue.value === option.value;
 });
@@ -54,12 +53,11 @@ const isCurrent = computed(() => {
 
 <style lang="scss">
 .gt-dropdown-item {
-  width: 100%;
+  @apply w-full flex justify-start items-center cursor-pointer;
   max-width: 140px;
   height: 36px;
   padding: 0 22px 0 12px;
   letter-spacing: 0.7px;
-  @apply flex justify-start items-center cursor-pointer;
   &:hover {
     @apply text-main;
   }
@@ -67,7 +65,7 @@ const isCurrent = computed(() => {
     width: 22px;
   }
   span {
-    overflow: hidden;
+    @apply overflow-hidden;
   }
 }
 </style>

@@ -12,7 +12,7 @@ export default {
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
-    console.log(props);
+    // console.log(props);
     const isShow = ref(false);
     const isHover = ref(false);
     const handleIsShow = (childClick = false) => {
@@ -58,7 +58,6 @@ export default {
         : props.modelValue;
     });
 
-    // console.log('props', props);
     const childs =
       props.options?.map((item) => {
         return h(GDropdownItem, {
@@ -109,21 +108,15 @@ export default {
 
 <style lang="scss">
 .gt-dropdown {
-  width: 100%;
   max-width: 140px;
   height: 36px;
   padding: 0 22px 0 12px;
   letter-spacing: 0.7px;
-  background: #ffffff;
-  border: 1px solid #dbe9d8;
-  border-radius: 6px;
-  user-select: none;
+  @apply w-full bg-white border border-solid border-gray2 rounded-md select-none;
   @apply flex justify-start items-center relative cursor-pointer;
   .gt-dropdown-span {
-    width: 100%;
     height: 36px;
-    line-height: 36px;
-    overflow: hidden;
+    @apply w-full leading-9 overflow-hidden;
     @apply flex justify-start items-center;
     svg {
       width: 22px;
@@ -138,37 +131,24 @@ export default {
   }
 
   .gt-dropdown-items {
-    display: none;
-    width: 100%;
-    z-index: -1;
-    opacity: 0;
+    @apply hidden w-full -z-10 opacity-0;
     @apply absolute top-10 left-0;
-    padding: 4px 0;
-    background-color: #fbfbf9;
-    border-radius: 10px;
+    @apply py-1 px-0 bg-gray3 rounded-10;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+
     &.show {
-      @apply flex flex-col;
-      z-index: 100;
-      opacity: 1;
+      @apply flex flex-col z-100 opacity-100;
     }
   }
 }
 .gt-dropdown-hover {
   .gt-dropdown-items {
-    z-index: 100 !important;
-    opacity: 1 !important;
+    @apply z-100 opacity-100;
     @apply flex flex-col;
     &::before {
       content: '';
-      display: block;
-      background: transparent;
-      width: 100%;
       height: 50px;
-      position: absolute;
-      left: 0px;
-      top: -2.55rem;
-      z-index: 1;
+      @apply w-full block bg-transparent absolute left-0 -top-10 z-10;
     }
   }
 }

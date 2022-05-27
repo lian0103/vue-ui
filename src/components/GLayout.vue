@@ -41,29 +41,21 @@ const { headText, title } = defineProps({
 
 <style lang="scss">
 .gt-wrapper {
-  display: grid;
-  height: 100vh;
-  overflow: hidden;
+  @apply grid h-screen overflow-hidden bg-gray3;
   min-width: 1280px;
   grid-template-columns: 300px 1fr;
   grid-auto-rows: minmax(80px, auto);
-  background-color: var(--gt-bg-color);
   .gt-sidebar {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
+    @apply col-start-1 col-end-2 row-start-1 row-end-3;
+
     .gt-headline {
       @apply text-main font-bold text-lg leading-6 flex justify-center items-center w-full;
       height: 80px;
     }
     .gt-menu-box {
       flex-grow: 2;
-      width: 100%;
-      margin: auto;
+      @apply w-full mx-auto overflow-y-scroll relative;
       height: calc(100vh - 150px);
-      overflow-y: scroll;
-      position: relative;
       &::-webkit-scrollbar {
         width: 0px !important;
       }
@@ -71,11 +63,7 @@ const { headText, title } = defineProps({
         content: '';
         width: 1px;
         height: calc(100vh - 150px);
-        background-color: var(--gt-bg-color);
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
+        @apply block bg-gray3 absolute top-0 right-0;
       }
     }
 
@@ -85,19 +73,13 @@ const { headText, title } = defineProps({
     }
   }
   .gt-header {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
     @apply flex justify-between items-center pl-14;
+    @apply col-start-2 col-end-3 row-start-1 row-end-2;
   }
   .gt-content {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    @apply col-start-2 col-end-3 row-start-2 row-end-3 overflow-y-scroll;
     height: calc(100vh - 80px);
-    overflow-y: scroll;
   }
 }
 </style>
+d

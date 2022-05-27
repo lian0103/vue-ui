@@ -64,7 +64,7 @@ const { name } = defineProps({
 
 <style lang="scss">
 .gt-svg-icon {
-  width: 100%;
+  @apply w-full;
   fill: currentColor !important;
 }
 </style>

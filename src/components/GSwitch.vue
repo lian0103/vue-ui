@@ -38,11 +38,7 @@ const onClick = () => {
 .gt-switch-input {
   @apply flex items-center cursor-pointer;
   input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    cursor: pointer;
+    @apply absolute w-0 h-0 opacity-0 cursor-pointer;
   }
   .bar {
     @apply block w-10 h-5 rounded-full bg-gray-300;
@@ -63,12 +59,8 @@ const onClick = () => {
   }
   .label-text {
     margin: 0 10px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 23px;
-    color: #aaaaaa;
     letter-spacing: 0.8px;
-    user-select: none;
+    @apply text-gray0 select-none font-normal leading-4 text-base;
   }
 }
 </style>

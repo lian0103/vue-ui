@@ -83,31 +83,24 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-white {
-  --btn-color: #55585E;
+  --btn-color: #55585e;
   --btn-color-hover: #ccc;
-  --text-color: #55585E;
-  border: 1px solid #55585E;
-  color: #55585E ;
+  --text-color: #55585e;
+  @apply text-gray1 border border-solid border-gray1;
 }
 
 .gt-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-width: 76px;
   height: 36px;
-  overflow: hidden;
-  text-align: center;
-  white-space: nowrap;
   color: var(--btn-color);
+  @apply flex justify-center items-center;
+  @apply overflow-hidden text-center whitespace-nowrap;
   @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
 }
 
 .gt-btn-round {
-  @apply rounded-lg shadow-md;
-  color: #fff;
+  @apply rounded-lg shadow-md text-white border border-solid border-transparent;
   background: var(--btn-color);
-  border: 1px solid transparent;
   &:hover {
     background: var(--btn-color-hover);
     color: var(--btn-color);
@@ -116,16 +109,14 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-flat {
-  border:none !important;
+  border: none !important;
   @apply cursor-pointer;
   color: var(--btn-color);
   &:hover {
     .textLine {
-      position: absolute;
+      @apply absolute w-0 h-0;
       bottom: 2px;
       left: 10%;
-      width: 0%;
-      height: 0px;
       border-bottom: 1px solid var(--btn-color);
       animation: textLine 0.3s forwards;
     }
@@ -149,5 +140,4 @@ const typeStr = computed(() => {
     width: 80%;
   }
 }
-
 </style>

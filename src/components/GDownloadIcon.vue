@@ -50,17 +50,11 @@ onMounted(() => {
 .gt-download-icon {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background-color: #aaa;
-  color: #55585e;
-  overflow: hidden;
-  @apply relative;
+  @apply relative rounded-full bg-gray0 text-gray1 overflow-hidden;
   .pie {
-    @apply absolute;
-    left: 0px;
-    top: 0px;
     width: 29px;
     height: 29px;
+    @apply absolute left-0 top-0;
     // background: conic-gradient(#55585e 0 40%, #aaa 0 100%);
   }
   .inner {
@@ -69,14 +63,12 @@ onMounted(() => {
     top: 3px;
     width: 22px;
     height: 22px;
-    border-radius: 50%;
+    @apply rounded-full;
     background-color: var(--gt-bg-color);
     &.completed {
-      left: 0px;
-      top: 0px;
       width: 30px;
       height: 30px;
-      @apply bg-main;
+      @apply bg-main left-0 top-0;
     }
   }
   .svgbox {
@@ -86,15 +78,11 @@ onMounted(() => {
     svg {
       width: 10px;
       height: 12px;
-
-      @apply relative;
-      left: 50%;
-      top: 50%;
-      transform: translateX(-50%) translateY(-50%);
+      @apply relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
     }
     &.completed {
       svg {
-        color: #fff;
+        @apply text-white;
         width: 20px;
         height: 20px;
       }
