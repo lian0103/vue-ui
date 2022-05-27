@@ -5,11 +5,6 @@
 </template>
 
 <style lang="scss">
-div > p {
-  margin-bottom: 20px;
-  padding: 4px 10px;
-}
-
 .redText {
   @apply text-red-500;
 }

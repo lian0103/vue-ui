@@ -19,6 +19,7 @@ import {
   GDropdownItem,
   GInput,
   GForm,
+  GTimePicker,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -365,6 +366,14 @@ const inputsText4 = `\`\`\` html
 
 <template>
   <div class="py-12 flex justify-center items-center flex-col">
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-3">版型</g-title>
+    </div>
+    <div class="w-full md:w-3/4 mx-auto relative">
+      <g-title :level="2" class="mb-3">時間</g-title>
+      <g-time-picker />
+    </div>
+
     <div class="paragraphHead">
       <g-title :level="1" class="mb-3">版型</g-title>
     </div>
