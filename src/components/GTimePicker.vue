@@ -1,20 +1,77 @@
 <script setup>
-import { computed, onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref, shallowRef, watch } from 'vue';
+import { useElementBounding, useWindowSize } from '@vueuse/core';
 import { DateTime } from 'luxon';
 import GIcons from './GIcons.vue';
+import GInput from './GInput.vue';
+import { v4 as uuidv4 } from 'uuid';
 
-const curDay = ref(null);
+const { modelValue, placeholder } = defineProps({
+  modelValue: {},
+  placeholder: {
+    default: DateTime.now().setLocale('zh').toLocaleString(),
+  },
+});
+const emit = defineEmits(['update:modelValue']);
+const root = shallowRef();
+const isTimePickerShow = ref(false);
+const curSelect = ref(modelValue || null);
+const curDay = ref(DateTime.now());
 const curIndex = ref(null);
 const curCalenderInfo = reactive({
   curMonthDayStartIndex: null,
   curMonthDayEndIndex: null,
 });
+
+watch(
+  () => curSelect.value,
+  (val, oldVal) => {
+    // console.log('val', val);
+    emit('update:modelValue', val);
+  }
+);
+
+const eventHandle = () => {
+  //   console.log('aaa');
+  isTimePickerShow.value = false;
+};
+
+watch(
+  () => isTimePickerShow.value,
+  (val, oldVal) => {
+    // console.log('in~', val, document.getElementsByTagName('body'));
+    if (val && document.getElementsByTagName('body')[0]) {
+      document
+        .getElementsByTagName('body')[0]
+        .addEventListener('click', eventHandle, false);
+    } else {
+      document
+        .getElementsByTagName('body')[0]
+        ?.removeEventListener('click', eventHandle);
+    }
+  }
+);
+
 const monthAll = computed(() => {
   //   console.log('curDay.value', curDay.value);
   return curDay.value ? `${curDay.value.year}年${curDay.value.month}月` : '';
 });
-
+const isMonthAllShow = ref(false);
 const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+const months = [
+  '1月',
+  '2月',
+  '3月',
+  '4月',
+  '5月',
+  '6月',
+  '7月',
+  '8月',
+  '9月',
+  '10月',
+  '11月',
+  '12月',
+];
 const calenderDays = computed(() => {
   curCalenderInfo.curMonthDayStartIndex = null;
   curCalenderInfo.curMonthDayEndIndex = null;
@@ -50,19 +107,19 @@ const calenderDays = computed(() => {
     let idx2 = 0;
     for (let index = 0; index < 42; index++) {
       if (rowOnediff - index > 0) {
-        console.log('in..1');
+        // console.log('in..1');
         arr[index] = preMonthLastday - rowOnediff + 1 + index;
       } else if (
         index < 42 - rowLastPlus + 1 &&
         1 + index - rowOnediff <= monthEndDay
       ) {
-        console.log('in..2');
+        // console.log('in..2');
         if (!curCalenderInfo.curMonthDayStartIndex) {
           curCalenderInfo.curMonthDayStartIndex = index + 1;
         }
         arr[index] = 1 + index - rowOnediff;
       } else {
-        console.log('in..3');
+        // console.log('in..3');
         if (!curCalenderInfo.curMonthDayEndIndex) {
           curCalenderInfo.curMonthDayEndIndex = index - 1;
         }
@@ -71,7 +128,7 @@ const calenderDays = computed(() => {
       }
     }
 
-    console.log(arr);
+    // console.log(arr);
   }
   return arr;
 });
@@ -95,6 +152,31 @@ const getCalenderClass = (cdStr, idx) => {
 
 const handleCalDayClick = (idx) => {
   //   console.log("curIndex.value ",curIndex.value )
+  let month =
+    idx < curCalenderInfo.curMonthDayStartIndex
+      ? curDay.value.month - 1 < 1
+        ? 12
+        : curDay.value.month - 1
+      : idx > curCalenderInfo.curMonthDayEndIndex
+      ? curDay.value.month + 1 > 12
+        ? 1
+        : curDay.value.month + 1
+      : curDay.value.month;
+  let year =
+    curDay.value.month == 12 && idx > curCalenderInfo.curMonthDayEndIndex
+      ? curDay.value.year + 1
+      : curDay.value.month == 1 && idx < curCalenderInfo.curMonthDayStartIndex
+      ? curDay.value.year - 1
+      : curDay.value.year;
+//   console.log('year', year);
+
+  curSelect.value = DateTime.fromObject({
+    year,
+    month,
+    day: calenderDays.value[idx],
+  })
+    .setLocale('zh')
+    .toLocaleString();
   curIndex.value = idx;
 };
 
@@ -116,49 +198,185 @@ const handleMonthNext = () => {
   });
 };
 
-onMounted(() => {
-  const now = DateTime.now();
-  curDay.value = now;
+const handleMonthAll = () => {
+  isMonthAllShow.value = !isMonthAllShow.value;
+};
+
+const handleMonthChange = (month) => {
+  curIndex.value = null;
+  if (month == 'current') {
+    isMonthAllShow.value = !isMonthAllShow.value;
+    return true;
+  }
+
+  curDay.value = DateTime.fromObject({
+    year: curDay.value.year,
+    month: month,
+    day: 1,
+  });
+  isMonthAllShow.value = !isMonthAllShow.value;
+};
+
+const handleUseNow = () => {
+  let time = DateTime.now();
+  curDay.value = DateTime.now().toObject();
+  curSelect.value = time.setLocale('zh').toLocaleString();
+
+  calenderDays.value.forEach((day, idx) => {
+    if (
+      day == time.day &&
+      idx >= curCalenderInfo.curMonthDayStartIndex &&
+      idx <= curCalenderInfo.curMonthDayEndIndex
+    ) {
+      curIndex.value = idx;
+    }
+  });
+  isTimePickerShow.value = false;
+};
+
+const {
+  height: rootHeight,
+  width: rootWidth,
+  top: rootTop,
+  bottom: rootBottom,
+  right: rootRight,
+  left: rootLeft,
+  update: updateRoot,
+} = useElementBounding(root);
+
+const { width: winWidth, height: winHeight } = useWindowSize();
+
+const popupStyleComputed = computed(() => {
+  let rootWidth = parseInt(rootRight.value) - parseInt(rootLeft.value);
+  if (root) {
+    return {
+      top: '50px',
+      left: rootRight.value + 100 > winWidth.value ? '-84px' : 0,
+    };
+  } else {
+    return {};
+  }
+});
+
+const popupClassComputed = computed(() => {
+  return isTimePickerShow.value ? 'tp-aniIn' : '';
 });
 </script>
 
 <template>
-  <div class="gt-timepicker">
-    <div class="calender">
-      <span class="month-pre" @click.prevent="handleMonthPre">
-        <g-icons name="chevronLeft"
-      /></span>
-      <p class="month-all">{{ monthAll }}</p>
-      <span class="month-next" @click.prevent="handleMonthNext">
-        <g-icons name="chevronRight"
-      /></span>
+  <div ref="root" class="gt-timepicker-box gt-input-wrapper">
+    <span
+      class="gt-input gt-input-green select-none"
+      @click.stop="isTimePickerShow = !isTimePickerShow"
+      >{{ curSelect || placeholder || '' }}</span
+    >
+    <g-icons
+      class="icon"
+      name="calendar"
+      @click.stop="isTimePickerShow = !isTimePickerShow"
+    />
 
-      <span
-        v-for="(wdStr, idx) in weekDays"
-        :class="`wdStr wdStr${idx}`"
-        :key="idx"
-        >{{ wdStr }}</span
-      >
+    <div
+      @click.stop="() => {}"
+      class="gt-timepicker"
+      :class="popupClassComputed"
+      :style="popupStyleComputed"
+    >
+      <div class="calender">
+        <span class="month-pre" @click.stop="handleMonthPre">
+          <g-icons name="chevronLeft"
+        /></span>
+        <p class="month-all" @click.stop="handleMonthAll">{{ monthAll }}</p>
+        <span class="month-next" @click.stop="handleMonthNext">
+          <g-icons name="chevronRight"
+        /></span>
 
-      <span
-        v-for="(cdStr, idx) in calenderDays"
-        class="calDay"
-        :class="getCalenderClass(cdStr, idx)"
-        :key="idx"
-        @click="
-          () => {
-            handleCalDayClick(idx);
-          }
-        "
-        >{{ cdStr }}</span
-      >
+        <template v-if="!isMonthAllShow">
+          <span
+            v-for="(wdStr, idx) in weekDays"
+            :class="`wdStr wdStr${idx}`"
+            :key="idx + 'bbb'"
+            >{{ wdStr }}</span
+          >
+
+          <span
+            v-for="(cdStr, idx) in calenderDays"
+            class="calDay"
+            :class="getCalenderClass(cdStr, idx)"
+            :key="uuidv4()"
+            @click.stop="
+              () => {
+                handleCalDayClick(idx);
+              }
+            "
+            >{{ cdStr }}</span
+          >
+          <span v-if="curSelect" class="cur-select">{{ curSelect }}</span>
+
+          <span class="use-cur-time" @click.stop="handleUseNow"
+            >套用現在時間</span
+          >
+
+          <span class="comfirm" @click.stop="isTimePickerShow = false"
+            >確定</span
+          >
+        </template>
+      </div>
+
+      <template v-if="isMonthAllShow">
+        <div class="months">
+          <span class="month" v-for="(month, idx) in months" :key="month">
+            <template v-if="curDay && idx != curDay.month - 1">
+              <g-button
+                pill
+                type="white"
+                @click.stop="
+                  () => {
+                    handleMonthChange(idx + 1);
+                  }
+                "
+                >{{ month }}</g-button
+              >
+            </template>
+            <template v-else>
+              <g-button
+                pill
+                @click.stop="
+                  () => {
+                    handleMonthChange('current');
+                  }
+                "
+                >{{ month }}</g-button
+              >
+            </template>
+          </span>
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+.gt-timepicker-box {
+  width: 100%;
+  max-width: 240px;
+  @apply relative;
+  > span {
+    @apply cursor-pointer;
+    line-height: 16px !important;
+  }
+  .icon {
+    @apply w-8 absolute right-0 top-0.5 text-gray0 cursor-pointer;
+  }
+}
+
 .gt-timepicker {
   width: 326px;
+  overflow: hidden;
+  opacity: 0;
+  display: none;
+  @apply absolute flex-col -z-10;
+  max-width: 326px;
   height: 416px;
   padding: 16px;
   background: #ffffff;
@@ -170,7 +388,7 @@ onMounted(() => {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: minmax(32px, auto);
-    @apply text-center;
+    @apply text-center select-none;
     .month-pre {
       @apply w-full col-start-1 col-end-2 row-start-1 row-end-2 flex cursor-pointer;
       svg {
@@ -197,6 +415,11 @@ onMounted(() => {
     .calDay {
       @apply select-none cursor-pointer;
       line-height: 2;
+
+      &:hover {
+        @apply text-main;
+      }
+
       &.curSelect {
         width: 30px;
         height: 30px;
@@ -222,6 +445,57 @@ onMounted(() => {
         grid-column-end: 2 + $i;
       }
     }
+
+    .cur-select {
+      @apply select-none;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 10;
+      grid-row-end: 11;
+    }
+
+    .use-cur-time {
+      @apply text-second cursor-pointer select-none;
+      grid-column-start: 4;
+      grid-column-end: 7;
+      grid-row-start: 11;
+      grid-row-end: 12;
+    }
+    .comfirm {
+      @apply cursor-pointer select-none;
+      grid-column-start: 7;
+      grid-column-end: 8;
+      grid-row-start: 11;
+      grid-row-end: 12;
+    }
+  }
+  .months {
+    width: 96%;
+    margin: 15px 0;
+    @apply flex justify-between flex-wrap;
+    @apply col-start-1 col-end-8 row-start-3 row-end-4;
+    .month {
+      @apply relative;
+      width: 64px;
+      height: 42px;
+      margin: 5px;
+    }
+  }
+}
+
+.tp-aniIn {
+  display: flex !important;
+  animation: tpFadeIn 0.5s forwards;
+}
+
+@keyframes tpFadeIn {
+  0% {
+    opacity: 0;
+    @apply -z-10;
+  }
+  100% {
+    opacity: 1;
+    @apply z-top;
   }
 }
 </style>

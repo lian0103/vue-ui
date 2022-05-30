@@ -77,6 +77,7 @@ const inputs = reactive({
   test1: 'hi~',
   test2: 123,
   test3: '',
+  time1: '',
 });
 
 const formRule = {
@@ -137,6 +138,7 @@ const showTextSwitch = reactive({
   dropdown1: false,
   inputsText3: false,
   inputsText4: false,
+  inputsTime1: false,
 });
 
 const layoutText = `\`\`\` html
@@ -362,18 +364,15 @@ const inputsText4 = `\`\`\` html
 <g-input v-model="inputs.input1" green type="password" label="密碼1" />
  \`\`\`
 `;
+
+const inputsTime1 = `\`\`\` html
+  <g-time-picker v-model="inputs.time1" />
+ \`\`\`
+`;
 </script>
 
 <template>
   <div class="py-12 flex justify-center items-center flex-col">
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">版型</g-title>
-    </div>
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">時間</g-title>
-      <g-time-picker />
-    </div>
-
     <div class="paragraphHead">
       <g-title :level="1" class="mb-3">版型</g-title>
     </div>
@@ -392,6 +391,22 @@ const inputsText4 = `\`\`\` html
     </div>
     <div class="paragraphHead">
       <g-title :level="1" class="mb-3">操作</g-title>
+    </div>
+
+    <div class="w-full md:w-3/4 pr-2 mx-auto relative">
+      <g-title :level="2" class="mb-3">日期選擇</g-title>
+      <g-switch
+        class="absolute right-0 top-0"
+        v-model="showTextSwitch.inputsTime1"
+        statusLabel
+      />
+      <g-time-picker v-model="inputs.time1" />
+      <p v-if="showTextSwitch.inputsTime1">inputs.time1:{{ inputs.time1 }}</p>
+      <v-md-editor
+        v-if="showTextSwitch.inputsTime1"
+        v-model="inputsTime1"
+        mode="preview"
+      ></v-md-editor>
     </div>
 
     <div class="w-full md:w-3/4 mx-auto mb-6 relative">

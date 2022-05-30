@@ -27,6 +27,7 @@ const {
   green,
   clearable,
   parentValue,
+  parentvalue,
   placeholder,
   validResult,
   handleValChange,
@@ -58,6 +59,9 @@ const {
     default: false,
   },
   parentValue: {
+    default: null,
+  },
+  parentvalue:{
     default: null,
   },
   placeholder: {
@@ -125,7 +129,7 @@ const handleClear = () => {
         :class="classComputed"
         :type="TYPES.includes(type) ? type : 'text'"
         v-model="inputVal"
-        :placeholder="placeholderDefaultMap[type]"
+        :placeholder="placeholder || placeholderDefaultMap[type]"
         @change="handleInput"
         @blur="handleBlur"
       />
