@@ -74,9 +74,11 @@ const inputs = reactive({
   input0: 'hello',
   input2: 123,
   input1: '',
-  test1: 'hi~',
-  test2: 123,
-  test3: '',
+  test: {
+    test1: 'hi~',
+    test2: 123,
+    test3: '',
+  },
   time1: '',
 });
 
@@ -321,7 +323,7 @@ const dropdown1Text = `\`\`\` html
 `;
 
 const inputsText3 = `\`\`\` html
-<g-form v-model="inputs" :rules="formRule" name="form1">
+<g-form v-model="inputs.test" :rules="formRule" name="form1">
   <g-input label="驗證1" name="test1" green clearable />
   <g-input label="驗證2" name="test2" green clearable />
   <g-input label="驗證3" name="test3" green clearable />
@@ -417,7 +419,7 @@ const inputsTime1 = `\`\`\` html
         statusLabel
       />
 
-      <g-form v-model="inputs" :rules="formRule" name="form1">
+      <g-form v-model="inputs.test" :rules="formRule" name="form1">
         <g-input label="驗證1" name="test1" green clearable />
         <g-input label="驗證2" name="test2" green clearable />
         <g-input label="驗證3" name="test3" green clearable />
