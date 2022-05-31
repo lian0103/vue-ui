@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
     mode: 'jit', //只編譯有使用到的樣式
@@ -263,9 +264,9 @@ module.exports = {
             '9xl': ['8rem', { lineHeight: '1' }],
             100: ['100px', { lineHeight: '1' }],
             baseFzPx: '16px',
-            head1: ['1.5rem', { lineHeight: '2rem' }],
-            head2: ['1.25rem', { lineHeight: '1.75rem' }],
-            head3: ['1.25rem', { lineHeight: '1.75rem' }]
+            head1: ['24px', { lineHeight: '34px',fontWeight:'700',letterSpacing:'1.2px' }],
+            head2: ['20px', { lineHeight: '28px',fontWeight:'500',letterSpacing:'1px' }],
+            head3: ['18px', { lineHeight: '24px',fontWeight:'700',letterSpacing:'.9px' }]
         },
         fontWeight: {
             thin: '100',
@@ -952,5 +953,16 @@ module.exports = {
         wordBreak: ['responsive'],
         zIndex: ['responsive', 'focus-within', 'focus']
     },
-    plugins: []
+    plugins: [
+        plugin(function({ addBase, theme }) {
+          addBase({
+            'h1': { fontSize: theme('fontSize.head1') , lineHeight:'34px',fontWeight:'700',letterSpacing:'1.2px' },
+            'h2': { fontSize: theme('fontSize.head2') , lineHeight:'28px',fontWeight:'500',letterSpacing:'1px'},
+            'h3': { fontSize: theme('fontSize.head3') , lineHeight:'24px',fontWeight:'700',letterSpacing:'.9px'},
+            'h4':{fontSize: theme('fontSize.baseFzPx') , lineHeight:'24px',fontWeight:'500',letterSpacing:'.8px'},
+            'h5':{fontSize: '13px' , lineHeight:'15px',fontWeight:'400',letterSpacing:'.65px'},
+            'h6':{fontSize: '12px' , lineHeight:'14px',fontWeight:'400',letterSpacing:'.6px'},
+          })
+        })
+      ]
 };

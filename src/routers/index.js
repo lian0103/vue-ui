@@ -28,11 +28,18 @@ export const routes = [
         meta: { title: 'ElementPlus', idx: '2-1' },
       },
       {
+        path: 'element',
+        components: {
+          mainView: () => import('../views/VElement.vue'),
+        },
+        meta: { title: 'Element元件', idx: '2-4' },
+      },
+      {
         path: 'quasar',
         components: {
           mainView: () => import('../views/VQuasar.vue'),
         },
-        meta: { title: 'Quasar', idx: '2-2' },
+        meta: { title: 'Quasar元件', idx: '2-2' },
       },
       {
         path: 'gt-self',
