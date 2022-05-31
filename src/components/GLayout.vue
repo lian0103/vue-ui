@@ -79,7 +79,18 @@ const { headText, title } = defineProps({
   .gt-content {
     @apply col-start-2 col-end-3 row-start-2 row-end-3 overflow-y-scroll;
     height: calc(100vh - 80px);
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: #d9d9d9;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #666666;
+      }
+    }
   }
 }
 </style>
-d
