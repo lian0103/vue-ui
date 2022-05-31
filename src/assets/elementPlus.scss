@@ -25,7 +25,7 @@
 
 .gt-e-input {
   .el-input__wrapper {
-    @apply rounded-lg bg-tableHover text-base;
+    @apply rounded-lg bg-color1 text-base;
     max-width: 300px;
     height: 36px;
     padding: 10px 15px;
@@ -39,7 +39,7 @@
   .el-tabs__item {
     height: 35px;
     text-align: center;
-    background: #FBFBF9;
+    background: #fbfbf9;
     color: $gt-text-dark;
     @apply text-lg;
   }
@@ -63,72 +63,71 @@
 .gt-e-tabs {
   .el-tabs__nav-wrap::after {
     // width: 0;
-  padding-left:.5rem !important;
-  padding-right:.5rem !important;
-  border-radius: .5rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    border-radius: 0.5rem !important;
+  }
 }
 
-
-
 $color: (
-  primary:  $gt-primary,
+  primary: $gt-primary,
   success: $gt-positive,
-  warning:  $gt-warning,
-  danger: $gt-negative
+  warning: $gt-warning,
+  danger: $gt-negative,
 );
 
 $color-hover: (
-  primary:  $gt-primary-hover,
+  primary: $gt-primary-hover,
   success: $gt-positive-hover,
-  warning:  $gt-warning-hover,
-  danger: $gt-negative-hover
+  warning: $gt-warning-hover,
+  danger: $gt-negative-hover,
 );
 
 $round-hover-color: (
-  primary:  $gt-hover,
+  primary: $gt-hover,
   success: $gt-tag-normal-bg,
-  warning:  $gt-tag-warning-bg,
-  danger: $gt-tag-danger-bg
+  warning: $gt-tag-warning-bg,
+  danger: $gt-tag-danger-bg,
 );
 
-.gt-e-button{
-  &.el-button{
+.gt-e-button {
+  &.el-button {
     padding: 8px 16px;
     line-height: 1.715em;
     min-height: 2.572em;
     border: 0 !important;
     .el-icon,
-    [class*="el-icon-"]{
-      --color:#fff;
+    [class*='el-icon-'] {
+      --color: #fff;
       color: #fff;
     }
-    [class*=el-icon] + span{
+    [class*='el-icon'] + span {
       margin-left: 5.5px;
     }
-    span + [class*=el-icon]{
+    span + [class*='el-icon'] {
       margin-right: 5.5px;
     }
-    &.is-round{
+    &.is-round {
       padding: 8px 15px;
-      border-radius:24px;
+      border-radius: 24px;
       border: 1px solid !important;
     }
   }
   @each $key, $value in $color-hover {
     &.el-button--#{$key} {
       &:focus,
-      &:hover{
+      &:hover {
         background: $value !important;
       }
     }
   }
   @each $key, $value in $color {
     &.el-button--#{$key} {
-      &.is-round{
+      &.is-round {
         background-color: #fff;
         border-color: $value;
         color: $value;
-        &:hover{
+        &:hover {
           border-color: $value;
           color: $value;
         }
@@ -137,51 +136,50 @@ $round-hover-color: (
   }
   @each $key, $value in $round-hover-color {
     &.el-button--#{$key} {
-      &.is-round{
-        &:hover{
-          background:  $value !important;
+      &.is-round {
+        &:hover {
+          background: $value !important;
         }
       }
     }
   }
 }
-.gt-e-link{
+.gt-e-link {
   @each $key, $value in $color {
     &.el-link--#{$key} {
-      &::after{
-        content: "";
+      &::after {
+        content: '';
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 1px !important; 
+        height: 1px !important;
         width: 0;
       }
-      &:hover{
+      &:hover {
         color: $value;
-        &::after{
+        &::after {
           width: 100%;
-          border-bottom:none;
+          border-bottom: none;
           background-color: $value;
-          transition: all .25s linear;
+          transition: all 0.25s linear;
         }
       }
     }
   }
 }
-.gt-e-disabled-link{
-  &.is-disabled{
+.gt-e-disabled-link {
+  &.is-disabled {
     color: $gt-gray-variant !important;
   }
 }
 
-  .el-tabs__item {
-    min-width: 120px;
-    height: 32px;
-    text-align: center;
-    background: #fbfbf9;
-    color: #303236;
-    @apply text-lg;
-  }
+.el-tabs__item {
+  min-width: 120px;
+  height: 32px;
+  text-align: center;
+  background: #fbfbf9;
+  color: #303236;
+  @apply text-lg;
 }
 
 .gt-e-input {
@@ -215,8 +213,7 @@ $round-hover-color: (
   }
 }
 
-.gt-e-menu {
-body{
+body {
   &::-webkit-scrollbar {
     width: 5px;
     background-color: $gt-gray;
@@ -225,55 +222,55 @@ body{
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: $gt-gray-variant;
-    &:hover{
-      background-color:$gt-gray-dark;
+    &:hover {
+      background-color: $gt-gray-dark;
     }
   }
 }
 
-.gt-e-radio{
-  .el-radio__input{
-    .el-radio__inner{
+.gt-e-radio {
+  .el-radio__input {
+    .el-radio__inner {
       width: 20px;
       height: 20px;
-      border: 2px solid #DCDFE6;
-      &:hover{
-        border-color:$gt-primary;
+      border: 2px solid #dcdfe6;
+      &:hover {
+        border-color: $gt-primary;
       }
     }
     &.is-checked {
-      .el-radio__inner{
-        border-color:$gt-primary;
-        background:#ffffff;
-        &::after{
-          background-color:$gt-primary;
+      .el-radio__inner {
+        border-color: $gt-primary;
+        background: #ffffff;
+        &::after {
+          background-color: $gt-primary;
           width: 12px;
           height: 12px;
         }
       }
     }
   }
-  .el-radio__label{
+  .el-radio__label {
     font-size: 16px;
     color: $gt-text-dark !important;
   }
 }
 
-.gt-e-checkbox{
-  .el-checkbox__input{
-    .el-checkbox__inner{
+.gt-e-checkbox {
+  .el-checkbox__input {
+    .el-checkbox__inner {
       width: 20px;
       height: 20px;
       border: 2px solid #dcdfe6;
-      &:hover{
-        border-color:$gt-primary;
+      &:hover {
+        border-color: $gt-primary;
       }
     }
     &.is-checked {
-      .el-checkbox__inner{
-        border-color:$gt-primary;
-        background:$gt-primary;
-        &::after{
+      .el-checkbox__inner {
+        border-color: $gt-primary;
+        background: $gt-primary;
+        &::after {
           left: 5px;
           top: 1px;
           border: 2.5px solid #fff;
@@ -282,123 +279,123 @@ body{
         }
       }
     }
-    &.is-focus{
-      .el-checkbox__inner{
-        border-color:$gt-primary;
+    &.is-focus {
+      .el-checkbox__inner {
+        border-color: $gt-primary;
       }
     }
   }
-  .el-checkbox__label{
+  .el-checkbox__label {
     font-size: 16px;
     color: $gt-text-dark !important;
   }
 }
 
-.gt-e-switch{
-  &.el-switch{
-    .el-switch__core{
-      border-color:#909399;
-      background-color:#909399;
+.gt-e-switch {
+  &.el-switch {
+    .el-switch__core {
+      border-color: #909399;
+      background-color: #909399;
     }
-    &.is-checked{
-      .el-switch__core{
-        border-color:$gt-primary;
-        background-color:$gt-primary;
+    &.is-checked {
+      .el-switch__core {
+        border-color: $gt-primary;
+        background-color: $gt-primary;
       }
     }
   }
 }
 
-.gt-e-pagination{
-  &.el-pagination{
+.gt-e-pagination {
+  &.el-pagination {
     .el-pager {
       margin: 0 8.5px;
-      li{
+      li {
         min-width: 28px;
         color: $gt-primary;
         border-radius: 50%;
-        &:hover{
+        &:hover {
           color: $gt-darker;
         }
         &.is-active,
-        &.active{
+        &.active {
           color: #fff;
-          background:$gt-darker;
+          background: $gt-darker;
           border-radius: 50%;
           height: 28px;
-          &:hover{
+          &:hover {
             color: #fff;
           }
         }
       }
     }
-    &.is-background{
-      .el-pager{
-        li{
+    &.is-background {
+      .el-pager {
+        li {
           border-radius: 50%;
         }
         li:not(.disabled).is-active,
-        li:not(.disabled).active{
-          background:$gt-darker;
-          &:hover{
+        li:not(.disabled).active {
+          background: $gt-darker;
+          &:hover {
             color: #fff;
           }
         }
-        li:not(.disabled):hover{
+        li:not(.disabled):hover {
           color: $gt-darker;
         }
       }
       .btn-next,
-      .btn-prev{
+      .btn-prev {
         border-radius: 50%;
       }
     }
-    button{
-      &:hover{
-        color:$gt-darker;
+    button {
+      &:hover {
+        color: $gt-darker;
       }
     }
     .btn-next,
-    .btn-prev{
-      color:$gt-darker;
+    .btn-prev {
+      color: $gt-darker;
     }
   }
 }
 
-.gt-e-tag{
+.gt-e-tag {
   &.el-tag,
-  &span.el-tag{
+  &span.el-tag {
     padding: 3px 10px;
     line-height: 20px;
     height: auto;
     font-size: 14px;
-    font-weight:500;
-    letter-spacing: .7px;
-    span{
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    span {
       font-size: inherit;
-      font-weight:inherit;
+      font-weight: inherit;
       letter-spacing: inherit;
     }
   }
-  &.gt-e-tag-bd-none{
+  &.gt-e-tag-bd-none {
     border: none;
     padding: 4px 10px;
   }
 }
 
-.el-dialog__header{
+.el-dialog__header {
   padding: 12px 40px !important;
 }
-.el-dialog__body{
+.el-dialog__body {
   padding: 6px 40px !important;
-  border-bottom: 1px solid #D9D9D9;
+  border-bottom: 1px solid #d9d9d9;
   font-size: 16px !important;
   min-height: 50px;
 }
-.el-dialog__footer{
+.el-dialog__footer {
   padding: 12px 10px;
 }
-.el-dialog__headerbtn{
+.el-dialog__headerbtn {
   top: -2px;
   right: -6px;
 }
