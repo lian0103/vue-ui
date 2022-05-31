@@ -2,24 +2,226 @@
 @import 'index'; 
 
 body.desktop{
-    .gt-button{
-        &:hover{
-            > .q-focus-helper{
-                opacity: 0;
+  $color: (
+      primary:  $gt-primary,
+      success: $gt-positive,
+      warning:  $gt-warning,
+      danger: $gt-negative
+  );
+  $color-hover: (
+      primary:  $gt-primary-hover,
+      positive: $gt-positive-hover,
+      warning:  $gt-warning-hover,
+      negative: $gt-negative-hover
+  );
+  $round-hover-color: (
+      primary:  $gt-hover,
+      positive: $gt-tag-normal-bg,
+      warning:  $gt-tag-warning-bg,
+      negative: $gt-tag-danger-bg
+  );
+  .gt-q-button{
+      &:hover{
+          > .q-focus-helper{
+              opacity: 0;
+          }
+      }
+      &::before{
+          box-shadow: none;
+      }
+      &.q-btn--rectangle{
+          border-radius: 4px;
+      }
+      &.q-btn--rounded {
+          border-radius: 24px;
+          @each $key, $value in $round-hover-color {
+              &.text-#{$key} {
+                  &:hover{
+                      background: $value !important;
+                  }
+              }
+          }
+      }
+      &.on-left{
+          margin-right: 5.5px;
+      }
+      &.on-right {
+          margin-left: 5.5px;
+      }
+      @each $key, $value in $color-hover {
+          &.bg-#{$key} {
+              &:focus,
+              &:hover{
+                  background: $value !important;
+              }
+          }
+      }
+  }
+  .gt-q-link{
+      position: relative;
+      font-size: 14px;
+      &::after{
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -1.25px;
+          height: 1px;
+          width: 0;
+      }
+      @each $key, $value in $color {
+          &.#{$key} {
+            color: $value;
+            &:hover{
+              &::after{
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  bottom: -1.25px;
+                  height: 1px;
+                  width: 100%;
+                  background-color: $value;
+                  transition: all .25s linear;
+              }
             }
-        }
-        $color-array: (
-            primary:  $gt-primary-hover,
-            positive: $gt-positive-hover,
-            warning:  $gt-warning-hover,
-            negative: $gt-negative-hover
-        );
-        @each $key, $value in $color-array {
-            &.bg-#{$key} {
-                &:hover{
-                    background: $value !important;
-                }
-            }
-        }
+          }
+      }
+  }
+  .gt-q-disable-link{
+      font-size: 14px;
+      pointer-events: none;
+      cursor: no-drop;
+      color: $gt-gray-variant !important;
+  }
+  &::-webkit-scrollbar {
+      width: 5px;
+      background-color: $gt-gray;
+      border-radius: 5px;
     }
+  &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: $gt-gray-variant;
+      &:hover{
+          background-color:$gt-gray-dark;
+      }
+  }
+  .gt-q-checkbox{
+      &.q-checkbox{
+          .q-checkbox__inner--truthy, 
+          .q-checkbox__inner--indet{
+            svg {
+              &.fit{
+                width: 70% !important;
+                height: 70% !important;
+              }
+              &.absolute-full{
+                top: 10%;
+                left: 20%;
+              }
+            }
+          }
+      }
+  }
+  .gt-q-toggle{
+      &.q-toggle{
+          padding: 5px 15px;
+          .q-toggle__inner{
+            font-size: 45px;
+            width: 40px;
+            min-width: 40px;
+            height: 20px;
+            padding: 0;
+            color: #909399;
+            .q-toggle__track{
+              height: 20px;
+              border-radius: 32px;
+              opacity: 1;
+            }
+            .q-toggle__thumb{
+              top: 2px;
+              left: 2px;
+              width: 16px;
+              height: 16px;
+              .q-icon{
+                font-size: 16px;
+              }
+            }
+          }
+          .q-toggle__inner--truthy {
+            color:$gt-primary;
+            .q-toggle__track{
+              opacity: 1;
+            }
+            .q-toggle__thumb{
+              left: 22px;
+              .q-icon{
+                color: $gt-darker;
+              }
+              &:after{
+                background-color: #fff;
+              }
+            }
+          }
+      }
+  }
+  .gt-q-pagination{
+      &.q-pagination{
+          .q-btn{
+            min-width:28px;
+            color:$gt-darker;
+            &.disabled{
+              color: $gt-gray-variant !important;
+            }
+          }
+          .q-icon{
+            font-size: 14px;
+          }
+          div.row.justify-center{
+            margin: 0 15px;
+          }
+          .q-btn--standard{
+              min-width: 28px !important;
+              height: 28px;
+              padding: 0 !important;
+              background:$gt-darker !important;
+          }
+      }
+  }
+  .gt-q-tabs{
+    &.q-tabs{
+      .q-tab{
+        min-height: 35px;
+        text-align: center;
+        background: #FBFBF9;
+        color: $gt-text-dark;
+        font-size: 18px;
+        line-height: 1.75rem;
+        &.q-tab--active{
+          color: $gt-darker !important;
+        }
+      }
+      .q-tab__label{
+        font-size: 18px;
+        padding: 0 16px;
+      }
+    }
+  }
+  .gt-q-dialog{
+    .card-header{
+      padding: 12px 40px;
+      .gt-q-close{
+        position: absolute;
+        right: 5px;
+        opacity: .5;
+      }
+    }
+    .card-body{
+      padding: 6px 40px;
+      border-bottom: 1px solid #D9D9D9;
+      font-size: 16px;
+      min-height: 50px;
+    }
+    .card-footer{
+      padding: 12px 10px;
+    }
+  }
 }

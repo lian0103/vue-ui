@@ -30,8 +30,11 @@ const Router = useRouter();
         <g-icons name="download" class="w-6 mr-2" />
         <span>元件</span>
       </template>
-      <router-link to="/elementPlus">
+      <!-- <router-link to="/elementPlus">
         <el-menu-item index="2-1">ElementPlus</el-menu-item></router-link
+      > -->
+      <router-link to="/element">
+        <el-menu-item index="2-4">Element</el-menu-item></router-link
       >
       <router-link to="/quasar"
         ><el-menu-item index="2-2"> Quasar</el-menu-item></router-link
