@@ -1,23 +1,34 @@
 <script setup>
-import { computed, onMounted, reactive, ref, shallowRef, watch } from 'vue';
-import { useElementBounding, useWindowSize } from '@vueuse/core';
+import {
+  computed,
+  onMounted,
+  reactive,
+  ref,
+  shallowRef,
+  watch,
+  nextTick,
+} from 'vue';
+import { useElementBounding, useWindowSize, useScroll } from '@vueuse/core';
 import { DateTime } from 'luxon';
 import GIcons from './GIcons.vue';
 import GInput from './GInput.vue';
 import { v4 as uuidv4 } from 'uuid';
 
+const formatStr = 'yyyy-MM-dd HH:mm';
 const { modelValue, placeholder } = defineProps({
   modelValue: {},
   placeholder: {
-    default: DateTime.now().setLocale('zh').toLocaleString(),
+    default: DateTime.now().toFormat('yyyy-MM-dd HH:mm'),
   },
 });
+
 const emit = defineEmits(['update:modelValue']);
 const root = shallowRef();
 const isTimePickerShow = ref(false);
-const curSelect = ref(modelValue || null);
+const isHourPickerShow = ref(false);
+const curSelect = ref(DateTime.now());
 const curDay = ref(DateTime.now());
-const curIndex = ref(null);
+const curDayIndex = ref(null);
 const curCalenderInfo = reactive({
   curMonthDayStartIndex: null,
   curMonthDayEndIndex: null,
@@ -27,7 +38,7 @@ watch(
   () => curSelect.value,
   (val, oldVal) => {
     // console.log('val', val);
-    emit('update:modelValue', val);
+    emit('update:modelValue', curSelect.value.toFormat(formatStr) || '');
   }
 );
 
@@ -40,6 +51,7 @@ watch(
   () => isTimePickerShow.value,
   (val, oldVal) => {
     // console.log('in~', val, document.getElementsByTagName('body'));
+    isHourPickerShow.value = false;
     if (val && document.getElementsByTagName('body')[0]) {
       document
         .getElementsByTagName('body')[0]
@@ -72,6 +84,13 @@ const months = [
   '11月',
   '12月',
 ];
+const hours = new Array(24).fill('').map((i, idx) => idx);
+const minutes = new Array(60).fill('').map((i, idx) => idx);
+const curHourIndex = ref(hours.findIndex((ele) => ele == curDay.value.hour));
+const curMinuteIndex = ref(
+  minutes.findIndex((ele) => ele == curDay.value.minute)
+);
+
 const calenderDays = computed(() => {
   curCalenderInfo.curMonthDayStartIndex = null;
   curCalenderInfo.curMonthDayEndIndex = null;
@@ -96,14 +115,6 @@ const calenderDays = computed(() => {
 
     let rowOnediff = monthStartDayWeekday;
     let rowLastPlus = monthEndWeekday == 6 ? 7 : 7 - monthEndWeekday;
-
-    // console.log('cur', year, month, day);
-    // console.log('preMonthLastday', preMonthLastday);
-    // console.log('monthStartDayWeekday', monthStartDayWeekday);
-    // console.log('monthEndDay', monthEndDay);
-    // console.log('monthEndWeekday', monthEndWeekday);
-    // console.log('rowOnediff', rowOnediff);
-    // console.log('rowLastPlus', rowLastPlus);
     let idx2 = 0;
     for (let index = 0; index < 42; index++) {
       if (rowOnediff - index > 0) {
@@ -115,13 +126,13 @@ const calenderDays = computed(() => {
       ) {
         // console.log('in..2');
         if (!curCalenderInfo.curMonthDayStartIndex) {
-          curCalenderInfo.curMonthDayStartIndex = index + 1;
+          curCalenderInfo.curMonthDayStartIndex = index;
         }
         arr[index] = 1 + index - rowOnediff;
       } else {
         // console.log('in..3');
         if (!curCalenderInfo.curMonthDayEndIndex) {
-          curCalenderInfo.curMonthDayEndIndex = index - 1;
+          curCalenderInfo.curMonthDayEndIndex = index;
         }
         arr[index] = 1 + idx2;
         idx2++;
@@ -136,7 +147,7 @@ const calenderDays = computed(() => {
 const getCalenderClass = (cdStr, idx) => {
   let rowClass = 'calDay-r-' + parseInt(idx / 7) + ' calDay-c-' + (idx % 7);
 
-  if (curIndex.value != null && idx == curIndex.value) {
+  if (curDayIndex.value != null && idx == curDayIndex.value) {
     rowClass += ' curSelect';
   }
 
@@ -151,7 +162,6 @@ const getCalenderClass = (cdStr, idx) => {
 };
 
 const handleCalDayClick = (idx) => {
-  //   console.log("curIndex.value ",curIndex.value )
   let month =
     idx < curCalenderInfo.curMonthDayStartIndex
       ? curDay.value.month - 1 < 1
@@ -168,20 +178,19 @@ const handleCalDayClick = (idx) => {
       : curDay.value.month == 1 && idx < curCalenderInfo.curMonthDayStartIndex
       ? curDay.value.year - 1
       : curDay.value.year;
-//   console.log('year', year);
 
   curSelect.value = DateTime.fromObject({
     year,
     month,
     day: calenderDays.value[idx],
-  })
-    .setLocale('zh')
-    .toLocaleString();
-  curIndex.value = idx;
+    hour: curHourIndex.value ? hours[curHourIndex.value] : 0,
+    minute: curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0,
+  });
+  curDayIndex.value = idx;
 };
 
 const handleMonthPre = () => {
-  curIndex.value = null;
+  curDayIndex.value = null;
   curDay.value = DateTime.fromObject({
     year: curDay.value.month == 1 ? curDay.value.year - 1 : curDay.value.year,
     month: curDay.value.month == 1 ? 12 : curDay.value.month - 1,
@@ -190,7 +199,7 @@ const handleMonthPre = () => {
 };
 
 const handleMonthNext = () => {
-  curIndex.value = null;
+  curDayIndex.value = null;
   curDay.value = DateTime.fromObject({
     year: curDay.value.month == 12 ? curDay.value.year + 1 : curDay.value.year,
     month: curDay.value.month == 12 ? 1 : curDay.value.month + 1,
@@ -203,7 +212,7 @@ const handleMonthAll = () => {
 };
 
 const handleMonthChange = (month) => {
-  curIndex.value = null;
+  curDayIndex.value = null;
   if (month == 'current') {
     isMonthAllShow.value = !isMonthAllShow.value;
     return true;
@@ -218,20 +227,21 @@ const handleMonthChange = (month) => {
 };
 
 const handleUseNow = () => {
-  let time = DateTime.now();
-  curDay.value = DateTime.now().toObject();
-  curSelect.value = time.setLocale('zh').toLocaleString();
+  curDay.value = DateTime.now();
+  curSelect.value = DateTime.now();
+  curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.hour);
+  curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.minute);
 
   calenderDays.value.forEach((day, idx) => {
     if (
-      day == time.day &&
+      day == curDay.value.day &&
       idx >= curCalenderInfo.curMonthDayStartIndex &&
-      idx <= curCalenderInfo.curMonthDayEndIndex
+      idx < curCalenderInfo.curMonthDayEndIndex
     ) {
-      curIndex.value = idx;
+      curDayIndex.value = idx;
     }
   });
-  isTimePickerShow.value = false;
+  // isTimePickerShow.value = false;
 };
 
 const {
@@ -261,6 +271,28 @@ const popupStyleComputed = computed(() => {
 const popupClassComputed = computed(() => {
   return isTimePickerShow.value ? 'tp-aniIn' : '';
 });
+
+const handleHourMinuteChange = (target, value, idx) => {
+  console.log(curSelect?.value?.c, target, value, idx);
+  switch (target) {
+    case 'hour': {
+      curSelect.value = DateTime.fromObject({
+        ...curSelect.value.c,
+        hour: value,
+      });
+      curHourIndex.value = idx;
+      break;
+    }
+    case 'minute': {
+      curSelect.value = DateTime.fromObject({
+        ...curSelect.value.c,
+        minute: value,
+      });
+      curMinuteIndex.value = idx;
+      break;
+    }
+  }
+};
 </script>
 
 <template>
@@ -268,7 +300,7 @@ const popupClassComputed = computed(() => {
     <span
       class="gt-input gt-input-green select-none"
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >{{ curSelect || placeholder || '' }}</span
+      >{{ curSelect.toFormat(formatStr) }}</span
     >
     <g-icons
       class="icon"
@@ -277,7 +309,7 @@ const popupClassComputed = computed(() => {
     />
 
     <div
-      @click.stop="() => {}"
+      @click.stop="isHourPickerShow = false"
       class="gt-timepicker"
       :class="popupClassComputed"
       :style="popupStyleComputed"
@@ -311,7 +343,46 @@ const popupClassComputed = computed(() => {
             "
             >{{ cdStr }}</span
           >
-          <span v-if="curSelect" class="cur-select">{{ curSelect }}</span>
+          <div
+            class="time-select"
+            @click.stop="isHourPickerShow = !isHourPickerShow"
+          >
+            {{
+              curSelect
+                ? curSelect.toFormat(formatStr).split(' ')[1]
+                : '請選擇時間'
+            }}
+            <div class="time-select-popup" v-if="isHourPickerShow">
+              <div class="top">
+                <div class="left">
+                  <span
+                    v-for="(item, idx) in hours"
+                    :key="item + 'h'"
+                    :class="idx == curHourIndex ? 'current' : ''"
+                    @click.stop="
+                      () => {
+                        handleHourMinuteChange('hour', item, idx);
+                      }
+                    "
+                    >{{ item }}</span
+                  >
+                </div>
+                <div class="right">
+                  <span
+                    v-for="(item, idx) in minutes"
+                    :key="item + 'm'"
+                    :class="idx == curMinuteIndex ? 'current' : ''"
+                    @click.stop="
+                      () => {
+                        handleHourMinuteChange('minute', item, idx);
+                      }
+                    "
+                    >{{ item }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
 
           <span class="use-cur-time" @click.stop="handleUseNow"
             >套用現在時間</span
@@ -372,7 +443,7 @@ const popupClassComputed = computed(() => {
 
 .gt-timepicker {
   width: 326px;
-  overflow: hidden;
+  // overflow: hidden;
   opacity: 0;
   display: none;
   @apply absolute flex-col -z-10;
@@ -446,12 +517,81 @@ const popupClassComputed = computed(() => {
       }
     }
 
-    .cur-select {
-      @apply select-none;
+    .time-select {
+      height: 32px;
+      background: #f1f9f3;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      @apply select-none cursor-pointer relative leading-7 text-left px-4 z-top;
       grid-column-start: 1;
-      grid-column-end: 3;
-      grid-row-start: 10;
-      grid-row-end: 11;
+      grid-column-end: 8;
+      grid-row-start: 9;
+      grid-row-end: 10;
+      .time-select-popup {
+        @apply absolute left-0 top-9 flex flex-col text-center;
+        width: 152px;
+        height: 140px;
+        background: #ffffff;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        .top {
+          overflow: hidden;
+          @apply flex text-gray0;
+          .left {
+            width: 50%;
+            overflow-y: scroll;
+            span {
+              display: block;
+              height: 28px;
+            }
+            .current,
+            > span:hover {
+              color: #55585e;
+              border-top: 1px solid #f0f0f0;
+              border-bottom: 1px solid #f0f0f0;
+            }
+            &::-webkit-scrollbar {
+              width: 5px;
+              background-color: #d9d9d9;
+              border-radius: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+              border-radius: 5px;
+              background-color: #aaaaaa;
+              &:hover {
+                background-color: #666666;
+              }
+            }
+          }
+          .right {
+            width: 50%;
+            overflow-y: scroll;
+            span {
+              display: block;
+              height: 28px;
+            }
+            .current,
+            > span:hover {
+              color: #55585e;
+              border-top: 1px solid #f0f0f0;
+              border-bottom: 1px solid #f0f0f0;
+            }
+            &::-webkit-scrollbar {
+              width: 5px;
+              background-color: #d9d9d9;
+              border-radius: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+              border-radius: 5px;
+              background-color: #aaaaaa;
+              &:hover {
+                background-color: #666666;
+              }
+            }
+          }
+        }
+      }
     }
 
     .use-cur-time {
@@ -495,7 +635,7 @@ const popupClassComputed = computed(() => {
   }
   100% {
     opacity: 1;
-    @apply z-top;
+    @apply z-top-10;
   }
 }
 </style>
