@@ -61,7 +61,7 @@ const {
   parentValue: {
     default: null,
   },
-  parentvalue:{
+  parentvalue: {
     default: null,
   },
   placeholder: {
@@ -117,6 +117,7 @@ const handleBlur = async () => {
 const handleClear = () => {
   inputVal.value = '';
   handleValChange('', name);
+  handleRulesValid(inputVal.value, name, 'blur');
 };
 </script>
 
@@ -137,7 +138,7 @@ const handleClear = () => {
         class="clear-icon"
         v-if="clearable"
         name="x"
-        @click.prevent="handleClear"
+        @click.stop="handleClear"
       />
       <div v-if="errorMsg" class="gt-input-error-msg">
         {{ errorMsg }}
@@ -159,7 +160,7 @@ const handleClear = () => {
     @apply outline outline-1 outline-color3;
     max-width: 240px;
     height: 36px;
-    padding: 10px 22px 10px 20px;
+    padding: 10px 20px;
 
     &:focus {
       @apply outline-main;
@@ -182,13 +183,14 @@ const handleClear = () => {
     letter-spacing: 0.6px;
   }
 
-  .gt-input:focus ~ .clear-icon {
-    @apply opacity-100 z-10;
+  .gt-input:focus ~ .clear-icon,
+  &:hover .gt-input ~ .clear-icon {
+    @apply opacity-100;
   }
 
   .clear-icon {
     width: 22px;
-    @apply text-gray0 opacity-0 -z-10;
+    @apply text-gray0 opacity-0;
     @apply absolute right-0 cursor-pointer transition-all duration-300;
     top: 7px;
   }

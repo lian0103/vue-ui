@@ -434,9 +434,9 @@ const inputsTime1 = `\`\`\` html
         >欄位驗證</g-button
       >
       <div v-if="showTextSwitch.inputsText3">
-        <p>inputs.test1:{{ inputs.test1 }}</p>
-        <p>inputs.test2:{{ inputs.test2 }}</p>
-        <p>inputs.test3:{{ inputs.test3 }}</p>
+        <p>inputs.test1:{{ inputs.test.test1 }}</p>
+        <p>inputs.test2:{{ inputs.test.test2 }}</p>
+        <p>inputs.test3:{{ inputs.test.test3 }}</p>
       </div>
       <v-md-editor
         v-if="showTextSwitch.inputsText3"
