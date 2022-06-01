@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 @import 'index'; 
 
 .gt-e-input-search {
@@ -37,11 +36,13 @@
     width: 0;
   }
   .el-tabs__item {
-    height: 35px;
+    height: 32px;
     text-align: center;
     background: #FBFBF9;
     color: $gt-text-dark;
     @apply text-lg;
+    min-width: 120px;
+    padding: 0 0 8px 0;
   }
 }
 
@@ -165,18 +166,16 @@ $round-hover-color: (
   }
 }
 
-body{
-  &::-webkit-scrollbar {
-    width: 5px;
-    background-color: $gt-gray;
-    border-radius: 5px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: $gt-gray-variant;
-    &:hover{
-      background-color:$gt-gray-dark;
-    }
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: $gt-gray;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: $gt-gray-variant;
+  &:hover{
+    background-color:$gt-gray-dark;
   }
 }
 
@@ -335,21 +334,43 @@ body{
   }
 }
 
+.el-dialog{
+  position: absolute !important;
+  left: 50% ;
+  top: 50% ;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+}
 .el-dialog__header{
   padding: 12px 40px !important;
+  .el-dialog__title{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
 }
 .el-dialog__body{
-  padding: 6px 40px !important;
+  padding: 6px 40px 30px !important;
   border-bottom: 1px solid #D9D9D9;
-  font-size: 16px !important;
-  min-height: 50px;
+  .gt-e-dialog{ 
+    font-size: 16px !important;
+    color: $gt-text-gray;
+  }
 }
 .el-dialog__footer{
-  padding: 12px 10px;
+  padding: 10px 12px !important;
+  .el-button:not(.is-text){
+    border: 0;
+  }
 }
 .el-dialog__headerbtn{
-  top: -2px;
-  right: -6px;
+  top: 17px !important;
+  right: 17px !important;
+  width: 10px !important;
+  height: 10px !important;
+  .el-dialog__close{
+    color: $gt-gray;
+  }
 }
 
 // 未驗證

@@ -283,16 +283,16 @@ const dialogVisible= ref(false)
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <el-button type="text" @click="dialogVisible = true">打開Dialog</el-button>
+          <el-button class="gt-e-button" type="primary" @click="dialogVisible = true">打開Dialog</el-button>
           <el-dialog
-            title="提示"
+            title="TITLE"
             v-model="dialogVisible"
             width="500px"
           >
             <div class="gt-e-dialog">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
             <template #footer>
               <span class="dialog-footer">
-                <el-button @click="dialogVisible = false">取消</el-button>
+                <el-button type="text" @click="dialogVisible = false">取消</el-button>
                 <el-button class="gt-e-button" type="success" @click="dialogVisible = false">確認</el-button>
               </span>
             </template>

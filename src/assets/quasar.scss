@@ -1,24 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 @import 'index'; 
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: $gt-gray;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: $gt-gray-variant;
+  &:hover{
+      background-color:$gt-gray-dark;
+  }
+}
+
+$font-weight: (
+  100,200,300,400,500,600,700,bold,bolder,lighter,normal
+);
+
+@each $key in $font-weight {
+  .gt-font-weight-#{$key} {
+    font-weight: $key;
+  }
+}
+
+$max: 60;
+@for $i from 12 through $max {
+  .gt-font-size-#{$i} {
+    font-size: ($i) * 1px;
+  }
+}
+
+$font-head-size: (
+  1: 24,
+  2: 20,
+  3: 18,
+  4: 16,
+  5: 13,
+  6: 12
+);
+@each $key, $value in $font-head-size {
+  .gt-h#{$key} {
+    font-size: ($value) * 1px;
+  }
+}
+$font-head-line-height: (
+  1: 34,
+  2: 28,
+  3: 24,
+  4: 24,
+  5: 15,
+  6: 14
+);
+@each $key, $value in $font-head-line-height {
+  .gt-h#{$key} {
+    line-height: ($value) * 1px;
+  }
+}
+
 
 body.desktop{
   $color: (
-      primary:  $gt-primary,
-      success: $gt-positive,
-      warning:  $gt-warning,
-      danger: $gt-negative
+    primary:  $gt-primary,
+    success: $gt-positive,
+    warning:  $gt-warning,
+    danger: $gt-negative
   );
   $color-hover: (
-      primary:  $gt-primary-hover,
-      positive: $gt-positive-hover,
-      warning:  $gt-warning-hover,
-      negative: $gt-negative-hover
+    primary:  $gt-primary-hover,
+    positive: $gt-positive-hover,
+    warning:  $gt-warning-hover,
+    negative: $gt-negative-hover
   );
   $round-hover-color: (
-      primary:  $gt-hover,
-      positive: $gt-tag-normal-bg,
-      warning:  $gt-tag-warning-bg,
-      negative: $gt-tag-danger-bg
+    primary:  $gt-hover,
+    positive: $gt-tag-normal-bg,
+    warning:  $gt-tag-warning-bg,
+    negative: $gt-tag-danger-bg
   );
   .gt-q-button{
       &:hover{
@@ -91,18 +148,6 @@ body.desktop{
       pointer-events: none;
       cursor: no-drop;
       color: $gt-gray-variant !important;
-  }
-  &::-webkit-scrollbar {
-      width: 5px;
-      background-color: $gt-gray;
-      border-radius: 5px;
-    }
-  &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: $gt-gray-variant;
-      &:hover{
-          background-color:$gt-gray-dark;
-      }
   }
   .gt-q-checkbox{
       &.q-checkbox{
@@ -189,25 +234,32 @@ body.desktop{
   .gt-q-tabs{
     &.q-tabs{
       .q-tab{
-        min-height: 35px;
+        min-height: 32px;
         text-align: center;
         background: #FBFBF9;
         color: $gt-text-dark;
         font-size: 18px;
-        line-height: 1.75rem;
+        line-height: 24px;
+        min-width: 120px !important; 
         &.q-tab--active{
           color: $gt-darker !important;
         }
       }
       .q-tab__label{
         font-size: 18px;
-        padding: 0 16px;
+        line-height: 24px;
+        padding: 0 0 4px 0;
       }
     }
   }
   .gt-q-dialog{
     .card-header{
       padding: 12px 40px;
+      div{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+      }
       .gt-q-close{
         position: absolute;
         right: 5px;
@@ -215,13 +267,16 @@ body.desktop{
       }
     }
     .card-body{
-      padding: 6px 40px;
+      padding: 6px 40px 30px;
       border-bottom: 1px solid #D9D9D9;
       font-size: 16px;
-      min-height: 50px;
+      color: $gt-text-gray;
     }
     .card-footer{
-      padding: 12px 10px;
+      padding: 10px 12px;
+    }
+    .q-icon{
+      font-size: 1rem;
     }
   }
 }

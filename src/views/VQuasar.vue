@@ -29,37 +29,24 @@ export default defineComponent({
       <g-title :level="1" class="mb-4">文字定義</g-title>
     </div>
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
-      <li>
+      <li v-for="n in 6">
         <div>
-          <h1>Bold / 24 / 文字樣式</h1>
+          <h1 :class='`gt-h${n}`'>{{`h${ n }`}} / 文字樣式</h1>
         </div>
         <div>
-          {{`<h1>Bold / 24 / 文字樣式</h1>`}}
+          {{`<h${n} `}}
+          <span class="text-red">class="gt-h{{`${n}`}}"</span>
+          {{`
+          > h${n} / 文字樣式</h${n}>`}}
         </div>
       </li>
-      <li>
-        <div><h2>Medium / 20 / 文字樣式</h2></div>
-        <div>{{`<h2>Medium / 20 / 文字樣式</h2>`}}</div>
-      </li>
-      <li>
-        <div><h3>Bold / 18 / 文字樣式</h3></div>
-        <div>{{`<h3>Bold / 18 / 文字樣式</h3>`}}</div>
-      </li>
-      <li>
-        <div><h4>Medium / 16 / 文字樣式</h4></div>
-        <div>{{`<h4>Medium / 16 / 文字樣式</h4>`}}</div>
-      </li>
-      <li>
-        <div><h5>Caption1 / Regular / 13 / 文字樣式</h5></div>
-        <div>{{`<h5>Caption1 / Regular / 13 / 文字樣式</h5>`}}</div>
-      </li>
-      <li>
-        <div><h6>Caption2 / Regular / 12 / 文字樣式</h6></div>
-        <div>{{`<h6>Caption2 / Regular / 12 / 文字樣式</h6>`}}</div>
-      </li>
-      <li>
-        <div><p style="margin-bottom: 0px;padding: 0;">Body / Regular / 16 / 文字樣式</p></div>
-        <div>{{`<p>Body / Regular / 16 / 文字樣式</p>`}}</div>
+      <li v-for="i in 24" v-show="i >= 12">
+        <div>
+          <p :class='`gt-font-size-${i} q-pa-none q-ma-none`'>font-size-{{`${i}`}} / 文字樣式</p>
+        </div>
+        <div>
+          
+        </div>
       </li>
     </ul>
     <!-- END // 文字定義 -->
@@ -228,7 +215,7 @@ export default defineComponent({
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <el-card>
+          <!-- <el-card> -->
             <q-tabs
               class="gt-q-tabs"
               v-model="tab"
@@ -246,10 +233,10 @@ export default defineComponent({
                 內容2
               </q-tab-panel>
             </q-tab-panels>
-          </el-card>
+          <!-- </el-card> -->
         </div>
         <div>
-          {{`<el-card>
+          {{`
             <q-tabs
           `}}
             <span class="text-red">class="gt-q-tabs"</span>
@@ -268,8 +255,7 @@ export default defineComponent({
               <q-tab-panel name="alarms">
                 內容2
               </q-tab-panel>
-            </q-tab-panels>
-          </el-card>`}}
+            </q-tab-panels>`}}
         </div>
       </li>
     </ul>
@@ -282,12 +268,12 @@ export default defineComponent({
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <q-btn label="Prompt" class="gt-q-button" color="primary" @click="prompt = true" />
+          <q-btn label="打開Dialog" class="gt-q-button" color="primary" @click="prompt = true" />
 
           <q-dialog class="gt-q-dialog" v-model="prompt" persistent>
             <q-card style="width: 500px">
               <q-card-section class="card-header row items-center q-pb-none">
-                <div class="text-h6">TITLE</div>
+                <div>TITLE</div>
                 <q-btn class="gt-q-close" icon="close" flat round dense v-close-popup />
               </q-card-section>
               <q-card-section class="card-body">
@@ -326,6 +312,20 @@ export default defineComponent({
       </li>
     </ul>
     <!-- END // Dialog -->
+
+    <!--  -->
+    <!-- <div class="paragraphHead">
+      <g-title :level="1" class="mb-4"></g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
+      <li>
+        <div>
+          
+        </div>
+        <div></div>
+      </li>
+    </ul> -->
+    <!-- END //  -->
 
     <!--  -->
     <!-- <div class="paragraphHead">
