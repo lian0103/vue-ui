@@ -293,6 +293,10 @@ const handleHourMinuteChange = (target, value, idx) => {
     }
   }
 };
+
+const handleTimePick = () => {
+  isHourPickerShow.value = !isHourPickerShow.value;
+};
 </script>
 
 <template>
@@ -343,18 +347,15 @@ const handleHourMinuteChange = (target, value, idx) => {
             "
             >{{ cdStr }}</span
           >
-          <div
-            class="time-select"
-            @click.stop="isHourPickerShow = !isHourPickerShow"
-          >
+          <div class="time-select" @click.stop="handleTimePick">
             {{
               curSelect
                 ? curSelect.toFormat(formatStr).split(' ')[1]
                 : '請選擇時間'
             }}
-            <div class="time-select-popup" v-if="isHourPickerShow">
+            <div class="time-select-popup" v-show="isHourPickerShow">
               <div class="top">
-                <div class="left">
+                <div class="left relative" id="left">
                   <span
                     v-for="(item, idx) in hours"
                     :key="item + 'h'"
@@ -538,34 +539,10 @@ const handleHourMinuteChange = (target, value, idx) => {
         .top {
           overflow: hidden;
           @apply flex text-gray0;
-          .left {
-            width: 50%;
-            overflow-y: scroll;
-            span {
-              display: block;
-              height: 28px;
-            }
-            .current,
-            > span:hover {
-              color: #55585e;
-              border-top: 1px solid #f0f0f0;
-              border-bottom: 1px solid #f0f0f0;
-            }
-            &::-webkit-scrollbar {
-              width: 5px;
-              background-color: #d9d9d9;
-              border-radius: 5px;
-            }
-            &::-webkit-scrollbar-thumb {
-              border-radius: 5px;
-              background-color: #aaaaaa;
-              &:hover {
-                background-color: #666666;
-              }
-            }
-          }
+          .left,
           .right {
             width: 50%;
+            height: 135px;
             overflow-y: scroll;
             span {
               display: block;
