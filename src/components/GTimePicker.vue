@@ -273,7 +273,7 @@ const popupClassComputed = computed(() => {
 });
 
 const handleHourMinuteChange = (target, value, idx) => {
-  console.log(curSelect?.value?.c, target, value, idx);
+  // console.log(curSelect?.value?.c, target, value, idx);
   switch (target) {
     case 'hour': {
       curSelect.value = DateTime.fromObject({
