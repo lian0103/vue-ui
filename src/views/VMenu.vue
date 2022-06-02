@@ -6,7 +6,10 @@ const Router = useRouter();
 </script>
 
 <template>
-  <el-menu class="gt-menu" :default-active="Router.currentRoute._value.meta.idx">
+  <el-menu
+    class="gt-menu"
+    :default-active="Router.currentRoute._value.meta.idx"
+  >
     <el-sub-menu index="1">
       <template #title>
         <g-icons name="calendar" class="w-6 mr-2" />
