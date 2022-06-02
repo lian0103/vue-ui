@@ -1,3 +1,3 @@
 <style lang="scss">
-@import '../assets/gt';
+@import '../assets/index';
 </style>
