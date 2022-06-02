@@ -1,5 +1,6 @@
 <script setup>
-import { ref, getCurrentInstance, reactive, watch } from 'vue';
+import { ref, getCurrentInstance, reactive, watch, onMounted } from 'vue';
+import { useScroll, useElementBounding } from '@vueuse/core';
 import {
   GButton,
   GIcons,
@@ -31,6 +32,135 @@ import {
 //   GLoading,
 //   GMessage,
 // } from 'gt-front-ui';
+
+const el = ref();
+
+const scrollList = [
+  {
+    id: 's1',
+    name: '大樹後台layout',
+  },
+  {
+    id: 's2',
+    name: '日期選擇',
+  },
+  {
+    id: 's3',
+    name: '輸入框-驗證',
+  },
+  {
+    id: 's4',
+    name: '輸入框-樣式',
+  },
+  {
+    id: 's5',
+    name: '下拉選項點擊模式',
+  },
+  {
+    id: 's6',
+    name: '下拉選項停留模式',
+  },
+  {
+    id: 's7',
+    name: '單勾選欄',
+  },
+  {
+    id: 's8',
+    name: '群組勾選欄',
+  },
+  {
+    id: 's9',
+    name: '單選欄',
+  },
+  {
+    id: 's9-1',
+    name: '群組單選欄',
+  },
+  {
+    id: 's10',
+    name: '切換開關',
+  },
+  {
+    id: 's11',
+    name: '頁面載入中',
+  },
+  {
+    id: 's12',
+    name: '載入中',
+  },
+  {
+    id: 's13',
+    name: '上傳中',
+  },
+  {
+    id: 's14',
+    name: '下載中',
+  },
+  {
+    id: 's15',
+    name: '通知',
+  },
+  {
+    id: 's16',
+    name: '標題',
+  },
+  {
+    id: 's17',
+    name: '按鈕-PILL',
+  },
+  {
+    id: 's18',
+    name: '按鈕-FLAT-1',
+  },
+  {
+    id: 's19',
+    name: '按鈕-FLAT-2',
+  },
+  {
+    id: 's20',
+    name: '按鈕-ROUND',
+  },
+  {
+    id: 's21',
+    name: '圖標',
+  },
+];
+const curScroll = ref('s1');
+const scrollTopArr = ref(null);
+const isHandControlScroll = ref(false);
+
+const handleScroll = (id) => {
+  isHandControlScroll.value = true;
+  curScroll.value = id;
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+};
+
+const handleScrollEvt = (evt) => {
+  // console.log('in????', evt.srcElement.scrollTop);
+  let top = parseInt(evt.srcElement.scrollTop);
+  let idx = scrollTopArr.value.findIndex((ele) => ele > top);
+
+  if (!isHandControlScroll.value) {
+    curScroll.value = scrollList[idx].id;
+    document
+      .getElementById(`r-${scrollList[idx].id}`)
+      .scrollIntoView({ behavior: 'smooth' });
+  } else {
+    setTimeout(() => {
+      isHandControlScroll.value = false;
+    }, 500);
+  }
+};
+
+onMounted(() => {
+  scrollTopArr.value = scrollList.map((item) => {
+    // console.log(document.getElementById(item.id))
+    return Math.floor(
+      document.getElementById(item.id).getBoundingClientRect()?.y
+    );
+  });
+  // console.log('scrollTopArr.value', scrollTopArr.value);
+});
 
 const instance = getCurrentInstance();
 const icons = [
@@ -374,583 +504,607 @@ const inputsTime1 = `\`\`\` html
 </script>
 
 <template>
-  <div class="py-12 flex justify-center items-center flex-col">
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">版型</g-title>
-    </div>
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">大樹後台layout</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.layoutText"
-        statusLabel
-      />
-      <v-md-editor
-        v-if="showTextSwitch.layoutText"
-        v-model="layoutText"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">操作</g-title>
-    </div>
-
-    <div class="w-full md:w-3/4 pr-2 mx-auto relative">
-      <g-title :level="2" class="mb-3">日期選擇</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsTime1"
-        statusLabel
-      />
-      <g-time-picker v-model="inputs.time1" />
-      <p v-if="showTextSwitch.inputsTime1">inputs.time1:{{ inputs.time1 }}</p>
-      <v-md-editor
-        v-if="showTextSwitch.inputsTime1"
-        v-model="inputsTime1"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
-      <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText3"
-        statusLabel
-      />
-
-      <g-form v-model="inputs.test" :rules="formRule" name="form1">
-        <g-input label="驗證1" name="test1" green clearable />
-        <g-input label="驗證2" name="test2" green clearable />
-        <g-input label="驗證3" name="test3" green clearable />
-      </g-form>
-      <g-button
-        class="mb-4"
-        @click="
-          () => {
-            handleSubmit();
-          }
-        "
-        >欄位驗證</g-button
-      >
-      <div v-if="showTextSwitch.inputsText3">
-        <p>inputs.test1:{{ inputs.test.test1 }}</p>
-        <p>inputs.test2:{{ inputs.test.test2 }}</p>
-        <p>inputs.test3:{{ inputs.test.test3 }}</p>
+  <div class="flex innerWrapper">
+    <div
+      ref="el"
+      class="w-4/5 py-4 flex justify-center items-center"
+      @scroll="handleScrollEvt"
+    >
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3" id="s1">版型</g-title>
       </div>
-      <v-md-editor
-        v-if="showTextSwitch.inputsText3"
-        v-model="inputsText3"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
-      <g-title :level="2" class="mb-3">輸入框-樣式</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText4"
-        statusLabel
-      />
-
-      <g-input v-model="inputs.input0" />
-      <g-input v-model="inputs.input0" label="文字0" />
-      <g-input v-model="inputs.input2" type="number" label="數字0" />
-      <g-input v-model="inputs.input1" type="password" label="密碼0" />
-
-      <g-input v-model="inputs.input0" green />
-      <g-input v-model="inputs.input0" green label="文字1" />
-      <g-input v-model="inputs.input2" type="number" green label="數字1" />
-      <g-input v-model="inputs.input1" green type="password" label="密碼1" />
-
-      <v-md-editor
-        v-if="showTextSwitch.inputsText4"
-        v-model="inputsText4"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
-      <g-title :level="2" class="mb-3">下拉選項點擊模式</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.dropdown0"
-        statusLabel
-      />
-      <g-dropdown
-        class="mr-4"
-        v-model="inputs.dropdown0"
-        :options="[
-          { label: 'Aaaa', value: 1 },
-          { label: 'Bbbb', value: 2 },
-          { label: 'Gggggeeeeewwww', value: 3 },
-        ]"
-        clicked
-      />
-      <span v-if="showTextSwitch.dropdown0"
-        >v-model:{{ inputs.dropdown0 }}</span
-      >
-      <v-md-editor
-        v-if="showTextSwitch.dropdown0"
-        v-model="dropdown0Text"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto mb-6 relative">
-      <g-title :level="2" class="mb-3">下拉選項停留模式</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.dropdown1"
-        statusLabel
-      />
-
-      <g-dropdown
-        v-model="inputs.dropdown1"
-        :options="[
-          { label: 'Aaaa', value: 1 },
-          { label: 'Bbbb', value: 2 },
-          { label: 'Gggggeeeeewwww', value: 3 },
-        ]"
-        hover
-      />
-
-      <span v-if="showTextSwitch.dropdown1"
-        >v-model:{{ inputs.dropdown1 }}</span
-      >
-      <v-md-editor
-        v-if="showTextSwitch.dropdown1"
-        v-model="dropdown1Text"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">單勾選欄</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText0"
-        statusLabel
-      />
-    </div>
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <div class="mb-3 flex w-full">
-        <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />
-        <g-checkbox class="mr-4" v-model="inputs.checked3" label="選項2" />
-        <g-checkbox
-          class="mr-4"
-          v-model="inputs.checked1"
-          label="選項3"
-          disabled
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3">大樹後台layout</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.layoutText"
+          statusLabel
         />
-        <g-checkbox
+        <v-md-editor
+          v-if="showTextSwitch.layoutText"
+          v-model="layoutText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">操作</g-title>
+      </div>
+
+      <div class="w-full md:w-3/4 pr-2 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s2">日期選擇</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsTime1"
+          statusLabel
+        />
+        <g-time-picker v-model="inputs.time1" />
+        <p v-if="showTextSwitch.inputsTime1">inputs.time1:{{ inputs.time1 }}</p>
+        <v-md-editor
+          v-if="showTextSwitch.inputsTime1"
+          v-model="inputsTime1"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+        <g-title :level="2" class="mb-3" id="s3">輸入框-驗證</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText3"
+          statusLabel
+        />
+
+        <g-form v-model="inputs.test" :rules="formRule" name="form1">
+          <g-input label="驗證1" name="test1" green clearable />
+          <g-input label="驗證2" name="test2" green clearable />
+          <g-input label="驗證3" name="test3" green clearable />
+        </g-form>
+        <g-button
+          class="mb-4"
+          @click="
+            () => {
+              handleSubmit();
+            }
+          "
+          >欄位驗證</g-button
+        >
+        <div v-if="showTextSwitch.inputsText3">
+          <p>inputs.test1:{{ inputs.test.test1 }}</p>
+          <p>inputs.test2:{{ inputs.test.test2 }}</p>
+          <p>inputs.test3:{{ inputs.test.test3 }}</p>
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.inputsText3"
+          v-model="inputsText3"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+        <g-title :level="2" class="mb-3" id="s4">輸入框-樣式</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText4"
+          statusLabel
+        />
+
+        <g-input v-model="inputs.input0" />
+        <g-input v-model="inputs.input0" label="文字0" />
+        <g-input v-model="inputs.input2" type="number" label="數字0" />
+        <g-input v-model="inputs.input1" type="password" label="密碼0" />
+
+        <g-input v-model="inputs.input0" green />
+        <g-input v-model="inputs.input0" green label="文字1" />
+        <g-input v-model="inputs.input2" type="number" green label="數字1" />
+        <g-input v-model="inputs.input1" green type="password" label="密碼1" />
+
+        <v-md-editor
+          v-if="showTextSwitch.inputsText4"
+          v-model="inputsText4"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+        <g-title :level="2" class="mb-3" id="s5">下拉選項點擊模式</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.dropdown0"
+          statusLabel
+        />
+        <g-dropdown
           class="mr-4"
-          v-model="inputs.checked2"
-          label="選項4"
-          disabled
+          v-model="inputs.dropdown0"
+          :options="[
+            { label: 'Aaaa', value: 1 },
+            { label: 'Bbbb', value: 2 },
+            { label: 'Gggggeeeeewwww', value: 3 },
+          ]"
+          clicked
+        />
+        <span v-if="showTextSwitch.dropdown0"
+          >v-model:{{ inputs.dropdown0 }}</span
+        >
+        <v-md-editor
+          v-if="showTextSwitch.dropdown0"
+          v-model="dropdown0Text"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+        <g-title :level="2" class="mb-3" id="s6">下拉選項停留模式</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.dropdown1"
+          statusLabel
+        />
+
+        <g-dropdown
+          v-model="inputs.dropdown1"
+          :options="[
+            { label: 'Aaaa', value: 1 },
+            { label: 'Bbbb', value: 2 },
+            { label: 'Gggggeeeeewwww', value: 3 },
+          ]"
+          hover
+        />
+
+        <span v-if="showTextSwitch.dropdown1"
+          >v-model:{{ inputs.dropdown1 }}</span
+        >
+        <v-md-editor
+          v-if="showTextSwitch.dropdown1"
+          v-model="dropdown1Text"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s7">單勾選欄</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText0"
+          statusLabel
         />
       </div>
-      <v-md-editor
-        v-if="showTextSwitch.inputsText0"
-        v-model="inputsText0"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">群組勾選欄</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText0_1"
-        statusLabel
-      />
-    </div>
-
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <g-checkbox-group class="mb-3 flex w-full" v-model="inputs.checkedArr">
-        <g-checkbox class="mr-4" :value="2" label="選項2" />
-        <g-checkbox class="mr-4" :value="4" label="選項4" />
-        <g-checkbox class="mr-4" :value="6" label="選項6" disabled />
-        <g-checkbox class="mr-4" :value="8" label="選項8" disabled />
-      </g-checkbox-group>
-      <span v-if="showTextSwitch.inputsText0_1"
-        >inputs.checkedArr:{{ inputs.checkedArr }}</span
-      >
-      <v-md-editor
-        v-if="showTextSwitch.inputsText0_1"
-        v-model="inputsText0_1"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">單選欄</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText1"
-        statusLabel
-      />
-    </div>
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <div class="mb-3 flex w-full">
-        <g-radiobox class="mr-4" v-model="inputs.radio0" label="A" />
-        <g-radiobox class="mr-4" v-model="inputs.radio1" label="B" />
-        <g-radiobox class="mr-4" v-model="inputs.radio2" disabled label="C" />
-        <g-radiobox class="mr-4" v-model="inputs.radio3" disabled label="D" />
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <div class="mb-3 flex w-full">
+          <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />
+          <g-checkbox class="mr-4" v-model="inputs.checked3" label="選項2" />
+          <g-checkbox
+            class="mr-4"
+            v-model="inputs.checked1"
+            label="選項3"
+            disabled
+          />
+          <g-checkbox
+            class="mr-4"
+            v-model="inputs.checked2"
+            label="選項4"
+            disabled
+          />
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.inputsText0"
+          v-model="inputsText0"
+          mode="preview"
+        ></v-md-editor>
       </div>
-      <v-md-editor
-        v-if="showTextSwitch.inputsText1"
-        v-model="inputsText1"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">群組單選欄</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText1_1"
-        statusLabel
-      />
-    </div>
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <g-radiobox-group class="mb-3 flex w-full" v-model="inputs.radio4">
-        <g-radiobox class="mr-4" :value="2" label="選項2" />
-        <g-radiobox class="mr-4" :value="4" label="選項4" />
-        <g-radiobox class="mr-4" :value="6" label="選項6" />
-        <g-radiobox class="mr-4" :value="8" label="選項8" disabled />
-      </g-radiobox-group>
-      <v-md-editor
-        v-if="showTextSwitch.inputsText1_1"
-        v-model="inputsText1_1"
-        mode="preview"
-      ></v-md-editor>
-    </div>
 
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">切換開關</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.inputsText2"
-        statusLabel
-      />
-    </div>
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <div class="mb-3 flex w-full">
-        <g-switch class="mr-4" v-model="inputs.switch0" />
-        <g-switch class="mr-4" v-model="inputs.switch1" />
-        <g-switch class="mr-4" v-model="inputs.switch2" statusLabel />
-        <g-switch class="mr-4" v-model="inputs.switch3" statusLabel />
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s8">群組勾選欄</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText0_1"
+          statusLabel
+        />
       </div>
-      <v-md-editor
-        v-if="showTextSwitch.inputsText2"
-        v-model="inputsText2"
-        mode="preview"
-      ></v-md-editor>
-    </div>
 
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">過場效果</g-title>
-    </div>
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <g-checkbox-group class="mb-3 flex w-full" v-model="inputs.checkedArr">
+          <g-checkbox class="mr-4" :value="2" label="選項2" />
+          <g-checkbox class="mr-4" :value="4" label="選項4" />
+          <g-checkbox class="mr-4" :value="6" label="選項6" disabled />
+          <g-checkbox class="mr-4" :value="8" label="選項8" disabled />
+        </g-checkbox-group>
+        <span v-if="showTextSwitch.inputsText0_1"
+          >inputs.checkedArr:{{ inputs.checkedArr }}</span
+        >
+        <v-md-editor
+          v-if="showTextSwitch.inputsText0_1"
+          v-model="inputsText0_1"
+          mode="preview"
+        ></v-md-editor>
+      </div>
 
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <div class="flex justify-start mb-3 relative">
-        <div class="w-1/2 md:w-1/3">
-          <g-title :level="2" class="mb-3">頁面載入中</g-title>
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s9">單選欄</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText1"
+          statusLabel
+        />
+      </div>
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <div class="mb-3 flex w-full">
+          <g-radiobox class="mr-4" v-model="inputs.radio0" label="A" />
+          <g-radiobox class="mr-4" v-model="inputs.radio1" label="B" />
+          <g-radiobox class="mr-4" v-model="inputs.radio2" disabled label="C" />
+          <g-radiobox class="mr-4" v-model="inputs.radio3" disabled label="D" />
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.inputsText1"
+          v-model="inputsText1"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s9-1">群組單選欄</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText1_1"
+          statusLabel
+        />
+      </div>
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <g-radiobox-group class="mb-3 flex w-full" v-model="inputs.radio4">
+          <g-radiobox class="mr-4" :value="2" label="選項2" />
+          <g-radiobox class="mr-4" :value="4" label="選項4" />
+          <g-radiobox class="mr-4" :value="6" label="選項6" />
+          <g-radiobox class="mr-4" :value="8" label="選項8" disabled />
+        </g-radiobox-group>
+        <v-md-editor
+          v-if="showTextSwitch.inputsText1_1"
+          v-model="inputsText1_1"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s10">切換開關</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.inputsText2"
+          statusLabel
+        />
+      </div>
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <div class="mb-3 flex w-full">
+          <g-switch class="mr-4" v-model="inputs.switch0" />
+          <g-switch class="mr-4" v-model="inputs.switch1" />
+          <g-switch class="mr-4" v-model="inputs.switch2" statusLabel />
+          <g-switch class="mr-4" v-model="inputs.switch3" statusLabel />
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.inputsText2"
+          v-model="inputsText2"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">過場效果</g-title>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <div class="flex justify-start mb-3 relative">
+          <div class="w-1/2 md:w-1/3">
+            <g-title :level="2" class="mb-3" id="s11">頁面載入中</g-title>
+            <g-switch
+              class="absolute right-0 top-0"
+              v-model="showTextSwitch.loadText"
+              statusLabel
+            />
+            <g-button pill @click="handleLoading">顯示</g-button>
+          </div>
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.loadText"
+          v-model="loadText"
+          mode="preview"
+        ></v-md-editor>
+        <div class="flex justify-start mb-3 relative">
+          <g-title :level="2" class="mb-3" id="s12">載入中</g-title>
           <g-switch
             class="absolute right-0 top-0"
-            v-model="showTextSwitch.loadText"
+            v-model="showTextSwitch.loadingText0"
             statusLabel
           />
-          <g-button pill @click="handleLoading">顯示</g-button>
+          <g-loading-icon />
+
+          <v-md-editor
+            v-if="showTextSwitch.loadingText0"
+            v-model="loadingText0"
+            mode="preview"
+          ></v-md-editor>
+        </div>
+
+        <div class="flex justify-start mb-3 relative">
+          <g-title :level="2" class="mb-3" id="s13">上傳中</g-title>
+          <g-switch
+            class="absolute right-0 top-0"
+            v-model="showTextSwitch.loadingText1"
+            statusLabel
+          />
+        </div>
+        <div class="mb-3 px-2 w-full">
+          <div class="mb-3 flex w-full">
+            <g-upload-icon class="mr-2" />
+            <g-upload-icon class="mr-2" :percent="20" />
+            <g-upload-icon class="mr-2" :percent="80" />
+            <g-upload-icon class="mr-2" :percent="0" auto />
+          </div>
+          <v-md-editor
+            v-if="showTextSwitch.loadingText1"
+            v-model="loadingText1"
+            mode="preview"
+          ></v-md-editor>
+        </div>
+
+        <div class="flex justify-start mb-3 relative">
+          <g-title :level="2" class="mb-3" id="s14">下載中</g-title>
+          <g-switch
+            class="absolute right-0 top-0"
+            v-model="showTextSwitch.loadingText2"
+            statusLabel
+          />
+        </div>
+        <div class="mb-3 px-2 w-full">
+          <div class="mb-3 flex w-full">
+            <g-download-icon class="mr-2" />
+            <g-download-icon class="mr-2" :percent="20" />
+            <g-download-icon class="mr-2" :percent="100" />
+            <g-download-icon class="mr-2" :percent="0" :auto="true" />
+          </div>
+          <v-md-editor
+            v-if="showTextSwitch.loadingText2"
+            v-model="loadingText2"
+            mode="preview"
+          ></v-md-editor>
         </div>
       </div>
-      <v-md-editor
-        v-if="showTextSwitch.loadText"
-        v-model="loadText"
-        mode="preview"
-      ></v-md-editor>
-      <div class="flex justify-start mb-3 relative">
-        <g-title :level="2" class="mb-3">載入中</g-title>
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">視窗</g-title>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4 relative">
+        <g-title :level="2" class="mb-3" id="s15">通知</g-title>
         <g-switch
           class="absolute right-0 top-0"
-          v-model="showTextSwitch.loadingText0"
+          v-model="showTextSwitch.msgText"
           statusLabel
         />
-        <g-loading-icon />
-
-        <v-md-editor
-          v-if="showTextSwitch.loadingText0"
-          v-model="loadingText0"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-
-      <div class="flex justify-start mb-3 relative">
-        <g-title :level="2" class="mb-3">上傳中</g-title>
-        <g-switch
-          class="absolute right-0 top-0"
-          v-model="showTextSwitch.loadingText1"
-          statusLabel
-        />
-      </div>
-      <div class="mb-3 px-2 w-full">
-        <div class="mb-3 flex w-full">
-          <g-upload-icon class="mr-2" />
-          <g-upload-icon class="mr-2" :percent="20" />
-          <g-upload-icon class="mr-2" :percent="80" />
-          <g-upload-icon class="mr-2" :percent="0" auto />
-        </div>
-        <v-md-editor
-          v-if="showTextSwitch.loadingText1"
-          v-model="loadingText1"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-
-      <div class="flex justify-start mb-3 relative">
-        <g-title :level="2" class="mb-3">下載中</g-title>
-        <g-switch
-          class="absolute right-0 top-0"
-          v-model="showTextSwitch.loadingText2"
-          statusLabel
-        />
-      </div>
-      <div class="mb-3 px-2 w-full">
-        <div class="mb-3 flex w-full">
-          <g-download-icon class="mr-2" />
-          <g-download-icon class="mr-2" :percent="20" />
-          <g-download-icon class="mr-2" :percent="100" />
-          <g-download-icon class="mr-2" :percent="0" :auto="true" />
-        </div>
-        <v-md-editor
-          v-if="showTextSwitch.loadingText2"
-          v-model="loadingText2"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-    </div>
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">視窗</g-title>
-    </div>
-
-    <div class="mb-3 px-2 w-full md:w-3/4 relative">
-      <g-title :level="2" class="mb-3">通知</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.msgText"
-        statusLabel
-      />
-      <div class="flex justify-start mb-3">
-        <span class="w-1/2 md:w-1/3"
-          ><g-button
-            pill
-            type="second"
-            @click="
-              () => {
-                handleMsg('info');
-              }
-            "
-            >顯示Message info</g-button
-          ></span
-        >
-        <span class="w-1/2 md:w-1/3"
-          ><g-button
-            pill
-            type="yellow"
-            @click="
-              () => {
-                handleMsg('warning');
-              }
-            "
-            >顯示Message warning</g-button
-          ></span
-        >
-        <span class="w-1/2 md:w-1/3"
-          ><g-button
-            pill
-            type="red"
-            @click="
-              () => {
-                handleMsg('error');
-              }
-            "
-            >顯示Message error</g-button
-          ></span
-        >
-      </div>
-      <v-md-editor
-        v-if="showTextSwitch.msgText"
-        v-model="msgText"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">文字</g-title>
-    </div>
-
-    <div class="mb-3 px-2 w-full md:w-3/4 relative">
-      <g-title :level="2" class="mb-3">標題</g-title>
-      <g-switch
-        class="absolute right-0 top-0"
-        v-model="showTextSwitch.titleText"
-        statusLabel
-      />
-      <g-title :level="1" class="mb-4">Bold / 24 / 文字樣式</g-title>
-      <g-title :level="2" class="mb-4">Medium / 20 / 文字樣式</g-title>
-      <g-title :level="3" class="mb-4">Bold / 18 / 文字樣式</g-title>
-      <g-title class="mb-4">Medium / 16 / 文字樣式</g-title>
-      <v-md-editor
-        v-if="showTextSwitch.titleText"
-        v-model="titleText"
-        mode="preview"
-      ></v-md-editor>
-    </div>
-
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">按鈕</g-title>
-    </div>
-
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <div class="mb-8 relative">
-        <g-title :level="2" class="mb-3">PILL</g-title>
-        <g-switch
-          class="absolute right-0 top-0"
-          v-model="showTextSwitch.buttonText0"
-          statusLabel
-        />
-        <div class="flex justify-between mb-3">
-          <g-button pill>按鈕</g-button>
-          <g-button pill type="second">按鈕</g-button>
-          <g-button pill type="yellow">按鈕</g-button>
-          <g-button pill type="red">按鈕</g-button>
-          <g-button pill type="white">按鈕</g-button>
-        </div>
-        <v-md-editor
-          v-if="showTextSwitch.buttonText0"
-          v-model="buttonText0"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-      <div class="mb-8 relative">
-        <g-title :level="2" class="mb-3">FLAT - 1</g-title>
-        <g-switch
-          class="absolute right-0 top-0"
-          v-model="showTextSwitch.buttonText1"
-          statusLabel
-        />
-        <div class="flex justify-between mb-3">
-          <g-button flat>按鈕</g-button>
-          <g-button flat type="second">按鈕</g-button>
-          <g-button flat type="yellow">按鈕</g-button>
-          <g-button flat type="red">按鈕</g-button>
-          <g-button flat type="white">按鈕</g-button>
-        </div>
-
-        <v-md-editor
-          v-if="showTextSwitch.buttonText1"
-          v-model="buttonText1"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-
-      <div class="mb-8 relative">
-        <g-title :level="2" class="mb-3">FLAT - 2</g-title>
-        <g-switch
-          class="absolute right-0 top-0"
-          v-model="showTextSwitch.buttonText2"
-          statusLabel
-        />
-        <div class="flex justify-between mb-3">
-          <g-button flat
-            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-          >
-          <g-button flat type="second"
-            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-          >
-          <g-button flat type="yellow"
-            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-          >
-          <g-button flat type="red"
-            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-          >
-          <g-button flat type="white"
-            ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-          >
-        </div>
-        <div class="flex justify-between mb-3">
-          <g-button flat
-            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
-          >
-          <g-button flat type="second"
-            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
-          >
-          <g-button flat type="yellow"
-            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
-          >
-          <g-button flat type="red"
-            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
-          >
-          <g-button flat type="white"
-            ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
-          >
-        </div>
-        <v-md-editor
-          v-if="showTextSwitch.buttonText2"
-          v-model="buttonText2"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-
-      <div class="mb-8 relative">
-        <g-title :level="2" class="mb-3">ROUND</g-title>
-        <g-switch
-          class="absolute right-0 top-0"
-          v-model="showTextSwitch.buttonText3"
-          statusLabel
-        />
-        <div class="w-1/2 flex justify-between mb-3">
-          <g-button round>按鈕</g-button>
-          <g-button round type="second">按鈕</g-button>
-          <g-button round type="yellow">按鈕</g-button>
-          <g-button round type="red">按鈕</g-button>
-          <g-button round type="white">按鈕</g-button>
-        </div>
-        <v-md-editor
-          v-if="showTextSwitch.buttonText3"
-          v-model="buttonText3"
-          mode="preview"
-        ></v-md-editor>
-      </div>
-    </div>
-
-    <div class="paragraphHead">
-      <g-title :level="1" class="mb-3">圖標</g-title>
-    </div>
-
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <span
-        class="flex justify-start mb-2"
-        v-for="(item, idx) in icons"
-        :key="item"
-      >
-        <template v-if="idx % 2 == 0">
+        <div class="flex justify-start mb-3">
           <span class="w-1/2 md:w-1/3"
-            ><g-icons :name="item" class="text-main w-8"
-          /></span>
-          <span class="text-gray-600 leading-10">
-            {{ `<g-icons name="${item}" />`}}
-          </span>
-        </template>
-        <template v-else>
+            ><g-button
+              pill
+              type="second"
+              @click="
+                () => {
+                  handleMsg('info');
+                }
+              "
+              >顯示Message info</g-button
+            ></span
+          >
           <span class="w-1/2 md:w-1/3"
-            ><g-icons :name="item" class="text-second w-8"
-          /></span>
-          <span class="text-gray-600 leading-10">
-            {{ `<g-icons name="${item}" />`}}
-          </span>
-        </template>
-      </span>
+            ><g-button
+              pill
+              type="yellow"
+              @click="
+                () => {
+                  handleMsg('warning');
+                }
+              "
+              >顯示Message warning</g-button
+            ></span
+          >
+          <span class="w-1/2 md:w-1/3"
+            ><g-button
+              pill
+              type="red"
+              @click="
+                () => {
+                  handleMsg('error');
+                }
+              "
+              >顯示Message error</g-button
+            ></span
+          >
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.msgText"
+          v-model="msgText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">文字</g-title>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4 relative">
+        <g-title :level="2" class="mb-3" id="s16">標題</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.titleText"
+          statusLabel
+        />
+        <g-title :level="1" class="mb-4">Bold / 24 / 文字樣式</g-title>
+        <g-title :level="2" class="mb-4">Medium / 20 / 文字樣式</g-title>
+        <g-title :level="3" class="mb-4">Bold / 18 / 文字樣式</g-title>
+        <g-title class="mb-4">Medium / 16 / 文字樣式</g-title>
+        <v-md-editor
+          v-if="showTextSwitch.titleText"
+          v-model="titleText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">按鈕</g-title>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <div class="mb-8 relative">
+          <g-title :level="2" class="mb-3" id="s17">PILL</g-title>
+          <g-switch
+            class="absolute right-0 top-0"
+            v-model="showTextSwitch.buttonText0"
+            statusLabel
+          />
+          <div class="flex justify-between mb-3">
+            <g-button pill>按鈕</g-button>
+            <g-button pill type="second">按鈕</g-button>
+            <g-button pill type="yellow">按鈕</g-button>
+            <g-button pill type="red">按鈕</g-button>
+            <g-button pill type="white">按鈕</g-button>
+          </div>
+          <v-md-editor
+            v-if="showTextSwitch.buttonText0"
+            v-model="buttonText0"
+            mode="preview"
+          ></v-md-editor>
+        </div>
+        <div class="mb-8 relative">
+          <g-title :level="2" class="mb-3" id="s18">FLAT - 1</g-title>
+          <g-switch
+            class="absolute right-0 top-0"
+            v-model="showTextSwitch.buttonText1"
+            statusLabel
+          />
+          <div class="flex justify-between mb-3">
+            <g-button flat>按鈕</g-button>
+            <g-button flat type="second">按鈕</g-button>
+            <g-button flat type="yellow">按鈕</g-button>
+            <g-button flat type="red">按鈕</g-button>
+            <g-button flat type="white">按鈕</g-button>
+          </div>
+
+          <v-md-editor
+            v-if="showTextSwitch.buttonText1"
+            v-model="buttonText1"
+            mode="preview"
+          ></v-md-editor>
+        </div>
+
+        <div class="mb-8 relative">
+          <g-title :level="2" class="mb-3" id="s19">FLAT - 2</g-title>
+          <g-switch
+            class="absolute right-0 top-0"
+            v-model="showTextSwitch.buttonText2"
+            statusLabel
+          />
+          <div class="flex justify-between mb-3">
+            <g-button flat
+              ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+            >
+            <g-button flat type="second"
+              ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+            >
+            <g-button flat type="yellow"
+              ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+            >
+            <g-button flat type="red"
+              ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+            >
+            <g-button flat type="white"
+              ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
+            >
+          </div>
+          <div class="flex justify-between mb-3">
+            <g-button flat
+              ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+            >
+            <g-button flat type="second"
+              ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+            >
+            <g-button flat type="yellow"
+              ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+            >
+            <g-button flat type="red"
+              ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+            >
+            <g-button flat type="white"
+              ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
+            >
+          </div>
+          <v-md-editor
+            v-if="showTextSwitch.buttonText2"
+            v-model="buttonText2"
+            mode="preview"
+          ></v-md-editor>
+        </div>
+
+        <div class="mb-8 relative">
+          <g-title :level="2" class="mb-3" id="s20">ROUND</g-title>
+          <g-switch
+            class="absolute right-0 top-0"
+            v-model="showTextSwitch.buttonText3"
+            statusLabel
+          />
+          <div class="w-1/2 flex justify-between mb-3">
+            <g-button round>按鈕</g-button>
+            <g-button round type="second">按鈕</g-button>
+            <g-button round type="yellow">按鈕</g-button>
+            <g-button round type="red">按鈕</g-button>
+            <g-button round type="white">按鈕</g-button>
+          </div>
+          <v-md-editor
+            v-if="showTextSwitch.buttonText3"
+            v-model="buttonText3"
+            mode="preview"
+          ></v-md-editor>
+        </div>
+      </div>
+
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3" id="s21">圖標</g-title>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4">
+        <span
+          class="flex justify-start mb-2"
+          v-for="(item, idx) in icons"
+          :key="item"
+        >
+          <template v-if="idx % 2 == 0">
+            <span class="w-1/2 md:w-1/3"
+              ><g-icons :name="item" class="text-main w-8"
+            /></span>
+            <span class="text-gray-600 leading-10">
+              {{ `<g-icons name="${item}" />`}}
+            </span>
+          </template>
+          <template v-else>
+            <span class="w-1/2 md:w-1/3"
+              ><g-icons :name="item" class="text-second w-8"
+            /></span>
+            <span class="text-gray-600 leading-10">
+              {{ `<g-icons name="${item}" />`}}
+            </span>
+          </template>
+        </span>
+      </div>
+    </div>
+    <div class="w-1/5 flex flex-col scroll-to-box relative">
+      <div class="absolute left-0 top-0">
+        <p
+          v-for="item in scrollList"
+          :key="item.id"
+          :id="'r-' + item.id"
+          class="px-4 py-2 my-2 cursor-pointer"
+          :class="curScroll == item.id ? 'current' : ''"
+          @click="
+            () => {
+              handleScroll(item.id);
+            }
+          "
+        >
+          {{ item.name }}
+        </p>
+      </div>
     </div>
   </div>
 
@@ -958,4 +1112,32 @@ const inputsTime1 = `\`\`\` html
   <g-loading />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.innerWrapper {
+  > div {
+    height: calc(100vh - 120px);
+    @apply overflow-y-scroll;
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: #d9d9d9;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #666666;
+      }
+    }
+  }
+}
+
+.scroll-to-box {
+  p {
+    @apply text-gray0;
+  }
+  .current {
+    @apply text-main;
+  }
+}
+</style>
