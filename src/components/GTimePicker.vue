@@ -9,16 +9,16 @@ import {
   nextTick,
 } from 'vue';
 import { useElementBounding, useWindowSize, useScroll } from '@vueuse/core';
-import { DateTime } from 'luxon';
+import dayjs from 'dayjs';
 import GIcons from './GIcons.vue';
 import GInput from './GInput.vue';
 import { v4 as uuidv4 } from 'uuid';
 
-const formatStr = 'yyyy-MM-dd HH:mm';
+const formatStr = 'YYYY-MM-DD HH:mm';
 const { modelValue, placeholder } = defineProps({
   modelValue: {},
   placeholder: {
-    default: DateTime.now().toFormat('yyyy-MM-dd HH:mm'),
+    default: dayjs().format('YYYY-MM-DD HH:mm'),
   },
 });
 
@@ -26,8 +26,8 @@ const emit = defineEmits(['update:modelValue']);
 const root = shallowRef();
 const isTimePickerShow = ref(false);
 const isHourPickerShow = ref(false);
-const curSelect = ref(DateTime.now());
-const curDay = ref(DateTime.now());
+const curSelect = ref(dayjs());
+const curDay = ref(dayjs());
 const curDayIndex = ref(null);
 const curCalenderInfo = reactive({
   curMonthDayStartIndex: null,
@@ -38,7 +38,7 @@ watch(
   () => curSelect.value,
   (val, oldVal) => {
     // console.log('val', val);
-    emit('update:modelValue', curSelect.value.toFormat(formatStr) || '');
+    emit('update:modelValue', curSelect.value?.format(formatStr) || '');
   }
 );
 
@@ -66,7 +66,7 @@ watch(
 
 const monthAll = computed(() => {
   //   console.log('curDay.value', curDay.value);
-  return curDay.value ? `${curDay.value.year}年${curDay.value.month}月` : '';
+  return curDay.value ? `${curDay.value.$y}年${curDay.value.$M + 1}月` : '';
 });
 const isMonthAllShow = ref(false);
 const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
@@ -86,32 +86,25 @@ const months = [
 ];
 const hours = new Array(24).fill('').map((i, idx) => idx);
 const minutes = new Array(60).fill('').map((i, idx) => idx);
-const curHourIndex = ref(hours.findIndex((ele) => ele == curDay.value.hour));
-const curMinuteIndex = ref(
-  minutes.findIndex((ele) => ele == curDay.value.minute)
-);
+const curHourIndex = ref(hours.findIndex((ele) => ele == curDay.value.$H));
+const curMinuteIndex = ref(minutes.findIndex((ele) => ele == curDay.value.$m));
 
 const calenderDays = computed(() => {
   curCalenderInfo.curMonthDayStartIndex = null;
   curCalenderInfo.curMonthDayEndIndex = null;
   let arr = new Array(42);
   if (curDay.value) {
-    let { year, month, day, weekday } = curDay.value;
-    let { weekday: monthStartDayWeekday } = DateTime.fromObject({
-      year,
-      month,
-      day: 1,
-    });
-    let { day: preMonthLastday } = DateTime.fromObject({
-      year,
-      month,
-      day: 1,
-    }).minus({ days: 1 });
-    let { day: monthEndDay, weekday: monthEndWeekday } = DateTime.fromObject({
-      year: month == 12 ? year + 1 : year,
-      month: month == 12 ? 1 : month + 1,
-      day: 1,
-    }).minus({ days: 1 });
+    // console.log('curDay.value', curDay.value);
+    let { $y: year, $M: month, $D: day, $W: weekday } = curDay.value;
+    let { $W: monthStartDayWeekday } = dayjs(new Date(year, month, 1));
+    let { $D: preMonthLastday } = dayjs(new Date(year, month, 1)).subtract(
+      1,
+      'day'
+    );
+
+    let { $D: monthEndDay, $W: monthEndWeekday } = dayjs(
+      new Date(month == 11 ? year + 1 : year, month == 11 ? 0 : month + 1, 1)
+    ).subtract(1, 'day');
 
     let rowOnediff = monthStartDayWeekday;
     let rowLastPlus = monthEndWeekday == 6 ? 7 : 7 - monthEndWeekday;
@@ -155,7 +148,7 @@ const getCalenderClass = (cdStr, idx) => {
     return `${rowClass} text-gray0`;
   }
 
-  if (cdStr == curDay.value?.day) {
+  if (cdStr == curDay.value?.$D) {
     return `${rowClass} text-main font-bold`;
   }
   return `${rowClass} text-gray1`;
@@ -164,47 +157,54 @@ const getCalenderClass = (cdStr, idx) => {
 const handleCalDayClick = (idx) => {
   let month =
     idx < curCalenderInfo.curMonthDayStartIndex
-      ? curDay.value.month - 1 < 1
-        ? 12
-        : curDay.value.month - 1
+      ? curDay.value.$M - 1 < 0
+        ? 11
+        : curDay.value.$M - 1
       : idx > curCalenderInfo.curMonthDayEndIndex
-      ? curDay.value.month + 1 > 12
-        ? 1
-        : curDay.value.month + 1
-      : curDay.value.month;
+      ? curDay.value.$M + 1 > 11
+        ? 0
+        : curDay.value.$M + 1
+      : curDay.value.$M;
   let year =
-    curDay.value.month == 12 && idx > curCalenderInfo.curMonthDayEndIndex
-      ? curDay.value.year + 1
-      : curDay.value.month == 1 && idx < curCalenderInfo.curMonthDayStartIndex
-      ? curDay.value.year - 1
-      : curDay.value.year;
+    curDay.value.$M == 11 && idx > curCalenderInfo.curMonthDayEndIndex
+      ? curDay.value.$y + 1
+      : curDay.value.$M == 0 && idx < curCalenderInfo.curMonthDayStartIndex
+      ? curDay.value.$y - 1
+      : curDay.value.$y;
 
-  curSelect.value = DateTime.fromObject({
-    year,
-    month,
-    day: calenderDays.value[idx],
-    hour: curHourIndex.value ? hours[curHourIndex.value] : 0,
-    minute: curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0,
-  });
+  curSelect.value = dayjs(
+    new Date(
+      year,
+      month,
+      calenderDays.value[idx],
+      curHourIndex.value ? hours[curHourIndex.value] : 0,
+      curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0
+    )
+  );
+
   curDayIndex.value = idx;
 };
 
 const handleMonthPre = () => {
   curDayIndex.value = null;
-  curDay.value = DateTime.fromObject({
-    year: curDay.value.month == 1 ? curDay.value.year - 1 : curDay.value.year,
-    month: curDay.value.month == 1 ? 12 : curDay.value.month - 1,
-    day: 1,
-  });
+  curDay.value = dayjs(
+    new Date(
+      curDay.value.$M == 0 ? curDay.value.$y - 1 : curDay.value.$y,
+      curDay.value.$M == 0 ? 11 : curDay.value.$M - 1,
+      1
+    )
+  );
 };
 
 const handleMonthNext = () => {
   curDayIndex.value = null;
-  curDay.value = DateTime.fromObject({
-    year: curDay.value.month == 12 ? curDay.value.year + 1 : curDay.value.year,
-    month: curDay.value.month == 12 ? 1 : curDay.value.month + 1,
-    day: 1,
-  });
+  curDay.value = dayjs(
+    new Date(
+      curDay.value.$M == 11 ? curDay.value.$y + 1 : curDay.value.$y,
+      curDay.value.$M == 11 ? 0 : curDay.value.$M + 1,
+      1
+    )
+  );
 };
 
 const handleMonthAll = () => {
@@ -218,17 +218,14 @@ const handleMonthChange = (month) => {
     return true;
   }
 
-  curDay.value = DateTime.fromObject({
-    year: curDay.value.year,
-    month: month,
-    day: 1,
-  });
+  curDay.value = dayjs(new Date(curDay.value.$y, month, 1));
+
   isMonthAllShow.value = !isMonthAllShow.value;
 };
 
 const handleUseNow = () => {
-  curDay.value = DateTime.now();
-  curSelect.value = DateTime.now();
+  curDay.value = dayjs();
+  curSelect.value = dayjs();
   curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.hour);
   curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.minute);
 
@@ -273,21 +270,15 @@ const popupClassComputed = computed(() => {
 });
 
 const handleHourMinuteChange = (target, value, idx) => {
-  // console.log(curSelect?.value?.c, target, value, idx);
+  // console.log(curSelect.value);
   switch (target) {
     case 'hour': {
-      curSelect.value = DateTime.fromObject({
-        ...curSelect.value.c,
-        hour: value,
-      });
+      curSelect.value = curSelect.value.hour(value);
       curHourIndex.value = idx;
       break;
     }
     case 'minute': {
-      curSelect.value = DateTime.fromObject({
-        ...curSelect.value.c,
-        minute: value,
-      });
+      curSelect.value = curSelect.value.minute(value);
       curMinuteIndex.value = idx;
       break;
     }
@@ -304,7 +295,7 @@ const handleTimePick = () => {
     <span
       class="gt-input gt-input-green select-none"
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >{{ curSelect.toFormat(formatStr) }}</span
+      >{{ curSelect?.format(formatStr) }}</span
     >
     <g-icons
       class="icon"
@@ -350,7 +341,7 @@ const handleTimePick = () => {
           <div class="time-select" @click.stop="handleTimePick">
             {{
               curSelect
-                ? curSelect.toFormat(formatStr).split(' ')[1]
+                ? curSelect?.format(formatStr).split(' ')[1]
                 : '請選擇時間'
             }}
             <div class="time-select-popup" v-show="isHourPickerShow">
@@ -398,13 +389,13 @@ const handleTimePick = () => {
       <template v-if="isMonthAllShow">
         <div class="months">
           <span class="month" v-for="(month, idx) in months" :key="month">
-            <template v-if="curDay && idx != curDay.month - 1">
+            <template v-if="curDay && idx != curDay.$M">
               <g-button
                 pill
                 type="white"
                 @click.stop="
                   () => {
-                    handleMonthChange(idx + 1);
+                    handleMonthChange(idx);
                   }
                 "
                 >{{ month }}</g-button
