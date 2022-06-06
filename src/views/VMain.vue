@@ -34,14 +34,7 @@ onBeforeUpdate(() => {
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
-        <span class="flex leading-8 mr-4 cursor-pointer"
-          ><g-icons name="search" class="text-main w-8" /><span
-            >搜尋</span
-          ></span
-        >
-        <span class="cursor-pointer"
-          ><g-icons name="calendar" class="text-main w-8"
-        /></span>
+        <span>v0.0.12</span>
       </div>
     </template>
     <template #content>

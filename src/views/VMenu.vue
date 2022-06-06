@@ -17,7 +17,7 @@ const Router = useRouter();
       </template>
 
       <router-link to="/doc">
-        <el-menu-item index="1-1">介紹</el-menu-item></router-link
+        <el-menu-item index="1-1">指引</el-menu-item></router-link
       >
 
       <router-link to="/use">

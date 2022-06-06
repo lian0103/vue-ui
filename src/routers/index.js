@@ -11,14 +11,14 @@ export const routes = [
         components: {
           mainView: () => import('../views/VDoc.vue'),
         },
-        meta: { title: '文件', idx: '1-1' },
+        meta: { title: '指引', idx: '1-1' },
       },
       {
         path: 'doc',
         components: {
           mainView: () => import('../views/VDoc.vue'),
         },
-        meta: { title: '文件', idx: '1-1' },
+        meta: { title: '指引', idx: '1-1' },
       },
       {
         path: 'use',
