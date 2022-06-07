@@ -226,12 +226,12 @@ const handleMonthChange = (month) => {
 const handleUseNow = () => {
   curDay.value = dayjs();
   curSelect.value = dayjs();
-  curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.hour);
-  curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.minute);
-
+  curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.$H);
+  curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.$m);
+  // console.log(' curDay.value', curDay.value);
   calenderDays.value.forEach((day, idx) => {
     if (
-      day == curDay.value.day &&
+      day == curDay.value.$D &&
       idx >= curCalenderInfo.curMonthDayStartIndex &&
       idx < curCalenderInfo.curMonthDayEndIndex
     ) {
