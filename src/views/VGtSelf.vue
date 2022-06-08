@@ -21,6 +21,7 @@ import {
   GInput,
   GForm,
   GTimePicker,
+  GTag,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -124,6 +125,10 @@ const scrollList = [
     id: 's21',
     name: '圖標',
   },
+  {
+    id: 's22',
+    name: '標籤',
+  },
 ];
 const curScroll = ref('s1');
 const scrollTopArr = ref(null);
@@ -148,7 +153,7 @@ const handleScrollEvt = (evt) => {
   } else {
     setTimeout(() => {
       isHandControlScroll.value = false;
-    }, 500);
+    }, 1000);
   }
 };
 
@@ -271,6 +276,7 @@ const showTextSwitch = reactive({
   inputsText3: false,
   inputsText4: false,
   inputsTime1: false,
+  tagsText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -499,6 +505,37 @@ const inputsText4 = `\`\`\` html
 
 const inputsTime1 = `\`\`\` html
   <g-time-picker v-model="inputs.time1" />
+ \`\`\`
+`;
+
+const tagsText = `\`\`\` html
+//BORDER
+  <g-tag type="default" border />
+  <g-tag type="second" border />
+  <g-tag type="warning" border />
+  <g-tag type="danger" border />
+        
+//NO BORDER
+  <g-tag type="default" />
+  <g-tag type="second" />
+  <g-tag type="warning" />
+  <g-tag type="danger" />
+
+//DOT
+  <g-tag type="default" dot />
+  <g-tag type="second" dot />
+  <g-tag type="warning" dot />
+  <g-tag type="danger" dot />
+
+// LABEL
+  <g-tag type="default" dot label='訂單' />
+  <g-tag type="second" border dot label='出貨' />
+  <g-tag type="warning" dot label='警告' />
+  <g-tag type="danger" border dot label='錯誤' />
+
+//OTHERS
+  <g-tag type="activity" border />
+
  \`\`\`
 `;
 </script>
@@ -1086,6 +1123,57 @@ const inputsTime1 = `\`\`\` html
             </span>
           </template>
         </span>
+      </div>
+
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3" id="s22">標籤</g-title>
+      </div>
+      <div class="mb-3 px-2 w-full md:w-3/4 relative">
+        <g-title :level="2" class="mb-3">BORDER</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.tagsText"
+          statusLabel
+        />
+        <div class="w-1/2 flex justify-between mb-3">
+          <g-tag type="default" border />
+          <g-tag type="second" border />
+          <g-tag type="warning" border />
+          <g-tag type="danger" border />
+        </div>
+
+        <g-title :level="2" class="mb-3">NO BORDER</g-title>
+        <div class="w-1/2 flex justify-between mb-3">
+          <g-tag type="default" />
+          <g-tag type="second" />
+          <g-tag type="warning" />
+          <g-tag type="danger" />
+        </div>
+
+        <g-title :level="2" class="mb-3">DOT</g-title>
+        <div class="w-1/2 flex justify-between mb-3">
+          <g-tag type="default" dot />
+          <g-tag type="second" dot />
+          <g-tag type="warning" dot />
+          <g-tag type="danger" dot />
+        </div>
+        <g-title :level="2" class="mb-3">LABEL</g-title>
+        <div class="w-1/2 flex justify-between mb-3">
+          <g-tag type="default" dot label="訂單" />
+          <g-tag type="second" border dot label="出貨" />
+          <g-tag type="warning" dot label="警告" />
+          <g-tag type="danger" border dot label="錯誤" />
+        </div>
+
+        <g-title :level="2" class="mb-3">OTHERS</g-title>
+        <div class="w-1/2 flex justify-between mb-3">
+          <g-tag type="activity" border />
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.tagsText"
+          v-model="tagsText"
+          mode="preview"
+        ></v-md-editor>
       </div>
     </div>
     <div class="w-1/5 flex flex-col scroll-to-box relative">

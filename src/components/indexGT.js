@@ -18,3 +18,4 @@ export { default as GDropdownItem } from './GDropdownItem.vue';
 export { default as GInput } from './GInput.vue';
 export { default as GForm } from './GForm.vue';
 export { default as GTimePicker } from './GTimePicker.vue';
+export { default as GTag } from './GTag.vue';
