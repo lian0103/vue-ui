@@ -141,11 +141,10 @@ const handleScroll = (id) => {
 };
 
 const handleScrollEvt = (evt) => {
-  // console.log('in????', evt.srcElement.scrollTop);
   let top = parseInt(evt.srcElement.scrollTop);
   let idx = scrollTopArr.value.findIndex((ele) => ele > top);
 
-  if (!isHandControlScroll.value) {
+  if (!isHandControlScroll.value && scrollList[idx]) {
     curScroll.value = scrollList[idx].id;
     document
       .getElementById(`r-${scrollList[idx].id}`)
