@@ -101,6 +101,7 @@ const typeStr = computed(() => {
 
 .gt-btn {
   height: 36px;
+  letter-spacing: 0.7px;
   color: var(--btn-color);
   @apply flex justify-center items-center;
   @apply overflow-hidden text-center whitespace-nowrap;
