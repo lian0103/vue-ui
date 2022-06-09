@@ -22,7 +22,7 @@ const { option, label, value, icon, parentValue, handleChildClick } =
       default: null,
     },
     icon: {
-      default: 'calendar',
+      default: false,
     },
     parentValue: {
       default: null,
@@ -40,13 +40,14 @@ const isCurrent = computed(() => {
   <div
     v-if="label"
     class="gt-dropdown-item"
+    :class="isCurrent ? 'current' : ''"
     @click="
       () => {
         handleChildClick(value || label);
       }
     "
   >
-    <g-icons v-if="icon" :class="isCurrent ? 'text-main' : ''" :name="icon" />
+    <g-icons v-if="icon" class="text-right" name="file" />
     <span :class="isCurrent ? 'text-main' : ''">{{ label }}</span>
   </div>
 </template>
@@ -54,18 +55,26 @@ const isCurrent = computed(() => {
 <style lang="scss">
 .gt-dropdown-item {
   @apply w-full flex justify-start items-center cursor-pointer;
-  max-width: 140px;
+  max-width: 126px;
   height: 36px;
-  padding: 0 22px 0 12px;
+  padding: 0 6px 0 12px;
+  margin: 3px 7px;
+  border-radius: 5px;
   letter-spacing: 0.7px;
   &:hover {
-    @apply text-main;
+    @apply bg-color1;
   }
   svg {
     width: 22px;
   }
   span {
     @apply overflow-hidden;
+  }
+  &.current {
+    @apply bg-gray2;
+  }
+  .text-right {
+    margin-right: 5px;
   }
 }
 </style>

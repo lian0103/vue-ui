@@ -20,6 +20,7 @@ import x from '../assets/icons/x.svg';
 import loading from '../assets/icons/loading.svg';
 import upload from '../assets/icons/upload.svg';
 import download_sm from '../assets/icons/download_sm.svg'
+import file from '../assets/icons/file.svg'
 
 import { computed } from 'vue';
 
@@ -44,7 +45,8 @@ const iconNameMap = {
   x,
   loading,
   upload,
-  download_sm
+  download_sm,
+  file
 };
 
 const { name } = defineProps({

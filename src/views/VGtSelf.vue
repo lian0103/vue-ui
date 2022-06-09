@@ -437,6 +437,7 @@ const dropdown0Text = `\`\`\` html
     { label: 'Gggggeeeeewwww', value: 3 },
   ]"
   clicked
+  icon
 />
  \`\`\`
 `;
@@ -662,6 +663,7 @@ const tagsText = `\`\`\` html
             { label: 'Gggggeeeeewwww', value: 3 },
           ]"
           clicked
+          icon
         />
         <span v-if="showTextSwitch.dropdown0"
           >v-model:{{ inputs.dropdown0 }}</span

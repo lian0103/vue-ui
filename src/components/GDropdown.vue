@@ -9,12 +9,14 @@ export default {
     options: { type: Array },
     clicked: { type: Boolean, default: false },
     hover: { type: Boolean, default: false },
+    icon: { type: Boolean, default: false },
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
     // console.log(props);
     const isShow = ref(false);
     const isHover = ref(false);
+    const hasSelect = ref(false);
     const handleIsShow = (childClick = false) => {
       // console.log('childClick', childClick);
       if (props.clicked || childClick) {
@@ -64,14 +66,23 @@ export default {
           option: item,
           label: item.label,
           value: item.value,
+          icon: props.icon,
           parentValue: computed(() => props.modelValue),
           handleChildClick: (val) => {
             handleIsShow('childClick');
+            hasSelect.value = true;
             emit('update:modelValue', val);
           },
         });
       }) || [];
     // console.log('childs', childs);
+    const textClassComputed = computed(() => {
+      let arr = [];
+      if (props.icon) arr.push('span-text');
+      if (hasSelect.value) arr.push('text-main');
+      // console.log(arr);
+      return arr;
+    });
 
     return () =>
       h(
@@ -85,7 +96,12 @@ export default {
           h(
             'span',
             { class: 'gt-dropdown-span', onClick: () => handleIsShow() },
-            [h(GIcons, { name: 'calendar' }), labelComputed.value]
+            [
+              props.icon ? h(GIcons, { name: 'file' }) : '',
+              h('span', { class: textClassComputed.value }, [
+                labelComputed.value,
+              ]),
+            ]
           ),
           h(
             'span',
@@ -110,7 +126,7 @@ export default {
 .gt-dropdown {
   max-width: 140px;
   height: 36px;
-  padding: 0 22px 0 12px;
+  padding: 0 30px 0 12px;
   letter-spacing: 0.7px;
   @apply w-full bg-white border border-solid border-gray2 rounded-md select-none;
   @apply flex justify-start items-center relative cursor-pointer;
@@ -121,10 +137,14 @@ export default {
     svg {
       width: 22px;
     }
+    .span-text {
+      margin-left: 5px;
+    }
   }
 
   .gt-dropdown-icon {
-    @apply absolute right-0;
+    @apply absolute;
+    right: 8px;
     svg {
       width: 22px;
     }
