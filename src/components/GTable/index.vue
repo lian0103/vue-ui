@@ -1,6 +1,13 @@
 <script setup>
-import { ref, computed, reactive, watch, useSlots, h } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
+import {
+  ref,
+  computed,
+  reactive,
+  watch,
+  useSlots,
+  onMounted,
+  getCurrentInstance,
+} from 'vue';
 
 const tableEnum = {
   CHECKBOX: 'checkbox',
@@ -8,46 +15,27 @@ const tableEnum = {
   DESC: 'desc',
 };
 
-const { columns, isCheckBox, data } = defineProps({
-  columns: {
-    type: Array,
-    default: [
-      {
-        name: 'product',
-        label: '商品名稱',
-        sort: false,
-        width: 100,
-      },
-      {
-        name: 'price',
-        label: '價格',
-        sort: true,
-      },
-      {
-        name: 'storage',
-        label: '庫存',
-        sort: true,
-      },
-    ],
-  },
-  data: {
-    type: Array,
-    default: [
-      { product: 'aaa', price: 200, storage: 25 },
-      { product: 'bbbb', price: 100, storage: 15 },
-      { product: 'cc', price: 300, storage: 5 },
-      { product: 'dddddddddddddddddddddddd', price: 400, storage: 65 },
-    ],
-  },
-  isCheckBox: {
-    type: Boolean,
-    default: true,
-  },
-});
+const { name, columns, isCheckBox, data, height, getCheckedList } = defineProps(
+  {
+    name: {},
+    columns: {
+      type: Array,
+      default: [],
+    },
+    data: {
+      type: Array,
+      default: [],
+    },
+    isCheckBox: {
+      type: Boolean,
+      default: true,
+    },
+    height: {},
+  }
+);
 
 const slots = useSlots();
-
-// console.log('slots', slots);
+const slotColumns = Object.keys(slots);
 
 const isCheckAll = ref(false);
 const columnSortStatus = reactive({});
@@ -58,16 +46,14 @@ const columnsComputed = computed(() => {
       return cItem.name
         ? {
             name: cItem.name,
-            label: cItem.label,
+            label: cItem.label || '',
             width: cItem.width || 80,
             sort: cItem.sort || false,
           }
         : false;
     })
     .filter((cItem) => cItem);
-
   //   console.log(arr);
-
   return arr;
 });
 
@@ -85,6 +71,18 @@ const dataWithStatus = ref([
     };
   }),
 ]);
+
+const tableWidthComputed = computed(() => {
+  let width = columnsComputed.value
+    .map((item) => item.width)
+    .reduce((a, b) => a + b);
+  return width + 80;
+});
+
+const tableMaxHeightComputed = computed(() => {
+  let maxHeight = parseInt(height) - 40;
+  return maxHeight ? maxHeight + 'px' : 'none';
+});
 
 watch(
   () => isCheckAll.value,
@@ -118,50 +116,76 @@ const handleColumnSort = (cItem) => {
     }
   }
 };
+
+onMounted(() => {
+  if (name) {
+    const instance = getCurrentInstance();
+    instance.appContext.config.globalProperties[`gt-table-${name}`] = {
+      getCheckedList: () => {
+        return dataWithStatus.value.filter((dItem) => dItem.checked);
+      },
+    };
+  }
+});
 </script>
 
 <template>
-  <div class="gt-table">
-    <div class="table-head">
-      <template v-if="isCheckBox">
-        <div class="head-column">
-          <g-checkbox v-model="isCheckAll" />
-        </div>
-      </template>
-
-      <div
-        v-for="cItem in columnsComputed"
-        :key="cItem.name"
-        :style="{ width: cItem.width + 'px' }"
-        class="head-column"
-        :class="columnsClassComputed(cItem)"
-        @click="() => handleColumnSort(cItem)"
-      >
-        <span> {{ cItem.label }}</span>
-        <g-icons v-if="cItem.sort" class="sortIcon" name="sequence" />
-      </div>
-    </div>
-
-    <div class="table-body">
-      <div
-        v-for="(rItem, rIdx) in dataWithStatus"
-        class="row"
-        :key="rIdx"
-        :class="rItem.checked ? 'row-check' : ''"
-      >
+  <div class="gt-table-wrapper">
+    <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
+      <div class="table-head">
         <template v-if="isCheckBox">
-          <div class="row-cell">
-            <g-checkbox v-if="rItem.checked" v-model="rItem.checked" />
-            <g-checkbox v-if="!rItem.checked" v-model="rItem.checked" />
+          <div class="head-column checknoxColumn">
+            <g-checkbox v-model="isCheckAll" type="white" />
           </div>
         </template>
+
         <div
-          v-for="(cItem, cIdx) in columnsComputed"
-          :key="cItem.name + '-' + rIdx + '-' + cIdx"
+          v-for="cItem in columnsComputed"
+          :key="cItem.name"
           :style="{ width: cItem.width + 'px' }"
-          class="row-cell"
+          class="head-column"
+          :class="columnsClassComputed(cItem)"
+          @click="() => handleColumnSort(cItem)"
         >
-          <span> {{ rItem[cItem.name] || cItem.name }}</span>
+          <span> {{ cItem.label }}</span>
+          <g-icons v-if="cItem.sort" class="sortIcon" name="sequence" />
+        </div>
+      </div>
+
+      <div class="table-body" :style="{ 'max-height': tableMaxHeightComputed }">
+        <div
+          v-for="(rItem, rIdx) in dataWithStatus"
+          class="row"
+          :key="rIdx"
+          :class="rItem.checked ? 'row-check' : ''"
+        >
+          <template v-if="isCheckBox">
+            <div class="row-cell checknoxColumn">
+              <g-checkbox
+                v-if="rItem.checked"
+                v-model="rItem.checked"
+                type="white"
+              />
+              <g-checkbox
+                v-if="!rItem.checked"
+                v-model="rItem.checked"
+                type="white"
+              />
+            </div>
+          </template>
+          <div
+            v-for="(cItem, cIdx) in columnsComputed"
+            :key="cItem.name + '-' + rIdx + '-' + cIdx"
+            :style="{ width: cItem.width + 'px' }"
+            class="row-cell"
+          >
+            <template v-if="slotColumns.includes(cItem.name)">
+              <slot :name="cItem.name" :row="rItem" />
+            </template>
+            <template v-else>
+              <span> {{ rItem[cItem.name] || cItem.name }}</span>
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -169,12 +193,32 @@ const handleColumnSort = (cItem) => {
 </template>
 
 <style lang="scss">
-.gt-table {
-  @apply w-full rounded-lg;
+.gt-table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+  @apply bg-white;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 3px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #aaaaaa;
+    &:hover {
+      background-color: #666666;
+    }
+  }
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.gt-table {
+  @apply rounded-lg;
+  min-width: 100%;
   min-height: 100px;
   .table-head {
-    @apply bg-soft flex justify-start items-center;
+    @apply bg-soft flex flex-shrink-0 justify-start items-center;
     .head-column {
       padding: 7px 9px;
       font-weight: 500;
@@ -182,6 +226,9 @@ const handleColumnSort = (cItem) => {
       line-height: 24px;
       overflow-wrap: break-word;
       @apply text-primaryDarker flex justify-start items-center select-none;
+      &.checknoxColumn {
+        padding: 5px 33px;
+      }
     }
     .sortIcon {
       @apply text-gray1;
@@ -190,9 +237,25 @@ const handleColumnSort = (cItem) => {
   .table-body {
     padding-bottom: 5px;
     letter-spacing: 0.05em;
+    height: auto;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 5px;
+
+      background-color: #d9d9d9;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #666666;
+      }
+    }
+
     .row {
       min-height: 62px;
-      @apply text-gray1 flex justify-start items-center relative;
+      @apply text-gray1 flex justify-start items-center relative flex-nowrap;
       .row-cell {
         padding: 7px 9px;
         overflow-wrap: break-word;
@@ -200,12 +263,15 @@ const handleColumnSort = (cItem) => {
         font-size: 16px;
         line-height: 23px;
         letter-spacing: 0.05em;
+        &.checknoxColumn {
+          padding: 5px 33px;
+        }
       }
 
       &.row-check {
-        width: 99%;
+        width: 100%;
         min-height: 58px;
-        margin: 3px 0 3px auto;
+        margin: 2px 0 2px auto;
         @apply bg-color4 relative border-l-4 border-solid border-main;
         border-radius: 5px;
       }

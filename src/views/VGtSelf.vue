@@ -24,6 +24,7 @@ import {
   GTag,
   GTable,
 } from '../components/indexGT';
+import { v4 as uuidv4 } from 'uuid';
 
 // 打包後引入測試
 // import {
@@ -130,6 +131,10 @@ const scrollList = [
     id: 's22',
     name: '標籤',
   },
+  {
+    id: 's23',
+    name: 'TABLE',
+  },
 ];
 const curScroll = ref('s1');
 const scrollTopArr = ref(null);
@@ -159,7 +164,7 @@ const handleScrollEvt = (evt) => {
 
 onMounted(() => {
   scrollTopArr.value = scrollList.map((item) => {
-    // console.log(document.getElementById(item.id))
+    console.log(item.id, document.getElementById(item.id));
     return Math.floor(
       document.getElementById(item.id).getBoundingClientRect()?.y
     );
@@ -238,6 +243,58 @@ const formRule = {
   ],
 };
 
+const tableInfo = reactive({
+  columns: [
+    {
+      name: 'id',
+      label: 'ID',
+      width: 180,
+    },
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+      width: 180,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      width: 180,
+      sort: true,
+    },
+    {
+      name: 'storage',
+      label: '庫存',
+      sort: true,
+    },
+    {
+      name: 'tags',
+      width: 220,
+      label: '標籤',
+    },
+    {
+      name: 'btns',
+      width: 200,
+      label: '',
+    },
+  ],
+  data: [
+    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
+    {
+      product: 'dddddddddddddddddddddddd',
+      price: 400,
+      storage: 65,
+      id: uuidv4(),
+    },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
+    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+  ],
+});
+
 const handleSubmit = () => {
   // console.log("instance.appContext.config.globalProperties.gForms",instance.appContext.config.globalProperties)
   instance.appContext.config.globalProperties['gForms-form1'].callValid();
@@ -250,6 +307,26 @@ const handleMsg = (type) => {
   instance.appContext.config.globalProperties.handleMessageTrigger({
     type,
     title: 'hello~',
+  });
+};
+const handleRowClick = (row) => {
+  // console.log(row);
+  instance.appContext.config.globalProperties.handleMessageTrigger({
+    type: 'info',
+    title: 'handle click',
+    msg: `row id:${row.id}`,
+  });
+};
+const handleTableChecked = () => {
+  let arr =
+    instance.appContext.config.globalProperties[
+      'gt-table-products'
+    ].getCheckedList();
+  arr = arr.map((obj) => obj.id);
+  instance.appContext.config.globalProperties.handleMessageTrigger({
+    type: 'info',
+    title: '已選擇',
+    msg: `row ids:${arr.join(',')}`,
   });
 };
 
@@ -277,6 +354,7 @@ const showTextSwitch = reactive({
   inputsText4: false,
   inputsTime1: false,
   tagsText: false,
+  tableText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -535,6 +613,98 @@ const tagsText = `\`\`\` html
 
  \`\`\`
 `;
+
+const tableText = `\`\`\` html
+const tableInfo = reactive({
+  columns: [
+    {
+      name: 'id',
+      label: 'ID',
+      width: 180,
+    },
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+      width: 180,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      width: 180,
+      sort: true,
+    },
+    {
+      name: 'storage',
+      label: '庫存',
+      sort: true,
+    },
+    {
+      name: 'tags',
+      width: 220,
+      label: '標籤',
+    },
+    {
+      name: 'btns',
+      width: 200,
+      label: '',
+    },
+  ],
+  data: [
+    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
+    {
+      product: 'dddddddddddddddddddddddd',
+      price: 400,
+      storage: 65,
+      id: uuidv4(),
+    },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
+    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+  ],
+});
+
+<g-table
+  :columns="tableInfo.columns"
+  :data="tableInfo.data"
+  height="300"
+  name="products"
+>
+  <template v-slot:tags="{ row }">
+    <div class="flex justify-between">
+      <g-tag type="warning" border label="上架中" />
+      <g-tag type="second" border dot label="可出貨" />
+    </div>
+  </template>
+
+  <template v-slot:btns="{ row }">
+    <div class="flex justify-between">
+      <g-button
+        flat
+        @click="
+          () => {
+            handleRowClick(row);
+          }
+        "
+        >編輯</g-button
+      >
+      <g-button
+        flat
+        type="red"
+        @click="
+          () => {
+            handleRowClick(row);
+          }
+        "
+        >刪除</g-button
+      >
+    </div>
+  </template>
+</g-table>
+ \`\`\``;
 </script>
 
 <template>
@@ -544,14 +714,6 @@ const tagsText = `\`\`\` html
       class="w-4/5 py-4 flex justify-center items-center"
       @scroll="handleScrollEvt"
     >
-      <div class="paragraphHead">
-        <g-title :level="1" class="mb-3">資料</g-title>
-      </div>
-      <div class="w-full md:w-3/4 mx-auto relative">
-        <g-title :level="2" class="mb-3">TABLE</g-title>
-        <g-table />
-      </div>
-
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3" id="s1">版型</g-title>
       </div>
@@ -1182,6 +1344,68 @@ const tagsText = `\`\`\` html
         <v-md-editor
           v-if="showTextSwitch.tagsText"
           v-model="tagsText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">資料</g-title>
+      </div>
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3" id="s23">TABLE</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.tableText"
+          statusLabel
+        />
+        <g-table
+          :columns="tableInfo.columns"
+          :data="tableInfo.data"
+          height="450"
+          name="products"
+        >
+          <template v-slot:tags="{ row }">
+            <div class="flex justify-between">
+              <g-tag type="warning" border label="上架中" />
+              <g-tag type="second" border dot label="可出貨" />
+            </div>
+          </template>
+
+          <template v-slot:btns="{ row }">
+            <div class="flex justify-start">
+              <g-button
+                flat
+                @click="
+                  () => {
+                    handleRowClick(row);
+                  }
+                "
+                >編輯</g-button
+              >
+              <g-button
+                flat
+                type="red"
+                @click="
+                  () => {
+                    handleRowClick(row);
+                  }
+                "
+                >刪除</g-button
+              >
+            </div>
+          </template>
+        </g-table>
+        <g-button
+          class="mb-4 mt-4"
+          @click="
+            () => {
+              handleTableChecked();
+            }
+          "
+          >當前選擇顯示</g-button
+        >
+        <v-md-editor
+          v-if="showTextSwitch.tableText"
+          v-model="tableText"
           mode="preview"
         ></v-md-editor>
       </div>
