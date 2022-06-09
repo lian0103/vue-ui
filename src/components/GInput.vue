@@ -157,18 +157,19 @@ const handleClear = () => {
   }
   .gt-input {
     @apply w-full text-base text-gray4 bg-color2 rounded-lg;
-    @apply outline outline-1 outline-color3;
+    @apply outline outline-1 outline-gray2;
     max-width: 240px;
     height: 36px;
-    padding: 10px 20px;
+    padding: 10px 34px 10px 12px;
 
-    &:focus {
-      @apply outline-main;
-    }
+    // &:focus {
+    //   @apply outline-main;
+    // }
 
     &.gt-input-green {
       @apply bg-color4;
-      &:focus {
+      &:focus,
+      &:hover {
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
       }
     }
@@ -193,6 +194,7 @@ const handleClear = () => {
     @apply text-gray0 opacity-0;
     @apply absolute right-0 cursor-pointer transition-all duration-300;
     top: 7px;
+    right: 10px;
   }
 }
 </style>
