@@ -1105,19 +1105,31 @@ const tagsText = `\`\`\` html
           :key="item"
         >
           <template v-if="idx % 2 == 0">
-            <span class="w-1/2 md:w-1/3"
-              ><g-icons :name="item" class="text-main w-8"
+            <span class="w-1/2 md:w-1/3 flex justify-start items-center"
+              ><g-icons :name="item" class="text-main" size="sm" /><g-icons
+                :name="item"
+                class="text-main"
+                size="md" /><g-icons :name="item" class="text-main" size="lg"
             /></span>
             <span class="text-gray-600 leading-10">
-              {{ `<g-icons name="${item}" />`}}
+              {{ `<g-icons name="${item}" size="sm | md | lg" />`}}
             </span>
           </template>
           <template v-else>
-            <span class="w-1/2 md:w-1/3"
-              ><g-icons :name="item" class="text-second w-8"
+            <span class="w-1/2 md:w-1/3 flex justify-start items-center"
+              ><g-icons
+                :name="item"
+                class="text-second w-8"
+                size="sm" /><g-icons
+                :name="item"
+                class="text-second w-8"
+                size="md" /><g-icons
+                :name="item"
+                class="text-second w-8"
+                size="lg"
             /></span>
             <span class="text-gray-600 leading-10">
-              {{ `<g-icons name="${item}" />`}}
+              {{ `<g-icons name="${item}" size="sm | md | lg" />`}}
             </span>
           </template>
         </span>

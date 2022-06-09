@@ -184,7 +184,7 @@ const handleColumnSort = (cItem) => {
       @apply text-primaryDarker flex justify-start items-center select-none;
     }
     .sortIcon {
-      @apply w-4 text-gray1;
+      @apply text-gray1;
     }
   }
   .table-body {

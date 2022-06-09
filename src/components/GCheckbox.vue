@@ -64,10 +64,10 @@ const onClick = () => {
   <div class="gt-checkbox" @click.prevent="onClick">
     <input type="checkbox" :checked="isChecked" />
     <div :class="classComputed">
-      <g-icons v-show="isChecked" class="icon" name="check" />
+      <g-icons v-show="isChecked" class="icon" name="check" size='sm' />
     </div>
     <span
-      class="label"
+      class="label select-none"
       :class="disabled ? 'label-disabled' : ''"
       v-if="label"
       >{{ label }}</span
@@ -77,16 +77,17 @@ const onClick = () => {
 
 <style lang="scss">
 .gt-checkbox {
-  min-width: 18px;
-  height: 18px;
+  min-width: 17px;
+  height: 17px;
   @apply relative block cursor-pointer;
   input {
     @apply absolute w-0 h-0 opacity-0 cursor-pointer;
   }
   .checkmark {
-    width: 18px;
-    height: 18px;
-    @apply absolute top-0 left-0 rounded-sm;
+    width: 17px;
+    height: 17px;
+    @apply absolute left-0 rounded-sm;
+    top: 2px;
     border-width: 1.5px;
     @apply border-solid border-main;
     @apply bg-color1;
@@ -109,7 +110,7 @@ const onClick = () => {
     }
   }
   .label {
-    padding: 0 10px 0 20px;
+    padding: 0 10px 0 30px;
     &.label-disabled {
       @apply cursor-not-allowed text-gray0;
     }
