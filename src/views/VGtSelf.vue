@@ -22,6 +22,7 @@ import {
   GForm,
   GTimePicker,
   GTag,
+  GTable,
 } from '../components/indexGT';
 
 // 打包後引入測試
@@ -546,6 +547,14 @@ const tagsText = `\`\`\` html
       class="w-4/5 py-4 flex justify-center items-center"
       @scroll="handleScrollEvt"
     >
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3">資料</g-title>
+      </div>
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-title :level="2" class="mb-3">TABLE</g-title>
+        <g-table />
+      </div>
+
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3" id="s1">版型</g-title>
       </div>
