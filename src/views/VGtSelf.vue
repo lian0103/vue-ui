@@ -391,42 +391,38 @@ const titleText = `\`\`\` html
 
 const buttonText0 = `\`\`\` html
 <g-button pill>按鈕</g-button>
-<g-button pill type="second">按鈕</g-button>
 <g-button pill type="yellow">按鈕</g-button>
 <g-button pill type="red">按鈕</g-button>
-<g-button pill type="white">按鈕</g-button>
+<g-button pill type="black">按鈕</g-button>
  \`\`\`
 `;
 
 const buttonText1 = `\`\`\` html
 <g-button flat>按鈕</g-button>
-<g-button flat type="second">按鈕</g-button>
 <g-button flat type="yellow">按鈕</g-button>
 <g-button flat type="red">按鈕</g-button>
-<g-button flat type="white">按鈕</g-button>
+<g-button flat type="black">按鈕</g-button>
  \`\`\`
 `;
 
 const buttonText2 = `\`\`\` html
 <g-button flat><g-icons name="chevronLeft" class="w-8" />上一頁</g-button>
-<g-button flat type="second"><g-icons name="chevronLeft" class="w-8" />上一頁</g-button>
 <g-button flat type="yellow"><g-icons name="chevronLeft" class="w-8" />上一頁</g-button>
 <g-button flat type="red"><g-icons name="chevronLeft" class="w-8" />上一頁</g-button>
-<g-button flat type="white"><g-icons name="chevronLeft" class="w-8" />上一頁</g-button>
+<g-button flat type="black"><g-icons name="chevronLeft" class="w-8" />上一頁</g-button>
 
 <g-button flat><g-icons name="chevronRight" class="w-8" />下一頁</g-button>
-<g-button flat type="second"><g-icons name="chevronRight" class="w-8" />下一頁</g-button>
 <g-button flat type="yellow"><g-icons name="chevronRight" class="w-8" />下一頁</g-button>
 <g-button flat type="red"><g-icons name="chevronRight" class="w-8" />下一頁</g-button>
-<g-button flat type="white"><g-icons name="chevronRight" class="w-8" />下一頁</g-button>
+<g-button flat type="black"><g-icons name="chevronRight" class="w-8" />下一頁</g-button>
  \`\`\`
 `;
 
 const buttonText3 = `\`\`\` html
 <g-button round>按鈕</g-button>
-<g-button round type="second">按鈕</g-button>
 <g-button round type="yellow">按鈕</g-button>
 <g-button round type="red">按鈕</g-button>
+<g-button round type="black">按鈕</g-button>
 <g-button round type="white">按鈕</g-button>
  \`\`\`
 `;
@@ -1001,7 +997,6 @@ const tagsText = `\`\`\` html
           />
           <div class="flex justify-between mb-3">
             <g-button pill>按鈕</g-button>
-            <g-button pill type="second">按鈕</g-button>
             <g-button pill type="yellow">按鈕</g-button>
             <g-button pill type="red">按鈕</g-button>
             <g-button pill type="white">按鈕</g-button>
@@ -1021,7 +1016,6 @@ const tagsText = `\`\`\` html
           />
           <div class="flex justify-between mb-3">
             <g-button flat>按鈕</g-button>
-            <g-button flat type="second">按鈕</g-button>
             <g-button flat type="yellow">按鈕</g-button>
             <g-button flat type="red">按鈕</g-button>
             <g-button flat type="white">按鈕</g-button>
@@ -1045,9 +1039,6 @@ const tagsText = `\`\`\` html
             <g-button flat
               ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
             >
-            <g-button flat type="second"
-              ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
-            >
             <g-button flat type="yellow"
               ><g-icons name="chevronLeft" class="w-8" />上一頁</g-button
             >
@@ -1060,9 +1051,6 @@ const tagsText = `\`\`\` html
           </div>
           <div class="flex justify-between mb-3">
             <g-button flat
-              ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
-            >
-            <g-button flat type="second"
               ><g-icons name="chevronRight" class="w-8" />下一頁</g-button
             >
             <g-button flat type="yellow"
@@ -1089,11 +1077,11 @@ const tagsText = `\`\`\` html
             v-model="showTextSwitch.buttonText3"
             statusLabel
           />
-          <div class="w-1/2 flex justify-between mb-3">
+          <div class="w-full flex justify-between mb-3">
             <g-button round>按鈕</g-button>
-            <g-button round type="second">按鈕</g-button>
             <g-button round type="yellow">按鈕</g-button>
             <g-button round type="red">按鈕</g-button>
+            <g-button round type="black">按鈕</g-button>
             <g-button round type="white">按鈕</g-button>
           </div>
           <v-md-editor

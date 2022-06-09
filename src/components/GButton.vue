@@ -10,7 +10,7 @@ const { flat, pill, type } = defineProps({
   },
   type: {
     type: String,
-    default: 'primary',
+    default: 'second',
   },
 });
 
@@ -26,10 +26,10 @@ const classStr = computed(() => {
 
 const typeStr = computed(() => {
   switch (type) {
-    case 'primary': {
-      return 'gt-btn-primary';
-      break;
-    }
+    // case 'primary': {
+    //   return 'gt-btn-primary';
+    //   break;
+    // }
     case 'second': {
       return 'gt-btn-second';
       break;
@@ -40,6 +40,10 @@ const typeStr = computed(() => {
     }
     case 'red': {
       return 'gt-btn-red';
+      break;
+    }
+    case 'black': {
+      return 'gt-btn-black';
       break;
     }
     case 'white': {
@@ -58,11 +62,11 @@ const typeStr = computed(() => {
 </template>
 
 <style lang="scss">
-.gt-btn-primary {
-  --btn-color: #32a03d;
-  --btn-color-hover: #eef5eb;
-  --text-color: #fff;
-}
+// .gt-btn-primary {
+//   --btn-color: #32a03d;
+//   --btn-color-hover: #eef5eb;
+//   --text-color: #fff;
+// }
 
 .gt-btn-second {
   --btn-color: #517bba;
@@ -82,15 +86,20 @@ const typeStr = computed(() => {
   --text-color: #fff;
 }
 
-.gt-btn-white {
+.gt-btn-black {
   --btn-color: #55585e;
   --btn-color-hover: #ccc;
   --text-color: #55585e;
   @apply text-gray1 border border-solid border-gray1;
 }
 
+.gt-btn-white {
+  --btn-color: #55585e;
+  --btn-color-hover: #f0f0f0;
+  --text-color: #55585e;
+}
+
 .gt-btn {
-  min-width: 76px;
   height: 36px;
   color: var(--btn-color);
   @apply flex justify-center items-center;
@@ -99,12 +108,21 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-round {
-  @apply rounded-lg shadow-md text-white border border-solid border-transparent;
+  @apply rounded-4 shadow-md text-white border border-solid border-transparent;
   background: var(--btn-color);
   &:hover {
     background: var(--btn-color-hover);
     color: var(--btn-color);
     border: 1px solid var(--btn-color);
+  }
+  &.gt-btn-white {
+    background-color: #fff;
+    color: var(--text-color);
+    @apply shadow-none;
+    &:hover {
+      @apply border-transparent;
+      background-color: var(--btn-color-hover);
+    }
   }
 }
 
@@ -134,7 +152,7 @@ const typeStr = computed(() => {
 
 @keyframes textLine {
   from {
-    width: 0;
+    width: 80%;
   }
   to {
     width: 80%;

@@ -167,6 +167,7 @@ module.exports = {
       '3xl': '1.5rem',
       full: '9999px',
       10: '10px',
+      4:'4px',
     },
     borderWidth: {
       DEFAULT: '1px',
