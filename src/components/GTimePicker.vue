@@ -336,8 +336,9 @@ const handleTimePick = () => {
                 handleCalDayClick(idx);
               }
             "
-            >{{ cdStr }}</span
           >
+            {{ cdStr }}
+          </span>
           <div class="time-select" @click.stop="handleTimePick">
             {{
               curSelect
@@ -480,7 +481,10 @@ const handleTimePick = () => {
       line-height: 2;
 
       &:hover {
-        @apply text-main;
+        width: 32px;
+        position: relative;
+        left: 5px;
+        @apply text-main bg-color1 rounded-full;
       }
 
       &.curSelect {
