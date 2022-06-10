@@ -23,6 +23,7 @@ import {
   GTimePicker,
   GTag,
   GTable,
+  GSortLabel,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -42,6 +43,10 @@ const scrollList = [
   {
     id: 's1',
     name: '大樹後台layout',
+  },
+    {
+    id: 's2t',
+    name: 'SORT LABEL',
   },
   {
     id: 's2',
@@ -164,7 +169,7 @@ const handleScrollEvt = (evt) => {
 
 onMounted(() => {
   scrollTopArr.value = scrollList.map((item) => {
-    console.log(item.id, document.getElementById(item.id));
+    // console.log(item.id, document.getElementById(item.id));
     return Math.floor(
       document.getElementById(item.id).getBoundingClientRect()?.y
     );
@@ -220,6 +225,7 @@ const inputs = reactive({
     test3: '',
   },
   time1: '',
+  curSortLabelValue: 'ASC',
 });
 
 const formRule = {
@@ -355,6 +361,7 @@ const showTextSwitch = reactive({
   inputsTime1: false,
   tagsText: false,
   tableText: false,
+  sortLabelText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -705,6 +712,22 @@ const tableInfo = reactive({
   </template>
 </g-table>
  \`\`\``;
+
+const sortLabelText = `\`\`\` html  
+<g-sort-label
+  v-model="inputs.curSortLabelValue" 
+  :options="[
+    {
+      label: '遞增',
+      value: 'ASC',
+    },
+    {
+      label: '遞減',
+      value: 'DESC',
+    },
+  ]"
+/> 
+\`\`\``;
 </script>
 
 <template>
@@ -732,6 +755,36 @@ const tableInfo = reactive({
       </div>
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3">操作</g-title>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto relative mb-4">
+        <g-title :level="2" class="mb-3" id="s2t">SORT LABEL</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.sortLabelText"
+          statusLabel
+        />
+        <g-sort-label
+          v-model="inputs.curSortLabelValue"
+          :options="[
+            {
+              label: '遞增',
+              value: 'ASC',
+            },
+            {
+              label: '遞減',
+              value: 'DESC',
+            },
+          ]"
+        />
+        <template v-if="showTextSwitch.sortLabelText">
+          inputs.curSortLabelValue:{{ inputs.curSortLabelValue }}
+          <v-md-editor
+            v-if="showTextSwitch.sortLabelText"
+            v-model="sortLabelText"
+            mode="preview"
+          ></v-md-editor>
+        </template>
       </div>
 
       <div class="w-full md:w-3/4 pr-2 mx-auto relative">
