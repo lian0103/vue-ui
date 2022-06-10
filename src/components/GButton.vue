@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-const { flat, pill, type } = defineProps({
+const { flat, pill, type, noBorder } = defineProps({
   flat: {
     type: Boolean,
   },
@@ -12,6 +12,9 @@ const { flat, pill, type } = defineProps({
     type: String,
     default: 'second',
   },
+  noBorder: {
+    type: Boolean,
+  },
 });
 
 const classStr = computed(() => {
@@ -21,6 +24,10 @@ const classStr = computed(() => {
   if (pill) {
     return 'gt-btn-pill';
   }
+  if (noBorder) {
+    return 'gt-btn-round-no-border';
+  }
+
   return 'gt-btn-round';
 });
 
@@ -72,25 +79,38 @@ const typeStr = computed(() => {
   --btn-color: #517bba;
   --btn-color-hover: #dad9f3;
   --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #40659f;
+  }
 }
 
 .gt-btn-yellow {
   --btn-color: #faaf1d;
   --btn-color-hover: #fdedcd;
   --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #e19e1b;
+  }
 }
 
 .gt-btn-red {
   --btn-color: #fc806f;
   --btn-color-hover: #fcd8d8;
   --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #ec7869;
+  }
 }
 
 .gt-btn-black {
   --btn-color: #55585e;
-  --btn-color-hover: #ccc;
+  --btn-color-hover: #d9d9d9;
   --text-color: #55585e;
-  @apply text-gray1 border border-solid border-gray1;
+  &.gt-btn-round-no-border {
+    --btn-color: #fff;
+    --btn-color-hover: #f1f9f3;
+    color:#55585E !important;
+  }
 }
 
 .gt-btn-white {
@@ -122,6 +142,24 @@ const typeStr = computed(() => {
     @apply shadow-none;
     &:hover {
       @apply border-transparent;
+      background-color: var(--btn-color-hover);
+    }
+  }
+}
+
+.gt-btn-round-no-border {
+  font-weight: 500;
+  @apply rounded-4 shadow-md text-white;
+  background: var(--btn-color);
+  &:hover {
+    background: var(--btn-color-hover);
+    color: var(--text-color);
+  }
+  &.gt-btn-white {
+    background-color: #fff;
+    color: var(--text-color);
+    @apply shadow-none;
+    &:hover {
       background-color: var(--btn-color-hover);
     }
   }

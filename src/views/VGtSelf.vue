@@ -25,6 +25,8 @@ import {
   GTable,
   GSortLabel,
   GFilterOption,
+  GButtonFile,
+  GButtonClose
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -511,11 +513,23 @@ const buttonText2 = `\`\`\` html
 `;
 
 const buttonText3 = `\`\`\` html
+//ROUND-BORDER     
 <g-button round>按鈕</g-button>
 <g-button round type="yellow">按鈕</g-button>
 <g-button round type="red">按鈕</g-button>
 <g-button round type="black">按鈕</g-button>
-<g-button round type="white">按鈕</g-button>
+
+//ROUND-NO-BORDER
+<g-button round noBorder>按鈕</g-button>
+<g-button round noBorder type="yellow">按鈕</g-button>
+<g-button round noBorder type="red">按鈕</g-button>
+<g-button round noBorder type="black">按鈕</g-button>
+
+//ROUND-OTHERS
+<g-button round noBorder type="white">按鈕</g-button>
+<g-button-file />
+<g-button-close />
+       
  \`\`\`
 `;
 
@@ -1390,7 +1404,7 @@ const filterOptionsText = `\`\`\` html
         </div>
 
         <div class="mb-8 relative">
-          <g-title :level="2" class="mb-3" id="s20">ROUND</g-title>
+          <g-title :level="2" class="mb-3" id="s20">ROUND-BORDER</g-title>
           <g-switch
             class="absolute right-0 top-0"
             v-model="showTextSwitch.buttonText3"
@@ -1401,7 +1415,19 @@ const filterOptionsText = `\`\`\` html
             <g-button round type="yellow">按鈕</g-button>
             <g-button round type="red">按鈕</g-button>
             <g-button round type="black">按鈕</g-button>
-            <g-button round type="white">按鈕</g-button>
+          </div>
+          <g-title :level="2" class="mb-3" id="s20">ROUND-NO-BORDER</g-title>
+          <div class="w-full flex justify-between mb-3">
+            <g-button round noBorder>按鈕</g-button>
+            <g-button round noBorder type="yellow">按鈕</g-button>
+            <g-button round noBorder type="red">按鈕</g-button>
+            <g-button round noBorder type="black">按鈕</g-button>
+          </div>
+          <g-title :level="2" class="mb-3" id="s20">ROUND-OTHERS</g-title>
+          <div class="w-full flex justify-start mb-3 bg-red-300 p-4">
+            <g-button round noBorder type="white" class="mr-4">按鈕</g-button>
+            <g-button-file class="mr-4" />
+            <g-button-close />
           </div>
           <v-md-editor
             v-if="showTextSwitch.buttonText3"
