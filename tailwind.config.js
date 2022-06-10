@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors');
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   mode: 'jit', //只編譯有使用到的樣式
@@ -40,6 +40,7 @@ module.exports = {
       color3: '#d9d9d9',
       color4: '#F1F9F3',
       color5: '#f7e488',
+      color6: '#FAFAFA',
     },
     spacing: {
       px: '1px',
@@ -167,7 +168,7 @@ module.exports = {
       '3xl': '1.5rem',
       full: '9999px',
       10: '10px',
-      4:'4px',
+      4: '4px',
     },
     borderWidth: {
       DEFAULT: '1px',
@@ -282,9 +283,18 @@ module.exports = {
       '9xl': ['8rem', { lineHeight: '1' }],
       100: ['100px', { lineHeight: '1' }],
       baseFzPx: '16px',
-      head1: ['24px', { lineHeight: '34px',fontWeight:'700',letterSpacing:'1.2px' }],
-      head2: ['20px', { lineHeight: '28px',fontWeight:'500',letterSpacing:'1px' }],
-      head3: ['18px', { lineHeight: '24px',fontWeight:'700',letterSpacing:'.9px' }]
+      head1: [
+        '24px',
+        { lineHeight: '34px', fontWeight: '700', letterSpacing: '1.2px' },
+      ],
+      head2: [
+        '20px',
+        { lineHeight: '28px', fontWeight: '500', letterSpacing: '1px' },
+      ],
+      head3: [
+        '18px',
+        { lineHeight: '24px', fontWeight: '700', letterSpacing: '.9px' },
+      ],
     },
     fontWeight: {
       thin: '100',
@@ -1023,15 +1033,45 @@ module.exports = {
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
   plugins: [
-    plugin(function({ addBase, theme }) {
+    plugin(function ({ addBase, theme }) {
       addBase({
-        'h1': { fontSize: theme('fontSize.head1') , lineHeight:'34px',fontWeight:'700',letterSpacing:'1.2px' },
-        'h2': { fontSize: theme('fontSize.head2') , lineHeight:'28px',fontWeight:'500',letterSpacing:'1px'},
-        'h3': { fontSize: theme('fontSize.head3') , lineHeight:'24px',fontWeight:'700',letterSpacing:'.9px'},
-        'h4':{fontSize: theme('fontSize.baseFzPx') , lineHeight:'24px',fontWeight:'500',letterSpacing:'.8px'},
-        'h5':{fontSize: '13px' , lineHeight:'15px',fontWeight:'400',letterSpacing:'.65px'},
-        'h6':{fontSize: '12px' , lineHeight:'14px',fontWeight:'400',letterSpacing:'.6px'},
-      })
-    })
-]
+        h1: {
+          fontSize: theme('fontSize.head1'),
+          lineHeight: '34px',
+          fontWeight: '700',
+          letterSpacing: '1.2px',
+        },
+        h2: {
+          fontSize: theme('fontSize.head2'),
+          lineHeight: '28px',
+          fontWeight: '500',
+          letterSpacing: '1px',
+        },
+        h3: {
+          fontSize: theme('fontSize.head3'),
+          lineHeight: '24px',
+          fontWeight: '700',
+          letterSpacing: '.9px',
+        },
+        h4: {
+          fontSize: theme('fontSize.baseFzPx'),
+          lineHeight: '24px',
+          fontWeight: '500',
+          letterSpacing: '.8px',
+        },
+        h5: {
+          fontSize: '13px',
+          lineHeight: '15px',
+          fontWeight: '400',
+          letterSpacing: '.65px',
+        },
+        h6: {
+          fontSize: '12px',
+          lineHeight: '14px',
+          fontWeight: '400',
+          letterSpacing: '.6px',
+        },
+      });
+    }),
+  ],
 };

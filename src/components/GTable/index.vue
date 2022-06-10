@@ -236,6 +236,7 @@ onMounted(() => {
       font-size: 16px;
       line-height: 24px;
       overflow-wrap: break-word;
+      letter-spacing: 0.8px;
       @apply text-primaryDarker flex justify-start items-center select-none;
       &.checknoxColumn {
         padding: 5px 33px;
@@ -265,8 +266,9 @@ onMounted(() => {
     }
 
     .row {
-      min-height: 62px;
-      @apply text-gray1 flex justify-start items-center relative flex-nowrap;
+      min-height: 58px;
+      margin: 2px 0 2px auto;
+      @apply text-gray1 flex justify-start items-center relative flex-nowrap bg-white;
       .row-cell {
         padding: 7px 9px;
         overflow-wrap: break-word;
@@ -277,6 +279,10 @@ onMounted(() => {
         &.checknoxColumn {
           padding: 5px 33px;
         }
+      }
+
+      &:hover{
+        @apply bg-color6;
       }
 
       &.row-check {
