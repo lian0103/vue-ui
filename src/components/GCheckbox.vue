@@ -105,6 +105,9 @@ const onClick = () => {
 .box-white {
   --bg-color: #fff;
   --border-color: #aaa;
+  &.checked{
+     --border-color: #32a03d;
+  }
 }
 
 .gt-checkbox {
