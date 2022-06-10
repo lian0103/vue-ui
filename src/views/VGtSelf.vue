@@ -24,6 +24,7 @@ import {
   GTag,
   GTable,
   GSortLabel,
+  GFilterOption,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -44,7 +45,11 @@ const scrollList = [
     id: 's1',
     name: '大樹後台layout',
   },
-    {
+  {
+    id: 's2t0',
+    name: 'Filter Options',
+  },
+  {
     id: 's2t',
     name: 'SORT LABEL',
   },
@@ -299,6 +304,7 @@ const tableInfo = reactive({
     { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
     { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
   ],
+  filterOtions: {},
 });
 
 const handleSubmit = () => {
@@ -362,6 +368,7 @@ const showTextSwitch = reactive({
   tagsText: false,
   tableText: false,
   sortLabelText: false,
+  filterOptionText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -738,6 +745,59 @@ const sortLabelText = `\`\`\` html
   ]"
 />
 \`\`\``;
+
+const filterOptionsTextJS = `\`\`\` javascript
+const tableInfo = reactive({
+  columns: [
+    {
+      name: 'id',
+      label: 'ID',
+      width: 180,
+    },
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+      width: 180,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      width: 180,
+      sort: true,
+    },
+    {
+      name: 'storage',
+      label: '庫存',
+      sort: true,
+    },
+    {
+      name: 'tags',
+      width: 220,
+      label: '標籤',
+    },
+    {
+      name: 'btns',
+      width: 200,
+      label: '',
+    },
+  ],
+  data: [...],
+  filterOtions: {},
+});
+
+\`\`\``;
+
+const filterOptionsText = `\`\`\` html
+
+<g-filter-option
+  v-for="column in tableInfo.columns.filter((item) => item.label)"
+  v-model="tableInfo.filterOtions[column.name]"
+  :key="column.name"
+  :optionName="column.label"
+/>
+
+\`\`\``;
 </script>
 
 <template>
@@ -765,6 +825,37 @@ const sortLabelText = `\`\`\` html
       </div>
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3">操作</g-title>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto relative mb-4">
+        <g-title :level="2" class="mb-3" id="s2t0">Filter Options</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.filterOptionText"
+          statusLabel
+        />
+        <div class="flex">
+          <g-filter-option
+            v-for="column in tableInfo.columns.filter((item) => item.label)"
+            v-model="tableInfo.filterOtions[column.name]"
+            :key="column.name"
+            :optionName="column.label"
+          />
+        </div>
+
+        <template v-if="showTextSwitch.filterOptionText">
+          tableInfo.filterOtions:{{ tableInfo.filterOtions }}
+          <v-md-editor
+            v-if="showTextSwitch.filterOptionText"
+            v-model="filterOptionsTextJS"
+            mode="preview"
+          ></v-md-editor>
+          <v-md-editor
+            v-if="showTextSwitch.filterOptionText"
+            v-model="filterOptionsText"
+            mode="preview"
+          ></v-md-editor>
+        </template>
       </div>
 
       <div class="w-full md:w-3/4 mx-auto relative mb-4">
