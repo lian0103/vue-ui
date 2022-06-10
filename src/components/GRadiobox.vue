@@ -73,6 +73,7 @@ const onClick = () => {
 <style lang="scss">
 .gt-radiobox {
   padding: 0 10px 0 32px;
+  line-height: 22px;
   @apply relative block rounded-full cursor-pointer;
   input {
     @apply absolute w-0 h-0 opacity-0 cursor-pointer;
