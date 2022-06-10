@@ -596,7 +596,7 @@ const tagsText = `\`\`\` html
   <g-tag type="second" border />
   <g-tag type="warning" border />
   <g-tag type="danger" border />
-        
+
 //NO BORDER
   <g-tag type="default" />
   <g-tag type="second" />
@@ -621,7 +621,7 @@ const tagsText = `\`\`\` html
  \`\`\`
 `;
 
-const tableText = `\`\`\` html
+const tableJs = `\`\`\` javascript
 const tableInfo = reactive({
   columns: [
     {
@@ -674,11 +674,20 @@ const tableInfo = reactive({
   ],
 });
 
+// 目前是使用"name" 註冊一個全域的table物件
+instance.appContext.config.globalProperties[
+  'gt-table-products'
+].getCheckedList();
+
+\`\`\``;
+
+const tableText = `\`\`\` html
 <g-table
   :columns="tableInfo.columns"
   :data="tableInfo.data"
   height="300"
   name="products"
+  rowClick
 >
   <template v-slot:tags="{ row }">
     <div class="flex justify-between">
@@ -713,9 +722,10 @@ const tableInfo = reactive({
 </g-table>
  \`\`\``;
 
-const sortLabelText = `\`\`\` html  
+const sortLabelText = `\`\`\` html
 <g-sort-label
-  v-model="inputs.curSortLabelValue" 
+  v-model="inputs.curSortLabelValue"
+  labelName="日期"
   :options="[
     {
       label: '遞增',
@@ -726,7 +736,7 @@ const sortLabelText = `\`\`\` html
       value: 'DESC',
     },
   ]"
-/> 
+/>
 \`\`\``;
 </script>
 
@@ -766,6 +776,7 @@ const sortLabelText = `\`\`\` html
         />
         <g-sort-label
           v-model="inputs.curSortLabelValue"
+          labelName="日期"
           :options="[
             {
               label: '遞增',
@@ -1415,6 +1426,7 @@ const sortLabelText = `\`\`\` html
           :data="tableInfo.data"
           height="450"
           name="products"
+          rowClick
         >
           <template v-slot:tags="{ row }">
             <div class="flex justify-between">
@@ -1456,6 +1468,11 @@ const sortLabelText = `\`\`\` html
           "
           >當前選擇顯示</g-button
         >
+        <v-md-editor
+          v-if="showTextSwitch.tableText"
+          v-model="tableJs"
+          mode="preview"
+        ></v-md-editor>
         <v-md-editor
           v-if="showTextSwitch.tableText"
           v-model="tableText"

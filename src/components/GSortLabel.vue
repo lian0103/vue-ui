@@ -2,11 +2,14 @@
 import { computed, ref, watch } from 'vue';
 import GIcons from './GIcons.vue';
 
-const { modelValue, options } = defineProps({
+const { modelValue, options, labelName } = defineProps({
   modelValue: {},
   options: {
     type: Array,
     default: [],
+  },
+  labelName: {
+    type: String,
   },
 });
 const emits = defineEmits(['update:modelValue']);
@@ -33,13 +36,24 @@ const handleLabelChange = () => {
 </script>
 
 <template>
-  <div class="gt-sort-label" @click="handleLabelChange">
-    {{ currentOptionLabel ? currentOptionLabel : 'N/A' }}
-    <g-icons class="icon" name="sequence" size="md" />
+  <div class="gt-sort-label-wrapper">
+    <span if="labelName">{{ labelName }}</span>
+    <div class="gt-sort-label" @click="handleLabelChange">
+      {{ currentOptionLabel ? currentOptionLabel : 'N/A' }}
+      <g-icons class="icon" name="sequence" size="md" />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+.gt-sort-label-wrapper {
+  @apply flex justify-start items-center;
+  > span {
+    height: 36px;
+    @apply text-base leading-9 px-3;
+  }
+}
+
 .gt-sort-label {
   @apply border border-solid border-color3 cursor-pointer relative;
   width: 112px;

@@ -583,7 +583,7 @@ const handleTimePick = () => {
     @apply flex justify-between flex-wrap;
     @apply col-start-1 col-end-8 row-start-3 row-end-4;
     .month {
-      @apply relative;
+      @apply relative flex justify-center items-center;
       width: 64px;
       height: 42px;
       margin: 5px;

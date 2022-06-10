@@ -15,7 +15,7 @@ const tableEnum = {
   DESC: 'desc',
 };
 
-const { name, columns, isCheckBox, data, height, getCheckedList } = defineProps(
+const { name, columns, isCheckBox, data, height, getCheckedList , rowClick } = defineProps(
   {
     name: {},
     columns: {
@@ -31,6 +31,10 @@ const { name, columns, isCheckBox, data, height, getCheckedList } = defineProps(
       default: true,
     },
     height: {},
+    rowClick: {
+      type: Boolean,
+      default: false,
+    },
   }
 );
 
@@ -117,6 +121,12 @@ const handleColumnSort = (cItem) => {
   }
 };
 
+const handleRowClick = (row)=>{
+  if(!rowClick) return false;
+  // console.log(row)
+  row.checked = !row.checked;
+}
+
 onMounted(() => {
   if (name) {
     const instance = getCurrentInstance();
@@ -158,6 +168,7 @@ onMounted(() => {
           class="row"
           :key="rIdx"
           :class="rItem.checked ? 'row-check' : ''"
+          @click="()=>{handleRowClick(rItem)}"
         >
           <template v-if="isCheckBox">
             <div class="row-cell checknoxColumn">
