@@ -11,12 +11,14 @@ import GButton from './GButton.vue';
 
 <style lang="scss">
 .gt-button-file {
-  padding: 6px;
+  padding: 6px !important;
   &.gt-btn-black {
-    @apply bg-color2;
+    // @apply bg-color2;
+    background-color: #f0f0f0 !important;
   }
   &:hover {
-    @apply bg-color3;
+    // @apply bg-color3;
+    background-color: #d9d9d9 !important;
   }
 }
 </style>

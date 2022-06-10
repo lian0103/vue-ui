@@ -11,12 +11,14 @@ import GButton from './GButton.vue';
 
 <style lang="scss">
 .gt-button-close {
-  padding: 6px;
+  padding: 6px !important;
   &.gt-btn-white {
-    @apply text-gray2;
+    // @apply text-gray2;
+    color:#dbe9d8 !important;
   }
   &:hover {
-    @apply text-gray1;
+    // @apply text-gray1;
+    color:#55585E !important;
   }
 }
 </style>
