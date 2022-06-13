@@ -15,8 +15,8 @@ const tableEnum = {
   DESC: 'desc',
 };
 
-const { name, columns, isCheckBox, data, height, getCheckedList , rowClick } = defineProps(
-  {
+const { name, columns, isCheckBox, data, height, getCheckedList, rowClick } =
+  defineProps({
     name: {},
     columns: {
       type: Array,
@@ -35,8 +35,7 @@ const { name, columns, isCheckBox, data, height, getCheckedList , rowClick } = d
       type: Boolean,
       default: false,
     },
-  }
-);
+  });
 
 const slots = useSlots();
 const slotColumns = Object.keys(slots);
@@ -121,11 +120,11 @@ const handleColumnSort = (cItem) => {
   }
 };
 
-const handleRowClick = (row)=>{
-  if(!rowClick) return false;
+const handleRowClick = (row) => {
+  if (!rowClick) return false;
   // console.log(row)
   row.checked = !row.checked;
-}
+};
 
 onMounted(() => {
   if (name) {
@@ -168,10 +167,21 @@ onMounted(() => {
           class="row"
           :key="rIdx"
           :class="rItem.checked ? 'row-check' : ''"
-          @click="()=>{handleRowClick(rItem)}"
+          @click="
+            () => {
+              handleRowClick(rItem);
+            }
+          "
         >
           <template v-if="isCheckBox">
-            <div class="row-cell checknoxColumn">
+            <div
+              class="row-cell checknoxColumn"
+              @click="
+                () => {
+                  handleRowClick(rItem);
+                }
+              "
+            >
               <g-checkbox
                 v-if="rItem.checked"
                 v-model="rItem.checked"
@@ -205,12 +215,13 @@ onMounted(() => {
 
 <style lang="scss">
 .gt-table-wrapper {
-  width: 100%;
-  overflow-x: scroll;
+  border-radius: 8px;
+  padding-bottom: 10px;
   @apply bg-white;
+  overflow-x: scroll;
   &::-webkit-scrollbar {
-    width: 5px;
-    height: 3px;
+    width: 6px;
+    height: 6px;
     background-color: #d9d9d9;
     border-radius: 5px;
   }
@@ -225,10 +236,12 @@ onMounted(() => {
 }
 
 .gt-table {
-  @apply rounded-lg;
   min-width: 100%;
   min-height: 100px;
+  letter-spacing: 0.8px;
   .table-head {
+    margin-bottom: 2px;
+    padding: 0 10px;
     @apply bg-soft flex flex-shrink-0 justify-start items-center;
     .head-column {
       padding: 7px 9px;
@@ -236,10 +249,9 @@ onMounted(() => {
       font-size: 16px;
       line-height: 24px;
       overflow-wrap: break-word;
-      letter-spacing: 0.8px;
       @apply text-primaryDarker flex justify-start items-center select-none;
       &.checknoxColumn {
-        padding: 5px 33px;
+        padding: 5px 33px 5px 23px;
       }
     }
     .sortIcon {
@@ -247,13 +259,11 @@ onMounted(() => {
     }
   }
   .table-body {
-    padding-bottom: 5px;
-    letter-spacing: 0.05em;
+    padding: 0 10px 5px 10px;
     height: auto;
     overflow-y: scroll;
     &::-webkit-scrollbar {
-      width: 5px;
-
+      width: 6px;
       background-color: #d9d9d9;
       border-radius: 5px;
     }
@@ -275,13 +285,12 @@ onMounted(() => {
         font-weight: 400;
         font-size: 16px;
         line-height: 23px;
-        letter-spacing: 0.05em;
         &.checknoxColumn {
-          padding: 5px 33px;
+          padding: 5px 33px 5px 23px;
         }
       }
 
-      &:hover{
+      &:hover {
         @apply bg-color6;
       }
 
