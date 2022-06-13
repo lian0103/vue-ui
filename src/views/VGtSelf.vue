@@ -26,7 +26,8 @@ import {
   GSortLabel,
   GFilterOption,
   GButtonFile,
-  GButtonClose
+  GButtonClose,
+  GPagination,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -146,6 +147,10 @@ const scrollList = [
   {
     id: 's23',
     name: 'TABLE',
+  },
+  {
+    id: 's24',
+    name: 'Pagination',
   },
 ];
 const curScroll = ref('s1');
@@ -309,6 +314,13 @@ const tableInfo = reactive({
   filterOtions: {},
 });
 
+const curPage = ref(1);
+
+const handleUpdatePage = (page) => {
+  // console.log('~~~', page);
+  curPage.value = page;
+};
+
 const handleSubmit = () => {
   // console.log("instance.appContext.config.globalProperties.gForms",instance.appContext.config.globalProperties)
   instance.appContext.config.globalProperties['gForms-form1'].callValid();
@@ -371,6 +383,7 @@ const showTextSwitch = reactive({
   tableText: false,
   sortLabelText: false,
   filterOptionText: false,
+  paginationText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -812,6 +825,20 @@ const filterOptionsText = `\`\`\` html
 />
 
 \`\`\``;
+
+const paginationTextJS = `\`\`\` javascript 
+const curPage = ref(1);
+const handleUpdatePage = (page) => {
+  curPage.value = page;
+};
+\`\`\``;
+
+const paginationText = `\`\`\` html
+<g-pagination
+  :pageInfo="{ currentPage: 1, total: 200, perPageNums: 15 }"
+  @updatePage="handleUpdatePage"
+/>
+\`\`\``;
 </script>
 
 <template>
@@ -840,7 +867,6 @@ const filterOptionsText = `\`\`\` html
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3">操作</g-title>
       </div>
-
       <div class="w-full md:w-3/4 mx-auto relative mb-4">
         <g-title :level="2" class="mb-3" id="s2t0">Filter Options</g-title>
         <g-switch
@@ -1593,6 +1619,29 @@ const filterOptionsText = `\`\`\` html
         <v-md-editor
           v-if="showTextSwitch.tableText"
           v-model="tableText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+      <div class="w-full md:w-3/4 mx-auto relative mb-4">
+        <g-title :level="2" class="mb-3" id="s24">Pagination</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.paginationText"
+          statusLabel
+        />
+        <g-pagination
+          :pageInfo="{ currentPage: 1, total: 200, perPageNums: 15 }"
+          @updatePage="handleUpdatePage"
+        />
+        <span v-if="showTextSwitch.paginationText"> curPage:{{ curPage }}</span>
+        <v-md-editor
+          v-if="showTextSwitch.paginationText"
+          v-model="paginationTextJS"
+          mode="preview"
+        ></v-md-editor>
+        <v-md-editor
+          v-if="showTextSwitch.paginationText"
+          v-model="paginationText"
           mode="preview"
         ></v-md-editor>
       </div>

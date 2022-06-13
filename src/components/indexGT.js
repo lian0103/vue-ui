@@ -24,3 +24,4 @@ export { default as GSortLabel } from './GSortLabel.vue';
 export { default as GFilterOption } from './GFilterOption.vue';
 export { default as GButtonFile } from './GButtonFile.vue';
 export { default as GButtonClose } from './GButtonClose.vue';
+export { default as GPagination } from './GPagination.vue';
