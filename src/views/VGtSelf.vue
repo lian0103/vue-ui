@@ -312,7 +312,15 @@ const tableInfo = reactive({
     { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
   ],
   filterOtions: {},
+  isLoading: false,
 });
+
+const showLoading = () => {
+  tableInfo.isLoading = true;
+  setTimeout(() => {
+    tableInfo.isLoading = false;
+  }, 3000);
+};
 
 const curPage = ref(1);
 
@@ -693,19 +701,10 @@ const tableInfo = reactive({
   ],
   data: [
     { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    {
-      product: 'dddddddddddddddddddddddd',
-      price: 400,
-      storage: 65,
-      id: uuidv4(),
-    },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
+    ...
     { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
   ],
+    isLoading: false,
 });
 
 // 目前是使用"name" 註冊一個全域的table物件
@@ -722,6 +721,7 @@ const tableText = `\`\`\` html
   height="300"
   name="products"
   rowClick
+  :isLoading="tableInfo.isLoading"
 >
   <template v-slot:tags="{ row }">
     <div class="flex justify-between">
@@ -1570,6 +1570,7 @@ const paginationText = `\`\`\` html
           height="450"
           name="products"
           rowClick
+          :isLoading="tableInfo.isLoading"
         >
           <template v-slot:tags="{ row }">
             <div class="flex justify-between">
@@ -1611,6 +1612,16 @@ const paginationText = `\`\`\` html
           "
           >當前選擇顯示</g-button
         >
+        <g-button
+          class="mb-4 mt-4"
+          @click="
+            () => {
+              showLoading();
+            }
+          "
+          >載入中顯示</g-button
+        >
+
         <v-md-editor
           v-if="showTextSwitch.tableText"
           v-model="tableJs"

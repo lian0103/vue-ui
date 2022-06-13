@@ -8,6 +8,7 @@ import {
   onMounted,
   getCurrentInstance,
 } from 'vue';
+import GLoadingIcon from '../GLoadingIcon.vue';
 
 const tableEnum = {
   CHECKBOX: 'checkbox',
@@ -15,27 +16,39 @@ const tableEnum = {
   DESC: 'desc',
 };
 
-const { name, columns, isCheckBox, data, height, getCheckedList, rowClick } =
-  defineProps({
-    name: {},
-    columns: {
-      type: Array,
-      default: [],
-    },
-    data: {
-      type: Array,
-      default: [],
-    },
-    isCheckBox: {
-      type: Boolean,
-      default: true,
-    },
-    height: {},
-    rowClick: {
-      type: Boolean,
-      default: false,
-    },
-  });
+const {
+  name,
+  columns,
+  isCheckBox,
+  data,
+  height,
+  getCheckedList,
+  rowClick,
+  isLoading,
+} = defineProps({
+  name: {},
+  columns: {
+    type: Array,
+    default: [],
+  },
+  data: {
+    type: Array,
+    default: [],
+  },
+  isCheckBox: {
+    type: Boolean,
+    default: true,
+  },
+  height: {},
+  rowClick: {
+    type: Boolean,
+    default: false,
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const slots = useSlots();
 const slotColumns = Object.keys(slots);
@@ -139,7 +152,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gt-table-wrapper">
+  <div class="gt-table-wrapper" :class="isLoading ? 'overflow-hidden' : ''">
     <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
       <div class="table-head">
         <template v-if="isCheckBox">
@@ -161,53 +174,64 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="table-body" :style="{ 'max-height': tableMaxHeightComputed }">
-        <div
-          v-for="(rItem, rIdx) in dataWithStatus"
-          class="row"
-          :key="rIdx"
-          :class="rItem.checked ? 'row-check' : ''"
-          @click="
-            () => {
-              handleRowClick(rItem);
-            }
-          "
-        >
-          <template v-if="isCheckBox">
-            <div
-              class="row-cell checknoxColumn"
-              @click="
-                () => {
-                  handleRowClick(rItem);
-                }
-              "
-            >
-              <g-checkbox
-                v-if="rItem.checked"
-                v-model="rItem.checked"
-                type="white"
-              />
-              <g-checkbox
-                v-if="!rItem.checked"
-                v-model="rItem.checked"
-                type="white"
-              />
-            </div>
-          </template>
-          <div
-            v-for="(cItem, cIdx) in columnsComputed"
-            :key="cItem.name + '-' + rIdx + '-' + cIdx"
-            :style="{ width: cItem.width + 'px' }"
-            class="row-cell"
-          >
-            <template v-if="slotColumns.includes(cItem.name)">
-              <slot :name="cItem.name" :row="rItem" />
-            </template>
-            <template v-else>
-              <span> {{ rItem[cItem.name] || cItem.name }}</span>
-            </template>
+      <div
+        class="table-body"
+        :class="isLoading ? 'overflow-hidden' : ''"
+        :style="{ 'max-height': tableMaxHeightComputed }"
+      >
+        <template v-if="isLoading">
+          <div class="loading">
+            <g-loading-icon />
           </div>
-        </div>
+        </template>
+        <template v-else>
+          <div
+            v-for="(rItem, rIdx) in dataWithStatus"
+            class="row"
+            :key="rIdx"
+            :class="rItem.checked ? 'row-check' : ''"
+            @click="
+              () => {
+                handleRowClick(rItem);
+              }
+            "
+          >
+            <template v-if="isCheckBox">
+              <div
+                class="row-cell checknoxColumn"
+                @click="
+                  () => {
+                    handleRowClick(rItem);
+                  }
+                "
+              >
+                <g-checkbox
+                  v-if="rItem.checked"
+                  v-model="rItem.checked"
+                  type="white"
+                />
+                <g-checkbox
+                  v-if="!rItem.checked"
+                  v-model="rItem.checked"
+                  type="white"
+                />
+              </div>
+            </template>
+            <div
+              v-for="(cItem, cIdx) in columnsComputed"
+              :key="cItem.name + '-' + rIdx + '-' + cIdx"
+              :style="{ width: cItem.width + 'px' }"
+              class="row-cell"
+            >
+              <template v-if="slotColumns.includes(cItem.name)">
+                <slot :name="cItem.name" :row="rItem" />
+              </template>
+              <template v-else>
+                <span> {{ rItem[cItem.name] || cItem.name }}</span>
+              </template>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -217,7 +241,7 @@ onMounted(() => {
 .gt-table-wrapper {
   border-radius: 8px;
   padding-bottom: 10px;
-  @apply bg-white;
+  @apply bg-white relative;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     width: 6px;
@@ -237,8 +261,8 @@ onMounted(() => {
 
 .gt-table {
   min-width: 100%;
-  min-height: 100px;
   letter-spacing: 0.8px;
+  min-height: 200px;
   .table-head {
     margin-bottom: 2px;
     padding: 0 10px;
@@ -273,6 +297,13 @@ onMounted(() => {
       &:hover {
         background-color: #666666;
       }
+    }
+    .loading {
+      @apply flex justify-center items-center absolute;
+      left: 0;
+      top: 38px;
+      width: 100%;
+      height: 162px;
     }
 
     .row {
