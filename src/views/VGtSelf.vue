@@ -28,6 +28,7 @@ import {
   GButtonFile,
   GButtonClose,
   GPagination,
+  GTabs,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -51,6 +52,10 @@ const scrollList = [
   {
     id: 's2t0',
     name: 'Filter Options',
+  },
+  {
+    id: 's2t01',
+    name: 'Tabs',
   },
   {
     id: 's2t',
@@ -392,6 +397,7 @@ const showTextSwitch = reactive({
   sortLabelText: false,
   filterOptionText: false,
   paginationText: false,
+  tabsText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -839,6 +845,17 @@ const paginationText = `\`\`\` html
   @updatePage="handleUpdatePage"
 />
 \`\`\``;
+
+const tabsText = `\`\`\` html
+  <g-tabs :tabs='[{ name: 'tab1' }, { name: 'tab2' }]'>
+    <template v-slot:tab1="context">
+      <g-title :level="1" class="mb-3" >hello , tab1</g-title>
+    </template>
+    <template v-slot:tab2="context">
+      <g-title :level="1" class="mb-3" >hello , tab2</g-title>
+    </template>
+  </g-tabs>
+\`\`\``;
 </script>
 
 <template>
@@ -899,6 +916,36 @@ const paginationText = `\`\`\` html
       </div>
 
       <div class="w-full md:w-3/4 mx-auto relative mb-4">
+        <g-title :level="2" class="mb-3" id="s2t01">Tabs</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.tabsText"
+          statusLabel
+        />
+        <g-tabs :tabs="[{ name: 'tab1' }, { name: 'tab2' }]">
+          <template v-slot:tab1="context">
+            <g-title :level="1" class="mb-3">hello , tab1 </g-title>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quis
+            assumenda similique possimus ipsam consequatur animi ipsa fugit
+            quia. Accusantium.
+          </template>
+          <template v-slot:tab2="context">
+            <g-title :level="1" class="mb-3">hello , tab2</g-title>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+            alias earum exercitationem inventore dignissimos velit dolores
+            maiores quod accusantium, reiciendis cupiditate modi quia rem at ut
+            laborum vero doloribus rerum?
+          </template>
+        </g-tabs>
+
+        <v-md-editor
+          v-if="showTextSwitch.tabsText"
+          v-model="tabsText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="w-full md:w-3/4 mx-auto relative mb-4">
         <g-title :level="2" class="mb-3" id="s2t">SORT LABEL</g-title>
         <g-switch
           class="absolute right-0 top-0"
@@ -929,7 +976,7 @@ const paginationText = `\`\`\` html
         </template>
       </div>
 
-      <div class="w-full md:w-3/4 pr-2 mx-auto relative">
+      <div class="w-full md:w-3/4 pr-2 mx-auto relative mb-4">
         <g-title :level="2" class="mb-3" id="s2">日期選擇</g-title>
         <g-switch
           class="absolute right-0 top-0"

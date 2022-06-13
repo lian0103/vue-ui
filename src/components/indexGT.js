@@ -25,3 +25,4 @@ export { default as GFilterOption } from './GFilterOption.vue';
 export { default as GButtonFile } from './GButtonFile.vue';
 export { default as GButtonClose } from './GButtonClose.vue';
 export { default as GPagination } from './GPagination.vue';
+export { default as GTabs } from './GTabs.vue';
