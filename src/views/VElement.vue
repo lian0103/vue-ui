@@ -1,15 +1,11 @@
 <script setup>
 import { ref, reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+
 const activeName = ref('first');
-
-const handleClick = (tab, event) => {
-  // console.log(tab, event)
-};
-
 const rules = {
   input2: [{ required: true, message: '必填', trigger: 'blur' }],
 };
-
 const inputs = reactive({
   search0: '',
   input0: '',
@@ -17,15 +13,45 @@ const inputs = reactive({
   input2: '',
   radio:'1',
 });
-
 const radio = ref('1');
-
-const checkList = ref(['複選框 A'])
-
-const switch_value = ref(true)
-
-const dialogVisible= ref(false)
-
+const checkList = ref(['複選框 A']);
+const switch_value = ref(true);
+const dialogVisible= ref(false);
+const font_weight=['100','200','300','400','500','600','700','bold','bolder','lighter','normal'];
+const datetime =ref('');
+const openMessage1 = () => {
+  ElMessage({
+    showClose: true,
+    message: 'Congrats, this is a success message.',
+    type: 'success',
+    duration:'0',
+  })
+}
+const openMessage2 = () => {
+  ElMessage({
+    showClose: true,
+    message: 'Warning, this is a warning message.',
+    type: 'warning',
+    duration:'0',
+  })
+}
+const openMessage3 = () => {
+  ElMessage({
+    showClose: true,
+    message: 'Oops, this is a error message.',
+    type: 'error',
+    duration:'0',
+  })
+}
+const openFullScreen = () => {
+  const loading = ElLoading.service({
+    lock: true,
+    text: '載入中',
+  })
+  setTimeout(() => {
+    loading.close()
+  }, 5000)
+}
 </script>
 
 <template>
@@ -35,37 +61,36 @@ const dialogVisible= ref(false)
       <g-title :level="1" class="mb-4">文字定義</g-title>
     </div>
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
-      <li>
+      <li v-for="n in 6">
         <div>
-          <h1>Bold / 24 / 文字樣式</h1>
+          <h1 :class='`gt-h${n}`'>{{`h${ n }`}} / 文字樣式</h1>
         </div>
         <div>
-          {{`<h1>Bold / 24 / 文字樣式</h1>`}}
+          {{`<h${n} `}}
+          <span class="text-red">class="gt-h{{`${n}`}}"</span>
+          {{`
+          > h${n} / 文字樣式</h${n}>`}}
         </div>
       </li>
-      <li>
-        <div><h2>Medium / 20 / 文字樣式</h2></div>
-        <div>{{`<h2>Medium / 20 / 文字樣式</h2>`}}</div>
+      <li v-for="i in 24" v-show="i >= 12">
+        <div>
+          <p :class='`gt-font-size-${i} q-pa-none q-ma-none`'>font-size-{{`${i}`}} / 文字樣式</p>
+        </div>
+        <div>
+          {{ `<p class=' `}}
+          <span class="text-red">gt-font-size-{{`${i}`}}</span>
+          {{` q-pa-none q-ma-none'>font-size-${i} / 文字樣式</p>` }}
+        </div>
       </li>
-      <li>
-        <div><h3>Bold / 18 / 文字樣式</h3></div>
-        <div>{{`<h3>Bold / 18 / 文字樣式</h3>`}}</div>
-      </li>
-      <li>
-        <div><h4>Medium / 16 / 文字樣式</h4></div>
-        <div>{{`<h4>Medium / 16 / 文字樣式</h4>`}}</div>
-      </li>
-      <li>
-        <div><h5>Caption1 / Regular / 13 / 文字樣式</h5></div>
-        <div>{{`<h5>Caption1 / Regular / 13 / 文字樣式</h5>`}}</div>
-      </li>
-      <li>
-        <div><h6>Caption2 / Regular / 12 / 文字樣式</h6></div>
-        <div>{{`<h6>Caption2 / Regular / 12 / 文字樣式</h6>`}}</div>
-      </li>
-      <li>
-        <div><p style="margin-bottom: 0px;padding: 0;">Body / Regular / 16 / 文字樣式</p></div>
-        <div>{{`<p>Body / Regular / 16 / 文字樣式</p>`}}</div>
+      <li v-for="item in font_weight" :key="item">
+        <div>
+          <p :class='`gt-font-weight-${item} q-pa-none q-ma-none`'>font-weight:{{item}}</p>
+        </div>
+        <div>
+          {{ `<p class=' `}}
+          <span class="text-red">gt-font-weight-{{`${item}`}}</span>
+          {{` q-pa-none q-ma-none'>font-weight:${item}</p>` }}
+        </div>
       </li>
     </ul>
     <!-- END // 文字定義 -->
@@ -120,6 +145,62 @@ const dialogVisible= ref(false)
       </li>
     </ul>
     <!-- END // el-button -->
+
+    <!-- Tag -->
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">Tag</g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4"> 
+      <li>
+        <div>
+          <el-tag class="gt-e-tag">TAG</el-tag>
+        </div>
+        <div>{{`<el-tag `}}
+        <span class="text-red">class="gt-e-tag"</span>
+        {{`
+        >TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div>
+          <el-tag class="gt-e-tag" type="success">TAG</el-tag>
+        </div>
+        <div>{{`<el-tag class="gt-e-tag" type="success">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag" type="warning">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag" type="warning">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag" type="danger">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag" type="danger">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag" effect="dark">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag" effect="dark">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag" effect="dark" type="success">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="success">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag" effect="dark" type="warning">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="warning">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag" effect="dark" type="danger">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="danger">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div>
+          <el-tag class="gt-e-tag gt-e-tag-bd-none">TAG</el-tag>
+        </div>
+        <div>{{`<el-tag `}}
+        <span class="text-red">class="gt-e-tag gt-e-tag-bd-none"</span>
+        {{`
+        >TAG</el-tag>`}}</div>
+      </li>
+    </ul>
+    <!-- END // Tag -->
 
     <!-- el-link -->
     <div class="paragraphHead">
@@ -304,7 +385,7 @@ const dialogVisible= ref(false)
     <!-- END // el-dialog -->
 
     <!-- el-dropdown -->
-    <div class="paragraphHead">
+    <!-- <div class="paragraphHead">
       <g-title :level="1" class="mb-4">el-dropdown & el-dropdown-item</g-title>
     </div>
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
@@ -362,11 +443,11 @@ const dialogVisible= ref(false)
           </el-dropdown>`}}
         </div>
       </li>
-    </ul>
+    </ul> -->
     <!-- END // el-dropdown -->
 
     <!-- el-input -->
-    <div class="paragraphHead">
+    <!-- <div class="paragraphHead">
       <g-title :level="1" class="mb-4">不同類型el-input </g-title>
     </div>
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
@@ -498,64 +579,83 @@ const dialogVisible= ref(false)
           /> `}}
         </div>
       </li>
-    </ul>
+    </ul> -->
     <!-- END // el-input -->
 
-    <!-- Tag -->
+    <!-- 2022/06/01 start -->
+    <!-- el-date-picker -->
     <div class="paragraphHead">
-      <g-title :level="1" class="mb-4">Tag</g-title>
+      <g-title :level="1" class="mb-4">el-date-picker</g-title>
     </div>
-    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4"> 
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <el-tag class="gt-e-tag">TAG</el-tag>
+          <el-date-picker
+            class="el-e-date-picker"
+            v-model="datetime"
+            type="datetime"
+            placeholder="選擇日期時間">
+          </el-date-picker>
         </div>
-        <div>{{`<el-tag `}}
-        <span class="text-red">class="gt-e-tag"</span>
-        {{`
-        >TAG</el-tag>`}}</div>
-      </li>
-      <li>
         <div>
-          <el-tag class="gt-e-tag" type="success">TAG</el-tag>
+          {{`<el-date-picker
+          `}}
+            <span class="text-red">class="el-e-date-picker"</span>
+            {{`
+            v-model="datetime"
+            type="datetime"
+            placeholder="選擇日期時間">
+          </el-date-picker>`}}
         </div>
-        <div>{{`<el-tag class="gt-e-tag" type="success">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" type="warning">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" type="warning">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" type="danger">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" type="danger">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark" type="success">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="success">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark" type="warning">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="warning">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark" type="danger">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="danger">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div>
-          <el-tag class="gt-e-tag gt-e-tag-bd-none">TAG</el-tag>
-        </div>
-        <div>{{`<el-tag `}}
-        <span class="text-red">class="gt-e-tag gt-e-tag-bd-none"</span>
-        {{`
-        >TAG</el-tag>`}}</div>
       </li>
     </ul>
-    <!-- END // Tag -->
+    <!-- END // el-date-picker -->
+
+    <!-- Message -->
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">Message</g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
+      <li>
+        <div>
+          <el-button :plain="true" @click="openMessage1" type="success">成功</el-button>
+          <el-button :plain="true" @click="openMessage2" type="warning">警告</el-button>
+          <el-button :plain="true" @click="openMessage3" type="danger">錯誤</el-button>
+        </div>
+        <div>
+          此項目無法添加class
+        </div>
+      </li>
+    </ul>
+    <!-- END // Message -->
+
+    <!-- Loading -->
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">Loading</g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
+      <li>
+        <div>
+           <el-button class="gt-e-button" type="primary" @click="openFullScreen">fullscreenLoading</el-button>
+        </div>
+        <div>
+          {{`<el-button class="gt-e-button" type="primary" @click="openFullScreen">fullscreenLoading</el-button>`}}
+          <br>須配合<br>
+          {{
+            `const openFullScreen = () => {
+              const loading = ElLoading.service({
+                lock: true,
+                text: '載入中',
+              })
+              setTimeout(() => {
+                loading.close()
+              }, 5000)
+            }`
+          }}
+        </div>
+      </li>
+    </ul>
+    <!-- END // Loading -->
 
   </div>
 </template>

@@ -17,6 +17,7 @@ export default defineComponent({
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
       prompt:ref(false),
+      font_weight:['100','200','300','400','500','600','700','bold','bolder','lighter','normal'],
     }
   }
 })
@@ -45,7 +46,19 @@ export default defineComponent({
           <p :class='`gt-font-size-${i} q-pa-none q-ma-none`'>font-size-{{`${i}`}} / 文字樣式</p>
         </div>
         <div>
-          
+          {{ `<p class=' `}}
+          <span class="text-red">gt-font-size-{{`${i}`}}</span>
+          {{` q-pa-none q-ma-none'>font-size-${i} / 文字樣式</p>` }}
+        </div>
+      </li>
+      <li v-for="item in font_weight" :key="item">
+        <div>
+          <p :class='`gt-font-weight-${item} q-pa-none q-ma-none`'>font-weight:{{item}}</p>
+        </div>
+        <div>
+          {{ `<p class=' `}}
+          <span class="text-red">gt-font-weight-{{`${item}`}}</span>
+          {{` q-pa-none q-ma-none'>font-weight:${item}</p>` }}
         </div>
       </li>
     </ul>
@@ -130,11 +143,13 @@ export default defineComponent({
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <q-radio v-model="shape" val="line1" label="選項1" />
-          <q-radio v-model="shape" val="line2" label="選項2" />
+          <q-radio class="gt-q-radio" v-model="shape" val="line1" label="選項1" />
+          <q-radio class="gt-q-radio" v-model="shape" val="line2" label="選項2" />
         </div>
         <div>
-          {{`<q-radio v-model="shape" val="line1" label="選項1" />`}}
+          {{`<q-radio `}}
+          <span class="text-red">class="gt-q-radio"</span>
+          {{`v-model="shape" val="line1" label="選項1" />`}}
         </div>
       </li>
     </ul>

@@ -16,6 +16,7 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import createHighlightLinesPlugin from '@kangc/v-md-editor/lib/plugins/highlight-lines/index';
 import '@kangc/v-md-editor/lib/plugins/highlight-lines/highlight-lines.css';
 import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
+import 'element-plus/theme-chalk/src/index.scss'
 
 // Prism
 import Prism from 'prismjs';

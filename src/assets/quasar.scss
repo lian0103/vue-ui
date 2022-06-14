@@ -79,9 +79,9 @@ body.desktop{
   );
   .gt-q-button{
       &:hover{
-          > .q-focus-helper{
-              opacity: 0;
-          }
+        > .q-focus-helper{
+            opacity: 0;
+        }
       }
       &::before{
           box-shadow: none;
@@ -149,26 +149,52 @@ body.desktop{
       cursor: no-drop;
       color: $gt-gray-variant !important;
   }
+  .gt-q-radio{
+    &:focus,
+    &:hover{
+      .q-radio__inner{
+        &::before{
+          display: none;
+        }
+      }
+    }
+  }
   .gt-q-checkbox{
       &.q-checkbox{
-          .q-checkbox__inner--truthy, 
-          .q-checkbox__inner--indet{
-            svg {
-              &.fit{
-                width: 70% !important;
-                height: 70% !important;
-              }
-              &.absolute-full{
-                top: 10%;
-                left: 20%;
-              }
+        &:focus,
+        &:hover{
+          .q-checkbox__inner{
+            &::before{
+              display: none;
             }
           }
+        }
+        .q-checkbox__inner--truthy, 
+        .q-checkbox__inner--indet{
+          svg {
+            &.fit{
+              width: 70% !important;
+              height: 70% !important;
+            }
+            &.absolute-full{
+              top: 10%;
+              left: 20%;
+            }
+          }
+        }
       }
   }
   .gt-q-toggle{
       &.q-toggle{
           padding: 5px 15px;
+          &:focus,
+          &:hover{
+            .q-toggle__thumb{
+              &::before{
+                display: none;
+              }
+            }
+          }
           .q-toggle__inner{
             font-size: 45px;
             width: 40px;
@@ -244,6 +270,15 @@ body.desktop{
         &.q-tab--active{
           color: $gt-darker !important;
         }
+        &:focus,
+        &:hover{
+          .q-focus-helper{
+            display: none;
+          }
+          .q-tab__label{
+            color: $gt-darker !important;
+          }
+        }
       }
       .q-tab__label{
         font-size: 18px;
@@ -254,7 +289,7 @@ body.desktop{
   }
   .gt-q-dialog{
     .card-header{
-      padding: 12px 40px;
+      padding: 12px 40px 8px;
       div{
         font-size: 16px;
         font-weight: 500;
@@ -267,7 +302,8 @@ body.desktop{
       }
     }
     .card-body{
-      padding: 6px 40px 30px;
+      padding: 10px 40px 35px;
+      line-height: 23px;
       border-bottom: 1px solid #D9D9D9;
       font-size: 16px;
       color: $gt-text-gray;
@@ -277,6 +313,182 @@ body.desktop{
     }
     .q-icon{
       font-size: 1rem;
+    }
+  }
+  .gt-q-header{
+    &.q-layout__section--marginal{
+      background-color:$gt-bg !important;
+      color: $gt-text-dark !important;
+      .q-layout__shadow{
+        display: none;
+      }
+      .q-toolbar{
+        padding: 0 60px;
+        min-height: 80px;
+        height: 80px;
+        .q-toolbar__title{
+          padding-left: 0;
+        }
+        .q-btn{
+          .q-btn__content{
+            .q-icon{
+              color:$gt-text-dark;
+              &::before,
+              &::after{
+                color:$gt-text-dark;
+              }
+            }
+            .q-avatar{
+              font-size: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .q-layout{
+   .q-drawer-container{
+     .q-drawer.q-drawer--left.q-drawer--bordered{
+       border: 0 !important;
+     }
+   } 
+  }
+  .gt-q-sidebar{
+    position: relative;
+    background-color:$gt-bg !important;
+    color: $gt-text-dark !important;
+    > .q-list{
+      &.drawer-list{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        z-index: 10;
+        background-color:$gt-bg !important;
+        .q-item{
+          height: 80px;
+          padding: 32px 0 20px 67px;
+          .q-item__section{
+            .q-item__label{
+              line-height: 24px !important;
+              font-size: 18px;
+              font-weight: 700;
+              letter-spacing: .8px;
+              font-family: 'Noto Sans TC', sans-serif !important;
+            }
+          }
+        }
+      }
+      &:not(.drawer-list){
+        margin-top: 80px;
+        height: calc(100% - 300px);
+        overflow: inherit;
+        overscroll-behavior: contain;
+        &::before{
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background-color: $gt-bg !important;
+          width: 100%;
+          height: 220px;
+          z-index: 10;
+        }
+        &::after{
+          content: "";
+          position: absolute;
+          background-image: url(https://www.greattree.com.tw/files/00-logo-icon/logo.svg);
+          width: 120px;
+          height: 28px;
+          z-index: 15;
+          bottom: 110px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: 50% 50%;
+        }
+      }
+      .q-expansion-item .q-expansion-item__container > .q-item,
+      .q-item{
+        height: 50px;
+        margin: 0 !important;
+        padding: 18px 27px 8px 70px;
+        &:hover{
+          .q-focus-helper{
+            opacity: 0;
+          }
+          .q-item__section{
+            .q-item__label{
+              color: $gt-primary;
+            }
+          }
+        }
+        .q-item__section--avatar{
+          min-width: auto;
+          padding: 0;
+          margin-right: 17px;
+          max-height: 24px;
+        }
+        .q-item__section{
+          .q-item__label{
+            line-height: 24px !important;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: .8px;
+            color: $gt-text-gray;
+          }
+        }
+        &.q-router-link--exact-active{
+          color: $gt-primary;
+          .q-item__label,
+          .q-item__section--side{
+            color: $gt-primary;
+          }
+        }
+      }
+      .q-item__label.q-item__label--header.text-white{
+        color: $gt-text-gray !important;
+        padding: 8px 0 8px 80px;
+        padding-left: 80px!important;
+      }
+      .q-expansion-item {
+        .q-expansion-item__container{
+          .q-item{
+            padding-left: 70px !important;
+          }
+          .q-expansion-item__content{
+            > .q-ml-xl.q-item{
+              margin-left: 0 !important;
+            }
+            .q-item{
+              margin: 0 !important;
+              padding: 8px 0 8px 80px;
+              padding-left: 80px!important;
+              min-height: auto;
+              height: 40px;
+              font-size: 16px;
+              letter-spacing: .8px;
+              font-weight: 500;
+              color: $gt-text-gray;
+              margin-left: 0 !important;
+            }
+            .q-list{
+              padding: 0 !important;
+              .q-item{
+                padding: 8px 0 8px 80px;
+                padding-left: 80px!important;
+                min-height: auto;
+                height: 40px;
+                font-size: 16px;
+                letter-spacing: .8px;
+                font-weight: 500;
+                color: $gt-text-gray;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
