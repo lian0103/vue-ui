@@ -93,13 +93,16 @@ const handleRemove = () => {
 
   &.zone-active,
   &:hover {
-    @apply outline-2 outline-dashed outline-main;
+    // @apply outline-2 outline-dashed outline-main;
+    @apply bg-color2; 
   }
   .text {
     width: 67px;
   }
   .deleteIcon {
-    @apply absolute right-2 top-2 opacity-0;
+    @apply absolute opacity-0;
+    top: 8px;
+    right: 8px;
   }
   &:hover {
     .deleteIcon {
@@ -111,6 +114,10 @@ const handleRemove = () => {
     @apply relative flex justify-center items-center;
     height: 100%;
     overflow: hidden;
+  }
+  .gt-button-file.gt-btn-black{
+    background: #666666 !important; 
+    color: #FBFBF9 !important;
   }
 }
 </style>
