@@ -50,17 +50,21 @@ const scrollList = [
     id: 's1',
     name: '大樹後台layout',
   },
+    {
+    id: 's2t02',
+    name: '圖片上傳',
+  },
   {
     id: 's2t0',
-    name: 'Filter Options',
+    name: '篩選選項',
   },
   {
     id: 's2t01',
-    name: 'Tabs',
+    name: '分頁標籤',
   },
   {
     id: 's2t',
-    name: 'SORT LABEL',
+    name: '排序標籤',
   },
   {
     id: 's2',
@@ -152,11 +156,11 @@ const scrollList = [
   },
   {
     id: 's23',
-    name: 'TABLE',
+    name: '表格',
   },
   {
     id: 's24',
-    name: 'Pagination',
+    name: '分頁選擇',
   },
 ];
 const curScroll = ref('s1');
@@ -403,6 +407,7 @@ const showTextSwitch = reactive({
   filterOptionText: false,
   paginationText: false,
   tabsText: false,
+  imgUploadText:false
 });
 
 const layoutText = `\`\`\` html
@@ -861,6 +866,10 @@ const tabsText = `\`\`\` html
     </template>
   </g-tabs>
 \`\`\``;
+
+const imgUploadText = `\`\`\` html
+<g-img-upload @file="handleFile" />
+\`\`\``;
 </script>
 
 <template>
@@ -890,24 +899,24 @@ const tabsText = `\`\`\` html
         <g-title :level="1" class="mb-3">操作</g-title>
       </div>
 
-      <div class="w-full md:w-3/4 mx-auto relative mb-4">
+      <div class="w-full md:w-3/4 mx-auto relative mb-12">
         <g-title :level="2" class="mb-3" id="s2t02">圖片上傳</g-title>
         <g-switch
           class="absolute right-0 top-0"
-          v-model="showTextSwitch.filterOptionText"
+          v-model="showTextSwitch.imgUploadText"
           statusLabel
         />
         <g-img-upload @file="handleFile" />
 
         <v-md-editor
-          v-if="showTextSwitch.filterOptionText"
-          v-model="filterOptionsText"
+          v-if="showTextSwitch.imgUploadText"
+          v-model="imgUploadText"
           mode="preview"
         ></v-md-editor>
       </div>
 
-      <div class="w-full md:w-3/4 mx-auto relative mb-4">
-        <g-title :level="2" class="mb-3" id="s2t0">Filter Options</g-title>
+      <div class="w-full md:w-3/4 mx-auto relative mb-12">
+        <g-title :level="2" class="mb-3" id="s2t0">篩選選項</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.filterOptionText"
@@ -937,8 +946,8 @@ const tabsText = `\`\`\` html
         </template>
       </div>
 
-      <div class="w-full md:w-3/4 mx-auto relative mb-4">
-        <g-title :level="2" class="mb-3" id="s2t01">Tabs</g-title>
+      <div class="w-full md:w-3/4 mx-auto relative mb-12">
+        <g-title :level="2" class="mb-3" id="s2t01">分頁標籤</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.tabsText"
@@ -967,8 +976,8 @@ const tabsText = `\`\`\` html
         ></v-md-editor>
       </div>
 
-      <div class="w-full md:w-3/4 mx-auto relative mb-4">
-        <g-title :level="2" class="mb-3" id="s2t">SORT LABEL</g-title>
+      <div class="w-full md:w-3/4 mx-auto relative mb-12">
+        <g-title :level="2" class="mb-3" id="s2t">排序標籤</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.sortLabelText"
@@ -998,7 +1007,7 @@ const tabsText = `\`\`\` html
         </template>
       </div>
 
-      <div class="w-full md:w-3/4 pr-2 mx-auto relative mb-4">
+      <div class="w-full md:w-3/4 pr-2 mx-auto relative mb-12">
         <g-title :level="2" class="mb-3" id="s2">日期選擇</g-title>
         <g-switch
           class="absolute right-0 top-0"
@@ -1627,7 +1636,7 @@ const tabsText = `\`\`\` html
         <g-title :level="1" class="mb-3">資料</g-title>
       </div>
       <div class="w-full md:w-3/4 mx-auto relative">
-        <g-title :level="2" class="mb-3" id="s23">TABLE</g-title>
+        <g-title :level="2" class="mb-3" id="s23">表格</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.tableText"
@@ -1702,8 +1711,8 @@ const tabsText = `\`\`\` html
           mode="preview"
         ></v-md-editor>
       </div>
-      <div class="w-full md:w-3/4 mx-auto relative mb-4">
-        <g-title :level="2" class="mb-3" id="s24">Pagination</g-title>
+      <div class="w-full md:w-3/4 mx-auto relative mb-12">
+        <g-title :level="2" class="mb-3" id="s24">分頁選擇</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.paginationText"
