@@ -1,11 +1,18 @@
 <script setup>
 import GIcons from './GIcons.vue';
 import GButton from './GButton.vue';
+
+const { name } = defineProps({
+  name: {
+    type: String,
+    default: 'file',
+  },
+});
 </script>
 
 <template>
   <g-button round noBorder type="black" class="gt-button-file">
-    <g-icons name="file" size="md" />
+    <g-icons :name="name" size="md" />
   </g-button>
 </template>
 

@@ -29,6 +29,7 @@ import {
   GButtonClose,
   GPagination,
   GTabs,
+  GImgUpload,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -367,6 +368,10 @@ const handleTableChecked = () => {
     title: '已選擇',
     msg: `row ids:${arr.join(',')}`,
   });
+};
+
+const handleFile = (file) => {
+  // console.log(file);
 };
 
 const showTextSwitch = reactive({
@@ -884,6 +889,23 @@ const tabsText = `\`\`\` html
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3">操作</g-title>
       </div>
+
+      <div class="w-full md:w-3/4 mx-auto relative mb-4">
+        <g-title :level="2" class="mb-3" id="s2t02">圖片上傳</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.filterOptionText"
+          statusLabel
+        />
+        <g-img-upload @file="handleFile" />
+
+        <v-md-editor
+          v-if="showTextSwitch.filterOptionText"
+          v-model="filterOptionsText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
       <div class="w-full md:w-3/4 mx-auto relative mb-4">
         <g-title :level="2" class="mb-3" id="s2t0">Filter Options</g-title>
         <g-switch
