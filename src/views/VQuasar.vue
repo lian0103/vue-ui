@@ -143,7 +143,7 @@ export default defineComponent({
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <q-radio class="gt-q-radio" v-model="shape" val="line1" label="選項1" />
+          <q-radio class="gt-q-radio q-mr-sm" v-model="shape" val="line1" label="選項1" />
           <q-radio class="gt-q-radio" v-model="shape" val="line2" label="選項2" />
         </div>
         <div>
@@ -162,8 +162,8 @@ export default defineComponent({
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <q-checkbox class="gt-q-checkbox" v-model="valCheckbox1" label="複選框 A" />
-          <q-checkbox class="gt-q-checkbox" v-model="valCheckbox2" label="複選框 B" />
+          <q-checkbox class="gt-q-checkbox q-mr-sm" v-model="valCheckbox1" label="複選框 A" />
+          <q-checkbox class="gt-q-checkbox q-mr-sm" v-model="valCheckbox2" label="複選框 B" />
           <q-checkbox class="gt-q-checkbox" v-model="valCheckbox3" label="複選框 C" />
         </div>
         <div>
@@ -286,7 +286,7 @@ export default defineComponent({
           <q-btn label="打開Dialog" class="gt-q-button" color="primary" @click="prompt = true" />
 
           <q-dialog class="gt-q-dialog" v-model="prompt" persistent>
-            <q-card style="width: 500px">
+            <q-card style="width: 380px">
               <q-card-section class="card-header row items-center q-pb-none">
                 <div>TITLE</div>
                 <q-btn class="gt-q-close" icon="close" flat round dense v-close-popup />
@@ -306,7 +306,7 @@ export default defineComponent({
           {{`<q-dialog `}}
           <span class="text-red">class="gt-q-dialog"</span>
           {{`v-model="prompt" persistent>
-            <q-card style="min-width: 350px">
+            <q-card style="width: 380px">
               <q-card-section class="`}}
               <span class="text-red">card-header</span>
               {{` row items-center q-pb-none">

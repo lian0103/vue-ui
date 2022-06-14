@@ -368,7 +368,7 @@ const openFullScreen = () => {
           <el-dialog
             title="TITLE"
             v-model="dialogVisible"
-            width="500px"
+            width="380px"
           >
             <div class="gt-e-dialog">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
             <template #footer>

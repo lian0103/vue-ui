@@ -41,8 +41,9 @@
     background: #FBFBF9;
     color: $gt-text-dark;
     @apply text-lg;
-    min-width: 120px;
+    min-width: 130px;
     padding: 0 0 8px 0;
+    line-height: 24px;
   }
 }
 
@@ -99,6 +100,10 @@ $round-hover-color: (
     }
     span + [class*=el-icon]{
       margin-right: 5.5px;
+    }
+    span{
+      letter-spacing: .7px;
+      line-height: 20px;
     }
     &.is-round{
       padding: 8px 16px;
@@ -181,9 +186,10 @@ $round-hover-color: (
 
 .gt-e-radio{
   .el-radio__input{
+    padding: 3px;
     .el-radio__inner{
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border: 2px solid #DCDFE6;
       &:hover{
         border-color:$gt-primary;
@@ -195,13 +201,14 @@ $round-hover-color: (
         background:#ffffff;
         &::after{
           background-color:$gt-primary;
-          width: 12px;
-          height: 12px;
+          width: 10px;
+          height: 10px;
         }
       }
     }
   }
   .el-radio__label{
+    padding-left: 10px;
     font-size: 16px;
     color: $gt-text-dark !important;
   }
@@ -209,9 +216,10 @@ $round-hover-color: (
 
 .gt-e-checkbox{
   .el-checkbox__input{
+    padding: 3px;
     .el-checkbox__inner{
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border: 2px solid #dcdfe6;
       &:hover{
         border-color:$gt-primary;
@@ -237,6 +245,7 @@ $round-hover-color: (
     }
   }
   .el-checkbox__label{
+    padding-left: 10px;
     font-size: 16px;
     color: $gt-text-dark !important;
   }
@@ -265,6 +274,8 @@ $round-hover-color: (
         min-width: 28px;
         color: $gt-primary;
         border-radius: 50%;
+        font-size: 16px;
+        line-height: 23px;
         &:hover{
           color: $gt-darker;
         }
@@ -343,6 +354,7 @@ $round-hover-color: (
 }
 .el-dialog__header{
   padding: 12px 40px 8px !important;
+  margin-right: 0 !important;
   .el-dialog__title{
     font-size: 16px;
     font-weight: 500;
