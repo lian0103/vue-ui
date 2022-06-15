@@ -27,3 +27,4 @@ export { default as GButtonClose } from './GButtonClose.vue';
 export { default as GPagination } from './GPagination.vue';
 export { default as GTabs } from './GTabs.vue';
 export { default as GImgUpload } from './GImgUpload.vue';
+export { default as GMessageToast } from './GMessageToast.vue';

@@ -8,6 +8,7 @@ import {
   GLayout,
   GLoading,
   GMessage,
+  GMessageToast,
   GCheckbox,
   GRadiobox,
   GSwitch,
@@ -124,7 +125,11 @@ const scrollList = [
   },
   {
     id: 's15',
-    name: '通知',
+    name: '通知-樣式RECTANGLE',
+  },
+  {
+    id: 's15b',
+    name: '通知-樣式TOAST',
   },
   {
     id: 's16',
@@ -353,6 +358,13 @@ const handleMsg = (type) => {
     title: 'hello~',
   });
 };
+
+const handleMsgToast = () => {
+  instance.appContext.config.globalProperties.handleMessageToastTrigger({
+    time: 2500,
+  });
+};
+
 const handleRowClick = (row) => {
   // console.log(row);
   instance.appContext.config.globalProperties.handleMessageTrigger({
@@ -382,6 +394,7 @@ const showTextSwitch = reactive({
   layoutText: false,
   loadText: false,
   msgText: false,
+  msgToastText: false,
   loadText: false,
   inputsText0: false,
   inputsText0_1: false,
@@ -446,6 +459,20 @@ const msgText = `\`\`\` js
  \`\`\` html
   <!-- 在頁面中加入 -->
   <g-message />
+ \`\`\`
+
+ `;
+const msgToastText = `\`\`\` js
+  import { getCurrentInstance } from 'vue';
+  const instance = getCurrentInstance();
+  instance.appContext.config.globalProperties.handleMessageToastTrigger({
+    time: 2500,
+  });
+ \`\`\`
+
+ \`\`\` html
+  <!-- 在頁面中加入 -->
+  <g-message-toast text='儲存完成~!' />
  \`\`\`
 
  `;
@@ -549,7 +576,7 @@ const buttonText2 = `\`\`\` html
  \`\`\`
 `;
 
-const buttonText3 = `\`\`\` html  
+const buttonText3 = `\`\`\` html
 <g-button round>按鈕</g-button>
 <g-button round type="yellow">按鈕</g-button>
 <g-button round type="red">按鈕</g-button>
@@ -833,7 +860,7 @@ const filterOptionsText = `\`\`\` html
 
 \`\`\``;
 
-const paginationTextJS = `\`\`\` javascript 
+const paginationTextJS = `\`\`\` javascript
 const curPage = ref(1);
 const handleUpdatePage = (page) => {
   curPage.value = page;
@@ -1338,7 +1365,7 @@ const imgUploadText = `\`\`\` html
       </div>
 
       <div class="mb-3 px-2 w-full md:w-3/4 relative">
-        <g-title :level="2" class="mb-3" id="s15">通知</g-title>
+        <g-title :level="2" class="mb-3" id="s15">通知-樣式RECTANGLE</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.msgText"
@@ -1385,6 +1412,34 @@ const imgUploadText = `\`\`\` html
         <v-md-editor
           v-if="showTextSwitch.msgText"
           v-model="msgText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4 relative">
+        <g-title :level="2" class="mb-3" id="s15b">通知-樣式TOAST</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.msgToastText"
+          statusLabel
+        />
+        <div class="flex justify-start mb-3">
+          <span class="w-1/2 md:w-1/3"
+            ><g-button
+              pill
+              type="second"
+              @click="
+                () => {
+                  handleMsgToast();
+                }
+              "
+              >顯示Message Toast</g-button
+            ></span
+          >
+        </div>
+        <v-md-editor
+          v-if="showTextSwitch.msgToastText"
+          v-model="msgToastText"
           mode="preview"
         ></v-md-editor>
       </div>
@@ -1741,6 +1796,7 @@ const imgUploadText = `\`\`\` html
 
   <g-message />
   <g-loading />
+  <g-message-toast text="儲存完成~!" />
 </template>
 
 <style lang="scss" scoped>
