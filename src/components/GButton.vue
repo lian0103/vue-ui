@@ -1,7 +1,8 @@
 <script setup>
 import { computed } from 'vue';
+import GIcons from './GIcons.vue';
 
-const { flat, pill, type, noBorder } = defineProps({
+const { flat, pill, type, noBorder, icon } = defineProps({
   flat: {
     type: Boolean,
   },
@@ -14,6 +15,9 @@ const { flat, pill, type, noBorder } = defineProps({
   },
   noBorder: {
     type: Boolean,
+  },
+  icon: {
+    type: String,
   },
 });
 
@@ -28,7 +32,7 @@ const classStr = computed(() => {
     return 'gt-btn-round-no-border';
   }
 
-  return 'gt-btn-round';
+  return 'gt-btn-round-no-border';
 });
 
 const typeStr = computed(() => {
@@ -62,7 +66,8 @@ const typeStr = computed(() => {
 </script>
 
 <template>
-  <button class="gt-btn" :class="[classStr, typeStr]">
+  <button class="gt-btn" :class="[classStr, typeStr, icon ? 'iconBtn' : '']">
+    <g-icons v-if="icon" :name="icon" />
     <slot></slot>
     <div class="textLine"></div>
   </button>
@@ -107,9 +112,8 @@ const typeStr = computed(() => {
   --btn-color-hover: #d9d9d9;
   --text-color: #55585e;
   &.gt-btn-round-no-border {
-    --btn-color: #fff;
-    --btn-color-hover: #f1f9f3;
-    color:#55585E !important;
+    --btn-color: #f0f0f0;
+    color: #55585e !important;
   }
 }
 
@@ -129,7 +133,7 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-round {
-  @apply rounded-4 shadow-md text-white border border-solid border-transparent;
+  @apply rounded-4  text-white border border-solid border-transparent;
   background: var(--btn-color);
   &:hover {
     background: var(--btn-color-hover);
@@ -149,7 +153,7 @@ const typeStr = computed(() => {
 
 .gt-btn-round-no-border {
   font-weight: 500;
-  @apply rounded-4 shadow-md text-white;
+  @apply rounded-4  text-white;
   background: var(--btn-color);
   &:hover {
     background: var(--btn-color-hover);
@@ -187,6 +191,10 @@ const typeStr = computed(() => {
   &:hover {
     background: var(--btn-color-hover);
   }
+}
+
+.iconBtn {
+  padding: 6px !important;
 }
 
 @keyframes textLine {

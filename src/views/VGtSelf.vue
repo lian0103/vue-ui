@@ -50,7 +50,7 @@ const scrollList = [
     id: 's1',
     name: '大樹後台layout',
   },
-    {
+  {
     id: 's2t02',
     name: '圖片上傳',
   },
@@ -407,7 +407,7 @@ const showTextSwitch = reactive({
   filterOptionText: false,
   paginationText: false,
   tabsText: false,
-  imgUploadText:false
+  imgUploadText: false,
 });
 
 const layoutText = `\`\`\` html
@@ -549,24 +549,15 @@ const buttonText2 = `\`\`\` html
  \`\`\`
 `;
 
-const buttonText3 = `\`\`\` html
-//ROUND-BORDER     
+const buttonText3 = `\`\`\` html  
 <g-button round>按鈕</g-button>
 <g-button round type="yellow">按鈕</g-button>
 <g-button round type="red">按鈕</g-button>
 <g-button round type="black">按鈕</g-button>
 
-//ROUND-NO-BORDER
-<g-button round noBorder>按鈕</g-button>
-<g-button round noBorder type="yellow">按鈕</g-button>
-<g-button round noBorder type="red">按鈕</g-button>
-<g-button round noBorder type="black">按鈕</g-button>
-
-//ROUND-OTHERS
-<g-button round noBorder type="white">按鈕</g-button>
-<g-button-file />
+//ROUND-ICON
+<g-button round type="black" icon="file" />
 <g-button-close />
-       
  \`\`\`
 `;
 
@@ -1508,7 +1499,7 @@ const imgUploadText = `\`\`\` html
         </div>
 
         <div class="mb-8 relative">
-          <g-title :level="2" class="mb-3" id="s20">ROUND-BORDER</g-title>
+          <g-title :level="2" class="mb-3" id="s20">ROUND</g-title>
           <g-switch
             class="absolute right-0 top-0"
             v-model="showTextSwitch.buttonText3"
@@ -1519,18 +1510,11 @@ const imgUploadText = `\`\`\` html
             <g-button round type="yellow">按鈕</g-button>
             <g-button round type="red">按鈕</g-button>
             <g-button round type="black">按鈕</g-button>
+            <g-button round type="white">按鈕</g-button>
           </div>
-          <g-title :level="2" class="mb-3" id="s20">ROUND-NO-BORDER</g-title>
-          <div class="w-full flex justify-between mb-3">
-            <g-button round noBorder>按鈕</g-button>
-            <g-button round noBorder type="yellow">按鈕</g-button>
-            <g-button round noBorder type="red">按鈕</g-button>
-            <g-button round noBorder type="black">按鈕</g-button>
-          </div>
-          <g-title :level="2" class="mb-3" id="s20">ROUND-OTHERS</g-title>
-          <div class="w-full flex justify-start mb-3 bg-red-300 p-4">
-            <g-button round noBorder type="white" class="mr-4">按鈕</g-button>
-            <g-button-file class="mr-4" />
+          <g-title :level="2" class="mb-3" id="s20">ROUND-ICON</g-title>
+          <div class="w-full flex justify-start mb-3 p-4">
+            <g-button round type="black" icon="file" class="mr-4" />
             <g-button-close />
           </div>
           <v-md-editor
