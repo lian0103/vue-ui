@@ -1,6 +1,7 @@
 {
   "name": "gt-front-ui",
-  "version": "0.0.12",
+  "author": "Jason Lien",
+  "version": "0.0.14",
   "files": [
     "dist"
   ],
