@@ -89,12 +89,12 @@ const handleNextPage = () => {
 const handlePageChange = (num) => {
   switch (num) {
     case 'pre-dot': {
-      current.value = firstPage;
+      current.value = current.value - 5;
       break;
     }
 
     case 'next-dot': {
-      current.value = lastPage;
+      current.value = current.value + 5;
       break;
     }
     default: {
