@@ -1,52 +1,59 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { GMenu } from '../components/indexGT';
 
 const Router = useRouter();
+const menuRoutes = [
+  {
+    label: '文件',
+    children: [
+      {
+        label: '指引',
+        icon: 'file',
+        path: '/doc',
+      },
+      {
+        label: '使用',
+        icon: 'plus',
+        path: '/use',
+      },
+      {
+        label: '安裝',
+        icon: 'download',
+        path: '/install',
+      },
+    ],
+  },
+  {
+    label: '元件',
+    children: [
+      {
+        label: 'Element',
+        icon: 'file',
+        path: '/element',
+      },
+      {
+        label: 'Quasar',
+        icon: 'file',
+        path: '/quasar',
+      },
+      {
+        label: 'GT開發',
+        icon: 'file',
+        path: '/gt-self',
+      },
+    ],
+  },
+];
 </script>
 
 <template>
-  <el-menu
-    class="gt-menu"
-    :default-active="Router.currentRoute._value.meta.idx"
-  >
-    <el-sub-menu index="1">
-      <template #title>
-        <g-icons name="calendar" class="w-6 mr-2" />
-        <span>文件</span>
-      </template>
-
-      <router-link to="/doc">
-        <el-menu-item index="1-1">指引</el-menu-item></router-link
-      >
-
-      <router-link to="/use">
-        <el-menu-item index="1-2">使用</el-menu-item></router-link
-      >
-
-      <router-link to="/install">
-        <el-menu-item index="1-3">安裝</el-menu-item></router-link
-      >
-    </el-sub-menu>
-    <el-sub-menu index="2">
-      <template #title>
-        <g-icons name="download" class="w-6 mr-2" />
-        <span>元件</span>
-      </template>
-      <!-- <router-link to="/elementPlus">
-        <el-menu-item index="2-1">ElementPlus</el-menu-item></router-link
-      > -->
-      <router-link to="/element">
-        <el-menu-item index="2-4">Element</el-menu-item></router-link
-      >
-      <router-link to="/quasar"
-        ><el-menu-item index="2-2"> Quasar</el-menu-item></router-link
-      >
-      <router-link to="/gt-self">
-        <el-menu-item index="2-3"> GT開發</el-menu-item></router-link
-      >
-    </el-sub-menu>
-  </el-menu>
+  <g-menu
+    class="mx-auto"
+    :active="Router.currentRoute._value.meta.idx"
+    :menu="menuRoutes"
+  />
 </template>
 
 <style lang="scss"></style>

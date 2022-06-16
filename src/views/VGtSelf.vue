@@ -32,6 +32,7 @@ import {
   GTabs,
   GImgUpload,
   GDialog,
+  GMenu,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -51,6 +52,10 @@ const scrollList = [
   {
     id: 's1',
     name: '大樹後台layout',
+  },
+  {
+    id: 's1b',
+    name: '選單',
   },
   {
     id: 's2t02',
@@ -411,6 +416,39 @@ const handleDialog = (target = 1) => {
   }
 };
 
+const menuRoutes = [
+  {
+    label: 'group1',
+    children: [
+      {
+        label: 'route1',
+        icon: '',
+        path: '/doc',
+      },
+      {
+        label: 'route2',
+        icon: '',
+        path: '/456',
+      },
+    ],
+  },
+  {
+    label: 'group2',
+    children: [
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '/456',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '/123',
+      },
+    ],
+  },
+];
+
 const showTextSwitch = reactive({
   layoutText: false,
   loadText: false,
@@ -443,7 +481,49 @@ const showTextSwitch = reactive({
   paginationText: false,
   tabsText: false,
   imgUploadText: false,
+  menuText: false,
 });
+
+const menuText = `\`\`\` js
+const menuRoutes = [
+  {
+    label: 'group1',
+    children: [
+      {
+        label: 'route1',
+        icon: '',
+        path: '/doc',
+      },
+      {
+        label: 'route2',
+        icon: '',
+        path: '/456',
+      },
+    ],
+  },
+  {
+    label: 'group2',
+    children: [
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '/456',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '/123',
+      },
+    ],
+  },
+];
+ \`\`\`
+
+ \`\`\` html
+<g-menu active="1-1" :menu="menuRoutes" />
+ \`\`\`
+
+ `;
 
 const layoutText = `\`\`\` html
 <g-layout headText="Great Tree UI" title="GT開發">
@@ -956,6 +1036,25 @@ const imgUploadText = `\`\`\` html
           mode="preview"
         ></v-md-editor>
       </div>
+
+      <div class="paragraphHead">
+        <g-title :level="1" class="mb-3" id="s1b">選單</g-title>
+      </div>
+      <div class="w-full md:w-3/4 mx-auto relative">
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.menuText"
+          statusLabel
+        />
+        <g-menu active="1-1" :menu="menuRoutes" />
+
+        <v-md-editor
+          v-if="showTextSwitch.menuText"
+          v-model="menuText"
+          mode="preview"
+        ></v-md-editor>
+      </div>
+
       <div class="paragraphHead">
         <g-title :level="1" class="mb-3">操作</g-title>
       </div>

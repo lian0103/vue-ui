@@ -29,4 +29,4 @@ export { default as GTabs } from './GTabs.vue';
 export { default as GImgUpload } from './GImgUpload.vue';
 export { default as GMessageToast } from './GMessageToast.vue';
 export { default as GDialog } from './GDialog.vue';
-
+export { default as GMenu } from './GMenu.vue';
