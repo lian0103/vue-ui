@@ -31,6 +31,7 @@ import {
   GPagination,
   GTabs,
   GImgUpload,
+  GDialog,
 } from '../components/indexGT';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -131,6 +132,7 @@ const scrollList = [
     id: 's15b',
     name: '通知-樣式TOAST',
   },
+  { id: 's15c', name: 'DIALOG' },
   {
     id: 's16',
     name: '標題',
@@ -390,11 +392,21 @@ const handleFile = (file) => {
   // console.log(file);
 };
 
+const dialogInfo = reactive({
+  show: false,
+  title: 'Hello',
+});
+
+const handleDialog = () => {
+  dialogInfo.show = true;
+};
+
 const showTextSwitch = reactive({
   layoutText: false,
   loadText: false,
   msgText: false,
   msgToastText: false,
+  dialogText: false,
   loadText: false,
   inputsText0: false,
   inputsText0_1: false,
@@ -473,6 +485,21 @@ const msgToastText = `\`\`\` js
  \`\`\` html
   <!-- 在頁面中加入 -->
   <g-message-toast text='儲存完成~!' />
+ \`\`\`
+
+ `;
+
+const dialogText = `\`\`\` js
+const dialogInfo = reactive({
+  show: false,
+  title: 'Hello',
+});
+ \`\`\`
+
+ \`\`\` html
+<g-dialog :title="dialogInfo.title" v-model="dialogInfo.show">
+  body~~
+</g-dialog>
  \`\`\`
 
  `;
@@ -1442,6 +1469,40 @@ const imgUploadText = `\`\`\` html
           v-model="msgToastText"
           mode="preview"
         ></v-md-editor>
+      </div>
+
+      <div class="mb-3 px-2 w-full md:w-3/4 relative">
+        <g-title :level="2" class="mb-3" id="s15b">DIALOG</g-title>
+        <g-switch
+          class="absolute right-0 top-0"
+          v-model="showTextSwitch.dialogText"
+          statusLabel
+        />
+        <div class="flex justify-start mb-3">
+          <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show"
+            >body~~</g-dialog
+          >
+          <span class="w-1/2 md:w-1/3"
+            ><g-button
+              pill
+              type="second"
+              @click="
+                () => {
+                  handleDialog();
+                }
+              "
+              >顯示Dialog</g-button
+            ></span
+          >
+        </div>
+        <template v-if="showTextSwitch.dialogText">
+          dialogInfo.show:{{ dialogInfo.show }}
+          <v-md-editor
+            v-if="showTextSwitch.dialogText"
+            v-model="dialogText"
+            mode="preview"
+          ></v-md-editor>
+        </template>
       </div>
 
       <div class="paragraphHead">
