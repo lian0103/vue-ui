@@ -100,7 +100,7 @@ onUpdated(() => {
         </div>
       </div>
       <div class="dialog-footer">
-        <g-button round type="black" class="btn-cancel" @click="handleClose"
+        <g-button round type="white" class="btn-cancel" @click="handleClose"
           >取消</g-button
         >
         <template v-if="mode == DialogEnum.COMFIRM">

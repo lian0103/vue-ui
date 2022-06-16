@@ -623,6 +623,7 @@ const buttonText3 = `\`\`\` html
 <g-button round type="yellow">按鈕</g-button>
 <g-button round type="red">按鈕</g-button>
 <g-button round type="black">按鈕</g-button>
+<g-button round type="white">按鈕</g-button>
 
 //ROUND-ICON
 <g-button round type="black" icon="file" />
