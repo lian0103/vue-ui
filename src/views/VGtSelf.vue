@@ -200,7 +200,7 @@ onMounted(() => {
   scrollTopArr.value = scrollList.map((item) => {
     // console.log(item.id, document.getElementById(item.id));
     return Math.floor(
-      document.getElementById(item.id).getBoundingClientRect()?.y
+      document.getElementById(item.id)?.getBoundingClientRect()?.y
     );
   });
   // console.log('scrollTopArr.value', scrollTopArr.value);
@@ -394,11 +394,21 @@ const handleFile = (file) => {
 
 const dialogInfo = reactive({
   show: false,
+  show2: false,
   title: 'Hello',
 });
 
-const handleDialog = () => {
-  dialogInfo.show = true;
+const handleDialog = (target = 1) => {
+  switch (target) {
+    case 1: {
+      dialogInfo.show = true;
+      break;
+    }
+    case 2: {
+      dialogInfo.show2 = true;
+      break;
+    }
+  }
 };
 
 const showTextSwitch = reactive({
@@ -492,6 +502,7 @@ const msgToastText = `\`\`\` js
 const dialogText = `\`\`\` js
 const dialogInfo = reactive({
   show: false,
+  show2: false,
   title: 'Hello',
 });
  \`\`\`
@@ -499,6 +510,10 @@ const dialogInfo = reactive({
  \`\`\` html
 <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show">
   body~~
+</g-dialog>
+
+<g-dialog v-model="dialogInfo.show2" mode="delete">
+  確定刪除嗎?
 </g-dialog>
  \`\`\`
 
@@ -1472,7 +1487,7 @@ const imgUploadText = `\`\`\` html
       </div>
 
       <div class="mb-3 px-2 w-full md:w-3/4 relative">
-        <g-title :level="2" class="mb-3" id="s15b">DIALOG</g-title>
+        <g-title :level="2" class="mb-3" id="s15c">DIALOG</g-title>
         <g-switch
           class="absolute right-0 top-0"
           v-model="showTextSwitch.dialogText"
@@ -1482,21 +1497,35 @@ const imgUploadText = `\`\`\` html
           <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show"
             >body~~</g-dialog
           >
+          <g-dialog v-model="dialogInfo.show2" mode="delete"
+            >確定刪除嗎?
+          </g-dialog>
           <span class="w-1/2 md:w-1/3"
             ><g-button
               pill
               type="second"
               @click="
                 () => {
-                  handleDialog();
+                  handleDialog(1);
                 }
               "
-              >顯示Dialog</g-button
+              >顯示Dialog Comfirm</g-button
+            ></span
+          >
+          <span class="w-1/2 md:w-1/3"
+            ><g-button
+              pill
+              type="red"
+              @click="
+                () => {
+                  handleDialog(2);
+                }
+              "
+              >顯示Dialog Delete</g-button
             ></span
           >
         </div>
         <template v-if="showTextSwitch.dialogText">
-          dialogInfo.show:{{ dialogInfo.show }}
           <v-md-editor
             v-if="showTextSwitch.dialogText"
             v-model="dialogText"

@@ -1,7 +1,20 @@
 <script setup>
-import { computed, watch, ref, onUpdated } from 'vue';
+import { computed, watch, ref, onUpdated, onMounted } from 'vue';
 
-const { modelValue, title, align, handleComfirmCallback } = defineProps({
+const DialogEnum = {
+  COMFIRM: 'comfirm',
+  DELETE: 'delete',
+};
+
+const {
+  modelValue,
+  title,
+  align,
+  handleComfirmCallback,
+  mode,
+  maxWidth,
+  maxHeight,
+} = defineProps({
   modelValue: {
     type: Boolean,
     default: false,
@@ -17,8 +30,22 @@ const { modelValue, title, align, handleComfirmCallback } = defineProps({
     type: Function,
     default: () => {},
   },
+  mode: {
+    type: String,
+    default: 'comfirm',
+  },
+  maxWidth: {
+    type: Number,
+    default: 480,
+  },
+  maxHeight: {
+    type: Number,
+    default: 400,
+  },
 });
 const show = ref(modelValue);
+const dialogBodyIn = ref();
+const isScroll = ref(false);
 const emit = defineEmits(['update:modelValue']);
 
 const handleComfirm = () => {
@@ -40,6 +67,10 @@ const eventHandle = () => {
   emit('update:modelValue', false);
 };
 
+onUpdated(() => {
+  let bodyHight = Math.ceil(dialogBodyIn.value.getBoundingClientRect()?.height);
+  isScroll.value = bodyHight > maxHeight ? true : false;
+});
 </script>
 
 <template>
@@ -52,18 +83,32 @@ const eventHandle = () => {
       class="gt-dialog"
       :class="[`text-${align}`, modelValue ? 'active' : '']"
       @click.prevent="() => {}"
+      :style="{ maxWidth: maxWidth + 'px' }"
     >
       <div class="dialog-head">
         {{ title }} <g-button-close class="closeIcon" @click="handleClose" />
       </div>
-      <div class="dialog-body">
-        <slot></slot>
+      <div
+        class="dialog-body"
+        :style="{
+          maxHeight: maxHeight + 'px',
+          overflowY: isScroll ? 'scroll' : 'none',
+        }"
+      >
+        <div class="dialog-body-in" ref="dialogBodyIn">
+          <slot></slot>
+        </div>
       </div>
       <div class="dialog-footer">
         <g-button round type="black" class="btn-cancel" @click="handleClose"
           >取消</g-button
         >
-        <g-button round @click="handleComfirm">確定</g-button>
+        <template v-if="mode == DialogEnum.COMFIRM">
+          <g-button round @click="handleComfirm">確定</g-button>
+        </template>
+        <template v-else>
+          <g-button round type="red" @click="handleComfirm">刪除</g-button>
+        </template>
       </div>
     </div>
   </div>
@@ -82,7 +127,8 @@ const eventHandle = () => {
   }
 }
 .gt-dialog {
-  width: 380px;
+  min-width: 380px;
+  // max-width: 50vw;
   display: none;
   @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
   @apply flex-col bg-white text-gray1;
@@ -115,10 +161,29 @@ const eventHandle = () => {
     font-weight: 400;
     line-height: 23px;
     font-weight: 400;
+    .dialog-body-in {
+      width: 100%;
+      height: 100%;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 1px;
+      background-color: $gt-gray;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: $gt-gray-variant;
+      &:hover {
+        background-color: $gt-gray-dark;
+      }
+    }
   }
   .dialog-footer {
     height: 56px;
     padding: 10px;
+    @apply border-t border-solid border-color3;
 
     @apply flex justify-end items-center;
     .btn-cancel {
