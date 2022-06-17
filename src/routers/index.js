@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import gtDoc from '../views/gtDoc.js';
 
 export const routes = [
   {
@@ -55,12 +56,19 @@ export const routes = [
         },
         meta: { title: 'Quasar元件', idx: '2-2' },
       },
+      // {
+      //   path: 'gt-self',
+      //   components: {
+      //     mainView: () => import('../views/VGtSelf.vue'),
+      //   },
+      //   meta: { title: 'GT開發', idx: '2-3' },
+      // },
       {
-        path: 'gt-self',
+        path: 'gt/:componentName',
         components: {
-          mainView: () => import('../views/VGtSelf.vue'),
+          mainView: () => import('../views/VGtComponent.vue'),
         },
-        meta: { title: 'GT開發', idx: '2-3' },
+        meta: { title: 'GT開發', idx: null },
       },
     ],
   },
@@ -77,6 +85,15 @@ export const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  // console.log(to);
+  if (to.path.includes('/gt/') && !gtDoc[to.params.componentName]) {
+    return next('/doc');
+  }
+
+  next();
 });
 
 export default router;

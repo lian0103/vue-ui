@@ -18,7 +18,7 @@ onBeforeUpdate(() => {
   const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
   timeline
     .to('.gt-content', { opacity: 0 })
-    .from('.gt-header', { y: '-100%' })
+    // .from('.gt-header', { y: '-100%' })
     .fromTo('.gt-content', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
 });
 </script>

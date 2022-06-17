@@ -48,9 +48,9 @@ const { active, menu } = defineProps({
 });
 
 const activeInfo = reactive({
-  menuGroupActiveArr: [parseInt(active.split('-')[0])],
-  menuGroupActive: parseInt(active.split('-')[0]),
-  menuGroupItemActive: parseInt(active.split('-')[1]),
+  menuGroupActiveArr: [parseInt(active?.split('-')[0])],
+  menuGroupActive: parseInt(active?.split('-')[0]),
+  menuGroupItemActive: parseInt(active?.split('-')[1]),
 });
 
 const menuComputed = computed(() => {

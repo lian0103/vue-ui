@@ -1,9 +1,13 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { GMenu } from '../components/indexGT';
+import gtDoc from './gtDoc';
 
 const Router = useRouter();
+const Route = useRoute();
+const active = ref(Router.currentRoute._value.meta.idx ||  gtDoc[Route.params.componentName]?.menuIndex);
+
 const menuRoutes = [
   {
     label: '文件',
@@ -26,7 +30,7 @@ const menuRoutes = [
     ],
   },
   {
-    label: '元件',
+    label: '覆寫元件',
     children: [
       {
         label: 'Element',
@@ -38,22 +42,27 @@ const menuRoutes = [
         icon: 'file',
         path: '/quasar',
       },
-      {
-        label: 'GT開發',
-        icon: 'file',
-        path: '/gt-self',
-      },
+    ],
+  },
+  {
+    label: 'GT元件',
+    children: [
+      ...Object.keys(gtDoc).map((key) => {
+        return {
+          label: gtDoc[key].name,
+          icon: '',
+          path: `/gt/${key}`,
+        };
+      }),
     ],
   },
 ];
+
+// console.log(menuRoutes);
 </script>
 
 <template>
-  <g-menu
-    class="mx-auto"
-    :active="Router.currentRoute._value.meta.idx"
-    :menu="menuRoutes"
-  />
+  <g-menu class="mx-auto" :active="active" :menu="menuRoutes" />
 </template>
 
 <style lang="scss"></style>
