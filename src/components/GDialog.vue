@@ -10,7 +10,7 @@ const {
   modelValue,
   title,
   align,
-  handleComfirmCallback,
+  handleCallback,
   mode,
   maxWidth,
   maxHeight,
@@ -26,7 +26,7 @@ const {
     type: String,
     default: 'left',
   },
-  handleComfirmCallback: {
+  handleCallback: {
     type: Function,
     default: () => {},
   },
@@ -49,7 +49,7 @@ const isScroll = ref(false);
 const emit = defineEmits(['update:modelValue']);
 
 const handleComfirm = () => {
-  handleComfirmCallback();
+  handleCallback();
   emit('update:modelValue', false);
 };
 
