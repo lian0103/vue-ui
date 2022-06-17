@@ -111,7 +111,7 @@ const handleRouteTo = (path, gIdx, cIdx) => {
       />
 
       <template v-if="item.active">
-        <div class="childBox">
+        <div class="childBox" @click.stop="()=>{}">
           <div class="line"></div>
           <div
             class="gt-menu-group-item"
