@@ -68,7 +68,7 @@ export const routes = [
         components: {
           mainView: () => import('../views/VGtComponent.vue'),
         },
-        meta: { title: 'GT開發', idx: null },
+        meta: { title: 'GT元件', idx: null },
       },
     ],
   },
