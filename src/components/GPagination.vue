@@ -186,7 +186,7 @@ const handlePageChange = (num) => {
       @apply text-main cursor-pointer select-none;
       width: 34px;
       height: 40px;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 34px;
       text-align: center;
       padding: 2px 0;

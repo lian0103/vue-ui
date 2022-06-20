@@ -470,7 +470,7 @@ const handleTimePick = () => {
     }
 
     .wdStr {
-      font-weight: 500;
+      font-weight: 400;
       height: 41px;
       padding: 10px 13px;
       @apply row-start-2 row-end-3 select-none;

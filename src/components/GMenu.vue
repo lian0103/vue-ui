@@ -152,7 +152,7 @@ const handleRouteTo = (path, gIdx, cIdx) => {
     width: 100%;
     min-height: 36px;
     padding: 8px 0;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     @apply text-gray1 flex justify-between flex-wrap cursor-pointer;

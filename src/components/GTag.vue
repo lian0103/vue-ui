@@ -82,7 +82,7 @@ const mapClass = () => {
   padding: 4px 10px;
   height: 29px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   border-radius: 5px;

@@ -283,7 +283,7 @@ onMounted(() => {
     @apply bg-soft flex flex-shrink-0 justify-start items-center;
     .head-column {
       padding: 7px 9px;
-      font-weight: 500;
+      font-weight: 400;
       font-size: 16px;
       line-height: 24px;
       overflow-wrap: break-word;

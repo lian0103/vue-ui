@@ -147,7 +147,7 @@ onUpdated(() => {
     width: 100%;
     height: 44px;
     padding: 12px 10px 8px 40px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 24px;
     @apply relative;
     .closeIcon {

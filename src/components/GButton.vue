@@ -152,7 +152,7 @@ const typeStr = computed(() => {
 }
 
 .gt-btn-round-no-border {
-  font-weight: 500;
+  font-weight: 400;
   @apply rounded-4  text-white;
   background: var(--btn-color);
   &:hover {
