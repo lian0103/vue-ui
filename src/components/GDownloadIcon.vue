@@ -63,8 +63,7 @@ onMounted(() => {
     top: 3px;
     width: 22px;
     height: 22px;
-    @apply rounded-full;
-    background-color: var(--gt-bg-color);
+    @apply rounded-full bg-gray3;
     &.completed {
       width: 30px;
       height: 30px;
