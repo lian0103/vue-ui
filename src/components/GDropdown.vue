@@ -19,14 +19,14 @@ export default {
     const hasSelect = ref(false);
     const handleIsShow = (childClick = false) => {
       // console.log('childClick', childClick);
-      if (props.clicked) {
+      if (props.clicked && !childClick) {
         let show = !isShow.value;
         isShow.value = show;
         isHover.value = false;
       }
       if (childClick) {
-        isShow.value = false;
-        isHover.value = false;
+        // isShow.value = false;
+        // isHover.value = false;
       }
     };
 
@@ -70,8 +70,8 @@ export default {
       props.options?.map((item) => {
         // console.log(item.label);
         let itemWidth = props.icon
-          ? item.label.length * 16
-          : item.label.length * 14;
+          ? item.label.length * 12 
+          : item.label.length * 13 ;
         if (itemWidth > maxWidth.value) {
           maxWidth.value = itemWidth;
         }
@@ -137,7 +137,7 @@ export default {
               class: 'gt-dropdown-span',
             },
             [
-              props.icon ? h(GIcons, { name: 'file' }) : '',
+              // props.icon ? h(GIcons, { name: 'file',class:'pre-icon' }) : '',
               h('span', { class: textClassComputed.value }, [
                 labelComputed.value,
               ]),
@@ -168,7 +168,7 @@ export default {
 .gt-dropdown {
   min-width: 120px;
   height: 36px;
-  padding: 0 30px 0 12px;
+  padding: 0 47px 0 14px;
   letter-spacing: 0.7px;
   @apply bg-white border border-solid border-gray2 rounded-md select-none;
   @apply flex justify-start items-center relative cursor-pointer;
@@ -176,17 +176,20 @@ export default {
     height: 36px;
     @apply w-full leading-9 overflow-hidden;
     @apply flex justify-start items-center;
+    .pre-icon{
+      margin-left: 5px;
+    }
     svg {
       width: 22px;
     }
     .span-text {
-      margin-left: 5px;
+      // margin-left: 5px;
     }
   }
 
   .gt-dropdown-icon {
     @apply absolute;
-    right: 8px;
+    right: 0px;
     svg {
       width: 22px;
     }

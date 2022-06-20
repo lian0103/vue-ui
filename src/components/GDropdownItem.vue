@@ -1,5 +1,5 @@
 <script>
-import { computed } from '@vue/runtime-core';
+import { computed, ref } from 'vue';
 export default {
   name: 'gt-dropdown-item',
   inheritAttrs: false,
@@ -31,23 +31,32 @@ const { option, label, value, icon, parentValue, handleChildClick } =
       default: () => {},
     },
   });
+const isCurrentClick = ref(false);
+
 const isCurrent = computed(() => {
   return parentValue.value === option.value;
 });
+
+const handleMouseLeave = () => {
+  // console.log('in');
+  isCurrentClick.value = false;
+};
 </script>
 
 <template>
   <div
     v-if="label"
+    @mouseleave="handleMouseLeave"
     class="gt-dropdown-item"
-    :class="isCurrent ? 'current' : ''"
+    :class="isCurrentClick ? 'curClicked' : isCurrent ? 'current' : ''"
     @click.stop="
       () => {
         handleChildClick(value || label);
+        isCurrentClick = true;
       }
     "
   >
-    <g-icons v-if="icon" class="text-right" name="file" />
+    <g-icons v-if="icon" class="text-right icon" name="check" />
     <span :class="isCurrent ? 'text-main' : ''">{{ label }}</span>
   </div>
 </template>
@@ -62,7 +71,7 @@ const isCurrent = computed(() => {
   border-radius: 5px;
   letter-spacing: 0.7px;
   &:hover {
-    @apply bg-color1;
+    @apply bg-color1 text-main;
   }
   svg {
     width: 22px;
@@ -71,8 +80,13 @@ const isCurrent = computed(() => {
     @apply overflow-hidden;
   }
   &.current {
-    @apply bg-gray2;
+    @apply text-main;
   }
+
+  &.curClicked {
+    @apply bg-gray2 text-main;
+  }
+
   .text-right {
     margin-right: 5px;
   }
