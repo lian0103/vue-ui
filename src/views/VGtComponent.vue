@@ -657,7 +657,7 @@ const handleCallback = () => {
             :options="[
               { label: 'Aaaa', value: 1 },
               { label: 'Bbbb', value: 2 },
-              { label: 'Gggggeeeeewwww', value: 3 },
+              { label: 'Gw', value: 3 },
             ]"
             clicked
             icon

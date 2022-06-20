@@ -64,8 +64,17 @@ export default {
         : props.modelValue;
     });
 
+    const maxWidth = ref(0);
+
     const childs =
       props.options?.map((item) => {
+        // console.log(item.label);
+        let itemWidth = props.icon
+          ? item.label.length * 16
+          : item.label.length * 14;
+        if (itemWidth > maxWidth.value) {
+          maxWidth.value = itemWidth;
+        }
         return h(GDropdownItem, {
           option: item,
           label: item.label,
@@ -115,6 +124,7 @@ export default {
           class: classHoverComputed.value,
           onMouseenter: handleMouseenter,
           onMouseleave: handleLeave,
+          style: { width: maxWidth.value + 'px' },
           onClick: (e) => {
             e.stopPropagation();
             handleIsShow();
@@ -156,11 +166,11 @@ export default {
 
 <style lang="scss">
 .gt-dropdown {
-  max-width: 140px;
+  min-width: 120px;
   height: 36px;
   padding: 0 30px 0 12px;
   letter-spacing: 0.7px;
-  @apply w-full bg-white border border-solid border-gray2 rounded-md select-none;
+  @apply bg-white border border-solid border-gray2 rounded-md select-none;
   @apply flex justify-start items-center relative cursor-pointer;
   .gt-dropdown-span {
     height: 36px;

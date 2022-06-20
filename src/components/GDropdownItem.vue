@@ -55,7 +55,7 @@ const isCurrent = computed(() => {
 <style lang="scss">
 .gt-dropdown-item {
   @apply w-full flex justify-start items-center cursor-pointer;
-  max-width: 126px;
+  width: calc(100% - 14px);
   height: 36px;
   padding: 0 6px 0 12px;
   margin: 3px 7px;
