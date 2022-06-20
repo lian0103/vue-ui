@@ -499,11 +499,11 @@ const menuRoutes = [
    \`\`\`
   
    \`\`\` html
-  <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show" :handleCallback="handleCallback">
+  <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show" :handleCallback="handleCallback" size="sm || md || lg">
     body~~
   </g-dialog>
   
-  <g-dialog v-model="dialogInfo.show2" mode="delete" :handleCallback="handleCallback">
+  <g-dialog v-model="dialogInfo.show2" mode="delete" :handleCallback="handleCallback" size="sm || md || lg">
     確定刪除嗎?
   </g-dialog>
    \`\`\`

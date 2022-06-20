@@ -4,17 +4,12 @@ import { computed, watch, ref, onUpdated, onMounted } from 'vue';
 const DialogEnum = {
   COMFIRM: 'comfirm',
   DELETE: 'delete',
+  lg: { maxWidth: 1200, maxHeight: window.innerHeight - 200 },
+  md: { maxWidth: 800, maxHeight: window.innerHeight - 200 },
+  sm: { maxWidth: 360, maxHeight: window.innerHeight - 200 },
 };
 
-const {
-  modelValue,
-  title,
-  align,
-  handleCallback,
-  mode,
-  maxWidth,
-  maxHeight,
-} = defineProps({
+const { modelValue, title, align, handleCallback, mode, size } = defineProps({
   modelValue: {
     type: Boolean,
     default: false,
@@ -34,14 +29,25 @@ const {
     type: String,
     default: 'comfirm',
   },
-  maxWidth: {
-    type: Number,
-    default: 480,
+  size: {
+    type: String,
+    default: 'sm',
   },
-  maxHeight: {
-    type: Number,
-    default: 400,
-  },
+  // maxWidth: {
+  //   type: Number,
+  //   default: 480,
+  // },
+  // maxHeight: {
+  //   type: Number,
+  //   default: 400,
+  // },
+});
+
+const maxWidth = computed(() => {
+  return DialogEnum[size]?.maxWidth || 360;
+});
+const maxHeight = computed(() => {
+  return DialogEnum[size]?.maxHeight || 820;
 });
 const show = ref(modelValue);
 const dialogBodyIn = ref();
@@ -69,7 +75,7 @@ const eventHandle = () => {
 
 onUpdated(() => {
   let bodyHight = Math.ceil(dialogBodyIn.value.getBoundingClientRect()?.height);
-  isScroll.value = bodyHight > maxHeight ? true : false;
+  isScroll.value = bodyHight > maxHeight.value ? true : false;
 });
 </script>
 
@@ -127,7 +133,8 @@ onUpdated(() => {
   }
 }
 .gt-dialog {
-  min-width: 380px;
+  width: 100%;
+  // min-width: 380px;
   // max-width: 50vw;
   display: none;
   @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
