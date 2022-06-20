@@ -50,6 +50,7 @@ const {
   },
 });
 
+const gtTable = ref();
 const slots = useSlots();
 const slotColumns = Object.keys(slots);
 
@@ -88,11 +89,18 @@ const dataWithStatus = ref([
   }),
 ]);
 
+const isOverflowX = ref(false);
+
 const tableWidthComputed = computed(() => {
-  let width = columnsComputed.value
-    .map((item) => item.width)
-    .reduce((a, b) => a + b);
-  return width + 80;
+  let width =
+    columnsComputed.value.map((item) => item.width).reduce((a, b) => a + b) +
+    80;
+
+  if (width > Math.ceil(gtTable.value?.getBoundingClientRect()?.width)) {
+    isOverflowX.value = true;
+  }
+
+  return width;
 });
 
 const tableMaxHeightComputed = computed(() => {
@@ -152,7 +160,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gt-table-wrapper" :class="isLoading ? 'overflow-hidden' : ''">
+  <div
+    ref="gtTable"
+    class="gt-table-wrapper"
+    :class="
+      isLoading ? 'overflow-hidden' : isOverflowX ? 'overflow-x-scroll' : ''
+    "
+  >
     <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
       <div class="table-head">
         <template v-if="isCheckBox">
@@ -242,7 +256,7 @@ onMounted(() => {
   border-radius: 8px;
   padding-bottom: 10px;
   @apply bg-white relative;
-  overflow-x: scroll;
+  // overflow-x: scroll;
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
