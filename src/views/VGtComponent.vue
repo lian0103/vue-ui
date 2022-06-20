@@ -282,6 +282,8 @@ const handleFile = (file) => {
 const handleCallback = () => {
   alert(123);
 };
+
+const handleUpdatePage = (val) => {};
 </script>
 
 <template>
