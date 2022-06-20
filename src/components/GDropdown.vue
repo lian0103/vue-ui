@@ -19,9 +19,13 @@ export default {
     const hasSelect = ref(false);
     const handleIsShow = (childClick = false) => {
       // console.log('childClick', childClick);
-      if (props.clicked || childClick) {
+      if (props.clicked) {
         let show = !isShow.value;
         isShow.value = show;
+        isHover.value = false;
+      }
+      if (childClick) {
+        isShow.value = false;
         isHover.value = false;
       }
     };
@@ -84,6 +88,26 @@ export default {
       return arr;
     });
 
+    const eventHandle = () => {
+      //   console.log('aaa');
+      isShow.value = false;
+    };
+
+    watch(
+      () => isShow.value,
+      (val, oldVal) => {
+        if (val && document.getElementsByTagName('body')[0]) {
+          document
+            .getElementsByTagName('body')[0]
+            .addEventListener('click', eventHandle, false);
+        } else {
+          document
+            .getElementsByTagName('body')[0]
+            ?.removeEventListener('click', eventHandle);
+        }
+      }
+    );
+
     return () =>
       h(
         'div',
@@ -91,11 +115,17 @@ export default {
           class: classHoverComputed.value,
           onMouseenter: handleMouseenter,
           onMouseleave: handleLeave,
+          onClick: (e) => {
+            e.stopPropagation();
+            handleIsShow();
+          },
         },
         [
           h(
             'span',
-            { class: 'gt-dropdown-span', onClick: () => handleIsShow() },
+            {
+              class: 'gt-dropdown-span',
+            },
             [
               props.icon ? h(GIcons, { name: 'file' }) : '',
               h('span', { class: textClassComputed.value }, [
@@ -105,7 +135,9 @@ export default {
           ),
           h(
             'span',
-            { class: 'gt-dropdown-icon', onClick: () => handleIsShow() },
+            {
+              class: 'gt-dropdown-icon',
+            },
             [h(GIcons, { name: 'chevronDown' })]
           ),
           h(

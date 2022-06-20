@@ -41,7 +41,7 @@ const isCurrent = computed(() => {
     v-if="label"
     class="gt-dropdown-item"
     :class="isCurrent ? 'current' : ''"
-    @click="
+    @click.stop="
       () => {
         handleChildClick(value || label);
       }
