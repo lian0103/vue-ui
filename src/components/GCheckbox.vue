@@ -85,7 +85,7 @@ const onClick = () => {
   <div class="gt-checkbox" @click.prevent="onClick">
     <input type="checkbox" :checked="isChecked" />
     <div :class="classComputed">
-      <g-icons v-show="isChecked" class="icon" name="check" size="sm" />
+      <g-icons v-show="isChecked" class="icon" name="check" size="md" />
     </div>
     <span
       class="label select-none"
@@ -105,8 +105,8 @@ const onClick = () => {
 .box-white {
   --bg-color: #fff;
   --border-color: #aaa;
-  &.checked{
-     --border-color: #32a03d;
+  &.checked {
+    --border-color: #32a03d;
   }
 }
 
@@ -123,7 +123,7 @@ const onClick = () => {
     height: 17px;
     @apply absolute left-0 rounded-sm;
     top: 2px;
-    border-width: 1.5px;
+    border-width: 1px;
     @apply border-solid;
     border-color: var(--border-color);
     background-color: var(--bg-color);
@@ -134,19 +134,24 @@ const onClick = () => {
     @apply bg-main;
     .icon {
       @apply text-white;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      left: -2px;
+      top: -2px;
     }
   }
   .disabled {
-    border-width: 1.5px;
+    border-width: 1px;
     @apply border border-solid border-gray0;
     @apply bg-white;
     @apply cursor-not-allowed;
     .icon {
-      @apply text-color1;
+      @apply text-gray0;
     }
   }
   .label {
-    padding: 0 10px 0 30px;
+    padding: 0 10px 0 29px;
     &.label-disabled {
       @apply cursor-not-allowed text-gray0;
     }

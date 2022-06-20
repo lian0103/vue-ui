@@ -90,13 +90,13 @@ const onClick = () => {
   .checked {
     @apply flex justify-center items-center;
     .circle {
-      @apply w-1/2 h-1/2 bg-main rounded-full;
+      @apply bg-main rounded-full w-1/2 h-1/2;
     }
   }
   .disabled {
     @apply cursor-not-allowed bg-white border-1.5 border-solid border-gray0;
     .circle {
-      @apply w-1/2 h-1/2 rounded-full bg-gray0;
+      @apply rounded-full bg-gray0;
     }
   }
   .label {
