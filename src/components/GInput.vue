@@ -32,6 +32,7 @@ const {
   validResult,
   handleValChange,
   handleRulesValid,
+  size,
 } = defineProps({
   name: {
     default: null,
@@ -77,6 +78,10 @@ const {
   handleRulesValid: {
     default: async () => {},
   },
+  size: {
+    type: String,
+    default: 'sm',
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -93,6 +98,11 @@ const classComputed = computed(() => {
   if (validResult[name]?.message) {
     classStr.push('gt-input-error');
   }
+  if (size === 'sm') {
+    console.log('in?')
+    classStr.push('gt-input-sm');
+  }
+
   return classStr;
 });
 
@@ -159,7 +169,7 @@ const handleClear = () => {
     @apply w-full text-base text-gray4 bg-color2 rounded-lg;
     @apply outline outline-1 outline-gray2;
     max-width: 240px;
-    height: 36px;
+    height: 43px;
     padding: 10px 34px 10px 12px;
 
     // &:focus {
@@ -176,6 +186,11 @@ const handleClear = () => {
 
     &.gt-input-error {
       @apply outline-danger;
+    }
+
+    &.gt-input-sm{
+      height: 36px;
+      padding: 6.5px 34px 6.5px 12px;
     }
   }
 

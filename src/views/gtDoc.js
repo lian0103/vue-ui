@@ -252,36 +252,20 @@ const menuRoutes = [
   GInput: {
     name: '輸入欄/Input',
     md: `\`\`\` html
-  <g-input v-model="inputs.input0" />
-  <g-input v-model="inputs.input0" label="文字0" />
-  <g-input v-model="inputs.input2" type="number" label="數字0" />
-  <g-input v-model="inputs.input1" type="password" label="密碼0" />
-  
-  <g-input v-model="inputs.input0" green />
-  <g-input v-model="inputs.input0" green label="文字1" />
-  <g-input v-model="inputs.input2" type="number" green label="數字1" />
-  <g-input v-model="inputs.input1" green type="password" label="密碼1" />
+    //輸入框-size<
+    //middle
+    <g-input v-model="inputs.input0" size="md" />
+    //small
+    <g-input v-model="inputs.input0" size="sm" />
 
-  <g-dropdown
-    v-model="inputs.dropdown1"
-    :options="[
-        { label: 'Aaaa', value: 1 },
-        { label: 'Bbbb', value: 2 },
-        { label: 'Gggggeeeeewwww', value: 3 },
-    ]"
-    clicked
-    icon
-   />
+    //>輸入框-type
+    //number
+    <g-input v-model="inputs.input2" type="number" label="數字" />
+    //password
+    <g-input v-model="inputs.input1" type="password" label="密碼" />
 
-  <g-dropdown
-    v-model="inputs.dropdown1"
-    :options="[
-        { label: 'Aaaa', value: 1 },
-        { label: 'Bbbb', value: 2 },
-        { label: 'Gggggeeeeewwww', value: 3 },
-    ]"
-    hover
-  />
+    //輸入框-green
+    <g-input v-model="inputs.input0" green label="欄位" />
    \`\`\`
   `,
     menuIndex: '3-11',
