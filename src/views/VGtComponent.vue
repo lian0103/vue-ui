@@ -681,6 +681,7 @@ const handleUpdatePage = (val) => {};
               { label: 'Bbbb', value: 2 },
               { label: 'Gggggeeeeewwww', value: 3 },
             ]"
+            icon
             hover
           /></div
       ></template>

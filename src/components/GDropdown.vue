@@ -69,9 +69,7 @@ export default {
     const childs =
       props.options?.map((item) => {
         // console.log(item.label);
-        let itemWidth = props.icon
-          ? item.label.length * 12 
-          : item.label.length * 13 ;
+        let itemWidth = item.label.length * 12 + 37;
         if (itemWidth > maxWidth.value) {
           maxWidth.value = itemWidth;
         }
@@ -176,7 +174,7 @@ export default {
     height: 36px;
     @apply w-full leading-9 overflow-hidden;
     @apply flex justify-start items-center;
-    .pre-icon{
+    .pre-icon {
       margin-left: 5px;
     }
     svg {
