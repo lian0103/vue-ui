@@ -17,10 +17,6 @@ import createHighlightLinesPlugin from '@kangc/v-md-editor/lib/plugins/highlight
 import '@kangc/v-md-editor/lib/plugins/highlight-lines/highlight-lines.css';
 import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
 
-// 測試打包後檔案
-// import '../dist/GT/style.css'
-// import "https://unpkg.com/gt-front-ui@0.0.12/dist/GT/style.css"
-
 // Prism
 import Prism from 'prismjs';
 // highlight code

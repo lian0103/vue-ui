@@ -34,7 +34,7 @@ onBeforeUpdate(() => {
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
-        <span>v0.0.12</span>
+        <span>v0.0.15</span>
       </div>
     </template>
     <template #content>

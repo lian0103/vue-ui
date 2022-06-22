@@ -1,16 +1,15 @@
 <script setup>
-const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.12 \n \`\`\`';
+const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.15 \n \`\`\`';
 const importCss0 = `
 \`\`\` html
-  <!-- index.html -->
+  //index.html
   <!-- 載入css方式一 -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.12/dist/GT/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.15/dist/GT/style.css"/>
 \`\`\`
 
-\`\`\` js
-  // main.js
-  //載入css方式二
-  import "https://unpkg.com/gt-front-ui@0.0.12/dist/GT/style.css"
+\`\`\` css
+  //style.css
+  @import "https://unpkg.com/gt-front-ui@0.0.15/dist/GT/style.css"
 \`\`\`
 
 `;
@@ -18,19 +17,19 @@ const importCss0 = `
 const importCss1 = `
 
 \`\`\` html
-  <!-- index.html -->
-  <!-- 載入css方式一:Element -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.12/dist/Element/style.css"/>
-  <!-- 載入css方式一:Quasar -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.12/dist/Quasar/style.css"/>
+  //index.html
+  <!-- Element -->
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.15/dist/Element/style.css"/>
+  <!-- Quasar -->
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.15/dist/Quasar/style.css"/>
 \`\`\`
 
-\`\`\` js
-  // main.js
-  //載入css方式二:Element
-  import "https://unpkg.com/gt-front-ui@0.0.12/dist/Element/style.css"
-  //載入css方式二:Quasar
-  import "https://unpkg.com/gt-front-ui@0.0.12/dist/Quasar/style.css"
+\`\`\` css
+  //style.css
+  //Element
+  @import "https://unpkg.com/gt-front-ui@0.0.15/dist/Element/style.css"
+  //Quasar
+  @import "https://unpkg.com/gt-front-ui@0.0.15/dist/Quasar/style.css"
 \`\`\`
 
 `;
@@ -73,7 +72,7 @@ const quasarText = `\`\`\` scss
       <g-title :level="2" class="mb-4" id="install">
         使用ElementPlus覆寫樣式或Quasar覆寫樣式 (<a
           class="text-second"
-          href="https://unpkg.com/browse/gt-front-ui@0.0.12/dist/"
+          href="https://unpkg.com/browse/gt-front-ui@0.0.15/dist/"
           >原則上選擇最新版本號</a
         >)
       </g-title>
