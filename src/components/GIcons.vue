@@ -71,13 +71,17 @@ const classComputed = computed(() => {
 </script>
 
 <template>
-  <div class="text-center" :class="classComputed">
+  <div class="gt-icon" :class="classComputed">
     <!-- <img class="w-full" :src="iconNameMap[name]" alt="icon" /> -->
     <component class="gt-svg-icon" :is="iconNameMap[name]" />
   </div>
 </template>
 
 <style lang="scss">
+.gt-icon {
+  @apply text-center;
+}
+
 .icon-md {
   width: 24px;
   height: 24px;

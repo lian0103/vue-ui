@@ -4,7 +4,7 @@ import GIcons from './GIcons.vue';
 
 <template>
   <div class="gt-loading-icon">
-    <g-icons name="loading" class="w-full" />
+    <g-icons name="loading" />
   </div>
 </template>
 

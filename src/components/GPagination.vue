@@ -109,7 +109,7 @@ const handlePageChange = (num) => {
     <div class="flex">
       <div
         class="pre-next pre"
-        :class="current == firstPage ? 'disable cursor-not-allowed' : ''"
+        :class="current == firstPage ? 'disable' : ''"
         @click="handlePrePage"
       >
         <g-icons name="chevronLeft" class="w-8" />上一頁
@@ -148,7 +148,7 @@ const handlePageChange = (num) => {
       </div>
       <div
         class="pre-next next"
-        :class="current == lastPage ? 'disable cursor-not-allowed' : ''"
+        :class="current == lastPage ? 'disable' : ''"
         @click="handleNextPage"
       >
         下一頁<g-icons name="chevronRight" class="w-8" />
@@ -175,7 +175,7 @@ const handlePageChange = (num) => {
       margin-left: 28px;
     }
     &.disable {
-      @apply text-gray0;
+      @apply text-gray0 cursor-not-allowed;
     }
   }
 

@@ -8,12 +8,12 @@ const { level } = defineProps({
 </script>
 
 <template>
-  <div class="w-full gt-title" :class="'gt-level' + level"><slot></slot></div>
+  <div class="gt-title" :class="'gt-level' + level"><slot></slot></div>
 </template>
 
 <style lang="scss">
 .gt-title {
-  @apply text-gray4;
+  @apply text-gray4 w-full;
 }
 
 .gt-level0 {

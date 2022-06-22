@@ -99,7 +99,6 @@ const classComputed = computed(() => {
     classStr.push('gt-input-error');
   }
   if (size === 'sm') {
-    console.log('in?')
     classStr.push('gt-input-sm');
   }
 
@@ -134,7 +133,7 @@ const handleClear = () => {
 <template>
   <div class="gt-input-wrapper">
     <div class="gt-input-label" v-if="label">{{ label }}</div>
-    <div class="relative">
+    <div class="gt-relative">
       <input
         class="gt-input"
         :class="classComputed"

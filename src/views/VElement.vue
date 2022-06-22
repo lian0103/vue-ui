@@ -380,7 +380,7 @@ const dialogVisible= ref(false)
             @submit.prevent
           >
             <el-form-item prop="search0" label="搜尋">
-              <div class="relative">
+              <div class="gt-relative">
                 <el-input
                   class="gt-e-input-search"
                   v-model="inputs.search0"
@@ -396,7 +396,7 @@ const dialogVisible= ref(false)
         </div>
         <div>
           {{`
-          <div class="relative">
+          <div class="gt-relative">
             <el-input
           `}} <span class="text-red">
             class="gt-e-input-search"

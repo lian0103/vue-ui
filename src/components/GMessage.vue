@@ -63,7 +63,7 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
 
 <template>
   <div class="gt-msgBox" v-if="!isFinished">
-    <div class="relative">
+    <div class="gt-relative">
       <div v-for="item in list" :key="item.id" :class="item.classArr">
         <div class="title" v-if="item.msgTitle">{{ item.msgTitle }}</div>
         {{ item.msgText }}

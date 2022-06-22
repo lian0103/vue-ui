@@ -145,13 +145,13 @@ const getCalenderClass = (cdStr, idx) => {
   }
 
   if ((idx < 7 && parseInt(cdStr) > 16) || (idx > 21 && parseInt(cdStr) < 16)) {
-    return `${rowClass} text-gray0`;
+    return `${rowClass} gray0`;
   }
 
   if (cdStr == curDay.value?.$D) {
-    return `${rowClass} text-main font-bold`;
+    return `${rowClass} today`;
   }
-  return `${rowClass} text-gray1`;
+  return `${rowClass} gray1`;
 };
 
 const handleCalDayClick = (idx) => {
@@ -160,13 +160,13 @@ const handleCalDayClick = (idx) => {
       ? curDay.value.$M - 1 < 0
         ? 11
         : curDay.value.$M - 1
-      : idx > curCalenderInfo.curMonthDayEndIndex
+      : idx >= curCalenderInfo.curMonthDayEndIndex
       ? curDay.value.$M + 1 > 11
         ? 0
         : curDay.value.$M + 1
       : curDay.value.$M;
   let year =
-    curDay.value.$M == 11 && idx > curCalenderInfo.curMonthDayEndIndex
+    curDay.value.$M == 11 && idx >= curCalenderInfo.curMonthDayEndIndex
       ? curDay.value.$y + 1
       : curDay.value.$M == 0 && idx < curCalenderInfo.curMonthDayStartIndex
       ? curDay.value.$y - 1
@@ -293,7 +293,7 @@ const handleTimePick = () => {
 <template>
   <div ref="root" class="gt-timepicker-box gt-input-wrapper">
     <span
-      class="gt-input gt-input-green select-none"
+      class="gt-input gt-input-green gt-input-sm"
       @click.stop="isTimePickerShow = !isTimePickerShow"
       >{{ curSelect?.format(formatStr) }}</span
     >
@@ -426,8 +426,8 @@ const handleTimePick = () => {
   max-width: 240px;
   @apply relative;
   > span {
-    @apply cursor-pointer;
-    line-height: 16px !important;
+    @apply cursor-pointer select-none;
+    line-height: 24px !important;
   }
   .icon {
     @apply w-8 absolute right-0 top-0.5 text-gray0 cursor-pointer;
@@ -485,6 +485,17 @@ const handleTimePick = () => {
         position: relative;
         left: 5px;
         @apply text-main bg-color1 rounded-full;
+      }
+
+      &.gray0 {
+        @apply text-gray0;
+      }
+
+      &.today {
+        @apply text-main font-bold;
+      }
+      &.gray1 {
+        @apply text-gray1;
       }
 
       &.curSelect {
@@ -597,13 +608,14 @@ const handleTimePick = () => {
 
 .tp-aniIn {
   display: flex !important;
+  z-index: -1;
   animation: tpFadeIn 0.5s forwards;
 }
 
 @keyframes tpFadeIn {
   0% {
     opacity: 0;
-    @apply -z-10;
+    z-index: -1;
   }
   100% {
     opacity: 1;

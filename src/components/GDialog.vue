@@ -87,7 +87,7 @@ onUpdated(() => {
   >
     <div
       class="gt-dialog"
-      :class="[`text-${align}`, modelValue ? 'active' : '']"
+      :class="[`gt-text-${align}`, modelValue ? 'active' : '']"
       @click.prevent="() => {}"
       :style="{ maxWidth: maxWidth + 'px' }"
     >

@@ -76,7 +76,7 @@ const columnsComputed = computed(() => {
 
 const columnsClassComputed = (cItem) => {
   let arr = [];
-  if (cItem.sort) arr.push('cursor-pointer');
+  if (cItem.sort) arr.push('gt-cursor-pointer');
   return arr;
 };
 

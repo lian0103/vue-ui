@@ -23,7 +23,7 @@ const onClick = () => {
 
 <template>
   <div class="gt-switch-input" @click.prevent="onClick">
-    <div class="relative">
+    <div class="gt-relative">
       <input type="checkbox" :checked="modelValue" />
       <div class="bar" :class="modelValue ? 'bg-open' : 'bg-close'"></div>
       <div class="dot" :class="modelValue ? 'checked' : ''"></div>
