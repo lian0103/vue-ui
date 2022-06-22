@@ -479,30 +479,34 @@ const handleTimePick = () => {
     .calDay {
       @apply select-none cursor-pointer;
       line-height: 2;
+      font-weight: 400;
 
       &.gray0 {
         @apply text-gray0;
       }
 
       &.today {
-        @apply text-main font-bold;
+        font-weight: 500;
+        @apply text-main;
       }
       &.gray1 {
         @apply text-gray1;
-      }
-
-      &.curSelect {
-        width: 30px;
-        height: 30px;
-        @apply text-white bg-main rounded-full relative;
-        left: 5.5px;
       }
 
       &:hover {
         width: 32px;
         position: relative;
         left: 5px;
+           font-weight: 500;
         @apply text-main bg-color1 rounded-full;
+      }
+
+      &.curSelect {
+        width: 30px;
+        height: 30px;
+        font-weight: 500;
+        @apply text-white bg-main rounded-full relative;
+        left: 5.5px;
       }
     }
 
