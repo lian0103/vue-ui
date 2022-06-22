@@ -8,8 +8,6 @@ npm version patch
 
 npm publish
 
-git commit -m "npm publish"
-
 git push
 
 cd -
