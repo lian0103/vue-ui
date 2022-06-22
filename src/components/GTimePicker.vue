@@ -480,13 +480,6 @@ const handleTimePick = () => {
       @apply select-none cursor-pointer;
       line-height: 2;
 
-      &:hover {
-        width: 32px;
-        position: relative;
-        left: 5px;
-        @apply text-main bg-color1 rounded-full;
-      }
-
       &.gray0 {
         @apply text-gray0;
       }
@@ -503,6 +496,13 @@ const handleTimePick = () => {
         height: 30px;
         @apply text-white bg-main rounded-full relative;
         left: 5.5px;
+      }
+
+      &:hover {
+        width: 32px;
+        position: relative;
+        left: 5px;
+        @apply text-main bg-color1 rounded-full;
       }
     }
 
