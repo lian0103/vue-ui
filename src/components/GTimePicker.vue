@@ -497,7 +497,7 @@ const handleTimePick = () => {
         width: 32px;
         position: relative;
         left: 5px;
-           font-weight: 500;
+        font-weight: 500;
         @apply text-main bg-color1 rounded-full;
       }
 
