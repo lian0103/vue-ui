@@ -50,15 +50,15 @@ const eventHandle = () => {
 watch(
   () => isTimePickerShow.value,
   (val, oldVal) => {
-    // console.log('in~', val, document.getElementsByTagName('body'));
+    // console.log('in~', val, document.getElementsByTagName('html'));
     isHourPickerShow.value = false;
-    if (val && document.getElementsByTagName('body')[0]) {
+    if (val && document.getElementsByTagName('html')[0]) {
       document
-        .getElementsByTagName('body')[0]
+        .getElementsByTagName('html')[0]
         .addEventListener('click', eventHandle, false);
     } else {
       document
-        .getElementsByTagName('body')[0]
+        .getElementsByTagName('html')[0]
         ?.removeEventListener('click', eventHandle);
     }
   }
