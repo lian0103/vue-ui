@@ -666,7 +666,7 @@ const handleUpdatePage = (val) => {};
             :options="[
               { label: 'Aaaa', value: 1 },
               { label: 'Bbbb', value: 2 },
-              { label: 'Gw', value: 3 },
+              { label: 'Ggggwwwwwwwsssswww', value: 3 },
             ]"
             clicked
             icon
@@ -678,7 +678,7 @@ const handleUpdatePage = (val) => {};
             :options="[
               { label: 'Aaaa', value: 1 },
               { label: 'Bbbb', value: 2 },
-              { label: 'Gggggeeeeewwww', value: 3 },
+              { label: 'Gggggeeeeewaaaaaaaaaaaaaaassssssssswww', value: 3 },
             ]"
             icon
             hover

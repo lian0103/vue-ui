@@ -56,18 +56,16 @@ const handleMouseLeave = () => {
       }
     "
   >
-    <g-icons v-if="icon" class="text-right icon" name="check" />
+    <g-icons v-if="icon" class="icon" name="check" />
     <span :class="isCurrent ? 'text-main' : ''">{{ label }}</span>
   </div>
 </template>
 
 <style lang="scss">
 .gt-dropdown-item {
-  @apply w-full flex justify-start items-center cursor-pointer;
+  @apply w-full flex justify-start items-center cursor-pointer mx-auto;
   width: calc(100% - 14px);
-  height: 36px;
-  padding: 0 6px 0 12px;
-  margin: 3px 7px;
+  white-space: nowrap;
   border-radius: 5px;
   letter-spacing: 0.7px;
   &:hover {
@@ -78,6 +76,8 @@ const handleMouseLeave = () => {
   }
   span {
     @apply overflow-hidden;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
   }
   &.current {
     @apply text-main;
@@ -87,8 +87,8 @@ const handleMouseLeave = () => {
     @apply bg-gray2 text-main;
   }
 
-  .text-right {
-    margin-right: 5px;
+  .icon {
+    margin-left: 3px;
   }
 }
 </style>
