@@ -35,6 +35,7 @@ const handleClickChange = () => {
 
 <style lang="scss">
 .gt-filter-option {
+  width: fit-content;
   @apply bg-white border border-solid border-gray0 text-gray1 cursor-pointer select-none;
   padding: 8px 16px;
   letter-spacing: 0.7px;

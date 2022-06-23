@@ -111,8 +111,10 @@ const onClick = () => {
 }
 
 .gt-checkbox {
+  width: fit-content;
   min-width: 17px;
-  height: 17px;
+  height: 22px;
+  line-height: 22px;
   @apply relative block cursor-pointer;
   input {
     @apply absolute w-0 h-0 opacity-0 cursor-pointer;

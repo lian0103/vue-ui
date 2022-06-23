@@ -77,7 +77,7 @@ const mapClass = () => {
 }
 
 .gt-tag {
-  width: auto;
+  width: fit-content;
   @apply flex justify-center items-center;
   padding: 4px 10px;
   height: 29px;
