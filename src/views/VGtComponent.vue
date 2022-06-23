@@ -921,7 +921,11 @@ const handleUpdatePage = (val) => {};
               "
               >Small & Delete</g-button
             >
-            <g-title :level="2" class="my-4">DIALOG-Middle</g-title>
+          </div>
+        </div>
+        <div class="w-full md:w-3/4 mx-auto mb-6">
+          <g-title :level="2" class="my-4">DIALOG-Middle</g-title>
+          <div class="flex justify-start mb-3">
             <g-button
               pill
               type="second"
@@ -945,7 +949,11 @@ const handleUpdatePage = (val) => {};
               "
               >middle & Delete</g-button
             >
-            <g-title :level="2" class="my-4">DIALOG-LARGE</g-title>
+          </div>
+        </div>
+        <div class="w-full md:w-3/4 mx-auto mb-6">
+          <g-title :level="2" class="my-4">DIALOG-LARGE</g-title>
+          <div class="flex justify-start mb-3">
             <g-button
               pill
               type="second"
