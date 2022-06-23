@@ -257,8 +257,11 @@ const popupStyleComputed = computed(() => {
   let rootWidth = parseInt(rootRight.value) - parseInt(rootLeft.value);
   if (root) {
     return {
-      top: '50px',
-      left: rootRight.value + 100 > winWidth.value ? '-84px' : 0,
+      top: rootTop.value + 42 + 'px',
+      left:
+        rootRight.value + 100 > winWidth.value
+          ? '-84px'
+          : rootLeft.value + 'px',
     };
   } else {
     return {};
@@ -426,7 +429,7 @@ const handleTimePick = () => {
   max-width: 240px;
   @apply relative;
   > span {
-    @apply cursor-pointer select-none;
+    @apply cursor-pointer select-none text-left;
     line-height: 24px !important;
   }
   .icon {
@@ -439,7 +442,7 @@ const handleTimePick = () => {
   // overflow: hidden;
   opacity: 0;
   display: none;
-  @apply absolute flex-col -z-10;
+  @apply fixed flex-col -z-10;
   max-width: 326px;
   height: 416px;
   padding: 16px;
