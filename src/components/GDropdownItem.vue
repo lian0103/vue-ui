@@ -57,7 +57,9 @@ const handleMouseLeave = () => {
     "
   >
     <g-icons v-if="icon" class="icon" name="check" />
-    <span :class="isCurrent ? 'text-main' : ''">{{ label }}</span>
+    <span :class="isCurrent ? 'text-main' : ''"
+      ><div class="txt">{{ label }}</div></span
+    >
   </div>
 </template>
 
@@ -75,9 +77,12 @@ const handleMouseLeave = () => {
     width: 22px;
   }
   span {
-    @apply overflow-hidden;
-    height: 30px;
-    padding: 5px 0px 5px 0px;
+     @apply overflow-hidden;
+    height: 36px;
+    padding: 5px 15px 5px 0px;
+    .txt {
+      @apply overflow-hidden;
+    }
   }
   &.current {
     @apply text-main;
