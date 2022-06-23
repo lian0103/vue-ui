@@ -1,4 +1,5 @@
 <style lang="scss">
+@import '../assets/tailwindInit.css';
 @import '../assets/index';
 
 .gt-relative {
