@@ -128,6 +128,7 @@ onUpdated(() => {
   z-index: -1;
   @apply fixed left-0 top-0;
   &.active {
+    animation: tpFadeIn 0.5s forwards;
     z-index: 300;
     @apply block;
   }
