@@ -146,6 +146,7 @@ const handleRouteTo = (path, gIdx, cIdx) => {
 <style lang="scss">
 .gt-menus {
   width: 220px;
+  margin: auto;
   padding: 10px 0;
   @apply flex flex-col;
   .gt-menu-group {

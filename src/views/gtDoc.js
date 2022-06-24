@@ -113,13 +113,13 @@ const menuRoutes = [
 <g-menu active="1-1" :menu="menuRoutes" />
 
 //分頁標籤
-<g-tabs :tabs='[{ name: 'tab1' }, { name: 'tab2' }]'>
-    <template v-slot:tab1="context">
-        <g-title :level="1" class="mb-3" >hello , tab1</g-title>
-    </template>
-    <template v-slot:tab2="context">
-        <g-title :level="1" class="mb-3" >hello , tab2</g-title>
-    </template>
+<g-tabs :tabs="[{ name: 'tab1' }, { name: 'tab2' }]">
+  <template v-slot:tab1="context">
+    <g-title :level="1" class="mb-3">hello , tab1</g-title>
+  </template>
+  <template v-slot:tab2="context">
+    <g-title :level="1" class="mb-3">hello , tab2</g-title>
+  </template>
 </g-tabs>
 \`\`\``,
     menuIndex: '3-4',
