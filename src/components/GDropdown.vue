@@ -65,7 +65,7 @@ export default {
 
     const classShowComputed = computed(() => {
       return props.clicked && isShow.value
-        ? 'gt-dropdown-items show'
+        ? 'gt-dropdown-items show tp-aniIn'
         : 'gt-dropdown-items';
     });
 
@@ -211,7 +211,7 @@ export default {
   @apply bg-white border border-solid border-gray2 rounded-md select-none;
   @apply flex justify-start items-center relative cursor-pointer;
   .gt-dropdown-span {
-    @apply w-full leading-9 overflow-hidden ;
+    @apply w-full leading-9 overflow-hidden;
     @apply flex justify-start items-center;
     .pre-icon {
       margin-left: 5px;
@@ -253,6 +253,7 @@ export default {
       height: 50px;
       @apply w-full block bg-transparent absolute left-0 -top-10 z-10;
     }
+    animation: tpFadeIn 0.5s forwards;
   }
 }
 </style>

@@ -441,7 +441,8 @@ const handleTimePick = () => {
   width: 326px;
   // overflow: hidden;
   opacity: 0;
-  display: none;
+  z-index: -1;
+  // display: none;
   @apply fixed flex-col -z-10;
   max-width: 326px;
   height: 416px;
@@ -613,20 +614,4 @@ const handleTimePick = () => {
   }
 }
 
-.tp-aniIn {
-  display: flex !important;
-  z-index: -1;
-  animation: tpFadeIn 0.5s forwards;
-}
-
-@keyframes tpFadeIn {
-  0% {
-    opacity: 0;
-    z-index: -1;
-  }
-  100% {
-    opacity: 1;
-    @apply z-top-10;
-  }
-}
 </style>

@@ -111,7 +111,11 @@ const handleRouteTo = (path, gIdx, cIdx) => {
       />
 
       <template v-if="item.active">
-        <div class="childBox" @click.stop="()=>{}">
+        <div
+          class="childBox"
+          :class="item.active ? 'tp-aniIn' : ''"
+          @click.stop="() => {}"
+        >
           <div class="line"></div>
           <div
             class="gt-menu-group-item"
@@ -148,6 +152,9 @@ const handleRouteTo = (path, gIdx, cIdx) => {
   width: 220px;
   margin: auto;
   padding: 10px 0;
+  * {
+    @apply select-none;
+  }
   @apply flex flex-col;
   .gt-menu-group {
     width: 100%;

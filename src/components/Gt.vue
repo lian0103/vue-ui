@@ -20,4 +20,25 @@
 .gt-cursor-pointer {
   @apply cursor-pointer;
 }
+
+.flexImportant {
+  display: flex !important;
+}
+
+.tp-aniIn {
+  animation: tpFadeIn 0.5s forwards;
+}
+
+@keyframes tpFadeIn {
+  0% {
+    opacity: 0;
+    @apply z-top-10;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    @apply z-top-10;
+    transform: translateY(0%);
+  }
+}
 </style>
