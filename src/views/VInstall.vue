@@ -56,21 +56,19 @@ const quasarText = `\`\`\` scss
 <template>
   <div class="pb-8 flex justify-center items-center flex-col">
     <div class="paragraphHead">
-      <g-title :level="1" class="mb-4" id="install">建議使用</g-title>
+      <g-title :level="1" class="mb-4" id="install">使用到GT元件</g-title>
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
-      <g-title :level="2" class="mb-4" id="install"> 使用到GT開發 </g-title>
       <p>
         <v-md-editor v-model="installText" mode="preview"></v-md-editor>
         <v-md-editor v-model="importCss0" mode="preview"></v-md-editor>
       </p>
     </div>
     <div class="paragraphHead">
-      <g-title :level="1" class="mb-4" id="install">選擇使用</g-title>
+      <g-title :level="1" class="mb-4" id="install">使用ElementPlus或Quasar的覆寫樣式</g-title>
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
-      <g-title :level="2" class="mb-4" id="install">
-        使用ElementPlus覆寫樣式或Quasar覆寫樣式 (<a
+         (<a
           class="text-second"
           href="https://unpkg.com/browse/gt-front-ui@0.0.17/dist/"
           >原則上選擇最新版本號</a
@@ -80,7 +78,7 @@ const quasarText = `\`\`\` scss
         <v-md-editor v-model="importCss1" mode="preview"></v-md-editor>
       </p>
       <p>
-        *專案使用elementPlus需要再覆寫基礎的變數定義<br />
+        *專案使用elementPlus需要再覆寫基礎的變數定義 //待補充<br />
         因該UI庫會依照基礎定義的變數再產生各元件的css變數來使用，所以依照官網的建議方式調整會比較完整覆蓋到各元件的使用。
         <br />
         <a
@@ -91,7 +89,7 @@ const quasarText = `\`\`\` scss
         <v-md-editor v-model="tailwindText" mode="preview"></v-md-editor>
       </p>
       <p>
-        *專案使用Quasar需要再覆寫基礎的變數定義<br />
+        *專案使用Quasar需要再覆寫基礎的變數定義 //待補充<br />
         因該UI庫會依照基礎定義的變數再產生各元件的css變數來使用，所以依照官網的建議方式調整會比較完整覆蓋到各元件的使用。
         <br />
         <a class="text-second" href="https://quasar.dev/start/vite-plugin"
