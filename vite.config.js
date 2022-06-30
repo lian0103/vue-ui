@@ -55,6 +55,11 @@ const libTarget = {
 // https://vitejs.dev/config/
 export default ({ mode }) => {
   let config = {
+    test: {
+      global: true,
+      environment: 'jsdom',
+      includeSource: ['src/components/__test__/*.spec.js'],
+    },
     build: {
       lib: {
         entry: path.resolve(__dirname, libTarget[mode] || ''),
