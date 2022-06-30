@@ -6,6 +6,7 @@ const activeName = ref('first');
 const rules = {
   input2: [{ required: true, message: '必填', trigger: 'blur' }],
 };
+const input = ref('')
 const inputs = reactive({
   search0: '',
   input0: '',
@@ -13,6 +14,7 @@ const inputs = reactive({
   input2: '',
   radio:'1',
 });
+const buttonClick=ref(false);
 const radio = ref('1');
 const checkList = ref(['複選框 A']);
 const switch_value = ref(true);
@@ -52,6 +54,77 @@ const openFullScreen = () => {
     loading.close()
   }, 5000)
 }
+const tableData = [
+  {
+    id:1,
+    date: '2016-05-01',
+    name: 'Tom1',
+    address: 'No. 189, Grove St, Los Angeles',
+    food:'pizza',
+    drink:'t01',
+    price:'100'
+  },
+  {
+    id:2,
+    date: '2016-05-03',
+    name: 'Tom2',
+    address: 'No. 189, Grove St, Los Angeles',
+    food:'pizza',
+    drink:'t02',
+    price:'200'
+  },
+  {
+    id:3,
+    date: '2016-05-02',
+    name: 'Tom3',
+    address: 'No. 189, Grove St, Los Angeles',
+    food:'pizza',
+    drink:'t03',
+    price:'150'
+  },
+  {
+    id:4,
+    date: '2016-05-04',
+    name: 'Tom4',
+    address: 'No. 189, Grove St, Los Angeles',
+    food:'pizza',
+    drink:'t04',
+    price:'125'
+  },
+  {
+    id:5,
+    date: '2016-05-07',
+    name: 'Tom5',
+    address: 'No. 189, Grove St, Los Angeles',
+    food:'pizza',
+    drink:'t05',
+    price:'400'
+  },
+  {
+    id:6,
+    date: '2016-05-10',
+    name: 'Tom6',
+    address: 'No. 189, Grove St, Los Angeles',
+    food:'pizza',
+    drink:'t06',
+    price:'700'
+  },
+]
+
+const rowName = ref('');
+
+function handleSelectionChange(data) {
+  rowName.value = data[0].name
+}
+
+function tableRowClassName(row) {
+  if( row.row.name == rowName.value ){
+    return 'checked'
+  } else{
+    return ''
+  }
+}
+
 </script>
 
 <template>
@@ -102,21 +175,24 @@ const openFullScreen = () => {
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
+          <el-button class="gt-e-button">預設按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button `}}
+          <span class="text-red">class="gt-e-button" </span>
+          {{`
+          >預設按紐</el-button>`}}
+        </div>
+      </li>
+      <li>
+        <div>
           <el-button class="gt-e-button" type="primary">主要按紐</el-button>
         </div>
         <div>
           {{`<el-button `}}
           <span class="text-red">class="gt-e-button" </span>
           {{`
-          type="primary">primary</el-button>`}}
-        </div>
-      </li>
-      <li>
-        <div>
-          <el-button class="gt-e-button" type="success">成功按紐</el-button>
-        </div>
-        <div>
-          {{`<el-button class="gt-e-button" type="success">success</el-button>`}}
+          type="primary">主要按紐</el-button>`}}
         </div>
       </li>
       <li>
@@ -124,7 +200,7 @@ const openFullScreen = () => {
           <el-button class="gt-e-button" type="warning">警告按紐</el-button>
         </div>
         <div>
-          {{`<el-button class="gt-e-button" type="warning">warning</el-button>`}}
+          {{`<el-button class="gt-e-button" type="warning">警告按紐</el-button>`}}
         </div>
       </li>
       <li>
@@ -132,7 +208,23 @@ const openFullScreen = () => {
           <el-button class="gt-e-button" type="danger">危險按紐</el-button>
         </div>
         <div>
-          {{`<el-button class="gt-e-button" type="danger">danger</el-button>`}}
+          {{`<el-button class="gt-e-button" type="danger">危險按紐</el-button>`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <el-button class="gt-e-button" type="gary">灰色按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button class="gt-e-button" type="gary">灰色按紐</el-button>`}}
+        </div>
+      </li>
+      <!-- <li>
+        <div>
+          <el-button class="gt-e-button" round>圓角預設按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button class="gt-e-button" round>圓角預設按紐</el-button>`}}
         </div>
       </li>
       <li>
@@ -142,9 +234,26 @@ const openFullScreen = () => {
         <div>
           {{`<el-button class="gt-e-button" type="primary" round>圓角按紐</el-button>`}}
         </div>
-      </li>
+      </li> -->
     </ul>
     <!-- END // el-button -->
+
+    <!-- filter -->
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">filter</g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
+      <li>
+        <div>
+          <el-button class="gt-e-filter" round @click="buttonClick = !buttonClick" :type="buttonClick == true ? 'primary' :''">圓角預設按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button `}}
+          <span class="text-red">class="gt-e-filter"</span> {{`round>圓角預設按紐</el-button>`}}
+        </div>
+      </li>
+    </ul>
+    <!-- END // filter -->
 
     <!-- Tag -->
     <div class="paragraphHead">
@@ -175,22 +284,6 @@ const openFullScreen = () => {
         <div>{{`<el-tag class="gt-e-tag" type="danger">TAG</el-tag>`}}</div>
       </li>
       <li>
-        <div><el-tag class="gt-e-tag" effect="dark">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark" type="success">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="success">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark" type="warning">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="warning">TAG</el-tag>`}}</div>
-      </li>
-      <li>
-        <div><el-tag class="gt-e-tag" effect="dark" type="danger">TAG</el-tag></div>
-        <div>{{`<el-tag class="gt-e-tag" effect="dark" type="danger">TAG</el-tag>`}}</div>
-      </li>
-      <li>
         <div>
           <el-tag class="gt-e-tag gt-e-tag-bd-none">TAG</el-tag>
         </div>
@@ -198,6 +291,43 @@ const openFullScreen = () => {
         <span class="text-red">class="gt-e-tag gt-e-tag-bd-none"</span>
         {{`
         >TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div>
+          <el-tag class="gt-e-tag gt-e-tag-bd-none" type="success">TAG</el-tag>
+        </div>
+        <div>{{`<el-tag class="gt-e-tag gt-e-tag-bd-none" type="success">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag gt-e-tag-bd-none" type="warning">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag gt-e-tag-bd-none" type="warning">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag gt-e-tag-bd-none" type="danger">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag gt-e-tag-bd-none" type="danger">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div>
+          <el-tag class="gt-e-tag gt-e-tag-bd-none gt-e-point">TAG</el-tag>
+        </div>
+        <div>{{`<el-tag `}}
+        <span class="text-red">class="gt-e-tag gt-e-tag-bd-none gt-e-point"</span>
+        {{`
+        >TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div>
+          <el-tag class="gt-e-tag gt-e-tag-bd-none gt-e-point" type="success">TAG</el-tag>
+        </div>
+        <div>{{`<el-tag class="gt-e-tag gt-e-tag-bd-none" type="success">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag gt-e-tag-bd-none gt-e-point" type="warning">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag gt-e-tag-bd-none gt-e-point" type="warning">TAG</el-tag>`}}</div>
+      </li>
+      <li>
+        <div><el-tag class="gt-e-tag gt-e-tag-bd-none gt-e-point" type="danger">TAG</el-tag></div>
+        <div>{{`<el-tag class="gt-e-tag gt-e-tag-bd-none gt-e-point" type="danger">TAG</el-tag>`}}</div>
       </li>
     </ul>
     <!-- END // Tag -->
@@ -313,7 +443,7 @@ const openFullScreen = () => {
             current-page="1"
             :total="50"
             layout="prev, pager, next"
-          >`}}
+          ></el-pagination>`}}
         </div>
       </li>
     </ul>
@@ -364,7 +494,7 @@ const openFullScreen = () => {
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <el-button class="gt-e-button" type="primary" @click="dialogVisible = true">打開Dialog</el-button>
+          <el-button class="gt-e-button" @click="dialogVisible = true">打開Dialog</el-button>
           <el-dialog
             title="TITLE"
             v-model="dialogVisible"
@@ -373,13 +503,30 @@ const openFullScreen = () => {
             <div class="gt-e-dialog">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
             <template #footer>
               <span class="dialog-footer">
-                <el-button type="text" @click="dialogVisible = false">取消</el-button>
+                <el-button class="gt-e-button" type="text" @click="dialogVisible = false">取消</el-button>
                 <el-button class="gt-e-button" type="success" @click="dialogVisible = false">確認</el-button>
               </span>
             </template>
           </el-dialog>
         </div>
-        <div></div>
+        <div>
+          {{
+            `<el-button class="gt-e-button" type="primary" @click="dialogVisible = true">打開Dialog</el-button>
+          <el-dialog
+            title="TITLE"
+            v-model="dialogVisible"
+            width="380px"
+          >
+            <div  `}} <span class="text-red">class="gt-e-dialog"</span> {{` >Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <template #footer>
+              <span class="dialog-footer">
+                <el-button class="gt-e-button" type="text" @click="dialogVisible = false">取消</el-button>
+                <el-button class="gt-e-button" type="success" @click="dialogVisible = false">確認</el-button>
+              </span>
+            </template>
+          </el-dialog>`
+          }}
+        </div>
       </li>
     </ul>
     <!-- END // el-dialog -->
@@ -623,7 +770,10 @@ const openFullScreen = () => {
           <el-button :plain="true" @click="openMessage3" type="danger">錯誤</el-button>
         </div>
         <div>
-          此項目無法添加class
+          此項目無法添加class <br>
+          {{`<el-button :plain="true" @click="openMessage1" type="success">成功</el-button>`}} <br>
+          {{`<el-button :plain="true" @click="openMessage2" type="warning">警告</el-button>`}} <br>
+          {{`<el-button :plain="true" @click="openMessage3" type="danger">錯誤</el-button>`}}
         </div>
       </li>
     </ul>
@@ -636,7 +786,7 @@ const openFullScreen = () => {
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-           <el-button class="gt-e-button" type="primary" @click="openFullScreen">fullscreenLoading</el-button>
+           <el-button class="gt-e-button" @click="openFullScreen">fullscreenLoading</el-button>
         </div>
         <div>
           {{`<el-button class="gt-e-button" type="primary" @click="openFullScreen">fullscreenLoading</el-button>`}}
@@ -656,6 +806,82 @@ const openFullScreen = () => {
       </li>
     </ul>
     <!-- END // Loading -->
+
+    <!-- el-table -->
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">el-table</g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
+      <li>
+        <div style="width:100%;">
+           <!-- @selection-change="handleSelectionChange" -->
+           <!-- :row-class-name="tableRowClassName" -->
+          <el-table 
+            class="gt-e-table" 
+            :data="tableData"
+            ref="multipleTableRef"
+            :default-sort="{ prop: 'date', order: 'descending' }"
+            @selection-change="handleSelectionChange"
+            :row-class-name="tableRowClassName"
+          >
+            <el-table-column type="selection" width="55" />
+            <el-table-column prop="date" label="Date" sortable width="150" />
+            <el-table-column prop="name" label="Name" width="100" />
+            <el-table-column prop="address" label="Address" width="300" :formatter="formatter" />
+            <el-table-column prop="food" label="food" width="100" />
+            <el-table-column prop="drink" label="drink" width="100" />
+            <el-table-column prop="price" label="price" width="100" />
+          </el-table>
+
+        </div>
+      </li>
+      <li>
+        <div>
+          {{`
+            <el-table 
+          `}}
+            <span class="text-red">class="gt-e-table"</span>
+          {{`
+            :data="tableData"
+            ref="multipleTableRef"
+            :default-sort="{ prop: 'date', order: 'descending' }"
+            @selection-change="handleSelectionChange"
+            :row-class-name="tableRowClassName"
+          >
+            <el-table-column type="selection" width="55" />
+            <el-table-column prop="date" label="Date" sortable width="150" />
+            <el-table-column prop="name" label="Name" width="100" />
+            <el-table-column prop="address" label="Address" width="300" :formatter="formatter" />
+            <el-table-column prop="food" label="food" width="100" />
+            <el-table-column prop="drink" label="drink" width="100" />
+            <el-table-column prop="price" label="price" width="100" />
+          </el-table>
+          `}}
+        </div>
+      </li>
+    </ul>
+    <!-- END // el-table -->
+
+    <!-- el-input -->
+    <div class="paragraphHead">
+      <g-title :level="1" class="mb-4">el-input</g-title>
+    </div>
+    <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
+      <li>
+        <div>
+          <div class="row">
+            <p>一般:</p>
+            <el-input class="gt-e-input" v-model="input" />
+          </div>
+        </div>
+        <div>
+          {{`<el-input `}}
+          <span class="text-red">class="gt-e-input" </span>
+          {{`v-model="input" />`}}
+        </div>
+      </li>
+    </ul>
+    <!-- END // el-input -->
 
   </div>
 </template>

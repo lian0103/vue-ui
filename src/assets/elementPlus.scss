@@ -10,42 +10,47 @@
   }
 }
 
-.gt-e-input-plain {
-  .el-input__wrapper {
-    @apply text-base;
-    max-width: 280px;
-    height: 36px;
-    padding: 14px 8px;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 4px rgba(59, 176, 137, 0.2);
-    border: 1px solid #d9d9d9;
-  }
-}
+// .gt-e-input-plain {
+//   .el-input__wrapper {
+//     @apply text-base;
+//     max-width: 280px;
+//     height: 36px;
+//     padding: 14px 8px;
+//     border-radius: 10px;
+//     box-shadow: inset 0px 0px 4px rgba(59, 176, 137, 0.2);
+//     border: 1px solid #d9d9d9;
+//   }
+// }
 
-.gt-e-input {
-  .el-input__wrapper {
-    @apply rounded-lg bg-tableHover text-base;
-    max-width: 300px;
-    height: 36px;
-    padding: 10px 15px;
-  }
-}
+// .gt-e-input {
+//   .el-input__wrapper {
+//     @apply rounded-lg bg-tableHover text-base;
+//     max-width: 300px;
+//     height: 36px;
+//     padding: 10px 15px;
+//   }
+// }
 
-.gt-e-tabs {
-  .el-tabs__nav-wrap::after {
-    width: 0;
-  }
-  .el-tabs__item {
-    height: 32px;
-    text-align: center;
-    background: #FBFBF9;
-    color: $gt-text-dark;
-    @apply text-lg;
-    min-width: 130px;
-    padding: 0 0 8px 0;
-    line-height: 24px;
-  }
-}
+// .gt-e-tabs {
+//   .el-tabs__nav-wrap::after {
+//     width: 0;
+//   }
+//   .el-tabs__active-bar{
+//     transition: none;
+//   }
+//   .el-tabs__item {
+//     height: 32px;
+//     text-align: center;
+//     background: #FBFBF9;
+//     color: $gt-text-dark;
+//     @apply text-lg;
+//     min-width: 130px;
+//     padding: 0 8px 8px;
+//     padding-left: 8px !important;
+//     padding-right: 8px !important;
+//     line-height: 24px;
+//   }
+// }
 
 .gt-e-dropdown {
   border-radius: 6px !important;
@@ -60,8 +65,6 @@
   padding-right:.5rem !important;
   border-radius: .5rem !important;
 }
-
-
 
 $color: (
   primary:  $gt-primary,
@@ -84,12 +87,33 @@ $round-hover-color: (
   danger: $gt-tag-danger-bg
 );
 
+$tag-color: (
+  success: $gt-tag-normal,
+  warning:  $gt-tag-warning,
+  danger: $gt-tag-danger
+);
+
 .gt-e-button{
   &.el-button{
     padding: 8px 16px;
     line-height: 1.715em;
     min-height: 2.572em;
     border: 0 !important;
+    &:not([class*=el-button--]){
+      background-color: $gt-positive;
+      color: #fff;
+      &:focus,
+      &:hover{
+        background-color: $gt-positive-hover;
+        color: #fff;
+      }
+    }
+
+    &[class*=el-button--]{
+      &:hover{
+        color: #fff;
+      }
+    }
     .el-icon,
     [class*="el-icon-"]{
       --color:#fff;
@@ -105,10 +129,18 @@ $round-hover-color: (
       letter-spacing: .7px;
       line-height: 20px;
     }
-    &.is-round{
-      padding: 8px 16px;
-      border-radius:24px;
-      border: 1px solid !important;
+    &.el-button--gary{
+      background-color: $gt-info !important;
+      span{
+        color: $gt-text-gray !important;
+      }
+      &:focus,
+      &:hover{
+        background: $gt-gray !important;
+        span{
+          color: $gt-text-gray !important;
+        }
+      }
     }
   }
   @each $key, $value in $color-hover {
@@ -119,15 +151,33 @@ $round-hover-color: (
       }
     }
   }
+}
+
+.gt-e-filter{
+  padding: 8px 16px;
+  line-height: 1.715em;
+  min-height: 2.572em;
+  border-color: $gt-gray-variant;
+  span{
+    letter-spacing: .7px;
+    line-height: 20px;
+    color: $gt-text-gray;
+  }
   @each $key, $value in $color {
     &.el-button--#{$key} {
       &.is-round{
         background-color: #fff;
         border-color: $value;
-        color: $value;
-        &:hover{
-          border-color: $value;
+        span{
           color: $value;
+        }
+        &:focus,
+        &:hover{
+          background-color: #fff !important;
+          border-color: $value;
+          span{
+            color: $value;
+          }
         }
       }
     }
@@ -135,6 +185,7 @@ $round-hover-color: (
   @each $key, $value in $round-hover-color {
     &.el-button--#{$key} {
       &.is-round{
+        background:  $value !important;
         &:hover{
           background:  $value !important;
         }
@@ -142,24 +193,29 @@ $round-hover-color: (
     }
   }
 }
+
 .gt-e-link{
   @each $key, $value in $color {
     &.el-link--#{$key} {
-      &::after{
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 1px !important; 
-        width: 0;
+      .el-link__inner{
+        font-weight: 400;
+        letter-spacing: .8px;
       }
       &:hover{
         color: $value;
+        .el-link__inner{
+          font-weight: 500;
+        }
         &::after{
+          content: "";
+          position: absolute;
+          left: 0;
+          height: 1px !important; 
+          width: 0;
+          bottom: -3px !important;
           width: 100%;
           border-bottom:none;
           background-color: $value;
-          transition: all .25s linear;
         }
       }
     }
@@ -208,7 +264,7 @@ $round-hover-color: (
     }
   }
   .el-radio__label{
-    padding-left: 10px;
+    padding-left: 9px;
     font-size: 16px;
     color: $gt-text-dark !important;
   }
@@ -245,7 +301,7 @@ $round-hover-color: (
     }
   }
   .el-checkbox__label{
-    padding-left: 10px;
+    padding-left: 9px;
     font-size: 16px;
     color: $gt-text-dark !important;
   }
@@ -276,6 +332,7 @@ $round-hover-color: (
         border-radius: 50%;
         font-size: 16px;
         line-height: 23px;
+        background-color: transparent;
         &:hover{
           color: $gt-darker;
         }
@@ -313,6 +370,7 @@ $round-hover-color: (
       }
     }
     button{
+      background-color: transparent;
       &:hover{
         color:$gt-darker;
       }
@@ -333,6 +391,39 @@ $round-hover-color: (
     font-size: 14px;
     font-weight:500;
     letter-spacing: .7px;
+    border-radius: 5px;
+    &.gt-e-point{
+      position: relative;
+      padding: 4px 10px 4px 26px !important;
+      &::after{
+        content: '';
+        position: absolute;
+        top: calc(50% - 3px);
+        left: 12px;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background-color: $gt-darker;
+      }
+      @each $key, $value in $tag-color {
+        &.el-tag--#{$key} {
+          &::after{
+            background-color: $value !important;
+          }
+        }
+      }
+    }
+    &[class*=el-tag--light]{
+      border: 1px solid $gt-primary-hover;
+    }
+    @each $key, $value in $tag-color {
+      &.el-tag--light.el-tag--#{$key} {
+        border: 1px solid $value !important;;
+        &.gt-e-tag-bd-none{
+          border: none !important;
+        }
+      }
+    }
     span{
       font-size: inherit;
       font-weight:inherit;
@@ -340,7 +431,7 @@ $round-hover-color: (
     }
   }
   &.gt-e-tag-bd-none{
-    border: none;
+    border: none !important;
     padding: 4px 10px;
   }
 }
@@ -351,6 +442,7 @@ $round-hover-color: (
   top: 50% ;
   margin: 0 !important;
   transform: translate(-50%, -50%) !important;
+  border-radius: 4px;
 }
 .el-dialog__header{
   padding: 12px 40px 8px !important;
@@ -362,7 +454,7 @@ $round-hover-color: (
   }
 }
 .el-dialog__body{
-  padding: 10px 40px 35px !important;
+  padding: 20px 40px 40px !important;
   border-bottom: 1px solid #D9D9D9;
   .gt-e-dialog{ 
     line-height: 23px;
@@ -374,6 +466,16 @@ $round-hover-color: (
   padding: 10px 12px !important;
   .el-button:not(.is-text){
     border: 0;
+  }
+  .el-button--text{
+    color: $gt-text-gray !important;
+    &:hover{
+      background-color: $gt-gray-light !important;
+      color: $gt-text-gray !important;
+    }
+  }
+  .el-button + .el-button{
+    margin-left: 10px;
   }
 }
 .el-dialog__headerbtn{
@@ -698,6 +800,7 @@ $round-hover-color: (
             margin-right: 17px;
           }
           .sidebar-title{
+            letter-spacing: .9px;
             line-height: 24px;
             font-weight: 700;
             font-size: 18px;
@@ -708,27 +811,31 @@ $round-hover-color: (
       }
       .el-scrollbar{
         overflow: initial;
-        height: calc(100% - 220px);
+        // height: calc(100vh - 150px);
+        height: calc(100vh - 248px);
         &::before{
           content: '';
           position: absolute;
-          bottom: -220px;
+          // bottom: -70px;
+          bottom: -168px;
           left: 0;
           background-color: $gt-bg !important;
           width: 100%;
-          height: 220px;
+          height: 168px;
           z-index: 10;
         }
         &::after{
           content: "";
           position: absolute;
-          background-image: url(https://www.greattree.com.tw/files/00-logo-icon/logo.svg);
+          background-image: url('https://www.greattree.com.tw/files/00-logo-icon/logo.svg');
           width: 120px;
           height: 28px;
           z-index: 15;
-          bottom: -110px;
+          // bottom: -62.5px;
+          bottom: -98px;
           left: 50%;
-          transform: translate(-50%, -50%);
+          // transform: translate(-50%, -50%);
+          transform: translate(-50%, 0);
           background-repeat: no-repeat;
           background-size: contain;
           background-position: 50% 50%;
@@ -752,8 +859,12 @@ $round-hover-color: (
                   text-overflow: ellipsis;
                   -webkit-text-overflow: ellipsis;
                   -o-text-overflow: ellipsis;
+                  display: flex;
+                  align-items: center;
                   .svg-icon{
                     vertical-align: middle;
+                    width: 24px;
+                    height: 24px;
                   }
                   &:hover{
                     background-color: $gt-bg !important;
@@ -789,9 +900,11 @@ $round-hover-color: (
                     color: $gt-primary !important;
                   }
                   .el-submenu__icon-arrow{
-                    top: calc(50% + 3px);
-                    right: 17.5px;
+                    top: calc(50% + 2px);
+                    right: 35px;
                     margin-top: 0;
+                    font-size: 16px;
+                    font-weight: 900;
                   }
                 }
                 &.is-opened{
@@ -802,12 +915,14 @@ $round-hover-color: (
                         background-color: $gt-bg !important;
                         color: $gt-text-gray !important;
                         height: 40px;
-                        padding: 8px 0 8px 80px !important;
+                        padding: 8px 30px !important;
+                        margin: 0 20px 0 50px;
                         line-height: 24px !important;
                         font-size: 16px;
                         letter-spacing: .8px;
                         &:hover{
-                          background-color: $gt-bg !important;
+                          border-radius: 4px;
+                          background-color: $gt-soft !important;
                           color: $gt-primary !important;
                         }
                       }
@@ -829,6 +944,158 @@ $round-hover-color: (
   }
 }
 
+.gt-e-table{
+  border-radius: 10px;
+  box-shadow:$gt-shadow;
+  .el-table__inner-wrapper{
+    .el-checkbox{
+      display: flex;
+      justify-content: center;
+      .el-checkbox__inner{
+        width: 18px;
+        height: 18px;
+      }
+      &.is-checked{
+        .el-checkbox__input {
+          &.is-checked{
+            .el-checkbox__inner{
+              &::after{
+                left: calc(50% - 1.5px);
+                top: calc(50% - 5.5px);
+                will-change: tranform;
+                transition:none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .el-table__header-wrapper{
+      thead{
+        tr{
+          th{
+            &.el-table__cell{
+              background-color: $gt-soft;
+              padding: 7px 0;
+              border: none;
+              .cell{
+                color: $gt-darker;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: .8px;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+    .el-table__body-wrapper{
+      tbody{
+        .el-table__row{
+          position: relative;
+          &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #fff;
+            z-index: 1;
+          }
+          &:hover{
+            &::after{
+              display: none;
+            }
+            .el-table__cell{
+              background-color: #FAFAFA !important;
+            }
+          }
+        }
+        .el-table__cell{
+          padding: 14.5px 0;
+          border-bottom-width: 0;
+          border-top: 5px solid #fff;
+          &:nth-last-child(1){
+            border-bottom: 5px solid #fff;
+          }
+          .cell{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: .8px;
+            color: $gt-text-gray;
+          }
+        }
+        .checked.el-table__row{
+          td{
+            background:$gt-form-hover;
+            &.el-table-column--selection{
+              background: transparent;
+              position: relative;
+              .cell{
+                position: relative;
+                z-index: 5;
+              }
+              &::before{
+                display: block;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 5.5px;
+                width: calc(100% - 5.5px);
+                height: 100%;
+                background-color: #32A03D;
+                border-radius: 5px;
+                z-index: 2;
+              }
+              &::after{
+                display: block;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 8.5px;
+                width: calc(100% - 8.5px);
+                height: 100%;
+                background-color: $gt-form-hover;
+                z-index: 3;
+              }
+            }
+          }
+          &:hover{
+            td{
+              background:$gt-form-hover !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.gt-e-input{
+  &.is-disabled{
+    .el-input__wrapper{
+      background-color: $gt-gray-light;
+    }
+  }
+  .el-input__wrapper{
+    box-shadow: 0 0 0 1px $gt-pressing inset;
+    background-color: $gt-form-hover;
+    padding: 10px 0 10px 20px;
+    &:hover{
+      box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+    }
+    .el-input__inner{
+      color: $gt-text-dark;
+      line-height: 23px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: .8px;
+    }
+  }
+}
 
 // 未驗證
 .gt-menu {

@@ -30,13 +30,25 @@ VMdEditor.use(vuepressTheme, {
 VMdEditor.use(createHighlightLinesPlugin());
 VMdEditor.use(createLineNumbertPlugin());
 
+import {
+  Loading,
+  Notify
+} from 'quasar'
+
 const app = createApp(App);
 
 app
   .use(router)
   .use(ElementPlus)
   .use(Quasar, {
-    plugins: {}, // import Quasar plugins and add here
+    plugins: {
+      Loading,
+      Notify
+    },
+    config: {
+      notify: { },
+      loading: { }
+    }
   })
   .use(VMdEditor)
   .mount('#app');
