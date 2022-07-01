@@ -65,15 +65,17 @@ const quasarText = `\`\`\` scss
       </p>
     </div>
     <div class="paragraphHead">
-      <g-title :level="1" class="mb-4" id="install">使用ElementPlus或Quasar的覆寫樣式</g-title>
+      <g-title :level="1" class="mb-4" id="install"
+        >使用ElementPlus或Quasar的覆寫樣式</g-title
+      >
     </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
-         (<a
-          class="text-second"
-          href="https://unpkg.com/browse/gt-front-ui@0.0.17/dist/"
-          >原則上選擇最新版本號</a
-        >)
-      </g-title>
+      (<a
+        class="text-second"
+        href="https://unpkg.com/browse/gt-front-ui@0.0.17/dist/"
+        >原則上選擇最新版本號</a
+      >)
+
       <p>
         <v-md-editor v-model="importCss1" mode="preview"></v-md-editor>
       </p>
