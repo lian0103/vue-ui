@@ -171,23 +171,20 @@ const handleClear = () => {
     height: 43px;
     padding: 10px 34px 10px 12px;
 
-    // &:focus {
-    //   @apply outline-main;
-    // }
-
     &.gt-input-green {
       @apply bg-color4;
-      &:focus,
-      &:hover {
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-      }
+    }
+
+    &:focus,
+    &:hover {
+      box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
     }
 
     &.gt-input-error {
       @apply outline-danger;
     }
 
-    &.gt-input-sm{
+    &.gt-input-sm {
       height: 36px;
       padding: 6.5px 34px 6.5px 12px;
     }
