@@ -24,6 +24,8 @@ const { modelValue, placeholder } = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 const root = shallowRef();
+const isSelect = ref(false);
+const isMouseIn = ref(false);
 const isTimePickerShow = ref(false);
 const isHourPickerShow = ref(false);
 const curSelect = ref(dayjs());
@@ -52,6 +54,7 @@ watch(
   (val, oldVal) => {
     // console.log('in~', val, document.getElementsByTagName('html'));
     isHourPickerShow.value = false;
+    isSelect.value = true;
     if (val && document.getElementsByTagName('html')[0]) {
       document
         .getElementsByTagName('html')[0]
@@ -296,13 +299,25 @@ const handleTimePick = () => {
 <template>
   <div ref="root" class="gt-timepicker-box gt-input-wrapper">
     <span
-      class="gt-input gt-input-green gt-input-sm"
+      class="gt-time-input"
+      @mouseenter="isMouseIn = true"
+      @mouseleave="isMouseIn = false"
+      :class="
+        isTimePickerShow
+          ? 'open'
+          : isSelect
+          ? 'selected'
+          : isMouseIn
+          ? 'hover'
+          : ''
+      "
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >{{ curSelect?.format(formatStr) }}</span
-    >
+      >時間: <span>{{ curSelect?.format(formatStr) }}</span>
+    </span>
     <g-icons
       class="icon"
       name="calendar"
+      size="sm"
       @click.stop="isTimePickerShow = !isTimePickerShow"
     />
 
@@ -428,12 +443,33 @@ const handleTimePick = () => {
   width: 100%;
   max-width: 240px;
   @apply relative;
-  > span {
-    @apply cursor-pointer select-none text-left;
-    line-height: 24px !important;
-  }
   .icon {
-    @apply w-8 absolute right-0 top-0.5 text-gray0 cursor-pointer;
+    @apply w-6 absolute left-2 text-gray0 cursor-pointer;
+    top: 6.5px;
+  }
+  .gt-time-input {
+    height: 36px;
+    padding: 8px 37px;
+    line-height: 20px;
+    border-radius: 8px;
+    @apply cursor-pointer select-none text-left;
+    @apply text-gray1 bg-white border border-solid;
+
+    &.hover,
+    &:hover {
+      @apply border-gray2;
+    }
+    &.open {
+      @apply border-main;
+      span {
+        @apply text-main;
+      }
+    }
+    &.selected {
+      span {
+        @apply text-main;
+      }
+    }
   }
 }
 
@@ -613,5 +649,4 @@ const handleTimePick = () => {
     }
   }
 }
-
 </style>
