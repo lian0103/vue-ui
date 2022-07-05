@@ -171,13 +171,16 @@ const typeStr = computed(() => {
 
 .gt-btn-flat {
   border: none !important;
-  @apply cursor-pointer;
+  height: fit-content;
+  padding: 0 2px;
+  @apply cursor-pointer relative;
   color: var(--btn-color);
   &:hover {
     .textLine {
-      @apply absolute w-0 h-0;
-      bottom: 2px;
-      left: 10%;
+      @apply absolute;
+      width: fit-content;
+      left: 0%;
+      bottom: 0;
       border-bottom: 1px solid var(--btn-color);
       animation: textLine 0.3s forwards;
     }
@@ -199,10 +202,10 @@ const typeStr = computed(() => {
 
 @keyframes textLine {
   from {
-    width: 80%;
+    width: 100%;
   }
   to {
-    width: 80%;
+    width: 100%;
   }
 }
 </style>
