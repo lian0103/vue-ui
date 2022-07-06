@@ -1,1 +1,0 @@
-import{_ as l,o as i,c as n,r,s as o}from"./index.42fe38a5.js";const s={props:{level:{type:Number,default:0}},setup(e){return(t,a)=>(i(),n("div",{class:o(["gt-title","gt-level"+e.level])},[r(t.$slots,"default")],2))}};var g=l(s,[["__file","D:/frontEnd/gt-UI/src/components/GTitle.vue"]]);export{g as G};
