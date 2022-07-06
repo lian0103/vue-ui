@@ -343,8 +343,15 @@ onMounted(() => {
         width: 100%;
         min-height: 58px;
         margin: 2px 0 2px auto;
-        @apply bg-color4 relative border-l-4 border-solid border-main;
-        border-radius: 5px;
+        @apply bg-color4 relative;
+        &::before {
+          content: '';
+          width: 6px;
+          height: 100%;
+          border-radius: 5px;
+          @apply border-l-4 border-solid border-main;
+          @apply absolute left-0 top-0;
+        }
       }
     }
   }
