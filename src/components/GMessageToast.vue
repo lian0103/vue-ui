@@ -13,7 +13,7 @@ const { text } = defineProps({
 });
 
 instance.appContext.config.globalProperties.handleMessageToastTrigger = ({
-  time = 3000,
+  time = 1200,
 }) => {
   if (!isShow.value) {
     isShow.value = true;
@@ -58,12 +58,12 @@ instance.appContext.config.globalProperties.handleMessageToastTrigger = ({
 
 .gt-ani-toast-in {
   z-index: 100;
-  animation: aniToastIn 1s linear forwards;
+  animation: aniToastIn 300ms ease-out forwards;
 }
 
 .gt-ani-toast-out {
   z-index: 100;
-  animation: aniToastOut 1s linear forwards;
+  animation: aniToastOut 300ms ease-out forwards;
 }
 
 @keyframes aniToastIn {

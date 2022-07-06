@@ -51,13 +51,13 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
       setTimeout(() => {
         if (
           new Date().getTime() - msgArr.arr[msgArr.arr.length - 1].aniEndStart >
-          1500
+          1200
         ) {
           isFinished.value = true;
         }
-      }, 1500);
+      }, 1200);
     }
-  }, 2000 + msgArr.arr.length * 500);
+  }, 1000 + msgArr.arr.length * 500);
 };
 </script>
 
@@ -118,11 +118,11 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
 }
 
 .aniIn {
-  animation: fadeInDown 1s linear forwards;
+  animation: fadeInDown 300ms ease-out forwards;
 }
 
 .aniOut {
-  animation: fadeOutUp 1s linear forwards;
+  animation: fadeOutUp 300ms ease-out forwards;
 }
 
 @keyframes fadeOutUp {
