@@ -149,7 +149,7 @@ const handleRouteTo = (path, gIdx, cIdx) => {
 
 <style lang="scss">
 .gt-menus {
-  width: 220px;
+  width: 230px;
   margin: auto;
   padding: 10px 0;
   * {
