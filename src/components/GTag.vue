@@ -35,6 +35,10 @@ const mapClass = () => {
     className.push('is-border');
   }
 
+  if (dot) {
+    className.push('dot');
+  }
+
   if (type.toUpperCase() == 'ACTIVITY') {
     className = ['full-orange'];
   }
@@ -45,7 +49,7 @@ const mapClass = () => {
 
 <template>
   <div class="gt-tag" :class="mapClass()">
-    <g-icons v-if="dot" class="w-6" name="circle" />
+    <div v-if="dot" class="circle"></div>
     {{ label }}
   </div>
 </template>
@@ -78,7 +82,7 @@ const mapClass = () => {
 
 .gt-tag {
   width: fit-content;
-  @apply flex justify-center items-center;
+  @apply flex justify-center items-center overflow-hidden;
   padding: 4px 10px;
   height: 29px;
   font-style: normal;
@@ -92,10 +96,26 @@ const mapClass = () => {
   &.is-border {
     @apply border border-solid;
     border-color: var(--text-color);
+    .circle{
+      top: 11px;
+    }
   }
 
   &.full-orange {
     border-color: var(--bg-color);
+  }
+
+  &.dot {
+    padding-left: 26px;
+    position: relative;
+  }
+  .circle {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-color);
+    @apply absolute rounded-full;
+    left: 10px;
+    top: 12px;
   }
 }
 </style>
