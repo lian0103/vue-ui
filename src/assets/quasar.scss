@@ -106,7 +106,17 @@ body.desktop{
     }
     .q-btn__content{
       line-height: 20px;
+      .q-icon{
+        font-size: 15px;
+        color: #fff !important;
+        &.on-left{
+          margin-right: 5.5px;
+        }
+      }
       span{
+        line-height: 20px;
+        font-weight: 500;
+        font-size: 14px;
         letter-spacing: .7px;
         color: #fff !important;
       }
@@ -159,6 +169,48 @@ body.desktop{
       }
     }
   }
+
+  .gt-q-text-button{
+    &.q-btn{
+      color: $gt-text-gray;
+      @each $key, $value in $color {
+        &.bg-#{$key} {
+            color: $value !important;
+            background: transparent !important;
+            &:focus,
+            &:hover{
+              .q-btn__content{
+                span{
+                  font-weight: 500;
+                }
+              }
+              background: transparent !important;
+            }
+        }
+      }
+      &::before{
+        display: none;
+      }
+      .q-ripple,
+      .q-focus-helper{
+        display: none;
+        opacity: 0;
+      }
+      .q-icon{
+        font-size: 15px;
+        &.on-left{
+          margin-right: 5.5px;
+        }
+      }
+      span{
+        line-height: 20px;
+        font-weight: 400;
+        font-size: 14px;
+        letter-spacing: 0.7px;
+      }
+    }
+  }
+
   .gt-q-filter{
     padding: 8px 16px;
     &.q-btn--rounded {
@@ -186,7 +238,7 @@ body.desktop{
   }
   .gt-q-link{
       position: relative;
-      font-size: 14px;
+      font-size: 16px;
       text-decoration: none !important;
       @each $key, $value in $color {
           &.#{$key} {
@@ -325,6 +377,7 @@ body.desktop{
             color:$gt-darker;
             font-size: 16px;
             line-height: 23px;
+            border-radius: 50%;
             &.disabled{
               color: $gt-gray-variant !important;
             }
@@ -446,6 +499,7 @@ body.desktop{
         }
         .q-btn{
           .q-btn__content{
+            span,
             .q-icon{
               color:$gt-text-dark;
               &::before,
@@ -496,8 +550,8 @@ body.desktop{
       }
       &:not(.drawer-list){
         margin-top: 80px;
-        // height: calc(100vh - 150px);
-        height: calc(100vh - 248px);
+        height: calc(100vh - 150px);
+        // height: calc(100vh - 248px);
         overflow: inherit;
         overscroll-behavior: contain;
         &::before{
@@ -507,8 +561,8 @@ body.desktop{
           left: 0;
           background-color: $gt-bg !important;
           width: 100%;
-          // height: 70px;
-          height: 168px;
+          height: 70px;
+          // height: 168px;
           z-index: 10;
         }
         &::after{
@@ -518,8 +572,8 @@ body.desktop{
           width: 120px;
           height: 28px;
           z-index: 15;
-          // bottom: 7.5px;
-          bottom: 70px;
+          bottom: 21px;
+          // bottom: 70px;
           left: 50%;
           // transform: translate(-50%, -50%);
           transform: translate(-50%, 0);

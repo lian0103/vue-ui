@@ -400,7 +400,7 @@ export default defineComponent({
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
       <li>
         <div>
-          <q-btn class="gt-q-button" label="預設按紐" />
+          <q-btn class="gt-q-button" icon='add' label="預設按紐" />
         </div>
         <div>
           {{`<q-btn `}} <span class="text-red">class="gt-q-button"</span> {{`label="預設按紐" />`}}
@@ -462,6 +462,46 @@ export default defineComponent({
           {{ `<q-btn class="gt-q-button" rounded color="primary" label="圓角按紐" />` }}
         </div>
       </li> -->
+      <li>
+        <div>
+          <q-btn class="gt-q-text-button" label="文字按紐" />
+        </div>
+        <div>
+          {{`<q-btn `}} <span class="text-red">class="gt-q-text-button"</span> {{`label="文字按紐" />`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <q-btn class="gt-q-text-button" color="success"  label="文字按紐" />
+        </div>
+        <div>
+          {{`<q-btn `}} <span class="text-red">class="gt-q-text-button"</span> {{`color="success" label="文字按紐" />`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <q-btn class="gt-q-text-button" color="danger"  label="文字按紐" />
+        </div>
+        <div>
+          {{`<q-btn `}} <span class="text-red">class="gt-q-text-button"</span> {{`color="danger" label="文字按紐" />`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <q-btn class="gt-q-text-button" color="primary"  label="文字按紐" />
+        </div>
+        <div>
+          {{`<q-btn `}} <span class="text-red">class="gt-q-text-button"</span> {{`color="primary" label="文字按紐" />`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <q-btn class="gt-q-text-button" color="warning"  label="文字按紐" />
+        </div>
+        <div>
+          {{`<q-btn `}} <span class="text-red">class="gt-q-text-button"</span> {{`color="warning" label="文字按紐" />`}}
+        </div>
+      </li>
     </ul>
     <!-- END // button -->
 
@@ -845,7 +885,7 @@ export default defineComponent({
     <!-- END // q-table -->
 
     <!-- q-btn-dropdown -->
-    <div class="paragraphHead">
+    <!-- <div class="paragraphHead">
       <g-title :level="1" class="mb-4">q-btn-dropdown</g-title>
     </div>
     <ul class="ui-flex mb-4 px-2 w-full md:w-3/4">
@@ -877,7 +917,7 @@ export default defineComponent({
 
         </div>
       </li>
-    </ul>
+    </ul> -->
     <!-- END // q-btn-dropdown -->
 
     <!-- q-input -->
