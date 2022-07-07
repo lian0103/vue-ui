@@ -290,7 +290,7 @@ export default defineComponent({
 
       triggerNegative (position) {
         $q.notify({
-          timeout:'5000',
+          timeout:'2000',
           position,
           type: 'negative',
           message: 'This is a "negative" type notification.'
@@ -299,7 +299,7 @@ export default defineComponent({
 
       triggerWarning (position) {
         $q.notify({
-          timeout:'5000',
+          timeout:'2000',
           position,
           type: 'warning',
           message: 'This is a "warning" type notification.'
@@ -308,7 +308,7 @@ export default defineComponent({
 
       triggerInfo (position) {
         $q.notify({
-          timeout:'5000',
+          timeout:'2000',
           position,
           type: 'info',
           message: 'This is a "info" type notification.'
@@ -317,7 +317,7 @@ export default defineComponent({
 
       triggerDefault (position) {
         $q.notify({
-          timeout:'5000',
+          timeout:'2000',
           position,
           message: 'This is a "Default" type notification.'
         })
@@ -798,7 +798,7 @@ export default defineComponent({
           {{`
           triggerWarning (position) {
             $q.notify({
-              timeout:'5000',
+              timeout:'2000',
               position,
               type: 'warning',
               message: 'This is a "warning" type notification.'
@@ -810,7 +810,7 @@ export default defineComponent({
           <br>需搭配 <br><br>
           {{`triggerInfo (position) {
             $q.notify({
-              timeout:'5000',
+              timeout:'2000',
               position,
               type: 'info',
               message: 'This is a "info" type notification.'
@@ -822,7 +822,7 @@ export default defineComponent({
           {{`
             triggerDefault (position) {
               $q.notify({
-                timeout:'5000',
+                timeout:'2000',
                 position,
                 message: 'This is a "Default" type notification.'
               })

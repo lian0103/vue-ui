@@ -158,16 +158,15 @@ $tag-color: (
 .gt-e-text-button{
   &.el-button{
     border: 0 !important;
-    background: transparent;
+    background: transparent !important;
+    &:focus,
+    &:hover{
+      background: transparent !important;
+    }
     @each $key, $value in $color-hover {
       &.el-button--#{$key} {
-        background: transparent !important;
         span{
           color: $value !important;
-        }
-        &:focus,
-        &:hover{
-          background: transparent !important;
         }
       }
     }
