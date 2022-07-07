@@ -127,6 +127,7 @@ const typeStr = computed(() => {
   height: 36px;
   letter-spacing: 0.7px;
   color: var(--btn-color);
+  font-weight: 500;
   @apply flex justify-center items-center;
   @apply overflow-hidden text-center whitespace-nowrap;
   @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
