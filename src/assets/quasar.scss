@@ -378,6 +378,16 @@ body.desktop{
             font-size: 16px;
             line-height: 23px;
             border-radius: 50%;
+            &.q-btn--actionable.q-btn--standard{
+              &::before{
+                display: none;
+              }
+            }
+            &:hover{
+              .q-focus-helper{
+                display: none;
+              }
+            }
             &.disabled{
               color: $gt-gray-variant !important;
             }
