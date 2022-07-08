@@ -53,6 +53,7 @@ const { headText, title } = defineProps({
       height: 80px;
     }
     .gt-menu-box {
+      padding: 0 20px 0 50px;
       flex-grow: 2;
       @apply w-full mx-auto overflow-y-scroll relative;
       height: calc(100vh - 150px);

@@ -54,7 +54,7 @@ const inputs = reactive({
           @submit.prevent
         >
           <el-form-item prop="search0" label="搜尋0">
-            <div class="relative">
+            <div class="gt-relative">
               <el-input
                 class="mb-4 gt-e-input-search"
                 v-model="inputs.search0"

@@ -8,31 +8,33 @@ const { level } = defineProps({
 </script>
 
 <template>
-  <div class="w-full gt-title" :class="'gt-level' + level"><slot></slot></div>
+  <div class="gt-title" :class="'gt-level' + level"><slot></slot></div>
 </template>
 
 <style lang="scss">
 .gt-title {
   @apply text-gray4;
+  width: fit-content;
 }
 
 .gt-level0 {
   @apply text-base leading-6;
-  word-spacing: 0.8px;
+  letter-spacing: 0.8px;
 }
 
 .gt-level1 {
   @apply font-bold text-2xl leading-8;
-  word-spacing: 1.2px;
+  letter-spacing: 1.2px;
 }
 
 .gt-level2 {
-  @apply font-medium text-xl leading-7;
-  word-spacing: 1px;
+  @apply text-xl leading-7;
+  letter-spacing: 1px;
+  font-weight: 400;
 }
 
 .gt-level3 {
   @apply font-light text-lg leading-6;
-  word-spacing: 0.9px;
+  letter-spacing: 0.9px;
 }
 </style>

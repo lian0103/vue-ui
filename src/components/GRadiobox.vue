@@ -72,7 +72,11 @@ const onClick = () => {
 
 <style lang="scss">
 .gt-radiobox {
-  padding: 0 10px 0 22px;
+  width: fit-content;
+  padding: 0 10px 0 32px;
+  line-height: 20px;
+  height: 20px;
+  min-width: 20px;
   @apply relative block rounded-full cursor-pointer;
   input {
     @apply absolute w-0 h-0 opacity-0 cursor-pointer;
@@ -81,20 +85,23 @@ const onClick = () => {
     width: 20px;
     height: 20px;
     @apply absolute top-0 left-0;
-    @apply rounded-full border-1.5 border-solid border-main bg-color1;
+    top: 1.5px;
+    @apply rounded-full border-2 border-solid border-main bg-color1;
     @apply transition-all duration-300;
   }
 
   .checked {
     @apply flex justify-center items-center;
     .circle {
-      @apply w-1/2 h-1/2 bg-main rounded-full;
+      @apply bg-main rounded-full;
+      width: 10.5px;
+      height: 10.5px;
     }
   }
   .disabled {
     @apply cursor-not-allowed bg-white border-1.5 border-solid border-gray0;
     .circle {
-      @apply w-1/2 h-1/2 rounded-full bg-gray0;
+      @apply rounded-full bg-gray0;
     }
   }
   .label {

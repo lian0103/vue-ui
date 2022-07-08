@@ -51,19 +51,19 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
       setTimeout(() => {
         if (
           new Date().getTime() - msgArr.arr[msgArr.arr.length - 1].aniEndStart >
-          1500
+          1200
         ) {
           isFinished.value = true;
         }
-      }, 1500);
+      }, 1200);
     }
-  }, 2000 + msgArr.arr.length * 500);
+  }, 1000 + msgArr.arr.length * 500);
 };
 </script>
 
 <template>
   <div class="gt-msgBox" v-if="!isFinished">
-    <div class="relative">
+    <div class="gt-relative">
       <div v-for="item in list" :key="item.id" :class="item.classArr">
         <div class="title" v-if="item.msgTitle">{{ item.msgTitle }}</div>
         {{ item.msgText }}
@@ -109,7 +109,7 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
   }
 
   .title {
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     color: #303236;
@@ -118,11 +118,11 @@ instance.appContext.config.globalProperties.handleMessageTrigger = ({
 }
 
 .aniIn {
-  animation: fadeInDown 1s linear forwards;
+  animation: fadeInDown 300ms ease-out forwards;
 }
 
 .aniOut {
-  animation: fadeOutUp 1s linear forwards;
+  animation: fadeOutUp 300ms ease-out forwards;
 }
 
 @keyframes fadeOutUp {

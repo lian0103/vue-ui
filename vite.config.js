@@ -54,15 +54,17 @@ const libTarget = {
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-  const isGtMode = mode == 'GT';
-
   let config = {
+    test: {
+      global: true,
+      environment: 'jsdom',
+      includeSource: ['src/components/__test__/*.spec.js'],
+    },
     build: {
       lib: {
         entry: path.resolve(__dirname, libTarget[mode] || ''),
         name: 'gt-ui',
-        fileName: (format) =>
-          isGtMode ? `gt-ui.${format}.js` : `gt-ui-${mode}.${format}.js`,
+        fileName: (format) => `gt-ui.${format}.js`,
       },
       outDir: `./dist/${mode}`,
       rollupOptions: {

@@ -16,10 +16,7 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import createHighlightLinesPlugin from '@kangc/v-md-editor/lib/plugins/highlight-lines/index';
 import '@kangc/v-md-editor/lib/plugins/highlight-lines/highlight-lines.css';
 import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
-
-// 測試打包後檔案
-// import '../dist/GT/style.css'
-// import "https://unpkg.com/gt-front-ui@0.0.12/dist/GT/style.css"
+import 'element-plus/theme-chalk/src/index.scss'
 
 // Prism
 import Prism from 'prismjs';
@@ -33,13 +30,25 @@ VMdEditor.use(vuepressTheme, {
 VMdEditor.use(createHighlightLinesPlugin());
 VMdEditor.use(createLineNumbertPlugin());
 
+import {
+  Loading,
+  Notify
+} from 'quasar'
+
 const app = createApp(App);
 
 app
   .use(router)
   .use(ElementPlus)
   .use(Quasar, {
-    plugins: {}, // import Quasar plugins and add here
+    plugins: {
+      Loading,
+      Notify
+    },
+    config: {
+      notify: { },
+      loading: { }
+    }
   })
   .use(VMdEditor)
   .mount('#app');

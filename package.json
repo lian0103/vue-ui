@@ -1,6 +1,7 @@
 {
   "name": "gt-front-ui",
-  "version": "0.0.12",
+  "author": "Jason Lien",
+  "version": "0.0.17",
   "files": [
     "dist"
   ],
@@ -18,37 +19,43 @@
     "build-Qua": "vite build --mode Quasar",
     "build-GT": "vite build --mode GT",
     "build-demo": "vite build --mode demo",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:unit": "vitest --environment jsdom --coverage"
   },
   "dependencies": {
+    "dayjs": "^1.11.3",
+    "testing-library": "^0.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
     "@element-plus/icons-vue": "^1.1.4",
     "@kangc/v-md-editor": "^2.3.15",
     "@quasar/extras": "^1.13.6",
+    "@quasar/vite-plugin": "^1.0.9",
+    "@testing-library/vue": "^6.6.0",
+    "@vitejs/plugin-vue": "^2.3.1",
     "@vueuse/core": "^8.5.0",
     "autoprefixer": "^10.4.7",
+    "c8": "^7.11.3",
     "element-plus": "^2.1.11",
-    "gt-front-ui": "^0.0.12",
-    "luxon": "^2.4.0",
+    "gsap": "^3.10.4",
+    "gt-front-ui": "^0.0.14",
+    "jsdom": "^20.0.0",
     "postcss": "^8.4.13",
     "quasar": "^2.6.6",
+    "sass": "^1.52.2",
     "sass-loader": "^12.0.0",
-    "tailwindcss": "^3.0.24",
-    "unplugin-element-plus": "^0.4.0",
-    "uuid": "^8.3.2",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.13",
-    "vue-types": "^4.1.1",
-    "webpack": "^5.72.1"
-  },
-  "devDependencies": {
-    "@quasar/vite-plugin": "^1.0.9",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "sass": "^1.33.00",
     "svg-sprite-loader": "^6.0.11",
+    "tailwindcss": "^3.0.24",
     "unplugin-auto-import": "^0.7.1",
+    "unplugin-element-plus": "^0.4.0",
     "unplugin-vue-components": "^0.19.3",
     "vite": "^2.9.7",
-    "vite-svg-loader": "^3.3.0"
+    "vite-svg-loader": "^3.3.0",
+    "vitest": "^0.16.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.13",
+    "vue-types": "^4.1.1"
   },
   "peerDependencies": {
     "vue": "^3.2.25"

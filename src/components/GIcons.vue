@@ -19,7 +19,8 @@ import trash from '../assets/icons/trash.svg';
 import x from '../assets/icons/x.svg';
 import loading from '../assets/icons/loading.svg';
 import upload from '../assets/icons/upload.svg';
-import download_sm from '../assets/icons/download_sm.svg'
+import download_sm from '../assets/icons/download_sm.svg';
+import file from '../assets/icons/file.svg';
 
 import { computed } from 'vue';
 
@@ -44,26 +45,58 @@ const iconNameMap = {
   x,
   loading,
   upload,
-  download_sm
+  download_sm,
+  file,
 };
 
-const { name } = defineProps({
+const IconEnum = {
+  md: 'icon-md',
+  sm: 'icon-sm',
+  lg: 'icon-lg',
+};
+
+const { name, size } = defineProps({
   name: {
     type: String,
     default: 'up',
   },
+  size: {
+    type: String,
+  },
+});
+
+const classComputed = computed(() => {
+  return IconEnum[size] ? IconEnum[size] : IconEnum.md;
 });
 </script>
 
 <template>
-  <div class="text-center">
+  <div class="gt-icon" :class="classComputed">
     <!-- <img class="w-full" :src="iconNameMap[name]" alt="icon" /> -->
     <component class="gt-svg-icon" :is="iconNameMap[name]" />
   </div>
 </template>
 
 <style lang="scss">
+.gt-icon {
+  @apply text-center;
+}
+
+.icon-md {
+  width: 24px;
+  height: 24px;
+}
+.icon-sm {
+  width: 14px;
+  height: 14px;
+}
+.icon-lg {
+  width: 36px;
+  height: 36px;
+}
+
 .gt-svg-icon {
+  display: block;
   @apply w-full;
   fill: currentColor !important;
 }

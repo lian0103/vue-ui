@@ -14,16 +14,16 @@ const { modelValue, statusLabel } = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const isChecked = ref(modelValue);
 const onClick = () => {
-    let val = !isChecked.value;
-    // console.log('val', val);
-    isChecked.value = val;
-    emit('update:modelValue', val);
+  let val = !isChecked.value;
+  // console.log('val', val);
+  isChecked.value = val;
+  emit('update:modelValue', val);
 };
 </script>
 
 <template>
   <div class="gt-switch-input" @click.prevent="onClick">
-    <div class="relative">
+    <div class="gt-relative">
       <input type="checkbox" :checked="modelValue" />
       <div class="bar" :class="modelValue ? 'bg-open' : 'bg-close'"></div>
       <div class="dot" :class="modelValue ? 'checked' : ''"></div>
@@ -36,6 +36,8 @@ const onClick = () => {
 
 <style lang="scss">
 .gt-switch-input {
+  height: 22px;
+  width: fit-content;
   @apply flex items-center cursor-pointer;
   input {
     @apply absolute w-0 h-0 opacity-0 cursor-pointer;

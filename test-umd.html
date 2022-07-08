@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/GT/style.css" />
+    <script src="https://unpkg.com/vue@3.2.25/dist/vue.global.js"></script>
+    <script src="./dist/GT/gt-ui.umd.js"></script>
+    <title>test</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      console.log(window['gt-ui']);
+      const root = {
+        components: {},
+        template: `
+          <g-title :level="1">{{title}}</g-title>
+          <g-time-picker v-model="time" />
+          <g-button flat type="red"
+            ><g-icons name="chevronRight" />下一頁</g-button
+          >
+          <g-dropdown v-model="dropdown" :options="options" clicked icon />
+          <h2>123</h2>
+        
+        `,
+        setup() {
+          const time = Vue.ref('');
+          const dropdown = Vue.ref(2);
+          const options = [
+            { label: 'Aaaa', value: 1 },
+            { label: 'Bbbb', value: 2 },
+            { label: 'Gggggeeeeewwww', value: 3 },
+          ];
+
+          return {
+            title: '123',
+            time,
+            dropdown,
+            options,
+          };
+        },
+      };
+      Object.keys(window['gt-ui']).forEach((key) => {
+        root.components[key] = window['gt-ui'][key];
+      });
+      console.log(root);
+
+      Vue.createApp(root).mount('#app');
+    </script>
+  </body>
+</html>

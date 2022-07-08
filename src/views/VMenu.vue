@@ -1,49 +1,68 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { GMenu } from '../components/indexGT';
+import gtDoc from './gtDoc';
 
 const Router = useRouter();
+const Route = useRoute();
+const active = ref(Router.currentRoute._value.meta.idx ||  gtDoc[Route.params.componentName]?.menuIndex);
+
+const menuRoutes = [
+  {
+    label: '文件',
+    children: [
+      {
+        label: '指引',
+        icon: 'file',
+        path: '/doc',
+      },
+      {
+        label: '使用',
+        icon: 'plus',
+        path: '/use',
+      },
+      {
+        label: '安裝',
+        icon: 'download',
+        path: '/install',
+      },
+    ],
+  },
+  {
+    label: '覆寫元件',
+    children: [
+      {
+        label: 'Element',
+        icon: 'file',
+        path: '/element',
+      },
+      {
+        label: 'Quasar',
+        icon: 'file',
+        path: '/quasar',
+      },
+    ],
+  },
+  {
+    label: 'GT元件',
+    children: [
+      ...Object.keys(gtDoc).map((key) => {
+        return {
+          label: gtDoc[key].name,
+          icon: '',
+          path: `/gt/${key}`,
+        };
+      }),
+    ],
+  },
+];
+
+// console.log(menuRoutes);
 </script>
 
 <template>
-  <el-menu class="gt-menu" :default-active="Router.currentRoute._value.meta.idx">
-    <el-sub-menu index="1">
-      <template #title>
-        <g-icons name="calendar" class="w-6 mr-2" />
-        <span>文件</span>
-      </template>
-
-      <router-link to="/doc">
-        <el-menu-item index="1-1">介紹</el-menu-item></router-link
-      >
-
-      <router-link to="/use">
-        <el-menu-item index="1-2">使用</el-menu-item></router-link
-      >
-
-      <router-link to="/install">
-        <el-menu-item index="1-3">安裝</el-menu-item></router-link
-      >
-    </el-sub-menu>
-    <el-sub-menu index="2">
-      <template #title>
-        <g-icons name="download" class="w-6 mr-2" />
-        <span>元件</span>
-      </template>
-      <!-- <router-link to="/elementPlus">
-        <el-menu-item index="2-1">ElementPlus</el-menu-item></router-link
-      > -->
-      <router-link to="/element">
-        <el-menu-item index="2-4">Element</el-menu-item></router-link
-      >
-      <router-link to="/quasar"
-        ><el-menu-item index="2-2"> Quasar</el-menu-item></router-link
-      >
-      <router-link to="/gt-self">
-        <el-menu-item index="2-3"> GT開發</el-menu-item></router-link
-      >
-    </el-sub-menu>
-  </el-menu>
+  <g-menu class="mx-auto" :active="active" :menu="menuRoutes" />
 </template>
 
 <style lang="scss"></style>

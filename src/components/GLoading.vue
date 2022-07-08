@@ -17,7 +17,7 @@ instance.appContext.config.globalProperties.handleLoadingTrigger = ({
 
 <template>
   <div v-if="gLoadingShow" class="gt-loading-wrapper">
-    <div class="gt-loadBox relative">
+    <div class="gt-loadBox gt-relative">
       <div class="gt-loadAni"></div>
       <div class="gt-loadText">載入中</div>
     </div>

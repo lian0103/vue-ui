@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+// @import url('https://meyerweb.com/eric/tools/css/reset/reset.css');
+
 :root {
   --gt-bg-color: #fbfbf9;
 }
 
 * {
-  font-family: 'Noto Sans TC';
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
-body{
-    font-size: 14px;
+body {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: 'Noto Sans TC', sans-serif;
 }
-

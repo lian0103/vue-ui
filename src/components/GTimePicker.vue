@@ -1,23 +1,36 @@
 <script setup>
-import { computed, onMounted, reactive, ref, shallowRef, watch } from 'vue';
-import { useElementBounding, useWindowSize } from '@vueuse/core';
-import { DateTime } from 'luxon';
+import {
+  computed,
+  onMounted,
+  reactive,
+  ref,
+  shallowRef,
+  watch,
+  nextTick,
+} from 'vue';
+import { useElementBounding, useWindowSize, useScroll } from '@vueuse/core';
+import dayjs from 'dayjs';
 import GIcons from './GIcons.vue';
 import GInput from './GInput.vue';
 import { v4 as uuidv4 } from 'uuid';
 
+const formatStr = 'YYYY-MM-DD HH:mm';
 const { modelValue, placeholder } = defineProps({
   modelValue: {},
   placeholder: {
-    default: DateTime.now().setLocale('zh').toLocaleString(),
+    default: dayjs().format('YYYY-MM-DD HH:mm'),
   },
 });
+
 const emit = defineEmits(['update:modelValue']);
 const root = shallowRef();
+const isSelect = ref(false);
+const isMouseIn = ref(false);
 const isTimePickerShow = ref(false);
-const curSelect = ref(modelValue || null);
-const curDay = ref(DateTime.now());
-const curIndex = ref(null);
+const isHourPickerShow = ref(false);
+const curSelect = ref(dayjs());
+const curDay = ref(dayjs());
+const curDayIndex = ref(null);
 const curCalenderInfo = reactive({
   curMonthDayStartIndex: null,
   curMonthDayEndIndex: null,
@@ -27,7 +40,7 @@ watch(
   () => curSelect.value,
   (val, oldVal) => {
     // console.log('val', val);
-    emit('update:modelValue', val);
+    emit('update:modelValue', curSelect.value?.format(formatStr) || '');
   }
 );
 
@@ -39,14 +52,16 @@ const eventHandle = () => {
 watch(
   () => isTimePickerShow.value,
   (val, oldVal) => {
-    // console.log('in~', val, document.getElementsByTagName('body'));
-    if (val && document.getElementsByTagName('body')[0]) {
+    // console.log('in~', val, document.getElementsByTagName('html'));
+    isHourPickerShow.value = false;
+    isSelect.value = true;
+    if (val && document.getElementsByTagName('html')[0]) {
       document
-        .getElementsByTagName('body')[0]
+        .getElementsByTagName('html')[0]
         .addEventListener('click', eventHandle, false);
     } else {
       document
-        .getElementsByTagName('body')[0]
+        .getElementsByTagName('html')[0]
         ?.removeEventListener('click', eventHandle);
     }
   }
@@ -54,7 +69,7 @@ watch(
 
 const monthAll = computed(() => {
   //   console.log('curDay.value', curDay.value);
-  return curDay.value ? `${curDay.value.year}年${curDay.value.month}月` : '';
+  return curDay.value ? `${curDay.value.$y}年${curDay.value.$M + 1}月` : '';
 });
 const isMonthAllShow = ref(false);
 const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
@@ -72,38 +87,30 @@ const months = [
   '11月',
   '12月',
 ];
+const hours = new Array(24).fill('').map((i, idx) => idx);
+const minutes = new Array(60).fill('').map((i, idx) => idx);
+const curHourIndex = ref(hours.findIndex((ele) => ele == curDay.value.$H));
+const curMinuteIndex = ref(minutes.findIndex((ele) => ele == curDay.value.$m));
+
 const calenderDays = computed(() => {
   curCalenderInfo.curMonthDayStartIndex = null;
   curCalenderInfo.curMonthDayEndIndex = null;
   let arr = new Array(42);
   if (curDay.value) {
-    let { year, month, day, weekday } = curDay.value;
-    let { weekday: monthStartDayWeekday } = DateTime.fromObject({
-      year,
-      month,
-      day: 1,
-    });
-    let { day: preMonthLastday } = DateTime.fromObject({
-      year,
-      month,
-      day: 1,
-    }).minus({ days: 1 });
-    let { day: monthEndDay, weekday: monthEndWeekday } = DateTime.fromObject({
-      year: month == 12 ? year + 1 : year,
-      month: month == 12 ? 1 : month + 1,
-      day: 1,
-    }).minus({ days: 1 });
+    // console.log('curDay.value', curDay.value);
+    let { $y: year, $M: month, $D: day, $W: weekday } = curDay.value;
+    let { $W: monthStartDayWeekday } = dayjs(new Date(year, month, 1));
+    let { $D: preMonthLastday } = dayjs(new Date(year, month, 1)).subtract(
+      1,
+      'day'
+    );
+
+    let { $D: monthEndDay, $W: monthEndWeekday } = dayjs(
+      new Date(month == 11 ? year + 1 : year, month == 11 ? 0 : month + 1, 1)
+    ).subtract(1, 'day');
 
     let rowOnediff = monthStartDayWeekday;
     let rowLastPlus = monthEndWeekday == 6 ? 7 : 7 - monthEndWeekday;
-
-    // console.log('cur', year, month, day);
-    // console.log('preMonthLastday', preMonthLastday);
-    // console.log('monthStartDayWeekday', monthStartDayWeekday);
-    // console.log('monthEndDay', monthEndDay);
-    // console.log('monthEndWeekday', monthEndWeekday);
-    // console.log('rowOnediff', rowOnediff);
-    // console.log('rowLastPlus', rowLastPlus);
     let idx2 = 0;
     for (let index = 0; index < 42; index++) {
       if (rowOnediff - index > 0) {
@@ -115,13 +122,13 @@ const calenderDays = computed(() => {
       ) {
         // console.log('in..2');
         if (!curCalenderInfo.curMonthDayStartIndex) {
-          curCalenderInfo.curMonthDayStartIndex = index + 1;
+          curCalenderInfo.curMonthDayStartIndex = index;
         }
         arr[index] = 1 + index - rowOnediff;
       } else {
         // console.log('in..3');
         if (!curCalenderInfo.curMonthDayEndIndex) {
-          curCalenderInfo.curMonthDayEndIndex = index - 1;
+          curCalenderInfo.curMonthDayEndIndex = index;
         }
         arr[index] = 1 + idx2;
         idx2++;
@@ -136,66 +143,71 @@ const calenderDays = computed(() => {
 const getCalenderClass = (cdStr, idx) => {
   let rowClass = 'calDay-r-' + parseInt(idx / 7) + ' calDay-c-' + (idx % 7);
 
-  if (curIndex.value != null && idx == curIndex.value) {
+  if (curDayIndex.value != null && idx == curDayIndex.value) {
     rowClass += ' curSelect';
   }
 
   if ((idx < 7 && parseInt(cdStr) > 16) || (idx > 21 && parseInt(cdStr) < 16)) {
-    return `${rowClass} text-gray0`;
+    return `${rowClass} gray0`;
   }
 
-  if (cdStr == curDay.value?.day) {
-    return `${rowClass} text-main font-bold`;
+  if (cdStr == curDay.value?.$D) {
+    return `${rowClass} today`;
   }
-  return `${rowClass} text-gray1`;
+  return `${rowClass} gray1`;
 };
 
 const handleCalDayClick = (idx) => {
-  //   console.log("curIndex.value ",curIndex.value )
   let month =
     idx < curCalenderInfo.curMonthDayStartIndex
-      ? curDay.value.month - 1 < 1
-        ? 12
-        : curDay.value.month - 1
-      : idx > curCalenderInfo.curMonthDayEndIndex
-      ? curDay.value.month + 1 > 12
-        ? 1
-        : curDay.value.month + 1
-      : curDay.value.month;
+      ? curDay.value.$M - 1 < 0
+        ? 11
+        : curDay.value.$M - 1
+      : idx >= curCalenderInfo.curMonthDayEndIndex
+      ? curDay.value.$M + 1 > 11
+        ? 0
+        : curDay.value.$M + 1
+      : curDay.value.$M;
   let year =
-    curDay.value.month == 12 && idx > curCalenderInfo.curMonthDayEndIndex
-      ? curDay.value.year + 1
-      : curDay.value.month == 1 && idx < curCalenderInfo.curMonthDayStartIndex
-      ? curDay.value.year - 1
-      : curDay.value.year;
-//   console.log('year', year);
+    curDay.value.$M == 11 && idx >= curCalenderInfo.curMonthDayEndIndex
+      ? curDay.value.$y + 1
+      : curDay.value.$M == 0 && idx < curCalenderInfo.curMonthDayStartIndex
+      ? curDay.value.$y - 1
+      : curDay.value.$y;
 
-  curSelect.value = DateTime.fromObject({
-    year,
-    month,
-    day: calenderDays.value[idx],
-  })
-    .setLocale('zh')
-    .toLocaleString();
-  curIndex.value = idx;
+  curSelect.value = dayjs(
+    new Date(
+      year,
+      month,
+      calenderDays.value[idx],
+      curHourIndex.value ? hours[curHourIndex.value] : 0,
+      curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0
+    )
+  );
+
+  curDayIndex.value = idx;
 };
 
 const handleMonthPre = () => {
-  curIndex.value = null;
-  curDay.value = DateTime.fromObject({
-    year: curDay.value.month == 1 ? curDay.value.year - 1 : curDay.value.year,
-    month: curDay.value.month == 1 ? 12 : curDay.value.month - 1,
-    day: 1,
-  });
+  curDayIndex.value = null;
+  curDay.value = dayjs(
+    new Date(
+      curDay.value.$M == 0 ? curDay.value.$y - 1 : curDay.value.$y,
+      curDay.value.$M == 0 ? 11 : curDay.value.$M - 1,
+      1
+    )
+  );
 };
 
 const handleMonthNext = () => {
-  curIndex.value = null;
-  curDay.value = DateTime.fromObject({
-    year: curDay.value.month == 12 ? curDay.value.year + 1 : curDay.value.year,
-    month: curDay.value.month == 12 ? 1 : curDay.value.month + 1,
-    day: 1,
-  });
+  curDayIndex.value = null;
+  curDay.value = dayjs(
+    new Date(
+      curDay.value.$M == 11 ? curDay.value.$y + 1 : curDay.value.$y,
+      curDay.value.$M == 11 ? 0 : curDay.value.$M + 1,
+      1
+    )
+  );
 };
 
 const handleMonthAll = () => {
@@ -203,35 +215,33 @@ const handleMonthAll = () => {
 };
 
 const handleMonthChange = (month) => {
-  curIndex.value = null;
+  curDayIndex.value = null;
   if (month == 'current') {
     isMonthAllShow.value = !isMonthAllShow.value;
     return true;
   }
 
-  curDay.value = DateTime.fromObject({
-    year: curDay.value.year,
-    month: month,
-    day: 1,
-  });
+  curDay.value = dayjs(new Date(curDay.value.$y, month, 1));
+
   isMonthAllShow.value = !isMonthAllShow.value;
 };
 
 const handleUseNow = () => {
-  let time = DateTime.now();
-  curDay.value = DateTime.now().toObject();
-  curSelect.value = time.setLocale('zh').toLocaleString();
-
+  curDay.value = dayjs();
+  curSelect.value = dayjs();
+  curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.$H);
+  curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.$m);
+  // console.log(' curDay.value', curDay.value);
   calenderDays.value.forEach((day, idx) => {
     if (
-      day == time.day &&
+      day == curDay.value.$D &&
       idx >= curCalenderInfo.curMonthDayStartIndex &&
-      idx <= curCalenderInfo.curMonthDayEndIndex
+      idx < curCalenderInfo.curMonthDayEndIndex
     ) {
-      curIndex.value = idx;
+      curDayIndex.value = idx;
     }
   });
-  isTimePickerShow.value = false;
+  // isTimePickerShow.value = false;
 };
 
 const {
@@ -250,8 +260,11 @@ const popupStyleComputed = computed(() => {
   let rootWidth = parseInt(rootRight.value) - parseInt(rootLeft.value);
   if (root) {
     return {
-      top: '50px',
-      left: rootRight.value + 100 > winWidth.value ? '-84px' : 0,
+      top: rootTop.value + 42 + 'px',
+      left:
+        rootRight.value + 100 > winWidth.value
+          ? '-84px'
+          : rootLeft.value + 'px',
     };
   } else {
     return {};
@@ -261,23 +274,55 @@ const popupStyleComputed = computed(() => {
 const popupClassComputed = computed(() => {
   return isTimePickerShow.value ? 'tp-aniIn' : '';
 });
+
+const handleHourMinuteChange = (target, value, idx) => {
+  // console.log(curSelect.value);
+  switch (target) {
+    case 'hour': {
+      curSelect.value = curSelect.value.hour(value);
+      curHourIndex.value = idx;
+      break;
+    }
+    case 'minute': {
+      curSelect.value = curSelect.value.minute(value);
+      curMinuteIndex.value = idx;
+      break;
+    }
+  }
+};
+
+const handleTimePick = () => {
+  isHourPickerShow.value = !isHourPickerShow.value;
+};
 </script>
 
 <template>
   <div ref="root" class="gt-timepicker-box gt-input-wrapper">
     <span
-      class="gt-input gt-input-green select-none"
+      class="gt-time-input"
+      @mouseenter="isMouseIn = true"
+      @mouseleave="isMouseIn = false"
+      :class="
+        isTimePickerShow
+          ? 'open'
+          : isSelect
+          ? 'selected'
+          : isMouseIn
+          ? 'hover'
+          : ''
+      "
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >{{ curSelect || placeholder || '' }}</span
-    >
+      >時間: <span>{{ curSelect?.format(formatStr) }}</span>
+    </span>
     <g-icons
       class="icon"
       name="calendar"
+      size="sm"
       @click.stop="isTimePickerShow = !isTimePickerShow"
     />
 
     <div
-      @click.stop="() => {}"
+      @click.stop="isHourPickerShow = false"
       class="gt-timepicker"
       :class="popupClassComputed"
       :style="popupStyleComputed"
@@ -309,9 +354,46 @@ const popupClassComputed = computed(() => {
                 handleCalDayClick(idx);
               }
             "
-            >{{ cdStr }}</span
           >
-          <span v-if="curSelect" class="cur-select">{{ curSelect }}</span>
+            {{ cdStr }}
+          </span>
+          <div class="time-select" @click.stop="handleTimePick">
+            {{
+              curSelect
+                ? curSelect?.format(formatStr).split(' ')[1]
+                : '請選擇時間'
+            }}
+            <div class="time-select-popup" v-show="isHourPickerShow">
+              <div class="top">
+                <div class="left relative" id="left">
+                  <span
+                    v-for="(item, idx) in hours"
+                    :key="item + 'h'"
+                    :class="idx == curHourIndex ? 'current' : ''"
+                    @click.stop="
+                      () => {
+                        handleHourMinuteChange('hour', item, idx);
+                      }
+                    "
+                    >{{ item }}</span
+                  >
+                </div>
+                <div class="right">
+                  <span
+                    v-for="(item, idx) in minutes"
+                    :key="item + 'm'"
+                    :class="idx == curMinuteIndex ? 'current' : ''"
+                    @click.stop="
+                      () => {
+                        handleHourMinuteChange('minute', item, idx);
+                      }
+                    "
+                    >{{ item }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
 
           <span class="use-cur-time" @click.stop="handleUseNow"
             >套用現在時間</span
@@ -326,13 +408,13 @@ const popupClassComputed = computed(() => {
       <template v-if="isMonthAllShow">
         <div class="months">
           <span class="month" v-for="(month, idx) in months" :key="month">
-            <template v-if="curDay && idx != curDay.month - 1">
+            <template v-if="curDay && idx != curDay.$M">
               <g-button
                 pill
                 type="white"
                 @click.stop="
                   () => {
-                    handleMonthChange(idx + 1);
+                    handleMonthChange(idx);
                   }
                 "
                 >{{ month }}</g-button
@@ -361,21 +443,43 @@ const popupClassComputed = computed(() => {
   width: 100%;
   max-width: 240px;
   @apply relative;
-  > span {
-    @apply cursor-pointer;
-    line-height: 16px !important;
-  }
   .icon {
-    @apply w-8 absolute right-0 top-0.5 text-gray0 cursor-pointer;
+    @apply w-6 absolute left-2 text-gray0 cursor-pointer;
+    top: 6.5px;
+  }
+  .gt-time-input {
+    height: 36px;
+    padding: 8px 37px;
+    line-height: 20px;
+    border-radius: 8px;
+    @apply cursor-pointer select-none text-left;
+    @apply text-gray1 bg-white border border-solid;
+
+    &.hover,
+    &:hover {
+      @apply border-gray2;
+    }
+    &.open {
+      @apply border-main;
+      span {
+        @apply text-main;
+      }
+    }
+    &.selected {
+      span {
+        @apply text-main;
+      }
+    }
   }
 }
 
 .gt-timepicker {
   width: 326px;
-  overflow: hidden;
+  // overflow: hidden;
   opacity: 0;
-  display: none;
-  @apply absolute flex-col -z-10;
+  z-index: -1;
+  // display: none;
+  @apply fixed flex-col -z-10;
   max-width: 326px;
   height: 416px;
   padding: 16px;
@@ -406,7 +510,7 @@ const popupClassComputed = computed(() => {
     }
 
     .wdStr {
-      font-weight: 500;
+      font-weight: 400;
       height: 41px;
       padding: 10px 13px;
       @apply row-start-2 row-end-3 select-none;
@@ -415,14 +519,32 @@ const popupClassComputed = computed(() => {
     .calDay {
       @apply select-none cursor-pointer;
       line-height: 2;
+      font-weight: 400;
+
+      &.gray0 {
+        @apply text-gray0;
+      }
+
+      &.today {
+        font-weight: 500;
+        @apply text-main;
+      }
+      &.gray1 {
+        @apply text-gray1;
+      }
 
       &:hover {
-        @apply text-main;
+        width: 32px;
+        position: relative;
+        left: 5px;
+        font-weight: 500;
+        @apply text-main bg-color1 rounded-full;
       }
 
       &.curSelect {
         width: 30px;
         height: 30px;
+        font-weight: 500;
         @apply text-white bg-main rounded-full relative;
         left: 5.5px;
       }
@@ -446,12 +568,57 @@ const popupClassComputed = computed(() => {
       }
     }
 
-    .cur-select {
-      @apply select-none;
+    .time-select {
+      height: 32px;
+      background: #f1f9f3;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      @apply select-none cursor-pointer relative leading-7 text-left px-4 z-top;
       grid-column-start: 1;
-      grid-column-end: 3;
-      grid-row-start: 10;
-      grid-row-end: 11;
+      grid-column-end: 8;
+      grid-row-start: 9;
+      grid-row-end: 10;
+      .time-select-popup {
+        @apply absolute left-0 top-9 flex flex-col text-center;
+        width: 152px;
+        height: 140px;
+        background: #ffffff;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        .top {
+          overflow: hidden;
+          @apply flex text-gray0;
+          .left,
+          .right {
+            width: 50%;
+            height: 135px;
+            overflow-y: scroll;
+            span {
+              display: block;
+              height: 28px;
+            }
+            .current,
+            > span:hover {
+              color: #55585e;
+              border-top: 1px solid #f0f0f0;
+              border-bottom: 1px solid #f0f0f0;
+            }
+            &::-webkit-scrollbar {
+              width: 5px;
+              background-color: #d9d9d9;
+              border-radius: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+              border-radius: 5px;
+              background-color: #aaaaaa;
+              &:hover {
+                background-color: #666666;
+              }
+            }
+          }
+        }
+      }
     }
 
     .use-cur-time {
@@ -475,27 +642,11 @@ const popupClassComputed = computed(() => {
     @apply flex justify-between flex-wrap;
     @apply col-start-1 col-end-8 row-start-3 row-end-4;
     .month {
-      @apply relative;
+      @apply relative flex justify-center items-center;
       width: 64px;
       height: 42px;
       margin: 5px;
     }
-  }
-}
-
-.tp-aniIn {
-  display: flex !important;
-  animation: tpFadeIn 0.5s forwards;
-}
-
-@keyframes tpFadeIn {
-  0% {
-    opacity: 0;
-    @apply -z-10;
-  }
-  100% {
-    opacity: 1;
-    @apply z-top;
   }
 }
 </style>

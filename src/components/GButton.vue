@@ -1,7 +1,8 @@
 <script setup>
 import { computed } from 'vue';
+import GIcons from './GIcons.vue';
 
-const { flat, pill, type } = defineProps({
+const { flat, pill, type, noBorder, icon } = defineProps({
   flat: {
     type: Boolean,
   },
@@ -10,7 +11,13 @@ const { flat, pill, type } = defineProps({
   },
   type: {
     type: String,
-    default: 'primary',
+    default: 'second',
+  },
+  noBorder: {
+    type: Boolean,
+  },
+  icon: {
+    type: String,
   },
 });
 
@@ -21,15 +28,19 @@ const classStr = computed(() => {
   if (pill) {
     return 'gt-btn-pill';
   }
-  return 'gt-btn-round';
+  if (noBorder) {
+    return 'gt-btn-round-no-border';
+  }
+
+  return 'gt-btn-round-no-border';
 });
 
 const typeStr = computed(() => {
   switch (type) {
-    case 'primary': {
-      return 'gt-btn-primary';
-      break;
-    }
+    // case 'primary': {
+    //   return 'gt-btn-primary';
+    //   break;
+    // }
     case 'second': {
       return 'gt-btn-second';
       break;
@@ -42,6 +53,10 @@ const typeStr = computed(() => {
       return 'gt-btn-red';
       break;
     }
+    case 'black': {
+      return 'gt-btn-black';
+      break;
+    }
     case 'white': {
       return 'gt-btn-white';
       break;
@@ -51,72 +66,122 @@ const typeStr = computed(() => {
 </script>
 
 <template>
-  <button class="gt-btn" :class="[classStr, typeStr]">
+  <button class="gt-btn" :class="[classStr, typeStr, icon ? 'iconBtn' : '']">
+    <g-icons v-if="icon" :name="icon" />
     <slot></slot>
     <div class="textLine"></div>
   </button>
 </template>
 
 <style lang="scss">
-.gt-btn-primary {
-  --btn-color: #32a03d;
-  --btn-color-hover: #eef5eb;
-  --text-color: #fff;
-}
+// .gt-btn-primary {
+//   --btn-color: #32a03d;
+//   --btn-color-hover: #eef5eb;
+//   --text-color: #fff;
+// }
 
 .gt-btn-second {
   --btn-color: #517bba;
   --btn-color-hover: #dad9f3;
   --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #40659f;
+  }
 }
 
 .gt-btn-yellow {
   --btn-color: #faaf1d;
   --btn-color-hover: #fdedcd;
   --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #e19e1b;
+  }
 }
 
 .gt-btn-red {
   --btn-color: #fc806f;
   --btn-color-hover: #fcd8d8;
   --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #ec7869;
+  }
+}
+
+.gt-btn-black {
+  --btn-color: #55585e;
+  --btn-color-hover: #d9d9d9;
+  --text-color: #55585e;
+  &.gt-btn-round-no-border {
+    --btn-color: #f0f0f0;
+    color: #55585e !important;
+  }
 }
 
 .gt-btn-white {
   --btn-color: #55585e;
-  --btn-color-hover: #ccc;
+  --btn-color-hover: #f0f0f0;
   --text-color: #55585e;
-  @apply text-gray1 border border-solid border-gray1;
 }
 
 .gt-btn {
-  min-width: 76px;
   height: 36px;
+  letter-spacing: 0.7px;
   color: var(--btn-color);
+  font-weight: 500;
   @apply flex justify-center items-center;
   @apply overflow-hidden text-center whitespace-nowrap;
   @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
 }
 
 .gt-btn-round {
-  @apply rounded-lg shadow-md text-white border border-solid border-transparent;
+  @apply rounded-4  text-white border border-solid border-transparent;
   background: var(--btn-color);
   &:hover {
     background: var(--btn-color-hover);
     color: var(--btn-color);
     border: 1px solid var(--btn-color);
   }
+  &.gt-btn-white {
+    background-color: #fff;
+    color: var(--text-color);
+    @apply shadow-none;
+    &:hover {
+      @apply border-transparent;
+      background-color: var(--btn-color-hover);
+    }
+  }
+}
+
+.gt-btn-round-no-border {
+  font-weight: 400;
+  @apply rounded-4  text-white;
+  background: var(--btn-color);
+  &:hover {
+    background: var(--btn-color-hover);
+    color: var(--text-color);
+  }
+  &.gt-btn-white {
+    background-color: #fff;
+    color: var(--text-color);
+    @apply shadow-none;
+    &:hover {
+      background-color: var(--btn-color-hover);
+    }
+  }
 }
 
 .gt-btn-flat {
   border: none !important;
-  @apply cursor-pointer;
+  height: fit-content;
+  padding: 0 2px;
+  @apply cursor-pointer relative;
   color: var(--btn-color);
   &:hover {
     .textLine {
-      @apply absolute w-0 h-0;
-      bottom: 2px;
-      left: 10%;
+      @apply absolute;
+      width: fit-content;
+      left: 0%;
+      bottom: 0;
       border-bottom: 1px solid var(--btn-color);
       animation: textLine 0.3s forwards;
     }
@@ -132,12 +197,16 @@ const typeStr = computed(() => {
   }
 }
 
+.iconBtn {
+  padding: 6px !important;
+}
+
 @keyframes textLine {
   from {
-    width: 0;
+    width: 100%;
   }
   to {
-    width: 80%;
+    width: 100%;
   }
 }
 </style>

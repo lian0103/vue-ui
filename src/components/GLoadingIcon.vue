@@ -4,7 +4,7 @@ import GIcons from './GIcons.vue';
 
 <template>
   <div class="gt-loading-icon">
-    <g-icons  name="loading" class="w-full" />
+    <g-icons name="loading" />
   </div>
 </template>
 
@@ -13,6 +13,10 @@ import GIcons from './GIcons.vue';
   width: 32px;
   height: 32px;
   animation: ani_rotate 1s linear infinite;
+  svg {
+    width: 32px !important;
+    height: 32px !important;
+  }
 }
 
 @keyframes ani_rotate {
