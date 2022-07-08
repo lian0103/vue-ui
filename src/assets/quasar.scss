@@ -548,11 +548,23 @@ body.desktop{
           height: 80px;
           padding: 32px 0 20px 67px;
           .q-item__section{
+            &.q-item__section--avatar{
+              margin-right: 5px;
+              .q-icon{
+                font-size: initial;
+                width: 35px;
+                height: 35px;
+              }
+            }
+            &:not([class*=q-item__section--avatar]){
+              justify-content: flex-start !important;
+            }
             .q-item__label{
               line-height: 24px !important;
               font-size: 18px;
               font-weight: 700;
               letter-spacing: .9px;
+              color: $gt-darker;
               font-family: 'Noto Sans TC', sans-serif !important;
             }
           }
