@@ -157,6 +157,7 @@ onUpdated(() => {
     padding: 12px 10px 8px 40px;
     font-weight: 400;
     line-height: 24px;
+    font-weight: 500;
     @apply relative;
     .closeIcon {
       @apply absolute right-0 top-0;

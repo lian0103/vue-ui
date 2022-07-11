@@ -62,6 +62,7 @@ const handleLabelChange = () => {
   background: #ffffff;
   border-radius: 6px;
   overflow: hidden;
+  font-weight: 500;
   .icon {
     @apply absolute;
     right: 5px;

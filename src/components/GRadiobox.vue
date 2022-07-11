@@ -99,7 +99,7 @@ const onClick = () => {
     }
   }
   .disabled {
-    @apply cursor-not-allowed bg-white border-1.5 border-solid border-gray0;
+    @apply cursor-not-allowed bg-white border-2 border-solid border-gray0;
     .circle {
       @apply rounded-full bg-gray0;
     }
