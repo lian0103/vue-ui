@@ -48,8 +48,62 @@ const tailwindText = `\`\`\` scss
  \`\`\``;
 const quasarText = `\`\`\` scss  
   // FILE (create it): src/quasar-variables.sass
-  $primary   : #3bb071
-  $warning : #FC806F
+  $gt-primary: #32A03D;
+  $gt-darker: #2B9749;
+  $gt-pop-up: #F6E488;
+  $gt-soft: #E0F2DE;
+  $gt-hover:#EEF5EB;
+  $gt-pressing:#DBE9D8;
+  $gt-form-hover:#F1F9F3;
+  $gt-bg:#FBFBF9;
+  $gt-gray:#D9D9D9;
+  $gt-gray-variant:#AAAAAA;
+  $gt-gray-light:#F0F0F0;
+  $gt-gray-dark:#666666;
+
+  // 定義tag顏色
+  $gt-tag-normal:#4F9FFC;
+  $gt-tag-normal-bg:#F6F7F9;
+
+  $gt-tag-danger:#FC806F;
+  $gt-tag-danger-bg:#FEF6F6;
+
+  $gt-tag-warning:#FFB526;
+  $gt-tag-warning-bg:#FEFAF1;
+
+  $gt-tag-activity:#FF8E26;
+
+  // 定義button顏色
+  $gt-primary-hover:$gt-darker;
+
+  $gt-positive:#517BBA;
+  $gt-positive-hover:#40659F;
+
+  $gt-negative:#FC806F;
+  $gt-negative-hover:#EC7869;
+
+  $gt-warning:#FAAF1D;
+  $gt-warning-hover:#E19E1B;
+
+  $gt-info:#F0F0F0;
+  $gt-info-hover:$gt-gray;
+
+  // 定義文字顏色
+  $gt-text-dark:#303236;
+  $gt-text-gray:#55585E;
+
+  // 定義陰影
+  $gt-shadow: 0 5px 20px 0 rgba(0,0,0,.1);
+
+  $primary   : $gt-primary;  // 正常
+  $positive  : $gt-positive;// 成功
+  $negative  : $gt-negative;  // 負面
+  $warning   : $gt-warning; // 警告
+
+  $secondary : #26A69A;
+  $accent    : #dd4b39;
+  $dark      : #1D1D1D;
+  $info      : #31CCEC;
  \`\`\``;
 </script>
 
