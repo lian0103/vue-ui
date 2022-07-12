@@ -31,26 +31,26 @@
 //   }
 // }
 
-// .gt-e-tabs {
-//   .el-tabs__nav-wrap::after {
-//     width: 0;
-//   }
-//   .el-tabs__active-bar{
-//     transition: none;
-//   }
-//   .el-tabs__item {
-//     height: 32px;
-//     text-align: center;
-//     background: #FBFBF9;
-//     color: $gt-text-dark;
-//     @apply text-lg;
-//     min-width: 130px;
-//     padding: 0 8px 8px;
-//     padding-left: 8px !important;
-//     padding-right: 8px !important;
-//     line-height: 24px;
-//   }
-// }
+.gt-e-tabs {
+  .el-tabs__nav-wrap::after {
+    width: 0;
+  }
+  .el-tabs__active-bar{
+    transition: none;
+  }
+  .el-tabs__item {
+    height: 32px;
+    text-align: center;
+    background: #FBFBF9;
+    color: $gt-text-dark;
+    @apply text-lg;
+    min-width: 130px;
+    padding: 0 8px 8px;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    line-height: 24px;
+  }
+}
 
 .gt-e-dropdown {
   border-radius: 6px !important;
@@ -129,6 +129,8 @@ $tag-color: (
     span{
       letter-spacing: .7px;
       line-height: 20px;
+      font-size: 14px;
+      font-weight: 500;
     }
     &.el-button--gary{
       background-color: $gt-info !important;
@@ -149,6 +151,36 @@ $tag-color: (
       &:focus,
       &:hover {
         background: $value !important;
+      }
+    }
+  }
+}
+
+.gt-e-text-button{
+  &.el-button{
+    border: 0 !important;
+    background: transparent !important;
+    &:focus,
+    &:hover{
+      background: transparent !important;
+    }
+    @each $key, $value in $color-hover {
+      &.el-button--#{$key} {
+        span{
+          color: $value !important;
+        }
+      }
+    }
+    span{
+      color: $gt-text-gray;
+      line-height: 20px;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.7px;
+    }
+    &:hover{
+      span{
+        font-weight: 500;
       }
     }
   }
@@ -213,7 +245,7 @@ $tag-color: (
           left: 0;
           height: 1px !important; 
           width: 0;
-          bottom: -3px !important;
+          bottom: 0px !important;
           width: 100%;
           border-bottom: none;
           background-color: $value;
@@ -480,12 +512,19 @@ $tag-color: (
   }
 }
 .el-dialog__headerbtn{
-  top: 17px !important;
-  right: 17px !important;
+  top: 9px !important;
+  right: 20px !important;
   width: 10px !important;
   height: 10px !important;
   .el-dialog__close{
-    color: $gt-gray;
+    color: $gt-gray !important;
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+  &:hover{
+    .el-dialog__close{
+      color: $gt-gray !important;
+    }
   }
 }
 
@@ -812,17 +851,18 @@ $tag-color: (
       }
       .el-scrollbar{
         overflow: initial;
-        // height: calc(100vh - 150px);
-        height: calc(100vh - 248px);
+        height: calc(100vh - 150px);
+        // height: calc(100vh - 248px);
         &::before{
           content: '';
           position: absolute;
-          // bottom: -70px;
-          bottom: -168px;
+          bottom: -70px;
+          // bottom: -168px;
           left: 0;
           background-color: $gt-bg !important;
           width: 100%;
-          height: 168px;
+          // height: 168px;
+          height: 70px;
           z-index: 10;
         }
         &::after{
@@ -833,7 +873,7 @@ $tag-color: (
           height: 28px;
           z-index: 15;
           // bottom: -62.5px;
-          bottom: -98px;
+          bottom: -50px;
           left: 50%;
           // transform: translate(-50%, -50%);
           transform: translate(-50%, 0);
@@ -1085,6 +1125,7 @@ $tag-color: (
     box-shadow: 0 0 0 1px $gt-pressing inset;
     background-color: $gt-form-hover;
     padding: 10px 0 10px 20px;
+    border-radius: 8px;
     &:hover{
       box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
     }

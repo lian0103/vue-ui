@@ -52,7 +52,7 @@ const openFullScreen = () => {
   })
   setTimeout(() => {
     loading.close()
-  }, 5000)
+  }, 2000)
 }
 const tableData = [
   {
@@ -114,7 +114,13 @@ const tableData = [
 const rowName = ref('');
 
 function handleSelectionChange(data) {
-  rowName.value = data[0].name
+  
+  if(data[0]){
+    rowName.value = data[0].name
+  } else{
+    rowName.value = ''
+  }
+  
 }
 
 function tableRowClassName(row) {
@@ -235,6 +241,55 @@ function tableRowClassName(row) {
           {{`<el-button class="gt-e-button" type="primary" round>圓角按紐</el-button>`}}
         </div>
       </li> -->
+      <li>
+        <div>
+          <el-button class="gt-e-text-button">文字按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button `}}
+          <span class="text-red">class="gt-e-text-button" </span>
+          {{`
+          >文字按紐</el-button>`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <el-button class="gt-e-text-button" type="success">文字按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button `}}
+          <span class="text-red">class="gt-e-text-button" </span>
+          {{`
+          type="success">文字按紐</el-button>`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <el-button class="gt-e-text-button" type="primary">文字按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button `}}
+          <span class="text-red">class="gt-e-text-button" </span>
+          {{`
+          type="primary">文字按紐</el-button>`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <el-button class="gt-e-text-button" type="warning">文字按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button class="gt-e-text-button" type="warning">文字按紐</el-button>`}}
+        </div>
+      </li>
+      <li>
+        <div>
+          <el-button class="gt-e-text-button" type="danger">文字按紐</el-button>
+        </div>
+        <div>
+          {{`<el-button class="gt-e-text-button" type="danger">文字按紐</el-button>`}}
+        </div>
+      </li>
     </ul>
     <!-- END // el-button -->
 
