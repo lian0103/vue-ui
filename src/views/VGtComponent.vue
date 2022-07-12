@@ -748,6 +748,7 @@ const handleUpdatePage = (val) => {};
               <div class="flex justify-start">
                 <g-button
                   flat
+                  class="mr-4"
                   @click.stop="
                     () => {
                       handleRowClick(row, 1);
