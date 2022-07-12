@@ -2,6 +2,12 @@
 @import '../assets/tailwindInit.css';
 @import '../assets/index';
 
+body {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
 .gt-relative {
   @apply relative;
 }
