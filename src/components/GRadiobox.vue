@@ -58,7 +58,7 @@ const onClick = () => {
       class="checkmark"
       :class="(isChecked ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')"
     >
-      <div v-show="isChecked" class="circle"></div>
+      <div class="circle" :class="isChecked?'show':''"></div>
     </div>
     <span
       class="label"
@@ -97,6 +97,10 @@ const onClick = () => {
       background-image: url('../assets/icons/dot-green.svg');
       background-repeat: no-repeat;
       background-size: cover;
+      opacity: 0;
+      &.show{
+        opacity: 1;
+      }
     }
   }
   .disabled {
