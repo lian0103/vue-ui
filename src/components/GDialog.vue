@@ -126,19 +126,16 @@ onUpdated(() => {
   height: 100vh;
   display: none;
   z-index: -1;
+  background-color: rgba(0, 0, 0, 0.25);
   @apply fixed left-0 top-0;
   &.active {
-    animation: tpFadeIn 0.5s forwards;
     z-index: 300;
-    @apply block;
+    @apply flex justify-center items-center;
   }
 }
 .gt-dialog {
   width: 100%;
-  // min-width: 380px;
-  // max-width: 50vw;
   display: none;
-  @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
   @apply flex-col bg-white text-gray1;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -147,6 +144,7 @@ onUpdated(() => {
   letter-spacing: 0.8px;
 
   &.active {
+    animation: tpFadeIn 0.5s forwards;
     z-index: 300;
     @apply flex;
   }
@@ -192,6 +190,7 @@ onUpdated(() => {
   .dialog-footer {
     height: 56px;
     padding: 10px;
+    font-size: 14px;
     @apply border-t border-solid border-color3;
 
     @apply flex justify-end items-center;
