@@ -363,27 +363,6 @@ const handleUpdatePage = (val) => {};
       </template>
       <template v-if="componentName == 'GIcons'">
         <div class="mb-3 px-2 w-full md:w-3/4">
-          <g-title :level="2" class="mb-3">載入中</g-title>
-          <g-loading-icon />
-
-          <g-title :level="2" class="mb-3">上傳中</g-title>
-          <div class="mb-3 flex w-full">
-            <g-upload-icon class="mr-2" />
-            <g-upload-icon class="mr-2" :percent="20" />
-            <g-upload-icon class="mr-2" :percent="80" />
-            <g-upload-icon class="mr-2" :percent="0" auto />
-          </div>
-
-          <g-title :level="2" class="mb-3">下載中</g-title>
-          <div class="mb-3 flex w-full">
-            <g-download-icon class="mr-2" />
-            <g-download-icon class="mr-2" :percent="20" />
-            <g-download-icon class="mr-2" :percent="100" />
-            <g-download-icon class="mr-2" :percent="0" :auto="true" />
-          </div>
-        </div>
-
-        <div class="mb-3 px-2 w-full md:w-3/4">
           <g-title :level="2" class="mb-3">圖標</g-title>
           <g-title :level="3" class="mb-3">sm:14px;md:24px;lg:36px;</g-title>
           <span
@@ -413,6 +392,26 @@ const handleUpdatePage = (val) => {};
             </template>
           </span>
         </div>
+        <div class="mb-3 px-2 w-full md:w-3/4">
+          <g-title :level="2" class="mb-3">載入中</g-title>
+          <g-loading-icon />
+
+          <g-title :level="2" class="mb-3">上傳中</g-title>
+          <div class="mb-3 flex w-full">
+            <g-upload-icon class="mr-2" />
+            <g-upload-icon class="mr-2" :percent="20" />
+            <g-upload-icon class="mr-2" :percent="80" />
+            <g-upload-icon class="mr-2" :percent="0" auto />
+          </div>
+
+          <g-title :level="2" class="mb-3">下載中</g-title>
+          <div class="mb-3 flex w-full">
+            <g-download-icon class="mr-2" />
+            <g-download-icon class="mr-2" :percent="20" />
+            <g-download-icon class="mr-2" :percent="100" />
+            <g-download-icon class="mr-2" :percent="0" :auto="true" />
+          </div>
+        </div>Ï
       </template>
 
       <template v-if="componentName == 'GTitle'">
