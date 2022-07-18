@@ -9,4 +9,4 @@ pages:
     - npm run build-GT
     - npm publish
   only:
-    - main
+    - feature
