@@ -6,6 +6,8 @@ pages:
   script:
     - npm install
     - npm run build-GT
+    - npm run build-Qua
+    - npm run build-Ele
     - echo "//prg.greattree.com.tw/repository/npm-gt/:_authToken=$npmtoken" > ~/.npmrc
     - echo "registry=$registryurl" >> ~/.npmrc
     - npm publish
