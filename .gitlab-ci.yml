@@ -1,0 +1,12 @@
+image: node:14.16.1
+pages:
+  stage: deploy
+  tags:
+    - docker-build
+  script:
+    - echo "//prg.greattree.com.tw/repository/npm-gt/:_authToken=$npmtoken" > ~/.npmrc
+    - echo "registry=$registryurl" >> ~/.npmrc
+    - npm run build-GT
+    - npm publish
+  only:
+    - main
