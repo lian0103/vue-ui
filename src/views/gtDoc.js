@@ -55,10 +55,10 @@ export default {
   GTitle: {
     name: '標題/Title',
     md: `\`\`\` html
-  <g-title :level="1">Bold / 24 / 文字樣式</g-title>
-  <g-title :level="2">Medium / 20 / 文字樣式</g-title>
-  <g-title :level="3">Bold / 18 / 文字樣式</g-title>
-  <g-title>Medium / 16 / 文字樣式</g-title>
+    <g-title :level="1" class="mb-4">font-weight 700 / 24 / 標題</g-title>
+    <g-title :level="2" class="mb-4">font-weight 500 / 20 / 標題</g-title>
+    <g-title :level="3" class="mb-4">font-weight 400 / 18 / 標題</g-title>
+    <g-title class="mb-4">font-weight 300 / 16 / 標題</g-title>
    \`\`\`
   `,
     menuIndex: '3-3',

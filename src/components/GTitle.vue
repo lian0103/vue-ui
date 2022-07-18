@@ -18,7 +18,7 @@ const { level } = defineProps({
 }
 
 .gt-level0 {
-  @apply text-base leading-6;
+  @apply text-base leading-6 font-light;
   letter-spacing: 0.8px;
 }
 
@@ -28,13 +28,12 @@ const { level } = defineProps({
 }
 
 .gt-level2 {
-  @apply text-xl leading-7;
+  @apply text-xl leading-7 font-medium;
   letter-spacing: 1px;
-  font-weight: 400;
 }
 
 .gt-level3 {
-  @apply font-light text-lg leading-6;
+  @apply font-normal text-lg leading-6;
   letter-spacing: 0.9px;
 }
 </style>
