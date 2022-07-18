@@ -4,10 +4,10 @@ pages:
   tags:
     - docker-build
   script:
-    - echo "//prg.greattree.com.tw/repository/npm-gt/:_authToken=$npmtoken" > ~/.npmrc
-    - echo "registry=$registryurl" >> ~/.npmrc
     - npm install
     - npm run build-GT
+    - echo "//prg.greattree.com.tw/repository/npm-gt/:_authToken=$npmtoken" > ~/.npmrc
+    - echo "registry=$registryurl" >> ~/.npmrc
     - npm publish
   only:
     - feature
