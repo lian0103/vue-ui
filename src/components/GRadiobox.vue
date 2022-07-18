@@ -56,7 +56,7 @@ const onClick = () => {
   <div class="gt-radiobox" @click.prevent="onClick">
     <div
       class="checkmark"
-      :class="(isChecked ? 'checked' : '') + ' ' + (disabled ? 'disabled' : '')"
+      :class="(isChecked ? 'checked' : '') + ' ' + (disabled ? 'disabled-outline' : '')"
     >
       <div class="circle" :class="isChecked?'show':''"></div>
     </div>
@@ -72,20 +72,21 @@ const onClick = () => {
 <style lang="scss">
 .gt-radiobox {
   width: fit-content;
-  padding: 0 10px 0 0px;
+  padding: 0 15px 0 0px;
   line-height: 20px;
   height: 20px;
   min-width: 20px;
   @apply relative cursor-pointer flex justify-start;
 
   .checkmark {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     @apply relative;
     left: 0px;
     top: 0px;
     margin-right: 10px;
-    @apply rounded-full border-2 border-solid border-main bg-color1;
+    @apply rounded-full bg-color1;
+    @apply outline-2 outline-main outline;
     @apply transition-all duration-300;
     @apply flex justify-center items-center;
   }
@@ -103,8 +104,9 @@ const onClick = () => {
       }
     }
   }
-  .disabled {
-    @apply cursor-not-allowed bg-white border-2 border-solid border-gray0;
+  .disabled-outline {
+    @apply cursor-not-allowed bg-white;
+    @apply outline-2 outline-gray0 outline;
     .circle {
       background-image: url('../assets/icons/dot-gray.svg');
       background-repeat: no-repeat;
