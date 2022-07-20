@@ -29,7 +29,7 @@ pages:
   tags:
     - docker-build
   script:
-    #- sed -i "s/config.base = .*/config.base = '\/'/g" ./vite.config.js
+    - sed -i "s/config.base = .*/config.base = '\/${CI_PROJECT_NAME}\/'/g" ./vite.config.js
     - npm install
     - npm run build-GT
     - npm run build-Qua
