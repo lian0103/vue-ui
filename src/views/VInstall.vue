@@ -1,15 +1,15 @@
 <script setup>
-const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.19 \n \`\`\`';
+const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.20 \n \`\`\`';
 const importCss0 = `
 \`\`\` html
   //index.html
   <!-- 載入css方式一 -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.19/dist/GT/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.20/dist/GT/style.css"/>
 \`\`\`
 
 \`\`\` css
   //style.css
-  @import "https://unpkg.com/gt-front-ui@0.0.19/dist/GT/style.css"
+  @import "https://unpkg.com/gt-front-ui@0.0.20/dist/GT/style.css"
 \`\`\`
 
 `;
@@ -19,17 +19,17 @@ const importCss1 = `
 \`\`\` html
   //index.html
   <!-- Element -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.19/dist/Element/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.20/dist/Element/style.css"/>
   <!-- Quasar -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.19/dist/Quasar/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.20/dist/Quasar/style.css"/>
 \`\`\`
 
 \`\`\` css
   //style.css
   //Element
-  @import "https://unpkg.com/gt-front-ui@0.0.19/dist/Element/style.css"
+  @import "https://unpkg.com/gt-front-ui@0.0.20/dist/Element/style.css"
   //Quasar
-  @import "https://unpkg.com/gt-front-ui@0.0.19/dist/Quasar/style.css"
+  @import "https://unpkg.com/gt-front-ui@0.0.20/dist/Quasar/style.css"
 \`\`\`
 
 `;
@@ -126,7 +126,7 @@ const quasarText = `\`\`\` scss
     <div class="mb-8 w-full md:w-3/4 mx-auto">
       (<a
         class="text-second"
-        href="https://unpkg.com/browse/gt-front-ui@0.0.19/dist/"
+        href="https://unpkg.com/browse/gt-front-ui@0.0.20/dist/"
         >原則上選擇最新版本號</a
       >)
 
