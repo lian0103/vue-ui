@@ -1,15 +1,15 @@
 <script setup>
-const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.20 \n \`\`\`';
+const installText = '\`\`\` bash \n  npm install gt-front-ui@0.0.21 \n \`\`\`';
 const importCss0 = `
 GT元件樣式引入擇一載入
 \`\`\` html
   <!-- index.html -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.20/dist/GT/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.21/dist/GT/style.css"/>
 \`\`\`
 
 \`\`\` js
   // main.js
-  import "https://unpkg.com/gt-front-ui@0.0.20/dist/GT/style.css"
+  import "https://unpkg.com/gt-front-ui@0.0.21/dist/GT/style.css"
 \`\`\`
 
 `;
@@ -18,12 +18,12 @@ const importCss1 = `
 Element覆寫擇一種載入
 \`\`\` html
   <!-- index.html -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.20/dist/Element/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.21/dist/Element/style.css"/>
 \`\`\`
 
 \`\`\` js
   // main.js
-  import "https://unpkg.com/gt-front-ui@0.0.20/dist/Element/style.css"
+  import "https://unpkg.com/gt-front-ui@0.0.21/dist/Element/style.css"
 \`\`\`
 
 `;
@@ -32,12 +32,12 @@ const importCss2 = `
 Quasar覆寫擇一種載入
 \`\`\` html
   <!-- index.html -->
-  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.20/dist/Quasar/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gt-front-ui@0.0.21/dist/Quasar/style.css"/>
 \`\`\`
 
 \`\`\` js
   // main.js
-  import "https://unpkg.com/gt-front-ui@0.0.20/dist/Quasar/style.css"
+  import "https://unpkg.com/gt-front-ui@0.0.21/dist/Quasar/style.css"
 \`\`\`
 
 `;

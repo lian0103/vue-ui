@@ -4,7 +4,7 @@
     "name": "Jason Lien",
     "email": "k1319900103@gmail.com"
   },
-  "version": "0.0.20",
+  "version": "0.0.21",
   "files": [
     "dist"
   ],
@@ -14,7 +14,8 @@
     ".": {
       "import": "./dist/GT/gt-ui.es.js",
       "require": "./dist/GT/gt-ui.umd.js"
-    }
+    },
+    "./dist/GT/style.css": "./dist/GT/style.css"
   },
   "scripts": {
     "dev": "vite",
