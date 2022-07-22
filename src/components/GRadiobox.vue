@@ -93,8 +93,8 @@ const onClick = () => {
 
   .checked {
     .circle {
-      width: 10.5px;
-      height: 10.5px;
+      width: 10px;
+      height: 10px;
       background-image: url('../assets/icons/dot-green.svg');
       background-repeat: no-repeat;
       background-size: cover;
