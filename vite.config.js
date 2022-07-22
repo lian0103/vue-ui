@@ -129,6 +129,7 @@ export default ({ mode }) => {
     config.base = '/vue-ui/';
     config.build = {
       outDir: './demo',
+      chunkSizeWarningLimit:2400
     };
     console.log('config.build', config.build);
   }
