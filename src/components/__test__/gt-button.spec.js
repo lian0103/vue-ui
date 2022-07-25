@@ -3,36 +3,40 @@ import { describe, it, expect } from 'vitest';
 
 import GButton from '../GButton.vue';
 
-describe('GButton', () => {
-  const btnText = '按鈕A';
+describe('測試GButton', () => {
+  it('項目1 基本渲染是否正常', async () => {
+    const wrapper = render(GButton);
+    expect(wrapper.html()).toContain('gt-btn');
+  });
 
-  it('render g-button default', async () => {
+  it('項目2 渲染屬性yellow按鈕', async () => {
     const wrapper = render(GButton, {
       props: { type: 'yellow' },
-      slots: { default: btnText },
     });
-    // console.log(wrapper.html());
-    expect(wrapper.html()).toContain(btnText);
     expect(wrapper.html()).toContain('gt-btn-yellow');
     expect(wrapper.html()).toContain('gt-btn-round-no-border');
   });
 
-  it('render g-button pill', async () => {
+  it('項目3 渲染屬性pill按鈕 ', async () => {
     const wrapper = render(GButton, {
       props: { type: 'white', pill: true },
-      slots: { default: btnText },
     });
-    // console.log(wrapper.html());
-    expect(wrapper.html()).toContain(btnText);
-    expect(wrapper.html()).toContain('gt-btn-white');
     expect(wrapper.html()).toContain('gt-btn-pill');
   });
 
-  it('render g-button file', async () => {
+  it('項目4 渲染Slot內容 ', async () => {
+    const btnText = '按鈕A';
     const wrapper = render(GButton, {
-      props: { icon: 'file', type:'black' }
+      slots: { default: btnText },
     });
-    // console.log(wrapper.html());
+    expect(wrapper.html()).toContain(btnText);
+  });
+
+  it('項目5 渲染有file圖標的按鈕', async () => {
+    const wrapper = render(GButton, {
+      props: { icon: 'file', type: 'black' },
+    });
     expect(wrapper.html()).toContain('gt-btn-black');
+    expect(wrapper.html()).toContain('iconBtn');
   });
 });
