@@ -10,22 +10,18 @@
     <title>test</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+     <g-button type="red">Button~~</g-button>
+     <g-icons name="arrowLeft" size="lg" />
+    </div>
 
     <script>
-      console.log(window['gt-ui']);
-      const root = {
+      const gtUI = window['gt-ui'];
+
+      console.log(gtUI);
+
+      const app = Vue.createApp({
         components: {},
-        template: `
-          <g-title :level="1">{{title}}</g-title>
-          <g-time-picker v-model="time" />
-          <g-button flat type="red"
-            ><g-icons name="chevronRight" />下一頁</g-button
-          >
-          <g-dropdown v-model="dropdown" :options="options" clicked icon />
-          <h2>123</h2>
-        
-        `,
         setup() {
           const time = Vue.ref('');
           const dropdown = Vue.ref(2);
@@ -42,13 +38,11 @@
             options,
           };
         },
-      };
-      Object.keys(window['gt-ui']).forEach((key) => {
-        root.components[key] = window['gt-ui'][key];
       });
-      console.log(root);
+      app.component('GButton',gtUI.GButton);
+      app.use(gtUI)
 
-      Vue.createApp(root).mount('#app');
+      app.mount('#app');
     </script>
   </body>
 </html>

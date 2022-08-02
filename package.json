@@ -24,7 +24,10 @@
     "build-GT": "vite build --mode GT",
     "build-demo": "vite build --mode demo",
     "preview": "vite preview",
-    "test:unit": "vitest --environment jsdom --coverage"
+    "test:unit": "vitest --environment jsdom --coverage",
+    "build:lib": "vite build --config ./build/vite.lib.config.js",
+    "build:doc": "vite build --config ./build/vite.doc.config.js",
+    "dev:local": "vite --config ./build/vite.dev.config.js"
   },
   "dependencies": {
     "dayjs": "^1.11.3",
