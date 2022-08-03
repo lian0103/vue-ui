@@ -1,0 +1,17 @@
+[
+  {
+    "compName": "GButton",
+    "compZhName": "按鈕",
+    "compClassName": "button"
+  },
+  {
+    "compName": "GIcons",
+    "compZhName": "圖標",
+    "compClassName": "icons"
+  },
+  {
+    "compName": "GImgUpload",
+    "compZhName": "圖片上傳",
+    "compClassName": "img-upload"
+  }
+]

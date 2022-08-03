@@ -27,14 +27,14 @@
     "test:unit": "vitest --environment jsdom --coverage",
     "build:lib": "vite build --config ./build/vite.lib.config.js",
     "build:doc": "vite build --config ./build/vite.doc.config.js",
-    "dev:local": "vite --config ./build/vite.dev.config.js"
+    "dev:local": "vite --config ./build/vite.dev.config.js",
+    "gen": "node ./script/genNewComp/index.js"
   },
   "dependencies": {
     "dayjs": "^1.11.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "testing-library": "^0.0.2",
     "@element-plus/icons-vue": "^1.1.4",
     "@kangc/v-md-editor": "^2.3.15",
     "@quasar/extras": "^1.13.6",
@@ -54,15 +54,20 @@
     "sass-loader": "^12.0.0",
     "svg-sprite-loader": "^6.0.11",
     "tailwindcss": "^3.0.24",
+    "testing-library": "^0.0.2",
     "unplugin-auto-import": "^0.7.1",
     "unplugin-element-plus": "^0.4.0",
     "unplugin-vue-components": "^0.19.3",
     "vite": "^2.9.7",
+    "vite-plugin-md": "^0.20.2",
     "vite-svg-loader": "^3.3.0",
     "vitest": "^0.16.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",
-    "vue-types": "^4.1.1"
+    "vue-types": "^4.1.1",
+    "fs-extra": "^10.0.0",
+    "handlebars": "^4.7.7",
+    "inquirer": "^8.2.0"
   },
   "peerDependencies": {
     "vue": "^3.2.25"

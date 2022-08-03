@@ -35,7 +35,7 @@ import {
   GDialog,
   GMenu,
 } from '../components/indexGT';
-import { computed, ref, getCurrentInstance, reactive } from 'vue';
+import { computed, ref, getCurrentInstance, reactive, onMounted, h } from 'vue';
 
 const instance = getCurrentInstance();
 const Route = useRoute();
@@ -284,6 +284,15 @@ const handleCallback = () => {
 };
 
 const handleUpdatePage = (val) => {};
+
+const readmeRef = ref(null);
+
+onMounted(async () => {
+  const isDev = import.meta.env.MODE === 'development';
+  console.log('isDev', isDev);
+  readmeRef.value = await import(`../../packages/GButton/docs/README.md`);
+  console.log(readmeRef.value);
+});
 </script>
 
 <template>
@@ -411,7 +420,8 @@ const handleUpdatePage = (val) => {};
             <g-download-icon class="mr-2" :percent="100" />
             <g-download-icon class="mr-2" :percent="0" :auto="true" />
           </div>
-        </div>Ï
+        </div>
+        Ï
       </template>
 
       <template v-if="componentName == 'GTitle'">
@@ -981,7 +991,7 @@ const handleUpdatePage = (val) => {};
         </div>
       </template>
 
-      <div
+      <!-- <div
         v-if="gtDoc[componentName].md"
         class="mb-3 px-2 pt-6 w-full md:w-3/4 relative"
       >
@@ -991,6 +1001,9 @@ const handleUpdatePage = (val) => {};
           v-model="gtDoc[componentName].md"
           mode="preview"
         ></v-md-editor>
+      </div> -->
+      <div class="mb-3 px-2 pt-6 w-full md:w-3/4 relative">
+        <component :is="readmeRef?.default"></component>
       </div>
     </div>
   </div>
