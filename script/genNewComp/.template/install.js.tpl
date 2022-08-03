@@ -8,12 +8,14 @@
 
 {{ importPlugins }}
 
-const Plugin = {
+const GtUI = {
   install(app) {
     {{ installPlugins }}
   },
 };
 
-export default Plugin;
+export default {
+    install:GtUI.install,
+    {{ exportPlugins }}
+};
 
-{{ exportPlugins }}

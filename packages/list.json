@@ -10,8 +10,133 @@
     "compClassName": "icons"
   },
   {
+    "compName": "GLoadingIcon",
+    "compZhName": "圖標-載入",
+    "compClassName": "loading-icon"
+  },
+  {
+    "compName": "GUploadIcon",
+    "compZhName": "圖標上傳",
+    "compClassName": "upload-icon"
+  },
+  {
+    "compName": "GDownloadIcon",
+    "compZhName": "圖標下載",
+    "compClassName": "download-icon"
+  },
+  {
     "compName": "GImgUpload",
     "compZhName": "圖片上傳",
     "compClassName": "img-upload"
+  },
+  {
+    "compName": "GTitle",
+    "compZhName": "標題",
+    "compClassName": "title"
+  },
+  {
+    "compName": "GLayout",
+    "compZhName": "後台模板",
+    "compClassName": "layout"
+  },
+  {
+    "compName": "GMenu",
+    "compZhName": "路由選單",
+    "compClassName": "menu"
+  },
+  {
+    "compName": "GTabs",
+    "compZhName": "分頁標籤",
+    "compClassName": "tabs"
+  },
+  {
+    "compName": "GLoading",
+    "compZhName": "載入",
+    "compClassName": "loading"
+  },
+  {
+    "compName": "GMessage",
+    "compZhName": "通知",
+    "compClassName": "message"
+  },
+  {
+    "compName": "GMessageToast",
+    "compZhName": "通知-toast",
+    "compClassName": "message-tpast"
+  },
+  {
+    "compName": "GCheckbox",
+    "compZhName": "勾選欄",
+    "compClassName": "checkbox"
+  },
+  {
+    "compName": "GRadiobox",
+    "compZhName": "圈選欄",
+    "compClassName": "radiobox"
+  },
+  {
+    "compName": "GRadioboxGroup",
+    "compZhName": "群組圈選欄",
+    "compClassName": "radio-group"
+  },
+  {
+    "compName": "GSwitch",
+    "compZhName": "切換開關",
+    "compClassName": "switch"
+  },
+  {
+    "compName": "GForm",
+    "compZhName": "表單",
+    "compClassName": "form"
+  },
+  {
+    "compName": "GInput",
+    "compZhName": "輸入框",
+    "compClassName": "input"
+  },
+  {
+    "compName": "GDropdown",
+    "compZhName": "下拉選單",
+    "compClassName": "dropdown"
+  },
+  {
+    "compName": "GDropdownItem",
+    "compZhName": "下拉選單選項",
+    "compClassName": "dropdown-item"
+  },
+  {
+    "compName": "GTimePicker",
+    "compZhName": "日期選擇",
+    "compClassName": "time-picker"
+  },
+  {
+    "compName": "GTag",
+    "compZhName": "標籤",
+    "compClassName": "tag"
+  },
+  {
+    "compName": "GTable",
+    "compZhName": "表格",
+    "compClassName": "table"
+  },
+  {
+    "compName": "GPagination",
+    "compZhName": "分頁選擇",
+    "compClassName": "pagination"
+  },
+  {
+    "compName": "GSortLabel",
+    "compZhName": "排序選擇",
+    "compClassName": "sort-label"
+  },
+  {
+    "compName": "GFilterOption",
+    "compZhName": "篩選標籤",
+    "compClassName": "filter-option"
+  },
+  {
+    "compName": "GDialog",
+    "compZhName": "對話窗",
+    "compClassName": "dialog"
   }
 ]

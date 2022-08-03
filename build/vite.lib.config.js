@@ -16,6 +16,7 @@ export default () => {
     ...basicConfig,
     plugins: [vue(), AutoImport(), Components(), svgLoader()],
     build: {
+      // minify: false,
       lib: {
         entry: path.resolve(__dirname, libTarget['GT'] || ''),
         name: 'gt-ui',

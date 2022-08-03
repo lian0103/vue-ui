@@ -1,5 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import gtDoc from '../views/gtDoc.js';
+import packagesList from '../../packages/list.json';
+
+const packagesCompNameList = packagesList.map(item=>item.compName);
 
 export const routes = [
   {
@@ -89,7 +92,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // console.log(to);
-  if (to.path.includes('/gt/') && !gtDoc[to.params.componentName]) {
+  if (to.path.includes('/gt/') && !packagesCompNameList.includes(to.params.componentName)) {
     return next('/doc');
   }
 
