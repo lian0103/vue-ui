@@ -25,7 +25,7 @@ import 'prismjs/components/prism-json';
 
 import GtUI from '../packages';
 
-console.log("GtUI",GtUI)
+// console.log("GtUI",GtUI)
 
 VMdEditor.use(vuepressTheme, {
   Prism,

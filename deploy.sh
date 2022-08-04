@@ -1,6 +1,6 @@
 set -e
 
-npm run build-demo
+# npm run build-demo
 
 cd demo
 

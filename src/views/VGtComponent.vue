@@ -4,11 +4,14 @@ import { computed, ref } from 'vue';
 
 const Route = useRoute();
 const readmeRef = ref(null);
+const isDev = import.meta.env.MODE === 'development';
 const componentName = computed(async () => {
     // console.log('componentName', Route.params.componentName);
   let compName = Route.params.componentName;
   try {
-    readmeRef.value = await import(`../../packages/${compName}/docs/README.md`);
+    let path = isDev ? '/'+compName+'/' : import.meta.env.BASE_URL + 'packages/'+compName+'/docs/README.md';
+    readmeRef.value = isDev ? await import("../../packages"+path+"docs/README.md") : await fetch(path).then(res=>res.body);
+    console.log('readmeRef.value',readmeRef.value)
   } catch (error) {
     readmeRef.value = null;
   }
@@ -23,7 +26,12 @@ const componentName = computed(async () => {
   <div class="innerWrapper"> 
     <div class="w-full py-4 flex justify-center items-center">
       <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4 ">
-        <component :is="readmeRef?.default"></component>
+        <template v-if="isDev">
+          <component :is="readmeRef?.default"></component>
+        </template>
+        <template v-else>
+          <component :is="readmeRef"></component>
+        </template>
       </div>
     </div>
   </div>
