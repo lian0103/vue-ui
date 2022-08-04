@@ -6,7 +6,6 @@
  * 根据 /packages 目录下的组件所生成的模块导出，请勿手动修改
  */
 
-import { GButtonPlugin , GButton } from './GButton';
 import { GIconsPlugin , GIcons } from './GIcons';
 import { GLoadingIconPlugin , GLoadingIcon } from './GLoadingIcon';
 import { GUploadIconPlugin , GUploadIcon } from './GUploadIcon';
@@ -18,6 +17,7 @@ import { GMenuPlugin , GMenu } from './GMenu';
 import { GTabsPlugin , GTabs } from './GTabs';
 import { GLoadingPlugin , GLoading } from './GLoading';
 import { GMessagePlugin , GMessage } from './GMessage';
+import { GMessageToastPlugin , GMessageToast } from './GMessageToast';
 import { GCheckboxPlugin , GCheckbox } from './GCheckbox';
 import { GRadioboxPlugin , GRadiobox } from './GRadiobox';
 import { GRadioboxGroupPlugin , GRadioboxGroup } from './GRadioboxGroup';
@@ -33,14 +33,13 @@ import { GPaginationPlugin , GPagination } from './GPagination';
 import { GSortLabelPlugin , GSortLabel } from './GSortLabel';
 import { GFilterOptionPlugin , GFilterOption } from './GFilterOption';
 import { GDialogPlugin , GDialog } from './GDialog';
-import { GMessageToastPlugin , GMessageToast } from './GMessageToast';
+import { GButtonPlugin , GButton } from './GButton';
 //組件共用樣式
 import './assets/index.scss';
 import './assets/tailwindInit.css';
 
 const GtUI = {
   install(app) {
-    GButtonPlugin.install?.(app);
     GIconsPlugin.install?.(app);
     GLoadingIconPlugin.install?.(app);
     GUploadIconPlugin.install?.(app);
@@ -52,6 +51,7 @@ const GtUI = {
     GTabsPlugin.install?.(app);
     GLoadingPlugin.install?.(app);
     GMessagePlugin.install?.(app);
+    GMessageToastPlugin.install?.(app);
     GCheckboxPlugin.install?.(app);
     GRadioboxPlugin.install?.(app);
     GRadioboxGroupPlugin.install?.(app);
@@ -67,13 +67,12 @@ const GtUI = {
     GSortLabelPlugin.install?.(app);
     GFilterOptionPlugin.install?.(app);
     GDialogPlugin.install?.(app);
-    GMessageToastPlugin.install?.(app);
+    GButtonPlugin.install?.(app);
   },
 };
 
 export default {
     install:GtUI.install,
-    GButton,
     GIcons,
     GLoadingIcon,
     GUploadIcon,
@@ -85,6 +84,7 @@ export default {
     GTabs,
     GLoading,
     GMessage,
+    GMessageToast,
     GCheckbox,
     GRadiobox,
     GRadioboxGroup,
@@ -100,6 +100,6 @@ export default {
     GSortLabel,
     GFilterOption,
     GDialog,
-    GMessageToast,
+    GButton,
 };
 

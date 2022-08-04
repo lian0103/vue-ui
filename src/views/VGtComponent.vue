@@ -1,44 +1,11 @@
 <script setup>
 import { useRoute } from 'vue-router';
-// import {
-//   GButton,
-//   GIcons,
-//   GTitle,
-//   GLayout,
-//   GLoading,
-//   GMessage,
-//   GMessageToast,
-//   GCheckbox,
-//   GRadiobox,
-//   GSwitch,
-//   GLoadingIcon,
-//   GUploadIcon,
-//   GDownloadIcon,
-//   GRadioboxGroup,
-//   GCheckboxGroup,
-//   GDropdown,
-//   GDropdownItem,
-//   GInput,
-//   GForm,
-//   GTimePicker,
-//   GTag,
-//   GTable,
-//   GSortLabel,
-//   GFilterOption,
-//   GButtonFile,
-//   GButtonClose,
-//   GPagination,
-//   GTabs,
-//   GImgUpload,
-//   GDialog,
-//   GMenu,
-// } from '../components/indexGT';
 import { computed, ref } from 'vue';
 
 const Route = useRoute();
 const readmeRef = ref(null);
 const componentName = computed(async () => {
-    console.log('componentName', Route.params.componentName);
+    // console.log('componentName', Route.params.componentName);
   let compName = Route.params.componentName;
   try {
     readmeRef.value = await import(`../../packages/${compName}/docs/README.md`);
@@ -79,8 +46,5 @@ const componentName = computed(async () => {
       background-color: #666666;
     }
   }
-}
-.vuepress-markdown-body pre, .vuepress-markdown-body pre[class*=v-md-prism-]{
-  overflow: hidden !important;
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { GIcons } from '../../GIcons/index';
+import GIcons  from 'packages/GIcons/src/index.vue';
 
 const { flat, pill, type, noBorder, icon } = defineProps({
   flat: {

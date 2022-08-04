@@ -6,4 +6,6 @@ export const GButtonPlugin = {
   },
 };
 
-export { GButton };
+export {
+  GButton,
+};
