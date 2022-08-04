@@ -7,7 +7,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">排序標籤</g-title>
     <g-sort-label
       v-model="inputs.curSortLabelValue"

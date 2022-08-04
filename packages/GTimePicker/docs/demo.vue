@@ -7,7 +7,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">日期選擇</g-title>
     <g-time-picker v-model="inputs.time1" />
     <p>inputs.time1:{{ inputs.time1 }}</p>

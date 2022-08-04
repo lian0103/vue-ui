@@ -9,7 +9,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+  <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">輸入框-size</g-title>
     <g-title :level="3" class="mb-3">middle height:43px</g-title>
     <g-input v-model="inputs.input0" size="md" />

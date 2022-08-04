@@ -28,7 +28,8 @@
     "build:lib": "vite build --config ./build/vite.lib.config.js",
     "build:doc": "vite build --config ./build/vite.doc.config.js",
     "dev:local": "vite --config ./build/vite.dev.config.js",
-    "gen": "node ./script/genNewComp/index.js"
+    "gen": "node ./script/genNewComp/index.js",
+    "gen:doc":"node ./script/genGtDoc/index.js"
   },
   "dependencies": {
     "dayjs": "^1.11.3",

@@ -514,7 +514,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+  <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
     <g-form v-model="inputs.test" :rules="formRule" name="form1">
       <g-input label="驗證1" name="test1" green clearable />
@@ -548,7 +548,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+  <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">輸入框-size</g-title>
     <g-title :level="3" class="mb-3">middle height:43px</g-title>
     <g-input v-model="inputs.input0" size="md" />
@@ -577,7 +577,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+  <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">下拉選項點擊模式</g-title>
     <g-dropdown
       class="mr-4"
@@ -619,7 +619,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">日期選擇</g-title>
     <g-time-picker v-model="inputs.time1" />
     <p>inputs.time1:{{ inputs.time1 }}</p>
@@ -628,7 +628,7 @@ const inputs = reactive({
   \`\`\`  `,
     GTag: ` \`\`\` html 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">BORDER</g-title>
     <div class="w-1/2 flex justify-between mb-3">
       <g-tag type="default" border />
@@ -833,7 +833,7 @@ const handleUpdatePage = (val) => {};
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">分頁選擇</g-title>
     <g-pagination
       :pageInfo="{ currentPage: 1, total: 200, perPageNums: 15 }"
@@ -852,7 +852,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">排序標籤</g-title>
     <g-sort-label
       v-model="inputs.curSortLabelValue"
@@ -932,7 +932,7 @@ const tableInfo = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="my-4">篩選選項</g-title>
     <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
     <div class="flex">

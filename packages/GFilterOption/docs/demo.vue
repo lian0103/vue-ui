@@ -58,7 +58,7 @@ const tableInfo = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="my-4">篩選選項</g-title>
     <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
     <div class="flex">

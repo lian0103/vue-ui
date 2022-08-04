@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6">
+  <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">BORDER</g-title>
     <div class="w-1/2 flex justify-between mb-3">
       <g-tag type="default" border />

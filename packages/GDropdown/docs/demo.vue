@@ -8,7 +8,7 @@ const inputs = reactive({
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+  <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">下拉選項點擊模式</g-title>
     <g-dropdown
       class="mr-4"

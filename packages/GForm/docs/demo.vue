@@ -37,7 +37,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-6 relative">
+  <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
     <g-form v-model="inputs.test" :rules="formRule" name="form1">
       <g-input label="驗證1" name="test1" green clearable />
