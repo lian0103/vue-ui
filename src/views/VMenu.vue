@@ -1,18 +1,23 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { GMenu } from '../components/indexGT';
-import gtDoc from './gtDoc';
 import packagesList from '../../packages/list.json';
 
 // console.log("packagesList",packagesList)
-const packagesCompNameList = packagesList.map(item=>item.compName);
+const packagesCompNameList = packagesList.map((item) => item.compName);
 
 const Router = useRouter();
 const Route = useRoute();
 // console.log(`3-${packagesCompNameList.findIndex(item=>item===Route.params.componentName) + 1}`)
-const active = ref(Router.currentRoute._value.meta.idx ||  `3-${packagesCompNameList.findIndex(item=>item===Route.params.componentName) + 1}`);
-
+const active = ref(
+  Router.currentRoute._value.meta.idx ||
+    `3-${
+      packagesCompNameList.findIndex(
+        (item) => item === Route.params.componentName
+      ) + 1
+    }`
+);
 
 const menuRoutes = [
   {

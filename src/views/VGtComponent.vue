@@ -1,46 +1,46 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { computed, ref } from 'vue';
+import packagesList from '../../packages/list.json';
+import gtDoc from '../assets/gtDoc';
 
 const Route = useRoute();
 const readmeRef = ref(null);
-const isDev = import.meta.env.MODE === 'development';
+const demoSourceRef = ref(null);
+
 const componentName = computed(async () => {
-    // console.log('componentName', Route.params.componentName);
+  // console.log('componentName', Route.params.componentName);
   let compName = Route.params.componentName;
   try {
-    let path = isDev ? '/'+compName+'/' : import.meta.env.BASE_URL + 'packages/'+compName+'/docs/README.md';
-    readmeRef.value = isDev ? await import("../../packages"+path+"docs/README.md") : await fetch(path).then(res=>res.body);
-    console.log('readmeRef.value',readmeRef.value)
+    let path = '/' + compName + '/';
+    readmeRef.value = await import('../../packages' + path + 'docs/demo.vue');
+    demoSourceRef.value = gtDoc['' + compName];
+    console.log(compName);
   } catch (error) {
     readmeRef.value = null;
   }
   return compName;
 });
-
-
-
 </script>
 
 <template>
-  <div class="innerWrapper"> 
+  <div class="innerWrapper">
     <div class="w-full py-4 flex justify-center items-center">
-      <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4 ">
-        <template v-if="isDev">
-          <component :is="readmeRef?.default"></component>
-        </template>
-        <template v-else>
-          <component :is="readmeRef"></component>
-        </template>
+      <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4">
+        <component :is="readmeRef?.default"></component>
+
+        <h2>{{ Route.params.componentName }}</h2>
+        <v-md-editor
+          v-if="demoSourceRef"
+          v-model="demoSourceRef"
+          mode="preview"
+        />
       </div>
     </div>
   </div>
-
-
-
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .innerWrapper {
   &::-webkit-scrollbar {
     width: 5px;
@@ -54,5 +54,8 @@ const componentName = computed(async () => {
       background-color: #666666;
     }
   }
+}
+.scrollbar__view , .scrollbar__wrap{
+  overflow: hidden;
 }
 </style>

@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import gtDoc from '../views/gtDoc.js';
 import packagesList from '../../packages/list.json';
 
 const packagesCompNameList = packagesList.map(item=>item.compName);
