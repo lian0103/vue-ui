@@ -1,9 +1,9 @@
 set -e
 
 # npm run build-demo
-npm run gen:doc
+npm run gen:gtDoc
 
-npm run build:doc
+npm run doc
 
 cd demo
 

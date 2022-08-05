@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/vue';
 import { describe, it, expect } from 'vitest';
 
-import GButton from '../GButton.vue';
+import GButton from '../GButton/src/index.vue';
 
 describe('測試GButton', () => {
   it('項目1 基本渲染是否正常', async () => {

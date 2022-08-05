@@ -1,35 +1,10 @@
 import { defineConfig } from 'vite';
-import { basicConfig , silenceSomeSassDeprecationWarnings } from './vite.basic.config.js';
-import vue from '@vitejs/plugin-vue';
-import Components from 'unplugin-vue-components/vite';
-import svgLoader from 'vite-svg-loader';
-import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
-import Markdown from 'vite-plugin-md';
+import { basicConfig } from './vite.basic.config.js';
 
 // https://vitejs.dev/config/
 export const config = {
   ...basicConfig,
   base: '/vue-ui/',
-  css: {
-    preprocessorOptions: {
-      sass: {
-        ...silenceSomeSassDeprecationWarnings,
-      },
-      scss: {
-        additionalData: `@use "../src/assets/elementPlusInit.scss" as *;`,
-      },
-    },
-  },
-  plugins: [
-    vue({ template: { transformAssetUrls } }),
-    quasar({
-      sassVariables: 'src/assets/quasar-variables.scss',
-    }),
-    Components(),
-    svgLoader(),
-    Markdown(),
-  ],
-
   chunkSizeWarningLimit: 1600,
   build: {
     outDir: 'demo',

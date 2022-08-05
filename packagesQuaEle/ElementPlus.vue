@@ -1,5 +1,5 @@
 <style lang="scss">
-@import '../assets/quasar';
+@import './elementPlus';
 body {
   font-size: 14px;
   font-weight: 300;

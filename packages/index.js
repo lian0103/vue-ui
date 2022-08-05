@@ -6,6 +6,7 @@
  * 根据 /packages 目录下的组件所生成的模块导出，请勿手动修改
  */
 
+import { GButtonPlugin , GButton } from './GButton';
 import { GIconsPlugin , GIcons } from './GIcons';
 import { GLoadingIconPlugin , GLoadingIcon } from './GLoadingIcon';
 import { GUploadIconPlugin , GUploadIcon } from './GUploadIcon';
@@ -33,13 +34,14 @@ import { GPaginationPlugin , GPagination } from './GPagination';
 import { GSortLabelPlugin , GSortLabel } from './GSortLabel';
 import { GFilterOptionPlugin , GFilterOption } from './GFilterOption';
 import { GDialogPlugin , GDialog } from './GDialog';
-import { GButtonPlugin , GButton } from './GButton';
+
 //組件共用樣式
 import './assets/index.scss';
 import './assets/tailwindInit.css';
 
 const GtUI = {
   install(app) {
+    GButtonPlugin.install?.(app);
     GIconsPlugin.install?.(app);
     GLoadingIconPlugin.install?.(app);
     GUploadIconPlugin.install?.(app);
@@ -67,12 +69,12 @@ const GtUI = {
     GSortLabelPlugin.install?.(app);
     GFilterOptionPlugin.install?.(app);
     GDialogPlugin.install?.(app);
-    GButtonPlugin.install?.(app);
   },
 };
 
 export default {
     install:GtUI.install,
+    GButton,
     GIcons,
     GLoadingIcon,
     GUploadIcon,
@@ -100,6 +102,5 @@ export default {
     GSortLabel,
     GFilterOption,
     GDialog,
-    GButton,
 };
 

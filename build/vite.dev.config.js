@@ -3,34 +3,16 @@ import {
   basicConfig,
   silenceSomeSassDeprecationWarnings,
 } from './vite.basic.config';
-import vue from '@vitejs/plugin-vue';
-import Components from 'unplugin-vue-components/vite';
-import svgLoader from 'vite-svg-loader';
-import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
-import Markdown from 'vite-plugin-md';
+
 
 // https://vitejs.dev/config/
 export const config = {
   ...basicConfig,
-  css: {
-    preprocessorOptions: {
-      sass: {
-        ...silenceSomeSassDeprecationWarnings,
-      },
-      scss: {
-        additionalData: `@use "../src/assets/elementPlusInit.scss" as *;`,
-      },
-    },
+  test: {
+    global: true,
+    environment: 'jsdom',
+    includeSource: ['packages/__test__/*.spec.js'],
   },
-  plugins: [
-    vue({ template: { transformAssetUrls }, include: [/\.vue$/, /\.md$/] }),
-    quasar({
-      sassVariables: 'src/assets/quasar-variables.scss',
-    }),
-    Components(),
-    svgLoader(),
-    Markdown(),
-  ],
   server: {
     host: '0.0.0.0',
     port: 3000,

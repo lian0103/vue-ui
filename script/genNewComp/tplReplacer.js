@@ -4,10 +4,10 @@ const { resolve } = require('path');
 
 const getTplFilePath = (meta) => ({
   // docs 目录
-  readme: {
-    from: './.template/docs/README.md.tpl',
-    to: `../../packages/${meta.compName}/docs/README.md`,
-  },
+  // readme: {
+  //   from: './.template/docs/README.md.tpl',
+  //   to: `../../packages/${meta.compName}/docs/README.md`,
+  // },
   demo: {
     from: './.template/docs/demo.vue.tpl',
     to: `../../packages/${meta.compName}/docs/demo.vue`,

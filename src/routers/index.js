@@ -58,13 +58,6 @@ export const routes = [
         },
         meta: { title: 'Quasar元件', idx: '2-2' },
       },
-      // {
-      //   path: 'gt-self',
-      //   components: {
-      //     mainView: () => import('../views/VGtSelf.vue'),
-      //   },
-      //   meta: { title: 'GT開發', idx: '2-3' },
-      // },
       {
         path: 'gt/:componentName',
         components: {

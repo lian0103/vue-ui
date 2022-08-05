@@ -1,13 +1,9 @@
 import path from 'path';
-
-export const basicConfig = {
-  resolve: {
-    alias: {
-      '~/': `${path.resolve(__dirname, '../src')}`,
-      packages: path.resolve(__dirname, '../packages'),
-    },
-  },
-};
+import vue from '@vitejs/plugin-vue';
+import Components from 'unplugin-vue-components/vite';
+import svgLoader from 'vite-svg-loader';
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
+import Markdown from 'vite-plugin-md';
 
 export const silenceSomeSassDeprecationWarnings = {
   verbose: true,
@@ -47,3 +43,34 @@ export const silenceSomeSassDeprecationWarnings = {
     },
   },
 };
+
+export const basicConfig = {
+  resolve: {
+    alias: {
+      '~/': `${path.resolve(__dirname, '../src')}`,
+      packages: path.resolve(__dirname, '../packages'),
+      packagesQuaEle:path.resolve(__dirname, '../packagesQuaEle'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      sass: {
+        ...silenceSomeSassDeprecationWarnings,
+      },
+      scss: {
+        additionalData: `@use "packagesQuaEle/elementPlusInit.scss" as *;`,
+      },
+    },
+  },
+  plugins: [
+    vue({ template: { transformAssetUrls }, include: [/\.vue$/, /\.md$/] }),
+    quasar({
+      sassVariables: 'packagesQuaEle/quasar-variables.scss',
+    }),
+    Components(),
+    svgLoader(),
+    Markdown(),
+  ],
+};
+
+

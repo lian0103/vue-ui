@@ -3,10 +3,10 @@ import { Quasar } from 'quasar';
 import App from './App.vue';
 import '@quasar/extras/material-icons/material-icons.css';
 import 'quasar/src/css/index.sass'
-import './assets/quasar.scss'
+import 'packagesQuaEle/quasar.scss'
 import ElementPlus from 'element-plus';
-import './assets/tailwindInit.css';
-import './assets/elementPlus.scss';
+import 'packages/assets/tailwindInit.css';
+import 'packagesQuaEle/elementPlus.scss';
 import router from './routers/index';
 
 import VMdEditor from '@kangc/v-md-editor';

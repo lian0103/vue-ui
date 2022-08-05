@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { GMenu } from '../components/indexGT';
 import packagesList from '../../packages/list.json';
 
 // console.log("packagesList",packagesList)

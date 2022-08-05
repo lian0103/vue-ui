@@ -30,7 +30,7 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
   })({ docList });
 
   fs.outputFile(
-    resolve(__dirname, '../../src/assets/gtDoc.js'),
+    resolve(__dirname, '../../src/gtDoc.js'),
     contentCompiled,
     (err) => {
       if (err) console.log(err);

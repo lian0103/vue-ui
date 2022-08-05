@@ -8,7 +8,7 @@
 import { useRoute } from 'vue-router';
 import { computed, ref, markRaw } from 'vue';
 import packagesList from '../../packages/list.json';
-import gtDoc from '../assets/gtDoc';
+import gtDoc from '../gtDoc';
 {{ allDemos }}
 
 const Route = useRoute();
