@@ -12,6 +12,7 @@ import LoadingIcon from './gt-components/loading-icon/index.js';
 import UploadIcon from './gt-components/upload-icon/index.js';
 import ImgUpload from './gt-components/img-upload/index.js';
 import DownloadIcon from './gt-components/download-icon/index.js';
+import Layout from './gt-components/layout/index.js';
 
 const components = [
   Button,
@@ -25,7 +26,8 @@ const components = [
   LoadingIcon,
   UploadIcon,
   ImgUpload,
-  DownloadIcon
+  DownloadIcon,
+  Layout
 ];
 
 const install = function(Vue, opts = {}) {
@@ -74,5 +76,6 @@ export default {
   LoadingIcon,
   UploadIcon,
   ImgUpload,
-  DownloadIcon
+  DownloadIcon,
+  Layout
 };
