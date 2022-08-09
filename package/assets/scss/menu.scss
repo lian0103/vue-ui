@@ -1,0 +1,55 @@
+.gt-menus {
+  width: 230px;
+  margin: auto;
+  padding: 10px 0;
+  * {
+    @apply select-none;
+  }
+  @apply flex flex-col;
+  .gt-menu-group {
+    width: 100%;
+    min-height: 36px;
+    padding: 8px 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    @apply text-gray1 flex justify-between flex-wrap cursor-pointer;
+
+    &:hover {
+      @apply text-main;
+      .group-icon {
+        color: #32a03d !important;
+      }
+    }
+
+    .childBox {
+      width: 100%;
+      .line {
+        width: 100%;
+        height: 1px;
+        @apply bg-color3;
+        margin: 20px 0;
+      }
+
+      .gt-menu-group-item {
+        padding: 6px 0 6px 30px;
+        letter-spacing: 0.8px;
+        border-radius: 5px;
+        margin: 4px 0;
+        @apply text-gray1 flex justify-start items-center cursor-pointer;
+        .child-icon {
+          margin-right: 10px;
+        }
+        &:hover {
+          @apply bg-color1;
+        }
+        &.active {
+          @apply bg-soft text-main;
+          .child-icon {
+            color: #32a03d !important;
+          }
+        }
+      }
+    }
+  }
+}
