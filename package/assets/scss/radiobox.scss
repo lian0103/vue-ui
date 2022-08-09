@@ -1,0 +1,31 @@
+.gt-radiobox {
+  width: fit-content;
+  padding: 0 15px 0 0px;
+  line-height: 20px;
+  height: 20px;
+  min-width: 20px;
+  @apply relative cursor-pointer flex justify-start;
+
+  &.disabled {
+    @apply cursor-not-allowed;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  .circle {
+    display: none;
+    @apply transition-all duration-300;
+    &.show {
+      display: block;
+    }
+  }
+
+  .label {
+    @apply select-none;
+    &.label-disabled {
+      @apply cursor-not-allowed text-gray0;
+    }
+  }
+}

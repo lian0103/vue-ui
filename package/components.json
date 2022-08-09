@@ -1,0 +1,10 @@
+{
+  "button": "./gt-components/button/index.js",
+  "icon": "./gt-components/icon/index.js",
+  "title": "./gt-components/title/index.js",
+  "checkbox": "./gt-components/checkbox/index.js",
+  "radiobox": "./gt-components/radiobox/index.js",
+  "switch": "./gt-components/switch/index.js",
+  "input": "./gt-components/input/index.js",
+  "tag": "./gt-components/tag/index.js"
+}

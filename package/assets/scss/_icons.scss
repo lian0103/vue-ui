@@ -1,0 +1,117 @@
+@font-face {
+	font-family: "gt.icon.font";
+	src: url('../fonts/greattree/icon/gt.icon.font.eot');
+	src: url('../fonts/greattree/icon/gt.icon.font.eot?#iefix') format('eot'),
+		url('../fonts/greattree/icon/gt.icon.font.woff2') format('woff2'),
+		url('../fonts/greattree/icon/gt.icon.font.woff') format('woff'),
+		url('../fonts/greattree/icon/gt.icon.font.ttf') format('truetype'),
+}
+
+.gt-icon:before {
+	font-family: "gt.icon.font";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.gt-icon-arrow-down:before {
+	content: "\E001";
+}
+
+.gt-icon-arrow-left:before {
+	content: "\E002";
+}
+
+.gt-icon-calendar:before {
+	content: "\E003";
+}
+
+.gt-icon-check:before {
+	content: "\E004";
+}
+
+.gt-icon-chevron-down:before {
+	content: "\E005";
+}
+
+.gt-icon-chevron-left:before {
+	content: "\E006";
+}
+
+.gt-icon-chevron-right:before {
+	content: "\E007";
+}
+
+.gt-icon-chevron-up:before {
+	content: "\E008";
+}
+
+.gt-icon-circle:before {
+	content: "\E009";
+}
+
+.gt-icon-dot-gray:before {
+	content: "\E00A";
+}
+
+.gt-icon-dot-green:before {
+	content: "\E00B";
+}
+
+.gt-icon-down:before {
+	content: "\E00C";
+}
+
+.gt-icon-download:before {
+	content: "\E00D";
+}
+
+.gt-icon-download_sm:before {
+	content: "\E00E";
+}
+
+.gt-icon-ellipsis:before {
+	content: "\E00F";
+}
+
+.gt-icon-file:before {
+	content: "\E010";
+}
+
+.gt-icon-loading:before {
+	content: "\E011";
+}
+
+.gt-icon-plus:before {
+	content: "\E012";
+}
+
+.gt-icon-search:before {
+	content: "\E013";
+}
+
+.gt-icon-sequence:before {
+	content: "\E014";
+}
+
+.gt-icon-trash:before {
+	content: "\E015";
+}
+
+.gt-icon-up:before {
+	content: "\E016";
+}
+
+.gt-icon-upload:before {
+	content: "\E017";
+}
+
+.gt-icon-x:before {
+	content: "\E018";
+}

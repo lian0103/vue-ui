@@ -3,7 +3,11 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   mode: 'jit', //只編譯有使用到的樣式
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+    './package/**/*.{vue,js,scss}',
+  ],
   theme: {
     screens: {
       sm: '640px',

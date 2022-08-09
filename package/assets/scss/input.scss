@@ -1,0 +1,51 @@
+.gt-input-wrapper {
+  @apply relative mb-6;
+  @apply flex justify-start items-center;
+  .gt-input-label {
+    height: 36px;
+    @apply text-base leading-9 px-3;
+  }
+  .gt-input {
+    @apply w-full text-base text-gray4 bg-color2 rounded-lg;
+    @apply outline outline-1 outline-gray2;
+    max-width: 240px;
+    height: 43px;
+    padding: 10px 34px 10px 12px;
+
+    &.gt-input-green {
+      @apply bg-color4;
+    }
+
+    &:focus,
+    &:hover {
+      box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &.gt-input-error {
+      @apply outline-danger;
+    }
+
+    &.gt-input-sm {
+      height: 36px;
+      padding: 6.5px 34px 6.5px 12px;
+    }
+  }
+
+  .gt-input-error-msg {
+    @apply absolute left-0.5 -bottom-5 text-danger;
+    letter-spacing: 0.6px;
+  }
+
+  .gt-input:focus ~ .clear-icon,
+  &:hover .gt-input ~ .clear-icon {
+    @apply opacity-100;
+  }
+
+  .clear-icon {
+    width: 22px;
+    @apply text-gray0 opacity-0;
+    @apply absolute right-0 cursor-pointer transition-all duration-300;
+    top: 7px;
+    right: 10px;
+  }
+}

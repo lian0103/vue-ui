@@ -1,10 +1,10 @@
 {
-  "name": "gt-front-ui",
+  "name": "@greattree/front-ui",
   "author": {
     "name": "Jason Lien",
     "email": "k1319900103@gmail.com"
   },
-  "version": "0.0.23",
+  "version": "0.0.99",
   "files": [
     "dist"
   ],
@@ -24,9 +24,18 @@
     "build-Qua": "vite build --mode Quasar --config ./build/vite.libQuaEle.config.js",
     "test:unit": "vitest --config ./build/vite.dev.config.js --environment jsdom --coverage",
     "doc": "vite build --config ./build/vite.doc.config.js",
-    "gen": "node ./script/genNewComp/index.js",
+    "gen:gtCom": "node ./script/genNewComp/index.js",
     "gen:gtDoc":"node ./script/genGtDoc/index.js",
-    "preview": "vite preview"
+
+    "gen": "npm run gen:google-fonts && npm run gen:css-index && npm run gen:pkg-index && npm run gen:svg2css",
+    "gen:component": "node build/bin/gen-component.cjs",
+    "gen:svg2css": "gulp build --gulpfile build/bin/gen-svg2font.cjs",
+    "gen:google-fonts": "gulp build --gulpfile build/bin/gen-google-fonts.cjs",
+    "gen:pkg-index": "node build/bin/gen-pkg-index.cjs",
+    "gen:css-index": "node build/bin/gen-css-index.cjs",
+    "build": "npm run build:theme && npm run build:pkg",
+    "build:theme": "gulp build --gulpfile build/bin/build-theme.cjs",
+    "build:pkg": "gulp build --gulpfile build/bin/build-pkg.cjs"
   },
   "dependencies": {
     "dayjs": "^1.11.3",
@@ -47,6 +56,8 @@
     "gt-front-ui": "^0.0.14",
     "jsdom": "^20.0.0",
     "postcss": "^8.4.13",
+    "postcss-import": "^14.1.0",
+    "postcss-nesting": "^10.1.10",
     "quasar": "^2.6.6",
     "sass": "^1.52.2",
     "sass-loader": "^12.0.0",
@@ -65,7 +76,17 @@
     "vue-types": "^4.1.1",
     "fs-extra": "^10.0.0",
     "handlebars": "^4.7.7",
-    "inquirer": "^8.2.0"
+    "inquirer": "^8.2.0",
+    "async": "^3.2.4",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-iconfont": "^11.0.1",
+    "gulp-iconfont-css": "^3.0.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "json-templater": "^1.2.0",
+    "lodash.defaults": "^4.2.0",
+    "uppercamelcase": "^3.0.0"
   },
   "peerDependencies": {
     "vue": "^3.2.25"
