@@ -9,6 +9,7 @@ import Switch from './gt-components/switch/index.js';
 import Input from './gt-components/input/index.js';
 import Tag from './gt-components/tag/index.js';
 import LoadingIcon from './gt-components/loading-icon/index.js';
+import UploadIcon from './gt-components/upload-icon/index.js';
 
 const components = [
   Button,
@@ -19,7 +20,8 @@ const components = [
   Switch,
   Input,
   Tag,
-  LoadingIcon
+  LoadingIcon,
+  UploadIcon
 ];
 
 const install = function(Vue, opts = {}) {
@@ -65,5 +67,6 @@ export default {
   Switch,
   Input,
   Tag,
-  LoadingIcon
+  LoadingIcon,
+  UploadIcon
 };

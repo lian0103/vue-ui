@@ -7,5 +7,6 @@
   "switch": "./gt-components/switch/index.js",
   "input": "./gt-components/input/index.js",
   "tag": "./gt-components/tag/index.js",
-  "loading-icon": "./gt-components/loading-icon/index.js"
+  "loading-icon": "./gt-components/loading-icon/index.js",
+  "upload-icon": "./gt-components/upload-icon/index.js"
 }
