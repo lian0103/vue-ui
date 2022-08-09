@@ -14,5 +14,6 @@
   "layout": "./gt-components/layout/index.js",
   "menu": "./gt-components/menu/index.js",
   "tabs": "./gt-components/tabs/index.js",
-  "loading": "./gt-components/loading/index.js"
+  "loading": "./gt-components/loading/index.js",
+  "message": "./gt-components/message/index.js"
 }

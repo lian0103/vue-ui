@@ -16,6 +16,7 @@ import Layout from './gt-components/layout/index.js';
 import Menu from './gt-components/menu/index.js';
 import Tabs from './gt-components/tabs/index.js';
 import Loading from './gt-components/loading/index.js';
+import Message from './gt-components/message/index.js';
 
 const components = [
   Button,
@@ -33,7 +34,8 @@ const components = [
   Layout,
   Menu,
   Tabs,
-  Loading
+  Loading,
+  Message
 ];
 
 const install = function(Vue, opts = {}) {
@@ -86,5 +88,6 @@ export default {
   Layout,
   Menu,
   Tabs,
-  Loading
+  Loading,
+  Message
 };
