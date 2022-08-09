@@ -4,6 +4,6 @@ set -e
 npm run gen
 
 # vite
-npm run gen:gtDoc
+npm run gen:gtDoc2
 
 cd -

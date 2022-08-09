@@ -25,7 +25,7 @@ import 'prismjs/components/prism-json';
 
 // import GtUI from '../packages';
 
-import '../dist/GT/style/css/index.css';
+import '../package/assets/scss/index.scss';
 import GtUI from '../package/index';
 
 console.log("GtUI",GtUI)

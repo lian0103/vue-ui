@@ -33,6 +33,7 @@
     "gen:google-fonts": "gulp build --gulpfile build/bin/gen-google-fonts.cjs",
     "gen:pkg-index": "node build/bin/gen-pkg-index.cjs",
     "gen:css-index": "node build/bin/gen-css-index.cjs",
+    "gen:gtDoc2":"node ./script/genGtPkgDoc/index.js",
     "build": "npm run build:theme && npm run build:pkg",
     "build:theme": "gulp build --gulpfile build/bin/build-theme.cjs",
     "build:pkg": "gulp build --gulpfile build/bin/build-pkg.cjs"
