@@ -22,6 +22,7 @@ import Form from './gt-components/form/index.js';
 import Dropdown from './gt-components/dropdown/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
 import Table from './gt-components/table/index.js';
+import Pagination from './gt-components/pagination/index.js';
 
 const components = [
   Button,
@@ -45,7 +46,8 @@ const components = [
   Form,
   Dropdown,
   TimePicker,
-  Table
+  Table,
+  Pagination
 ];
 
 const install = function(Vue, opts = {}) {
@@ -104,5 +106,6 @@ export default {
   Form,
   Dropdown,
   TimePicker,
-  Table
+  Table,
+  Pagination
 };
