@@ -18,5 +18,6 @@
   "message": "./gt-components/message/index.js",
   "message-toast": "./gt-components/message-toast/index.js",
   "form": "./gt-components/form/index.js",
-  "dropdown": "./gt-components/dropdown/index.js"
+  "dropdown": "./gt-components/dropdown/index.js",
+  "time-picker": "./gt-components/time-picker/index.js"
 }
