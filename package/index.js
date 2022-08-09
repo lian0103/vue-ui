@@ -25,6 +25,7 @@ import Table from './gt-components/table/index.js';
 import Pagination from './gt-components/pagination/index.js';
 import SortLabel from './gt-components/sort-label/index.js';
 import FilterOption from './gt-components/filter-option/index.js';
+import Dialog from './gt-components/dialog/index.js';
 
 const components = [
   Button,
@@ -51,7 +52,8 @@ const components = [
   Table,
   Pagination,
   SortLabel,
-  FilterOption
+  FilterOption,
+  Dialog
 ];
 
 const install = function(Vue, opts = {}) {
@@ -113,5 +115,6 @@ export default {
   Table,
   Pagination,
   SortLabel,
-  FilterOption
+  FilterOption,
+  Dialog
 };

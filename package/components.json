@@ -23,5 +23,6 @@
   "table": "./gt-components/table/index.js",
   "pagination": "./gt-components/pagination/index.js",
   "sort-label": "./gt-components/sort-label/index.js",
-  "filter-option": "./gt-components/filter-option/index.js"
+  "filter-option": "./gt-components/filter-option/index.js",
+  "dialog": "./gt-components/dialog/index.js"
 }
