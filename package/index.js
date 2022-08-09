@@ -23,6 +23,7 @@ import Dropdown from './gt-components/dropdown/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
 import Table from './gt-components/table/index.js';
 import Pagination from './gt-components/pagination/index.js';
+import SortLabel from './gt-components/sort-label/index.js';
 
 const components = [
   Button,
@@ -47,7 +48,8 @@ const components = [
   Dropdown,
   TimePicker,
   Table,
-  Pagination
+  Pagination,
+  SortLabel
 ];
 
 const install = function(Vue, opts = {}) {
@@ -107,5 +109,6 @@ export default {
   Dropdown,
   TimePicker,
   Table,
-  Pagination
+  Pagination,
+  SortLabel
 };
