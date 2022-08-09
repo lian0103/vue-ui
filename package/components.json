@@ -9,5 +9,6 @@
   "tag": "./gt-components/tag/index.js",
   "loading-icon": "./gt-components/loading-icon/index.js",
   "upload-icon": "./gt-components/upload-icon/index.js",
-  "img-upload": "./gt-components/img-upload/index.js"
+  "img-upload": "./gt-components/img-upload/index.js",
+  "download-icon": "./gt-components/download-icon/index.js"
 }
