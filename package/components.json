@@ -6,5 +6,6 @@
   "radiobox": "./gt-components/radiobox/index.js",
   "switch": "./gt-components/switch/index.js",
   "input": "./gt-components/input/index.js",
-  "tag": "./gt-components/tag/index.js"
+  "tag": "./gt-components/tag/index.js",
+  "loading-icon": "./gt-components/loading-icon/index.js"
 }

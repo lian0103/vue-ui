@@ -8,6 +8,7 @@ import Radiobox from './gt-components/radiobox/index.js';
 import Switch from './gt-components/switch/index.js';
 import Input from './gt-components/input/index.js';
 import Tag from './gt-components/tag/index.js';
+import LoadingIcon from './gt-components/loading-icon/index.js';
 
 const components = [
   Button,
@@ -17,7 +18,8 @@ const components = [
   Radiobox,
   Switch,
   Input,
-  Tag
+  Tag,
+  LoadingIcon
 ];
 
 const install = function(Vue, opts = {}) {
@@ -62,5 +64,6 @@ export default {
   Radiobox,
   Switch,
   Input,
-  Tag
+  Tag,
+  LoadingIcon
 };
