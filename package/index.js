@@ -15,6 +15,7 @@ import DownloadIcon from './gt-components/download-icon/index.js';
 import Layout from './gt-components/layout/index.js';
 import Menu from './gt-components/menu/index.js';
 import Tabs from './gt-components/tabs/index.js';
+import Loading from './gt-components/loading/index.js';
 
 const components = [
   Button,
@@ -31,7 +32,8 @@ const components = [
   DownloadIcon,
   Layout,
   Menu,
-  Tabs
+  Tabs,
+  Loading
 ];
 
 const install = function(Vue, opts = {}) {
@@ -83,5 +85,6 @@ export default {
   DownloadIcon,
   Layout,
   Menu,
-  Tabs
+  Tabs,
+  Loading
 };
