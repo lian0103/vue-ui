@@ -34,7 +34,7 @@ import { GPaginationPlugin , GPagination } from './GPagination';
 import { GSortLabelPlugin , GSortLabel } from './GSortLabel';
 import { GFilterOptionPlugin , GFilterOption } from './GFilterOption';
 import { GDialogPlugin , GDialog } from './GDialog';
-
+import { GCheckboxGroupPlugin , GCheckboxGroup } from './GCheckboxGroup';
 //組件共用樣式
 import './assets/index.scss';
 import './assets/tailwindInit.css';
@@ -69,6 +69,7 @@ const GtUI = {
     GSortLabelPlugin.install?.(app);
     GFilterOptionPlugin.install?.(app);
     GDialogPlugin.install?.(app);
+    GCheckboxGroupPlugin.install?.(app);
   },
 };
 
@@ -102,5 +103,6 @@ export default {
     GSortLabel,
     GFilterOption,
     GDialog,
+    GCheckboxGroup,
 };
 

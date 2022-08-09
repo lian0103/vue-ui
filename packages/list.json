@@ -138,5 +138,10 @@
     "compName": "GDialog",
     "compZhName": "對話窗",
     "compClassName": "dialog"
+  },
+  {
+    "compName": "GCheckboxGroup",
+    "compZhName": "群組勾選欄",
+    "compClassName": "checkbox-group"
   }
 ]
