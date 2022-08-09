@@ -18,6 +18,7 @@ import Tabs from './gt-components/tabs/index.js';
 import Loading from './gt-components/loading/index.js';
 import Message from './gt-components/message/index.js';
 import MessageToast from './gt-components/message-toast/index.js';
+import Form from './gt-components/form/index.js';
 
 const components = [
   Button,
@@ -37,7 +38,8 @@ const components = [
   Tabs,
   Loading,
   Message,
-  MessageToast
+  MessageToast,
+  Form
 ];
 
 const install = function(Vue, opts = {}) {
@@ -92,5 +94,6 @@ export default {
   Tabs,
   Loading,
   Message,
-  MessageToast
+  MessageToast,
+  Form
 };

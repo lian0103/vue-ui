@@ -16,5 +16,6 @@
   "tabs": "./gt-components/tabs/index.js",
   "loading": "./gt-components/loading/index.js",
   "message": "./gt-components/message/index.js",
-  "message-toast": "./gt-components/message-toast/index.js"
+  "message-toast": "./gt-components/message-toast/index.js",
+  "form": "./gt-components/form/index.js"
 }
