@@ -9,28 +9,14 @@ import { useRoute } from 'vue-router';
 import { computed, ref, markRaw } from 'vue';
 
 import gtDoc from '../gtDoc';
-import buttonDemo from '../../package/gt-components/button/docs/demo.vue';
-import iconDemo from '../../package/gt-components/icon/docs/demo.vue';
-import titleDemo from '../../package/gt-components/title/docs/demo.vue';
-import checkboxDemo from '../../package/gt-components/checkbox/docs/demo.vue';
-import radioboxDemo from '../../package/gt-components/radiobox/docs/demo.vue';
-import switchDemo from '../../package/gt-components/switch/docs/demo.vue';
-import inputDemo from '../../package/gt-components/input/docs/demo.vue';
-import tagDemo from '../../package/gt-components/tag/docs/demo.vue';
+{{ allDemos }}
 
 const Route = useRoute();
 const demoRef = ref(null);
 const demoSourceRef = ref(null);
 
 const mapObj = {
-    button : buttonDemo ,
-    icon : iconDemo ,
-    title : titleDemo ,
-    checkbox : checkboxDemo ,
-    radiobox : radioboxDemo ,
-    switch : switchDemo ,
-    input : inputDemo ,
-    tag : tagDemo ,
+    {{mapObj}}
 }
 
 const componentName = computed(async () => {

@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import packagesList from '../../packages/list.json';
+import packageMap from '../../package/components.json';
 
-const packagesCompNameList = packagesList.map(item=>item.compName);
+const packagesCompNameList = Object.keys(packageMap);
 
 export const routes = [
   {

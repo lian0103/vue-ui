@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import packagesList from '../../packages/list.json';
+import packageMap from '../../package/components.json';
 
 // console.log("packagesList",packagesList)
-const packagesCompNameList = packagesList.map((item) => item.compName);
+const packagesCompNameList = Object.keys(packageMap);
 
 const Router = useRouter();
 const Route = useRoute();
@@ -57,11 +57,11 @@ const menuRoutes = [
   {
     label: 'GT元件',
     children: [
-      ...packagesList.map((obj) => {
+      ...packagesCompNameList.map((name) => {
         return {
-          label: obj.compZhName,
+          label: name,
           icon: '',
-          path: `/gt/${obj.compName}`,
+          path: `/gt/${name}`,
         };
       }),
     ],
