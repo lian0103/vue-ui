@@ -12,5 +12,6 @@
   "img-upload": "./gt-components/img-upload/index.js",
   "download-icon": "./gt-components/download-icon/index.js",
   "layout": "./gt-components/layout/index.js",
-  "menu": "./gt-components/menu/index.js"
+  "menu": "./gt-components/menu/index.js",
+  "tabs": "./gt-components/tabs/index.js"
 }

@@ -1,0 +1,24 @@
+.gt-tabs-wrapper {
+  width: 100%;
+  .tabs {
+    @apply flex justify-start items-center;
+    height: 32px;
+    @apply border-b border-solid border-color3;
+    .tab {
+      @apply cursor-pointer;
+      height: 32px;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 24px;
+      padding: 0 32px 7px 32px;
+      @apply text-gray4 bg-gray3;
+      &.current {
+        @apply text-main bg-gray3 border-primaryDarker;
+        border-bottom-width: 3px;
+      }
+    }
+  }
+  .content {
+    min-height: 100px;
+  }
+}

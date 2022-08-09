@@ -14,6 +14,7 @@ import ImgUpload from './gt-components/img-upload/index.js';
 import DownloadIcon from './gt-components/download-icon/index.js';
 import Layout from './gt-components/layout/index.js';
 import Menu from './gt-components/menu/index.js';
+import Tabs from './gt-components/tabs/index.js';
 
 const components = [
   Button,
@@ -29,7 +30,8 @@ const components = [
   ImgUpload,
   DownloadIcon,
   Layout,
-  Menu
+  Menu,
+  Tabs
 ];
 
 const install = function(Vue, opts = {}) {
@@ -80,5 +82,6 @@ export default {
   ImgUpload,
   DownloadIcon,
   Layout,
-  Menu
+  Menu,
+  Tabs
 };
