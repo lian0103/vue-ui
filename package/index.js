@@ -21,6 +21,7 @@ import MessageToast from './gt-components/message-toast/index.js';
 import Form from './gt-components/form/index.js';
 import Dropdown from './gt-components/dropdown/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
+import Table from './gt-components/table/index.js';
 
 const components = [
   Button,
@@ -43,7 +44,8 @@ const components = [
   MessageToast,
   Form,
   Dropdown,
-  TimePicker
+  TimePicker,
+  Table
 ];
 
 const install = function(Vue, opts = {}) {
@@ -101,5 +103,6 @@ export default {
   MessageToast,
   Form,
   Dropdown,
-  TimePicker
+  TimePicker,
+  Table
 };
