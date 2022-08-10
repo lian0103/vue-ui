@@ -547,6 +547,8 @@ const handleMsgToast = () => {
     'form': ` \`\`\` html 
 <script setup>
 import { reactive, getCurrentInstance, onMounted } from 'vue';
+import GButton from '../../button/index.js';
+import GForm from '../index.js';
 
 const instance = getCurrentInstance();
 
@@ -579,12 +581,11 @@ const formRule = {
 };
 
 const handleSubmit = () => {
-  const instance = getCurrentInstance();
-  instance.appContext.config.globalProperties['$gForms-form1'].callValid();
+  instance.appContext.config.globalProperties['gForms-form1'].callValid();
 };
 
 onMounted(()=>{
-  console.log('mounted',instance.appContext.config.globalProperties['$gForms-form1']);
+  // console.log('mounted',instance.appContext.config.globalProperties['gForms-form1']);
 })
 </script>
 
