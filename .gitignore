@@ -14,7 +14,7 @@ dist-ssr
 *.local
 
 demo
-googlefonts/googlefonts/*
+package/assets/fonts/google
 
 # Editor directories and files
 .vscode/*
