@@ -37,27 +37,27 @@ export default {
         <g-title :level="2" class="mb-3">FLAT - 2</g-title>
 
         <div class="flex justify-between mb-3">
-          <g-button flat><g-icons name="chevronLeft" />上一頁</g-button>
+          <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
           <g-button flat type="yellow"
-            ><g-icons name="chevronLeft" />上一頁</g-button
+            ><g-icon name="chevron-left" />上一頁</g-button
           >
           <g-button flat type="red"
-            ><g-icons name="chevronLeft" />上一頁</g-button
+            ><g-icon name="chevron-left" />上一頁</g-button
           >
           <g-button flat type="white"
-            ><g-icons name="chevronLeft" />上一頁</g-button
+            ><g-icon name="chevron-left" />上一頁</g-button
           >
         </div>
         <div class="flex justify-between mb-3">
-          <g-button flat><g-icons name="chevronRight" />下一頁</g-button>
+          <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
           <g-button flat type="yellow"
-            ><g-icons name="chevronRight" />下一頁</g-button
+            ><g-icon name="chevron-right" />下一頁</g-button
           >
           <g-button flat type="red"
-            ><g-icons name="chevronRight" />下一頁</g-button
+            ><g-icon name="chevron-right" />下一頁</g-button
           >
           <g-button flat type="white"
-            ><g-icons name="chevronRight" />下一頁</g-button
+            ><g-icon name="chevron-right" />下一頁</g-button
           >
         </div>
       </div>
@@ -74,7 +74,6 @@ export default {
         <g-title :level="2" class="mb-3">ROUND-ICON</g-title>
         <div class="w-full flex justify-start mb-3 p-4">
           <g-button round type="black" icon="file" class="mr-4" />
-          <g-button-close />
         </div>
       </div>
     </div>
@@ -670,6 +669,7 @@ const inputs = reactive({
   \`\`\`  `,
     'table': ` \`\`\` html 
 <script setup>
+import GMessage from '../../message/index.js';
 import { reactive , getCurrentInstance } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -826,6 +826,7 @@ const showLoading = () => {
       >載入中顯示</g-button
     >
   </div>
+  <g-message />
 </template>
   \`\`\`  `,
     'pagination': ` \`\`\` html 

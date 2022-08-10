@@ -1,4 +1,5 @@
 <script setup>
+import GMessage from '../../message/index.js';
 import { reactive , getCurrentInstance } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -155,4 +156,5 @@ const showLoading = () => {
       >載入中顯示</g-button
     >
   </div>
+  <g-message />
 </template>

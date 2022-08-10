@@ -187,7 +187,7 @@ export default {
           @click="() => handleColumnSort(cItem)"
         >
           <span> {{ cItem.label }}</span>
-          <g-icons v-if="cItem.sort" class="sortIcon" name="sequence" />
+          <g-icon v-if="cItem.sort" class="sort-icon" name="sequence" />
         </div>
       </div>
 

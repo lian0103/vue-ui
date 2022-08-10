@@ -5,6 +5,7 @@ export default {
 </script>
 <script setup>
 import { computed, ref, onUpdated } from 'vue';
+import GButtonClose from '../../../components/GButtonClose.vue';
 
 const DialogEnum = {
   COMFIRM: 'comfirm',
@@ -97,7 +98,7 @@ onUpdated(() => {
       :style="{ maxWidth: maxWidth + 'px' }"
     >
       <div class="dialog-head">
-        {{ title }} <g-button-close class="closeIcon" @click="handleClose" />
+        {{ title }} <g-button-close class="closeIcon" @click="handleClose" /> 
       </div>
       <div
         class="dialog-body"

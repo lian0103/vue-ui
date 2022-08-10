@@ -20,9 +20,8 @@ export default {
     const instance = getCurrentInstance();
     const validResult = reactive({});
     const inputs = reactive(props.modelValue);
-    console.log('in??', props.name);
     if (props.name) {
-      instance.appContext.config.globalProperties['$gForms' + '-' + props.name] =
+      instance.appContext.config.globalProperties['gForms' + '-' + props.name] =
         {
           callValid: () => {
             return new Promise((resolv, reject) => {
@@ -40,6 +39,8 @@ export default {
             });
           },
         };
+      
+      console.log('instance.appContext.config.globalProperties',instance.appContext.config.globalProperties)
     }
 
     const handleValChange = (val, name) => {
@@ -98,7 +99,10 @@ export default {
     const validChilds = slots.default()
       ? slots
           .default()
-          .filter((item) => item.type.name === 'gt-input')
+          .filter((item) => {
+            // console.log('item.type.name',item.type.name)
+            return item.type.name === 'GInput';
+          })
           .map((item) => {
             return {
               ...item,
