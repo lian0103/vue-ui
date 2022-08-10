@@ -1,14 +1,14 @@
 <script setup>
 const icons = [
   'up',
-  'arrowDown',
-  'arrowLeft',
+  'arrow-down',
+  'arrow-left',
   'calendar',
   'check',
-  'chevronDown',
-  'chevronLeft',
-  'chevronRight',
-  'chevronUp',
+  'chevron-down',
+  'chevron-left',
+  'chevron-right',
+  'chevron-up',
   'circle',
   'down',
   'download',
@@ -31,21 +31,21 @@ const icons = [
     >
       <template v-if="idx % 2 == 0">
         <div class="flex justify-center items-center leading-8 h-16">
-          <g-icons :name="item" class="text-main" size="sm" />
-          <g-icons :name="item" class="text-main" size="md" />
-          <g-icons :name="item" class="text-main" size="lg" />
+          <g-icon :name="item" class="text-main" size="sm" />
+          <g-icon :name="item" class="text-main" size="md" />
+          <g-icon :name="item" class="text-main" size="lg" />
           <span class="text-gray-600 leading-10">
-            {{ `<g-icons name="${item}" size="sm | md | lg" />`}}
+            {{ `<g-icon name="${item}" size="sm | md | lg" />`}}
           </span>
         </div>
       </template>
       <template v-else>
         <div class="flex justify-center items-center leading-8 h-16">
-          <g-icons :name="item" class="text-second" size="sm" />
-          <g-icons :name="item" class="text-second" size="md" />
-          <g-icons :name="item" class="text-second" size="lg" />
+          <g-icon :name="item" class="text-second" size="sm" />
+          <g-icon :name="item" class="text-second" size="md" />
+          <g-icon :name="item" class="text-second" size="lg" />
           <span class="text-gray-600 leading-10">
-            {{ `<g-icons name="${item}" size="sm | md | lg" />`}}
+            {{ `<g-icon name="${item}" size="sm | md | lg" />`}}
           </span>
         </div>
       </template>

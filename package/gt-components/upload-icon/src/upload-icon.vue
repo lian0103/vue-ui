@@ -14,7 +14,7 @@ const { percent, auto } = defineProps({
 
 const percentNum = ref(percent);
 const styleComputed = computed(() => {
-  // console.log('percentNum', percentNum); 
+  // console.log('percentNum', percentNum);
   return {
     background: `conic-gradient(#55585e 0 ${percentNum.value}%, #aaa 0 100%)`,
   };
@@ -30,17 +30,18 @@ onMounted(() => {
     }, 500);
   }
 });
-
 </script>
 <script>
 export default {
-  name: "GUploadIcon",
+  name: 'GUploadIcon',
 };
 </script>
 <template>
   <div class="gt-upload-icon">
     <div class="pie" :style="styleComputed"></div>
     <div class="inner"></div>
-    <g-icon name="upload" class="w-full svgbox" />
+    <div class="iconBox">
+      <g-icon name="upload" />
+    </div>
   </div>
 </template>

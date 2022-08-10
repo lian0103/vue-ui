@@ -21,21 +21,20 @@
       @apply bg-main left-0 top-0;
     }
   }
-  .svgbox {
-    width: 28px;
-    height: 28px;
-    // transform: rotate(0.5turn);
-    svg {
-      width: 10px;
-      height: 12px;
-      @apply relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+
+  .iconBox {
+    width: 100%;
+    height: 100%;
+    @apply text-gray1 flex justify-center items-center;
+    .gt-icon-md {
+      font-size: 12px;
+      z-index: 2;
+      @apply relative;
+      top: 1px;
     }
-    &.completed {
-      svg {
-        @apply text-white;
-        width: 20px;
-        height: 20px;
-      }
+    .white{
+      @apply text-white;
+      font-size: 20px;
     }
   }
 }

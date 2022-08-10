@@ -6,31 +6,67 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { computed, ref, markRaw } from 'vue';
+import { computed, shallowRef } from 'vue';
 
 import gtDoc from '../gtDoc';
-import buttonDemo from '../../package/gt-components/button/docs/demo.vue';
-import iconDemo from '../../package/gt-components/icon/docs/demo.vue';
-import titleDemo from '../../package/gt-components/title/docs/demo.vue';
-import checkboxDemo from '../../package/gt-components/checkbox/docs/demo.vue';
-import radioboxDemo from '../../package/gt-components/radiobox/docs/demo.vue';
-import switchDemo from '../../package/gt-components/switch/docs/demo.vue';
-import inputDemo from '../../package/gt-components/input/docs/demo.vue';
-import tagDemo from '../../package/gt-components/tag/docs/demo.vue';
+import BUTTON from '../../package/gt-components/button/docs/demo.vue';
+import ICON from '../../package/gt-components/icon/docs/demo.vue';
+import TITLE from '../../package/gt-components/title/docs/demo.vue';
+import CHECKBOX from '../../package/gt-components/checkbox/docs/demo.vue';
+import RADIOBOX from '../../package/gt-components/radiobox/docs/demo.vue';
+import SWITCH from '../../package/gt-components/switch/docs/demo.vue';
+import INPUT from '../../package/gt-components/input/docs/demo.vue';
+import TAG from '../../package/gt-components/tag/docs/demo.vue';
+import LOADINGICON from '../../package/gt-components/loading-icon/docs/demo.vue';
+import UPLOADICON from '../../package/gt-components/upload-icon/docs/demo.vue';
+import IMGUPLOAD from '../../package/gt-components/img-upload/docs/demo.vue';
+import DOWNLOADICON from '../../package/gt-components/download-icon/docs/demo.vue';
+import LAYOUT from '../../package/gt-components/layout/docs/demo.vue';
+import MENU from '../../package/gt-components/menu/docs/demo.vue';
+import TABS from '../../package/gt-components/tabs/docs/demo.vue';
+import LOADING from '../../package/gt-components/loading/docs/demo.vue';
+import MESSAGE from '../../package/gt-components/message/docs/demo.vue';
+import MESSAGETOAST from '../../package/gt-components/message-toast/docs/demo.vue';
+import FORM from '../../package/gt-components/form/docs/demo.vue';
+import DROPDOWN from '../../package/gt-components/dropdown/docs/demo.vue';
+import TIMEPICKER from '../../package/gt-components/time-picker/docs/demo.vue';
+import TABLE from '../../package/gt-components/table/docs/demo.vue';
+import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
+import SORTLABEL from '../../package/gt-components/sort-label/docs/demo.vue';
+import FILTEROPTION from '../../package/gt-components/filter-option/docs/demo.vue';
+import DIALOG from '../../package/gt-components/dialog/docs/demo.vue';
 
 const Route = useRoute();
-const demoRef = ref(null);
-const demoSourceRef = ref(null);
+const demoRef = shallowRef(null);
+const demoSourceRef = shallowRef(null);
 
 const mapObj = {
-    button : buttonDemo ,
-    icon : iconDemo ,
-    title : titleDemo ,
-    checkbox : checkboxDemo ,
-    radiobox : radioboxDemo ,
-    switch : switchDemo ,
-    input : inputDemo ,
-    tag : tagDemo ,
+    'button' : BUTTON ,
+    'icon' : ICON ,
+    'title' : TITLE ,
+    'checkbox' : CHECKBOX ,
+    'radiobox' : RADIOBOX ,
+    'switch' : SWITCH ,
+    'input' : INPUT ,
+    'tag' : TAG ,
+    'loading-icon' : LOADINGICON ,
+    'upload-icon' : UPLOADICON ,
+    'img-upload' : IMGUPLOAD ,
+    'download-icon' : DOWNLOADICON ,
+    'layout' : LAYOUT ,
+    'menu' : MENU ,
+    'tabs' : TABS ,
+    'loading' : LOADING ,
+    'message' : MESSAGE ,
+    'message-toast' : MESSAGETOAST ,
+    'form' : FORM ,
+    'dropdown' : DROPDOWN ,
+    'time-picker' : TIMEPICKER ,
+    'table' : TABLE ,
+    'pagination' : PAGINATION ,
+    'sort-label' : SORTLABEL ,
+    'filter-option' : FILTEROPTION ,
+    'dialog' : DIALOG ,
 }
 
 const componentName = computed(async () => {

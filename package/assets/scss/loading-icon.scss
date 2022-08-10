@@ -1,10 +1,12 @@
 .gt-loading-icon {
   width: 32px;
   height: 32px;
-  animation: ani_rotate 1s linear infinite;
-  svg {
-    width: 32px !important;
-    height: 32px !important;
+  @apply flex justify-center items-center;
+  div{
+    width: 100%;
+    height: 100%;
+    background-image: url('../svg/loading.svg');
+    animation: ani_rotate 1s linear infinite;
   }
 }
 

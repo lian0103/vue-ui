@@ -1,5 +1,4 @@
 <script setup>
-import GMessageToast from '../src/index.vue';
 import { getCurrentInstance } from 'vue';
 const instance = getCurrentInstance();
 

@@ -2,6 +2,7 @@
 import { h, ref, computed, watch, shallowRef } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import GDropdownItem from './dropdownItem.vue';
+import GIcon from '../../icon'
 import { useElementBounding, useWindowSize } from '@vueuse/core';
 
 export default {
@@ -183,7 +184,7 @@ export default {
             {
               class: 'gt-dropdown-icon',
             },
-            [h(GIcons, { name: 'chevronDown' })]
+            [h(GIcon, { name: 'chevronDown' })]
           ),
           h(
             'div',

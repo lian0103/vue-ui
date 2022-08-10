@@ -116,7 +116,7 @@ export default {
         :class="current == firstPage ? 'disable' : ''"
         @click="handlePrePage"
       >
-        <g-icons name="chevronLeft" class="w-8" />上一頁
+        <g-icon name="chevron-left" class="w-8" />上一頁
       </div>
 
       <div class="pageNums">
@@ -141,10 +141,9 @@ export default {
             {{ num }}
           </template>
           <template v-else>
-            <g-icons
+            <g-icon
               v-if="pageInfo.total"
               name="ellipsis"
-              class="rotate-90 text-primaryDarker"
               size="md"
             />
           </template>
@@ -155,7 +154,7 @@ export default {
         :class="current == lastPage ? 'disable' : ''"
         @click="handleNextPage"
       >
-        下一頁<g-icons name="chevronRight" class="w-8" />
+        下一頁<g-icon name="chevron-right" class="w-8" />
       </div>
     </div>
   </div>

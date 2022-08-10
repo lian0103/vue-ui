@@ -32,19 +32,16 @@ onMounted(() => {
 </script>
 <script>
 export default {
-  name: "GDownloadIcon",
+  name: 'GDownloadIcon',
 };
 </script>
 <template>
   <div class="gt-download-icon">
     <div class="pie" :style="styleComputed"></div>
     <div class="inner" :class="percentNum >= 100 ? 'completed' : ''"></div>
-
-    <g-icons v-if="percentNum < 100" name="download_sm" class="w-full svgbox" />
-    <g-icons
-      v-if="percentNum >= 100"
-      name="check"
-      class="w-full svgbox completed"
-    />
+    <div class="iconBox">
+      <g-icon v-if="percentNum < 100" name="download_sm" />
+       <g-icon class="white" v-if="percentNum >= 100" name="check" />
+    </div>
   </div>
 </template>

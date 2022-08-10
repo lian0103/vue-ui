@@ -4,7 +4,8 @@
   @apply relative;
   .icon {
     @apply w-6 absolute left-2 text-gray0 cursor-pointer;
-    top: 6.5px;
+    font-size: 20px;
+    top: 4.5px;
   }
   .gt-time-input {
     height: 36px;
@@ -54,12 +55,10 @@
     @apply text-center select-none;
     .month-pre {
       @apply w-full col-start-1 col-end-2 row-start-1 row-end-2 flex cursor-pointer;
-      svg {
-        width: 24px;
-      }
     }
     .month-all {
       @apply col-start-2 col-end-7 row-start-1 row-end-2 cursor-pointer;
+      line-height: 2.5;
     }
     .month-next {
       @apply w-full col-start-7 col-end-8 row-start-1 row-end-2 flex justify-end cursor-pointer;

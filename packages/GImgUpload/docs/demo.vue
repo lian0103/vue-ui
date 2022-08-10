@@ -1,6 +1,6 @@
-<script>
+<script setup>
 const handleFile = (file) => {
-  // console.log(file);
+  console.log(file);
 };
 </script>
 

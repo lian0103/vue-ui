@@ -310,7 +310,7 @@ const handleTimePick = () => {
       @click.stop="isTimePickerShow = !isTimePickerShow"
       >時間: <span>{{ curSelect?.format(formatStr) }}</span>
     </span>
-    <g-icons
+    <g-icon
       class="icon"
       name="calendar"
       size="sm"
@@ -325,11 +325,11 @@ const handleTimePick = () => {
     >
       <div class="calender">
         <span class="month-pre" @click.stop="handleMonthPre">
-          <g-icons name="chevronLeft"
+          <g-icon name="chevron-left"
         /></span>
         <p class="month-all" @click.stop="handleMonthAll">{{ monthAll }}</p>
         <span class="month-next" @click.stop="handleMonthNext">
-          <g-icons name="chevronRight"
+          <g-icon name="chevron-right"
         /></span>
 
         <template v-if="!isMonthAllShow">

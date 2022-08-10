@@ -1,5 +1,5 @@
 <script setup>
-import { reactive , getCurrentInstance } from 'vue';
+import { reactive, getCurrentInstance, onMounted } from 'vue';
 
 const instance = getCurrentInstance();
 
@@ -32,8 +32,13 @@ const formRule = {
 };
 
 const handleSubmit = () => {
-  instance.appContext.config.globalProperties['gForms-form1'].callValid();
+  const instance = getCurrentInstance();
+  instance.appContext.config.globalProperties['$gForms-form1'].callValid();
 };
+
+onMounted(()=>{
+  console.log('mounted',instance.appContext.config.globalProperties['$gForms-form1']);
+})
 </script>
 
 <template>

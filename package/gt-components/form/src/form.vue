@@ -2,6 +2,7 @@
 import { h, computed, getCurrentInstance, reactive } from 'vue';
 
 export default {
+  name:'GForm',
   props: {
     name: {
       default: null,
@@ -19,8 +20,9 @@ export default {
     const instance = getCurrentInstance();
     const validResult = reactive({});
     const inputs = reactive(props.modelValue);
+    console.log('in??', props.name);
     if (props.name) {
-      instance.appContext.config.globalProperties['gForms' + '-' + props.name] =
+      instance.appContext.config.globalProperties['$gForms' + '-' + props.name] =
         {
           callValid: () => {
             return new Promise((resolv, reject) => {

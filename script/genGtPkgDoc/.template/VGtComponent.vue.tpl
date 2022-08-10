@@ -6,14 +6,14 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { computed, ref, markRaw } from 'vue';
+import { computed, shallowRef } from 'vue';
 
 import gtDoc from '../gtDoc';
 {{ allDemos }}
 
 const Route = useRoute();
-const demoRef = ref(null);
-const demoSourceRef = ref(null);
+const demoRef = shallowRef(null);
+const demoSourceRef = shallowRef(null);
 
 const mapObj = {
     {{mapObj}}

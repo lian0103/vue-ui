@@ -107,7 +107,7 @@ export default {
       @click="handleGroupClick(item.active, index)"
     >
       <div>{{ item.label }}</div>
-      <g-icons
+      <g-icon
         :name="item.active ? 'chevronUp' : 'chevronDown'"
         size="md"
         class="group-icon"
@@ -136,7 +136,7 @@ export default {
               }
             "
           >
-            <g-icons
+            <g-icon
               v-if="cItem.icon"
               :name="cItem.icon"
               size="md"

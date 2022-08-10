@@ -6,6 +6,6 @@ export default {
 
 <template>
   <div class="gt-loading-icon">
-    <g-icon name="loading" />
+    <div></div>
   </div>
 </template>

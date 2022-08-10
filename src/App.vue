@@ -1,10 +1,7 @@
 <script setup></script>
 
 <template>
-  <!-- <router-view></router-view> -->
-  <g-loading-icon class="mr-2" :percent="0" :auto="true" />
-  <g-upload-icon class="mr-2" :percent="0" auto />
-  <g-img-upload />
+  <router-view></router-view>
 </template>
 
 <style lang="scss">

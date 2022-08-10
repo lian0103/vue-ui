@@ -1,12 +1,12 @@
 .gt-upload-icon {
   width: 28px;
   height: 28px;
+  position: relative;
   @apply rounded-full bg-gray0 overflow-hidden relative;
   .pie {
     @apply absolute left-0 top-0;
     width: 29px;
     height: 29px;
-    // background: conic-gradient(#55585e 0 40%, #aaa 0 100%);
   }
   .inner {
     @apply absolute rounded-full bg-gray3;
@@ -15,13 +15,15 @@
     width: 22px;
     height: 22px;
   }
-  .svgbox {
-    width: 28px;
-    height: 28px;
-  }
-  svg {
-    width: 10px;
-    height: 12px;
-    @apply relative text-gray1 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  .iconBox {
+    width: 100%;
+    height: 100%;
+    @apply text-gray1 flex justify-center items-center;
+    .gt-icon-md {
+      font-size: 12px;
+      z-index: 2;
+      @apply relative;
+      top: 1px;
+    }
   }
 }

@@ -43,6 +43,8 @@
       &.next-dot {
         width: 24px;
         padding: 8px 0;
+        transform: rotate(90deg);
+        @apply text-primaryDarker;
       }
     }
   }
