@@ -8,8 +8,8 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/GT/index.js",
-  "type": "module",
+  "main": "./dist/GT/gt-ui.umd.js",
+  "module": "./dist/GT/gt-ui.es.js",
   "exports": {
     ".": {
       "import": "./dist/GT/gt-ui.es.js",
