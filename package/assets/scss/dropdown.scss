@@ -16,9 +16,6 @@
     svg {
       width: 22px;
     }
-    .span-text {
-      // margin-left: 5px;
-    }
   }
 
   .gt-dropdown-icon {
@@ -32,7 +29,6 @@
 
   .gt-dropdown-items {
     @apply hidden w-full -z-10 opacity-0;
-    // @apply absolute top-10 left-0;
     @apply py-1 px-0 bg-gray3 rounded-10;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
 

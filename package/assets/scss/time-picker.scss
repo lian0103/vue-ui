@@ -35,10 +35,8 @@
 
 .gt-timepicker {
   width: 326px;
-  // overflow: hidden;
   opacity: 0;
   z-index: -1;
-  // display: none;
   @apply fixed flex-col -z-10;
   max-width: 326px;
   height: 416px;
@@ -108,22 +106,65 @@
       }
     }
 
-    @for $r from 0 through 5 {
-      .calDay-r-#{$r} {
-        grid-row-start: 3 + $r;
-        grid-row-end: 4 + $r;
-      }
+    .calDay-r-0 {
+      grid-row-start: 3;
+      grid-row-end: 4 ;
+    }
+    .calDay-r-1 {
+      grid-row-start: 4;
+      grid-row-end: 5;
+    }
+    .calDay-r-2 {
+      grid-row-start: 5;
+      grid-row-end: 6;
+    }
+    .calDay-r-3 {
+      grid-row-start: 6;
+      grid-row-end: 7;
+    }
+    .calDay-r-4 {
+      grid-row-start: 7;
+      grid-row-end: 8;
+    }
+    .calDay-r-5 {
+      grid-row-start: 8;
+      grid-row-end: 9;
+    }
+    .calDay-r-6 {
+      grid-row-start: 9;
+      grid-row-end: 10;
     }
 
-    @for $i from 0 through 6 {
-      .wdStr#{$i} {
-        grid-column-start: 1 + $i;
-        grid-column-end: 2 + $i;
-      }
-      .calDay-c-#{$i} {
-        grid-column-start: 1 + $i;
-        grid-column-end: 2 + $i;
-      }
+    .wdStr0 , .calDay-c-0 {
+      grid-column-start: 1 ;
+      grid-column-end: 2 ;
+    }
+
+    .wdStr1 , .calDay-c-1  {
+      grid-column-start: 2 ;
+      grid-column-end: 3 ;
+    }
+
+    .wdStr2 , .calDay-c-2  {
+      grid-column-start: 3 ;
+      grid-column-end: 4 ;
+    }
+
+    .wdStr3 , .calDay-c-3  {
+      grid-column-start: 4 ;
+      grid-column-end: 5 ;
+    }
+    .wdStr4 , .calDay-c-4  {
+      grid-column-start: 5 ;
+      grid-column-end: 6 ;
+    }
+    .wdStr5 , .calDay-c-5  {
+      grid-column-start: 6 ;
+      grid-column-end: 7 ;
+    }
+    .wdStr6 , .calDay-c-6  {
+      grid-column-start: 7 ;
+      grid-column-end: 8 ;
     }
 
     .time-select {
