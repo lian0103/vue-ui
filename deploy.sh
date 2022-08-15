@@ -1,9 +1,8 @@
 set -e
 
-# npm run build-demo
-# npm run gen:gtDoc
-# npm run gen:gtDoc2
-# npm run doc
+npm run gen:pkgDoc
+
+npm run doc
 
 cd demo
 
