@@ -9,7 +9,6 @@
     "dist"
   ],
   "main": "./dist/GT/index.js",
-  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/GT/gt-ui.es.js",
