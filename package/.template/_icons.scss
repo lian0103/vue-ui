@@ -7,6 +7,10 @@
 		url('<%= fontPath %><%= fontName %>.ttf<%= cacheBusterQueryString %>') format('truetype'),
 }
 
+.<%= cssClass %> {
+	display: flex;
+}
+
 .<%= cssClass %>:before {
 	font-family: "<%= fontName %>";
 		-webkit-font-smoothing: antialiased;

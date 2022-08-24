@@ -7,6 +7,10 @@
 		url('../fonts/greattree/icon/gt.icon.font.ttf') format('truetype'),
 }
 
+.gt-icon {
+	display: flex;
+}
+
 .gt-icon:before {
 	font-family: "gt.icon.font";
 		-webkit-font-smoothing: antialiased;

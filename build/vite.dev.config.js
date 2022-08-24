@@ -1,9 +1,5 @@
 import { defineConfig } from 'vite';
-import {
-  basicConfig,
-  silenceSomeSassDeprecationWarnings,
-} from './vite.basic.config';
-
+import { basicConfig } from './vite.basic.config';
 
 // https://vitejs.dev/config/
 export const config = {

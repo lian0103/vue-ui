@@ -1,9 +1,5 @@
 set -e
 
-npm run gen:pkgDoc
-
-npm run doc
-
 cd demo
 
 git init

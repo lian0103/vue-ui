@@ -26,8 +26,8 @@ export default {
         </div>
         <div class="gt-menu-box"><slot name="sidebar" /></div>
         <div class="gt-bottomLogo">
-          <img src="packages/assets/images/gt-logo.png" alt="" />
-          <img src="packages/assets/images/gt-logo-text.png" alt="" />
+          <img src="../../../assets/images/gt-logo.png" alt="" />
+          <img src="../../../assets/images/gt-logo-text.png" alt="" />
         </div>
       </div>
     </div>

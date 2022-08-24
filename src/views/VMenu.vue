@@ -27,31 +27,6 @@ const menuRoutes = [
         icon: 'file',
         path: '/doc',
       },
-      {
-        label: '使用',
-        icon: 'plus',
-        path: '/use',
-      },
-      {
-        label: '安裝',
-        icon: 'download',
-        path: '/install',
-      },
-    ],
-  },
-  {
-    label: '覆寫元件',
-    children: [
-      {
-        label: 'Element',
-        icon: 'file',
-        path: '/element',
-      },
-      {
-        label: 'Quasar',
-        icon: 'file',
-        path: '/quasar',
-      },
     ],
   },
   {

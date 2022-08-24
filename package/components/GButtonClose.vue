@@ -8,15 +8,3 @@ import GButton from '../gt-components/button';
     ><g-icon name="x" size="md"
   /></g-button>
 </template>
-
-<style lang="scss">
-.gt-button-close {
-  padding: 6px;
-  &.gt-btn-white {
-    @apply text-gray2;
-  }
-  &:hover {
-    @apply text-gray1;
-  }
-}
-</style>

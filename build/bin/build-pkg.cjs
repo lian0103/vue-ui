@@ -6,11 +6,16 @@ function copyPackage() {
   return src([
     '../../package/gt-components/**/index.js',
     '../../package/gt-components/**/src/*',
-  ]).pipe(dest('../../dist/GT/gt-components/'));
+  ]).pipe(dest('../../dist/gt-components/'));
 }
 
 function copyPackageIndex() {
-  return src(['../../package/index.js']).pipe(dest('../../dist/GT/'));
+  return src(['../../package/index.js']).pipe(dest('../../dist/'));
 }
 
-exports.build = series(copyPackage, copyPackageIndex);
+function copyPackageUseComps() {
+  return src(['../../package/components/*']).pipe(dest('../../dist/components/'));
+}
+
+
+exports.build = series(copyPackage, copyPackageIndex , copyPackageUseComps);

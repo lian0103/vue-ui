@@ -1,9 +1,7 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, getCurrentInstance } from 'vue';
 
-const Router = useRouter();
-
+const instance = getCurrentInstance();
 const { active, menu } = defineProps({
   active: {
     type: String,
@@ -87,8 +85,8 @@ const handleRouteTo = (path, gIdx, cIdx) => {
   activeInfo.menuGroupActive = gIdx + 1;
   activeInfo.menuGroupItemActive = cIdx + 1;
   activeInfo.menuGroupActiveArr = arr;
-  if (path && Router) {
-    Router.push(path);
+  if (path && instance.appContext.config.globalProperties.$router) {
+    instance.appContext.config.globalProperties.$router.push(path);
   }
 };
 </script>

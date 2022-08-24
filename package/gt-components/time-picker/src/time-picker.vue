@@ -7,7 +7,7 @@ export default {
 <script setup>
 import { computed, reactive, ref, shallowRef, watch } from 'vue';
 import { useElementBounding, useWindowSize } from '@vueuse/core';
-import dayjs from 'dayjs';
+import dayjs from 'dayjs/esm';
 import { v4 as uuidv4 } from 'uuid';
 
 const formatStr = 'YYYY-MM-DD HH:mm';
@@ -253,13 +253,12 @@ const {
 const { width: winWidth, height: winHeight } = useWindowSize();
 
 const popupStyleComputed = computed(() => {
-  let rootWidth = parseInt(rootRight.value) - parseInt(rootLeft.value);
   if (root) {
     return {
       top: rootTop.value + 42 + 'px',
       left:
         rootRight.value + 100 > winWidth.value
-          ? '-84px'
+          ? rootLeft.value - 110 + 'px'
           : rootLeft.value + 'px',
     };
   } else {

@@ -1,42 +1,50 @@
-"use strict";
+'use strict';
 
-const { series, src, dest } = require("gulp");
-const sass = require("gulp-sass")(require("sass"));
-const cleanCSS = require("gulp-clean-css");
-const postcss = require("gulp-postcss");
-const tailwindcss = require("tailwindcss");
-const autoprefixer = require("autoprefixer");
-const postcssImport = require("postcss-import");
-const tailwindcssNesting = require("tailwindcss/nesting");
+const { series, src, dest } = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+const cleanCSS = require('gulp-clean-css');
+const postcss = require('gulp-postcss');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
+const postcssImport = require('postcss-import');
+const tailwindcssNesting = require('tailwindcss/nesting');
 
 function compile() {
-  return src(["../../package/assets/scss/*.scss"])
+  return src(['../../package/assets/scss/*.scss'])
     .pipe(
       postcss([
         postcssImport,
         tailwindcssNesting,
-        tailwindcss("../../tailwind.config.js"),
+        tailwindcss('../../tailwind.config.js'),
         autoprefixer,
       ])
     )
     .pipe(sass.sync())
-    .pipe(cleanCSS({ compatibility: "ie8" }))
-    .pipe(dest("../../dist/GT/style/css"));
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(dest('../../dist/assets/css'));
 }
 function copyfont() {
   return (
-    src("../../package/assets/fonts/**")
+    src('../../package/assets/fonts/**')
       // .pipe(cssmin())
-      .pipe(dest("../../dist/GT/style/fonts"))
+      .pipe(dest('../../dist/assets/fonts'))
   );
 }
 
 function copyScss() {
   return (
-    src("../../package/assets/scss/**")
+    src('../../package/assets/scss/**')
       //
-      .pipe(dest("../../dist/GT/style/scss"))
+      .pipe(dest('../../dist/assets/scss'))
   );
 }
 
-exports.build = series(compile, copyfont, copyScss);
+function copyImgs() {
+  return (
+    src('../../package/assets/images/**')
+      //
+      .pipe(dest('../../dist/assets/images'))
+  );
+}
+
+exports.build = series(compile, copyfont, copyScss, copyImgs);

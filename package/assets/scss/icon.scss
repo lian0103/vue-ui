@@ -9,3 +9,15 @@
 .gt-icon-lg {
   font-size: 36px;
 }
+
+.gt-icon-spin::before {
+  animation: gt-icon-spin 1s infinite linear;
+}
+@keyframes gt-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

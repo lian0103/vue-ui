@@ -50,7 +50,7 @@ const handleLabelChange = () => {
       @click="handleLabelChange"
     >
       {{ currentOptionLabel ? currentOptionLabel : 'N/A' }}
-      <g-icons class="icon" name="sequence" size="md" />
+      <g-icon class="icon" name="sequence" size="md" />
     </div>
   </div>
 </template>
