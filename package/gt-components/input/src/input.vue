@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, reactive, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 
 const TYPES = ['text', 'number', 'password'];
 const placeholderDefaultMap = {
@@ -13,6 +13,7 @@ const {
   disabled,
   modelValue,
   label,
+  width,
   value,
   type,
   green,
@@ -24,6 +25,8 @@ const {
   handleValChange,
   handleRulesValid,
   size,
+  icon,
+  iconPosition,
 } = defineProps({
   name: {
     default: null,
@@ -35,6 +38,10 @@ const {
   modelValue: {},
   label: {
     default: null,
+  },
+  width: {
+    type: Number,
+    default: 0,
   },
   value: {
     default: null,
@@ -62,12 +69,11 @@ const {
   validResult: {
     default: {},
   },
-
   handleValChange: {
-    default: () => {},
+    type: Function,
   },
   handleRulesValid: {
-    default: async () => {},
+    type: Function,
   },
   size: {
     type: String,
@@ -78,6 +84,13 @@ const {
   },
   focus: {
     type: Function,
+  },
+  icon: {
+    type: String,
+  },
+  iconPosition: {
+    type: String,
+    default: 'right',
   },
 });
 
@@ -98,6 +111,9 @@ const classComputed = computed(() => {
   if (size === 'sm') {
     classStr.push('gt-input-sm');
   }
+  if (icon) {
+    classStr.push(`icon-${iconPosition}`);
+  }
 
   return classStr;
 });
@@ -105,7 +121,7 @@ const classComputed = computed(() => {
 const inputVal = ref(modelValue || parentValue?.value || '');
 
 const handleInput = (evt) => {
-  if (parentValue) {
+  if (parentValue && handleValChange) {
     // console.log('~~~', inputVal.value);
     handleValChange(inputVal.value, name);
   } else {
@@ -128,8 +144,12 @@ const handleFocus = (e) => {
 
 const handleClear = () => {
   inputVal.value = '';
-  handleValChange('', name);
-  handleRulesValid(inputVal.value, name, 'blur');
+  if (handleValChange) {
+    handleValChange('', name);
+  }
+  if (handleRulesValid) {
+    handleRulesValid(inputVal.value, name, 'blur');
+  }
 };
 </script>
 <script>
@@ -143,6 +163,7 @@ export default {
     <div class="gt-relative">
       <input
         :class="classComputed"
+        :style="width ? { width: width + 'px' } : {}"
         :placeholder="placeholder || placeholderDefaultMap[type]"
         :type="TYPES.includes(type) ? type : 'text'"
         @blur="handleBlur"
@@ -155,7 +176,12 @@ export default {
         @click.stop="handleClear"
         class="clear-icon"
         name="x"
-        v-if="clearable"
+        v-if="clearable && !icon"
+      />
+      <g-icon
+        :class="`gt-input-icon-${iconPosition}`"
+        :name="icon"
+        v-if="icon"
       />
       <div class="gt-input-error-msg" v-if="errorMsg">{{ errorMsg }}</div>
     </div>

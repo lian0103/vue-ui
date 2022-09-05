@@ -8,24 +8,46 @@ const inputs = reactive({
 });
 
 const handleBlurEvent = (e) => {
-  console.log('blur',e);
+  console.log('blur', e);
 };
 
 const handleFocusEvent = (e) => {
-  console.log('focus',e);
+  console.log('focus', e);
 };
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">icon left </g-title>
+    <g-input
+      v-model="inputs.input0"
+      size="md"
+      icon="search"
+      iconPosition="left"
+    />
+
+    <g-title :level="2" class="mb-3">icon right </g-title>
+    <g-input v-model="inputs.input0" icon="search" />
+
+    <g-title :level="2" class="mb-3">clearable</g-title>
+    <g-input v-model="inputs.input0" clearable />
+    <g-input v-model="inputs.input0" size="md" clearable />
+
     <g-title :level="2" class="mb-3">事件(blur、focus)</g-title>
-    <g-input v-model="inputs.input0" @blur="handleBlurEvent" @focus="handleFocusEvent" />
+    <g-input
+      v-model="inputs.input0"
+      @blur="handleBlurEvent"
+      @focus="handleFocusEvent"
+    />
+
+    <g-title :level="2" class="mb-3">輸入框-width 200</g-title>
+    <g-input v-model="inputs.input0" size="sm" :width="200" />
 
     <g-title :level="2" class="mb-3">輸入框-size</g-title>
     <g-title :level="3" class="mb-3">middle height:43px</g-title>
-    <g-input v-model="inputs.input0" size="md" />
+    <g-input v-model="inputs.input0" size="md" clearable />
     <g-title :level="3" class="mb-3">small height:36px</g-title>
-    <g-input v-model="inputs.input0" size="sm" />
+    <g-input v-model="inputs.input0" size="sm" clearable />
 
     <g-title :level="2" class="mb-3">輸入框-type</g-title>
     <g-title :level="3" class="mb-3">number</g-title>

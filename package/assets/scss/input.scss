@@ -29,6 +29,10 @@
       height: 36px;
       padding: 6.5px 34px 6.5px 12px;
     }
+
+    &.icon-left{
+      padding: 6.5px 12px 6.5px 34px;
+    }
   }
 
   .gt-input-error-msg {
@@ -44,9 +48,30 @@
   .clear-icon {
     width: 22px;
     @apply text-gray0 opacity-0;
-    @apply absolute right-0 cursor-pointer transition-all duration-300;
-    top: 2px;
+    @apply absolute cursor-pointer transition-all duration-300;
     right: 10px;
     font-size: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .gt-input-icon-left{
+    width: 22px;
+    @apply text-gray0;
+    @apply absolute cursor-pointer transition-all duration-300;
+    left: 8px;
+    font-size: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .gt-input-icon-right{
+    width: 22px;
+    @apply text-gray0;
+    @apply absolute cursor-pointer transition-all duration-300;
+    right: 10px;
+    font-size: 22px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
