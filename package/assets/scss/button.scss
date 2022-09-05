@@ -49,6 +49,11 @@
   @apply flex justify-center items-center;
   @apply overflow-hidden text-center whitespace-nowrap;
   @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
+
+  .gt-loading-icon{
+    font-size: 18px;
+    margin-right: 2px;
+  }
 }
 
 .gt-btn-round {
@@ -115,7 +120,7 @@
   }
 }
 
-.iconBtn {
+.gt-icon-narrow-padding{
   padding: 6px !important;
 }
 

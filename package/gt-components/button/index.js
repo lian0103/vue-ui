@@ -1,4 +1,5 @@
 import GButton from "./src/button.vue";
+import '../loading-icon'
 import '../icon';
 /* istanbul ignore next */
 GButton.install = function (Vue) {

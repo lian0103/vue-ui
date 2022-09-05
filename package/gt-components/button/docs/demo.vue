@@ -4,6 +4,28 @@
 
     <div class="mb-3 px-2 w-full md:w-3/4">
       <div class="mb-8">
+        <g-title :level="2" class="mb-3">loading</g-title>
+        <div class="flex justify-between mb-3">
+          <g-button pill icon="search" :isLoading="true">按鈕</g-button>
+          <g-button pill icon="search" :isLoading="true" type="yellow">按鈕</g-button>
+          <g-button pill icon="search" :isLoading="true" type="red">按鈕</g-button>
+        </div>
+        <g-title :level="2" class="mb-3">icon left</g-title>
+        <div class="flex justify-between mb-3">
+          <g-button pill icon="search">按鈕</g-button>
+          <g-button flat icon="search">按鈕</g-button>
+        </div>
+        <g-title :level="2" class="mb-3">icon right</g-title>
+        <div class="flex justify-between mb-3">
+          <g-button pill icon="search" iconPosition="right">按鈕</g-button>
+          <g-button flat icon="search" iconPosition="right">按鈕</g-button>
+        </div>
+      </div>
+      <div class="mb-8">
+        <g-title :level="2" class="mb-3">width 200</g-title>
+        <g-button pill :width="200">按鈕</g-button>
+      </div>
+      <div class="mb-8">
         <g-title :level="2" class="mb-3">PILL</g-title>
         <div class="flex justify-between mb-3">
           <g-button pill>按鈕</g-button>
@@ -63,7 +85,13 @@
         </div>
         <g-title :level="2" class="mb-3">ROUND-ICON</g-title>
         <div class="w-full flex justify-start mb-3 p-4">
-          <g-button round type="black" icon="file" class="mr-4" />
+          <g-button
+            round
+            type="black"
+            icon="file"
+            class="mr-4"
+            iconNarrowPadding
+          />
         </div>
       </div>
     </div>

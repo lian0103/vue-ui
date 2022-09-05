@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
-const { flat, pill, type, noBorder, icon } = defineProps({
+const { flat, pill, type, noBorder, icon, width , isLoading } = defineProps({
   flat: {
     type: Boolean,
   },
@@ -10,7 +10,7 @@ const { flat, pill, type, noBorder, icon } = defineProps({
   },
   type: {
     type: String,
-    default: "second",
+    default: 'second',
   },
   noBorder: {
     type: Boolean,
@@ -18,61 +18,83 @@ const { flat, pill, type, noBorder, icon } = defineProps({
   icon: {
     type: String,
   },
+  iconNarrowPadding:{
+    type: Boolean,
+    default:false
+  },
+  iconPosition: {
+    type: String,
+    default: 'left',
+  },
+  width: {
+    type: Number,
+  },
+  isLoading:{
+    type:Boolean,
+    default:false
+  }
 });
 
 const classStr = computed(() => {
   if (flat) {
-    return "gt-btn-flat";
+    return 'gt-btn-flat';
   }
   if (pill) {
-    return "gt-btn-pill";
+    return 'gt-btn-pill';
   }
   if (noBorder) {
-    return "gt-btn-round-no-border";
+    return 'gt-btn-round-no-border';
   }
 
-  return "gt-btn-round-no-border";
+  return 'gt-btn-round-no-border';
 });
 
 const typeStr = computed(() => {
   switch (type) {
-    // case 'primary': {
-    //   return 'gt-btn-primary';
-    //
-    // }
-    case "second": {
-      return "gt-btn-second";
+    case 'second': {
+      return 'gt-btn-second';
     }
-    case "yellow": {
-      return "gt-btn-yellow";
+    case 'yellow': {
+      return 'gt-btn-yellow';
     }
-    case "red": {
-      return "gt-btn-red";
+    case 'red': {
+      return 'gt-btn-red';
     }
-    case "black": {
-      return "gt-btn-black";
+    case 'black': {
+      return 'gt-btn-black';
     }
-    case "white": {
-      return "gt-btn-white";
+    case 'white': {
+      return 'gt-btn-white';
     }
   }
 });
 </script>
 <script>
 export default {
-  name: "GButton",
+  name: 'GButton',
 };
 </script>
 <template>
   <button
-    :class='[classStr, typeStr, icon ? "iconBtn" : ""]'
-    class='gt-btn'
+    :class="[
+      classStr,
+      typeStr,
+      iconNarrowPadding ? 'gt-icon-narrow-padding':'',
+      icon && iconPosition ? iconPosition : '',
+    ]"
+    class="gt-btn"
+    :style="width ? { width: `${width}px` } : {}"
   >
-    <g-icon
-      :name='icon'
-      v-if='icon'
-    />
+    <template v-if="isLoading">
+      <div>
+        
+      </div>
+    </template>
+
+    <g-loading-icon v-if="isLoading" />
+    <g-icon :name="icon" v-if="icon && iconPosition == 'left' && !isLoading" />
     <slot></slot>
-    <div class='textLine'></div>
+    <g-icon :name="icon" v-if="icon && iconPosition == 'right' && !isLoading " />
+    <div class="textLine"></div>
   </button>
 </template>
