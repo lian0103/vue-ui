@@ -15,7 +15,6 @@
     "test:unit": "vitest --config ./build/vite.dev.config.js --environment jsdom --coverage",
     "doc": "vite build --config ./build/vite.doc.config.js",
     "gen:gtCom": "node ./script/genNewComp/index.js",
-    "gen:gtDoc": "node ./script/genGtDoc/index.js",
     "gen": "npm run gen:google-fonts && npm run gen:css-index && npm run gen:pkg-index && npm run gen:svg2css",
     "gen:component": "node build/bin/gen-component.cjs",
     "gen:svg2css": "gulp build --gulpfile build/bin/gen-svg2font.cjs",

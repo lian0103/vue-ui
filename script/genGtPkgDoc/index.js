@@ -8,7 +8,7 @@ var listFileContent = JSON.parse(listFile);
 
 listFileContent = Object.keys(listFileContent);
 
-console.log('listFileContent', listFileContent);
+// console.log('listFileContent', listFileContent);
 
 function genGtDoc() {
   const tpl = fs.readFileSync(
@@ -39,6 +39,34 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
       if (err) console.log(err);
     }
   );
+
+  //doctable
+  const tplTable = fs.readFileSync(
+    resolve(__dirname, './.template/gtDocTable.js.tpl'),
+    'utf-8'
+  );
+
+  const docTableList = listFileContent
+    .map((compName) => {
+      let jsObjFilePath = `../../package/gt-components/${compName}/docs/index.js`;
+      let obj = fs.existsSync(resolve(__dirname, jsObjFilePath))
+        ? require(jsObjFilePath)
+        : {};
+      return `'${compName}': ${JSON.stringify(obj)}, `;
+    })
+    .join('\n    ');
+
+  const docJsContentCompiled = handlebars.compile(tplTable, {
+    noEscape: true,
+  })({ docTableList });
+
+  fs.outputFile(
+    resolve(__dirname, '../../src/gtDocTable.js'),
+    docJsContentCompiled,
+    (err) => {
+      if (err) console.log(err);
+    }
+  );
 }
 
 function genVGtComponent() {
@@ -50,12 +78,14 @@ function genVGtComponent() {
   const allDemos = listFileContent
     .map((compName) => {
       let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
-      return `import ${compName.replaceAll('-','').toUpperCase()} from '${demoFilePath}';`;
+      return `import ${compName
+        .replaceAll('-', '')
+        .toUpperCase()} from '${demoFilePath}';`;
     })
     .join('\n');
   const mapObj = listFileContent
     .map((compName) => {
-      return `'${compName}' : ${compName.replaceAll('-','').toUpperCase()} ,`;
+      return `'${compName}' : ${compName.replaceAll('-', '').toUpperCase()} ,`;
     })
     .join('\n    ');
 

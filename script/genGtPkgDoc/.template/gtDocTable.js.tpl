@@ -7,6 +7,6 @@
  */
 
 export default {
-    {{ docList }}
+    {{ docTableList }}
 };
 

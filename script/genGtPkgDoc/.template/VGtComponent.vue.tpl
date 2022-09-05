@@ -8,10 +8,12 @@
 import { useRoute } from 'vue-router';
 import { computed, shallowRef } from 'vue';
 
+import gtDocTable from '../gtDocTable';
 import gtDoc from '../gtDoc';
 {{ allDemos }}
 
 const Route = useRoute();
+const docTableRef = shallowRef(null);
 const demoRef = shallowRef(null);
 const demoSourceRef = shallowRef(null);
 
@@ -21,6 +23,7 @@ const mapObj = {
 
 const componentName = computed(async () => {
   let compName = Route.params.componentName;
+  docTableRef.value = gtDocTable['' + compName];
   demoSourceRef.value = gtDoc['' + compName];
   demoRef.value = mapObj[compName]
   return compName;
@@ -34,6 +37,11 @@ const componentName = computed(async () => {
     <div class="w-full py-4 flex justify-center items-center">
       <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4">
         <component :is="demoRef"></component>
+        <template v-if="docTableRef">
+          <div class="mb-4" v-for="item in docTableRef.show" :key="item">
+            <v-md-editor v-model="docTableRef[item]" mode="preview" />
+          </div>
+        </template>
         <v-md-editor
           v-if="demoSourceRef"
           v-model="demoSourceRef"
