@@ -50,7 +50,7 @@ const handleMouseLeave = () => {
     :class="isCurrentClick ? 'curClicked' : isCurrent ? 'current' : ''"
     @click.stop="
       () => {
-        handleChildClick(value || label);
+        handleChildClick(value || null);
         isCurrentClick = true;
       }
     "

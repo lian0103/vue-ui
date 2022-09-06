@@ -2,17 +2,33 @@
 import { h, ref, computed, watch, shallowRef } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import GDropdownItem from './dropdownItem.vue';
-import GIcon from '../../icon'
-import { useElementBounding, useWindowSize } from '@vueuse/core';
+import GIcon from '../../icon';
+import { useElementBounding } from '@vueuse/core';
+
+const unitLength = 10;
+const calcCharLength = (text) => {
+  return text.replace(/[^\x00-\xff]/g, 'aa').length;
+};
 
 export default {
-  name: "GDropdown",
+  name: 'GDropdown',
   props: {
+    name: { default: null },
     modelValue: {},
+    formParentValue: { default: null },
     options: { type: Array },
     clicked: { type: Boolean, default: false },
     hover: { type: Boolean, default: false },
     icon: { type: Boolean, default: false },
+    validResult: {
+      default: {},
+    },
+    handleValChange: {
+      type: Function,
+    },
+    handleRulesValid: {
+      type: Function,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
@@ -24,6 +40,12 @@ export default {
     const isShow = ref(false);
     const isHover = ref(false);
     const hasSelect = ref(false);
+    const valRef = props.formParentValue
+      ? ref(props.formParentValue?.value)
+      : ref(props.modelValue);
+    const errorMsg = computed(() => {
+      return props.validResult[props.name]?.message;
+    });
 
     const {
       height: rootHeight,
@@ -34,7 +56,6 @@ export default {
       left: rootLeft,
       update: updateRoot,
     } = useElementBounding(rootObj[id]);
-    const { width: winWidth, height: winHeight } = useWindowSize();
 
     const handleIsShow = (childClick = false) => {
       if (props.clicked && !childClick) {
@@ -72,31 +93,33 @@ export default {
 
     const labelComputed = computed(() => {
       return props.options &&
-        props.options.findIndex((item) => item.value === props.modelValue) != -1
-        ? props.options.filter((item) => item.value === props.modelValue)[0]
-            .label
-        : props.modelValue;
+        props.options.findIndex((item) => item.value === valRef.value) != -1
+        ? props.options.filter((item) => item.value === valRef.value)[0].label
+        : valRef.value;
     });
 
     const maxWidth = ref(0);
     const curSelectWidth = ref(0);
 
     watch(
-      () => props.modelValue,
+      () => valRef.value,
       (val) => {
-        let target = props.options.find((item) => item.value === val);
+        let target = props.options.find((item) => item.value == val);
+
         curSelectWidth.value =
-          target.label.length * 10 >= 235 ? 235 : target.label.length * 10;
+          calcCharLength(target.label) * unitLength >= 235
+            ? 235
+            : calcCharLength(target.label) * unitLength;
       }
     );
 
     const childs =
       props.options?.map((item) => {
-        let itemWidth = item.label.length * 10;
+        let itemWidth = calcCharLength(item.label) * unitLength;
         if (itemWidth > maxWidth.value) {
           maxWidth.value = itemWidth >= 235 ? 235 : itemWidth;
         }
-        if (props.modelValue === item.value) {
+        if (valRef.value === item.value) {
           curSelectWidth.value = itemWidth >= 235 ? 235 : itemWidth;
         }
 
@@ -105,11 +128,15 @@ export default {
           label: item.label,
           value: item.value,
           icon: props.icon,
-          parentValue: computed(() => props.modelValue),
+          parentValue: computed(() => valRef.value),
           handleChildClick: (val) => {
             handleIsShow('childClick');
             hasSelect.value = true;
             emit('update:modelValue', val);
+            if (props.formParentValue && props.handleValChange) {
+              props.handleValChange(val, props.name);
+            }
+            valRef.value = val;
           },
         });
       }) || [];
@@ -195,6 +222,12 @@ export default {
             },
             childs
           ),
+          errorMsg.value
+            ? h('span', {
+                class: 'dropdown-error-msg',
+                innerHTML: errorMsg.value,
+              })
+            : [],
         ]
       );
   },

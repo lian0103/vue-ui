@@ -60,4 +60,10 @@
       @apply cursor-not-allowed text-gray0;
     }
   }
+
+  .checkbox-error-msg{
+    @apply absolute left-0.5 -bottom-5 text-danger;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+  }
 }

@@ -1,8 +1,10 @@
 <script>
 import { h, computed, getCurrentInstance, reactive } from 'vue';
 
+const validFormTarget = ['GInput', 'GRadiobox', 'GCheckbox', 'GDropdown'];
+
 export default {
-  name:'GForm',
+  name: 'GForm',
   props: {
     name: {
       default: null,
@@ -39,8 +41,7 @@ export default {
             });
           },
         };
-      
-      console.log('instance.appContext.config.globalProperties',instance.appContext.config.globalProperties)
+
     }
 
     const handleValChange = (val, name) => {
@@ -88,6 +89,7 @@ export default {
             })
             .catch((err) => {
               validResult[name] = { message: err };
+              // console.log(validResult[name]);
               reject(err);
             });
         } else {
@@ -99,25 +101,60 @@ export default {
     const validChilds = slots.default()
       ? slots
           .default()
-          .filter((item) => {
-            // console.log('item.type.name',item.type.name)
-            return item.type.name === 'GInput';
-          })
+          // .filter((item) => {
+          //   console.log('item.type.name',item.type.name,validSlotNameReg.test(item.type.name))
+          //   return validSlotNameReg.test(item.type.name);
+          // })
           .map((item) => {
             return {
               ...item,
-              props: {
-                ...item.props,
-                parentValue: computed(() =>
-                  item.props.name ? props.modelValue[item.props.name] : null
-                ),
-                validResult: validResult,
-                handleValChange,
-                handleRulesValid,
-              },
+              children: Array.isArray(item.children)
+                ? item.children.map((cItem) => {
+                    if (
+                      Object.keys(props.modelValue).includes(
+                        cItem.props.name
+                      ) &&
+                      validFormTarget.includes(cItem.type.name)
+                    ) {
+                      return {
+                        ...cItem,
+                        props: {
+                          ...cItem.props,
+                          formParentValue: computed(() =>
+                            cItem.props.name
+                              ? props.modelValue[cItem.props.name]
+                              : null
+                          ),
+                          validResult: validResult,
+                          handleValChange,
+                          handleRulesValid,
+                        },
+                      };
+                    }
+                    return cItem;
+                  })
+                : item.children,
+              props: validFormTarget.includes(item.type.name)
+                ? {
+                    ...item.props,
+                    formParentValue: computed(() =>
+                      item.props.name ? props.modelValue[item.props.name] : null
+                    ),
+                    parentValue: computed(() =>
+                      item.props.name ? props.modelValue[item.props.name] : null
+                    ),
+                    validResult: validResult,
+                    handleValChange,
+                    handleRulesValid,
+                  }
+                : {
+                    ...item.props,
+                  },
             };
           })
       : [];
+
+    // console.log(validChilds);
 
     return () => h('form', { class: 'gt-form' }, validChilds);
   },
