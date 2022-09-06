@@ -63,9 +63,12 @@ const formRule = {
   ],
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  instance.appContext.config.globalProperties['gForms-form1'].callValid();
+  let result = await instance.appContext.config.globalProperties[
+    'gForms-form1'
+  ].callValid();
+  // console.log(result);
 };
 
 onMounted(() => {
@@ -90,6 +93,13 @@ onMounted(() => {
         <g-radiobox class="mr-4" name="radio3" disabled label="D" />
       </div>
 
+      <div class="mb-3 flex w-full">
+        <g-checkbox class="mr-4" name="checked0" label="選項1" />
+        <g-checkbox class="mr-4" name="checked1" label="選項2" />
+        <g-checkbox class="mr-4" name="checked2" label="選項3" disabled />
+        <g-checkbox class="mr-4" name="checked3" label="選項4" disabled />
+      </div>
+
       <g-dropdown
         name="dropdown"
         class="mt-4 mb-4"
@@ -102,13 +112,6 @@ onMounted(() => {
         clicked
         icon
       />
-
-      <div class="mb-3 flex w-full">
-        <g-checkbox class="mr-4" name="checked0" label="選項1" />
-        <g-checkbox class="mr-4" name="checked1" label="選項2" />
-        <g-checkbox class="mr-4" name="checked2" label="選項3" disabled />
-        <g-checkbox class="mr-4" name="checked3" label="選項4" disabled />
-      </div>
 
       <g-button class="mb-4" @click="handleSubmit">欄位驗證</g-button>
     </g-form>

@@ -26,18 +26,20 @@ export default {
       instance.appContext.config.globalProperties['gForms' + '-' + props.name] =
         {
           callValid: () => {
-            return new Promise((resolv, reject) => {
-              Object.keys(props.rules).forEach((fieldName) => {
-                handleRulesValid(inputs[fieldName], fieldName)
+            return new Promise(async (resolv, reject) => {
+              for(let fieldName in props.rules){
+                // console.log('fieldName',fieldName)
+                await handleRulesValid(inputs[fieldName], fieldName)
                   .then((res) => {
                     validResult[fieldName] = null;
-                    resolv(true);
+                    
                   })
                   .catch((err) => {
                     validResult[fieldName] = { message: err };
-                    // reject(false);
+            
                   });
-              });
+              };
+              resolv(validResult);
             });
           },
         };
