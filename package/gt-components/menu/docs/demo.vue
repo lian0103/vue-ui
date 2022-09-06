@@ -6,12 +6,12 @@ const menuRoutes = [
       {
         label: 'route1',
         icon: '',
-        path: '/doc',
+        path: 'doc',
       },
       {
         label: 'route2',
         icon: '',
-        path: '/456',
+        path: '456',
       },
     ],
   },
@@ -21,18 +21,41 @@ const menuRoutes = [
       {
         label: 'route3',
         icon: 'file',
-        path: '/456',
+        path: '456',
       },
       {
         label: 'route4',
         icon: 'file',
-        path: '/123',
+        path: '123',
       },
     ],
   },
+  {
+    label:'link',
+    path:'ccc'
+  },
+  {
+    label: 'group3',
+    children: [
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '4511116',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '123',
+      },
+    ],
+  }
 ];
 </script>
 
 <template>
-  <g-menu active="1-1" :menu="menuRoutes" />
+  <div class="flex justify-items-start items-start">
+    <g-menu active="1-2" :menu="menuRoutes" />
+    <g-menu activePath="4511116" :menu="menuRoutes" />
+  </div>
+
 </template>

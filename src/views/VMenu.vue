@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import packageMap from '../../package/components.json';
 
@@ -8,15 +8,9 @@ const packagesCompNameList = Object.keys(packageMap);
 
 const Router = useRouter();
 const Route = useRoute();
-// console.log(`3-${packagesCompNameList.findIndex(item=>item===Route.params.componentName) + 1}`)
-const active = ref(
-  Router.currentRoute._value.meta.idx ||
-    `3-${
-      packagesCompNameList.findIndex(
-        (item) => item === Route.params.componentName
-      ) + 1
-    }`
-);
+// console.log(`Route`,Route)
+
+const activePath =  ref(Router.currentRoute.value.path)
 
 const menuRoutes = [
   {
@@ -47,7 +41,7 @@ const menuRoutes = [
 </script>
 
 <template>
-  <g-menu class="mx-auto" :active="active" :menu="menuRoutes" />
+  <g-menu class="mx-auto" :activePath="activePath" :menu="menuRoutes" />
 </template>
 
 <style lang="scss"></style>
