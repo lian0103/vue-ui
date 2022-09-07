@@ -36,12 +36,12 @@ const componentName = computed(async () => {
   <div class="innerWrapper">
     <div class="w-full py-4 flex justify-center items-center">
       <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4">
-        <component :is="demoRef"></component>
         <template v-if="docTableRef">
           <div class="mb-4" v-for="item in docTableRef.show" :key="item">
             <v-md-editor v-model="docTableRef[item]" mode="preview" />
           </div>
         </template>
+        <component :is="demoRef"></component>
         <v-md-editor
           v-if="demoSourceRef"
           v-model="demoSourceRef"

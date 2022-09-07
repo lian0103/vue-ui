@@ -36,8 +36,8 @@
 .gt-timepicker {
   width: 326px;
   opacity: 0;
-  z-index: -1;
-  @apply fixed flex-col -z-10;
+  @apply flex-col -z-10;
+  @apply absolute;
   max-width: 326px;
   height: 416px;
   padding: 16px;

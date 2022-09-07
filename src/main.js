@@ -14,6 +14,7 @@ import './assets/init.css';
 
 // import '@greattree/front-ui/dist/assets/css/index.css';
 // import GtUI from '@greattree/front-ui';
+import './assets/init.css';
 import '../package/assets/scss/index.scss';
 import GtUI from '../package/index';
 

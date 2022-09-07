@@ -37,11 +37,12 @@ const {
   },
   modelValue: {},
   label: {
+    type:String,
     default: null,
   },
   width: {
     type: Number,
-    default: 0,
+    default: null,
   },
   value: {
     default: null,
@@ -57,13 +58,11 @@ const {
     type: Boolean,
     default: false,
   },
-  parentValue: {
-    default: null,
-  },
   parentvalue: {
     default: null,
   },
   placeholder: {
+    type:String,
     default: null,
   },
   validResult: {

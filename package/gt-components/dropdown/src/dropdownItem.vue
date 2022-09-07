@@ -56,7 +56,7 @@ const handleMouseLeave = () => {
     "
   >
     <g-icon v-if="icon" class="icon" name="check" />
-    <span :class="isCurrent ? 'text-main' : ''"
+    <span :class="isCurrent ? 'text-main' : ''" :style="icon?{}:{'padding-left':'14px'}"
       ><div class="txt">{{ label }}</div></span
     >
   </div>

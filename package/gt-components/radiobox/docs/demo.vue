@@ -11,6 +11,9 @@ const inputs = reactive({
 
 <template>
   <div class="mb-3 px-2 w-full md:w-3/4">
+    <div class="w-full md:w-3/4 relative">
+      <g-title :level="2" class="mb-3">圈選</g-title>
+    </div>
     <div class="mb-3 flex w-full">
       <g-radiobox class="mr-4" v-model="inputs.radio0" label="A" />
       <g-radiobox class="mr-4" v-model="inputs.radio1" label="B" />
@@ -18,7 +21,10 @@ const inputs = reactive({
       <g-radiobox class="mr-4" v-model="inputs.radio3" disabled label="D" />
     </div>
 
-    <p class="py-2">inputs.radio4:{{ inputs.radio4 }}</p>
+    <div class="w-full md:w-3/4 relative">
+      <g-title :level="2" class="mb-3">群組單選</g-title>
+    </div>
+    <p>inputs.radio4:{{ inputs.radio4 }}</p>
     <g-radiobox-group class="mb-3 flex w-full" v-model="inputs.radio4">
       <g-radiobox class="mr-4" :value="2" label="選項2" />
       <g-radiobox class="mr-4" :value="4" label="選項4" />

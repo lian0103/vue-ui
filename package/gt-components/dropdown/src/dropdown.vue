@@ -17,7 +17,7 @@ export default {
     modelValue: {},
     formParentValue: { default: null },
     options: { type: Array },
-    clicked: { type: Boolean, default: false },
+    clicked: { type: Boolean, default: true },
     hover: { type: Boolean, default: false },
     icon: { type: Boolean, default: false },
     validResult: {
@@ -87,8 +87,8 @@ export default {
 
     const classShowComputed = computed(() => {
       return props.clicked && isShow.value
-        ? 'gt-dropdown-items show tp-aniIn'
-        : 'gt-dropdown-items';
+        ? 'gt-dropdown-items tp-aniIn'
+        : 'gt-dropdown-items tp-aniOut';
     });
 
     const labelComputed = computed(() => {
@@ -163,11 +163,10 @@ export default {
             .addEventListener('click', eventHandle, false);
           // console.log('id', id);
           // console.log('rootTop.value', rootTop.value);
-          let rootWidth = parseInt(rootRight.value) - parseInt(rootLeft.value);
           if (rootObj[id]) {
             popupStyle.value = {
-              top: parseInt(rootTop.value) + 42 + 'px',
-              left: parseInt(rootLeft.value) + 'px',
+              top:  42 + 'px',
+              left:'0px',
               width: maxWidth.value + 48 + 'px',
             };
           }

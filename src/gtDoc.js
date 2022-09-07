@@ -188,6 +188,9 @@ const inputs = reactive({
 
 <template>
   <div class="mb-3 px-2 w-full md:w-3/4">
+    <div class="w-full md:w-3/4 relative">
+      <g-title :level="2" class="mb-3">勾選框</g-title>
+    </div>
     <div class="mb-3 flex w-full">
       <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />
       <g-checkbox class="mr-4" v-model="inputs.checked3" label="選項2" />
@@ -205,8 +208,8 @@ const inputs = reactive({
       />
     </div>
 
-    <div class="w-full md:w-3/4 mx-auto relative">
-      <g-title :level="2" class="mb-3">群組勾選欄</g-title>
+    <div class="w-full md:w-3/4 relative">
+      <g-title :level="2" class="mb-3">群組勾選框</g-title>
     </div>
     <div class="mb-3 px-2 w-full md:w-3/4">
       <p class="py-2">inputs.checkedArr:{{ inputs.checkedArr }}</p>
@@ -234,6 +237,9 @@ const inputs = reactive({
 
 <template>
   <div class="mb-3 px-2 w-full md:w-3/4">
+    <div class="w-full md:w-3/4 relative">
+      <g-title :level="2" class="mb-3">圈選</g-title>
+    </div>
     <div class="mb-3 flex w-full">
       <g-radiobox class="mr-4" v-model="inputs.radio0" label="A" />
       <g-radiobox class="mr-4" v-model="inputs.radio1" label="B" />
@@ -241,7 +247,10 @@ const inputs = reactive({
       <g-radiobox class="mr-4" v-model="inputs.radio3" disabled label="D" />
     </div>
 
-    <p class="py-2">inputs.radio4:{{ inputs.radio4 }}</p>
+    <div class="w-full md:w-3/4 relative">
+      <g-title :level="2" class="mb-3">群組單選</g-title>
+    </div>
+    <p>inputs.radio4:{{ inputs.radio4 }}</p>
     <g-radiobox-group class="mb-3 flex w-full" v-model="inputs.radio4">
       <g-radiobox class="mr-4" :value="2" label="選項2" />
       <g-radiobox class="mr-4" :value="4" label="選項4" />
@@ -300,13 +309,14 @@ const handleFocusEvent = (e) => {
       size="md"
       icon="search"
       iconPosition="left"
+      green
     />
 
     <g-title :level="2" class="mb-3">icon right </g-title>
     <g-input v-model="inputs.input0" icon="search" />
 
     <g-title :level="2" class="mb-3">clearable</g-title>
-    <g-input v-model="inputs.input0" clearable />
+    <g-input v-model="inputs.input0" green clearable />
     <g-input v-model="inputs.input0" size="md" clearable />
 
     <g-title :level="2" class="mb-3">事件(blur、focus)</g-title>
@@ -422,15 +432,17 @@ const handleFile = (file) => {
 </template>  \`\`\`  `,
     'layout': ` \`\`\` html 
 <template>
-  <g-layout class="layout" headText="Great Tree UI" title="hello">
-    <template #sidebar> menu </template>
-    <template #header>
-      <div class="w-1/4 flex justify-center items-center px-4">
-        <span>v10</span>
-      </div>
-    </template>
-    <template #content> hello </template>
-  </g-layout>
+  <div class="w-full mx-auto border-2">
+    <g-layout class="layout" headText="Great Tree UI" title="hello">
+      <template #sidebar> menu </template>
+      <template #header>
+        <div class="w-1/4 flex justify-center items-center px-4">
+          <span>v10</span>
+        </div>
+      </template>
+      <template #content> <div class="bg-purple-400 h-64 p-6">content</div> </template>
+    </g-layout>
+  </div>
 </template>
   \`\`\`  `,
     'menu': ` \`\`\` html 
@@ -489,8 +501,20 @@ const menuRoutes = [
 </script>
 
 <template>
-  <g-menu active="1-1" activePath="4511116" :menu="menuRoutes" />
+  <div class="w-full box">
+    <g-menu active="1-2" :menu="menuRoutes" />
+    <g-menu activePath="4511116" :menu="menuRoutes" />
+  </div>
+
 </template>
+
+<style lang="scss" scoped>
+.box{
+  display: flex;
+  justify-content: space-around;
+}
+
+</style>
   \`\`\`  `,
     'tabs': ` \`\`\` html 
 <template>
@@ -690,9 +714,12 @@ const formRule = {
   ],
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  instance.appContext.config.globalProperties['gForms-form1'].callValid();
+  let result = await instance.appContext.config.globalProperties[
+    'gForms-form1'
+  ].callValid();
+  // console.log(result);
 };
 
 onMounted(() => {
@@ -717,6 +744,13 @@ onMounted(() => {
         <g-radiobox class="mr-4" name="radio3" disabled label="D" />
       </div>
 
+      <div class="mb-3 flex w-full">
+        <g-checkbox class="mr-4" name="checked0" label="選項1" />
+        <g-checkbox class="mr-4" name="checked1" label="選項2" />
+        <g-checkbox class="mr-4" name="checked2" label="選項3" disabled />
+        <g-checkbox class="mr-4" name="checked3" label="選項4" disabled />
+      </div>
+
       <g-dropdown
         name="dropdown"
         class="mt-4 mb-4"
@@ -730,13 +764,6 @@ onMounted(() => {
         icon
       />
 
-      <div class="mb-3 flex w-full">
-        <g-checkbox class="mr-4" name="checked0" label="選項1" />
-        <g-checkbox class="mr-4" name="checked1" label="選項2" />
-        <g-checkbox class="mr-4" name="checked2" label="選項3" disabled />
-        <g-checkbox class="mr-4" name="checked3" label="選項4" disabled />
-      </div>
-
       <g-button class="mb-4" @click="handleSubmit">欄位驗證</g-button>
     </g-form>
     <p>inputs.test.test1:{{ inputs.test.test1 }}</p>
@@ -749,8 +776,8 @@ onMounted(() => {
 
     <p>inputs.test.dropdown:{{ inputs.test.dropdown }}</p>
 
-    <p>inputs.test.dropdown:{{ inputs.test.checked0 }}</p>
-    <p>inputs.test.dropdown:{{ inputs.test.checked1 }}</p>
+    <p>inputs.test.checked0:{{ inputs.test.checked0 }}</p>
+    <p>inputs.test.checked1:{{ inputs.test.checked1 }}</p>
   </div>
 </template>
   \`\`\`  `,
@@ -775,8 +802,6 @@ const inputs = reactive({
         { label: 'Bbbb', value: 2 },
         { label: 'Ggggwwwwwwwsssswww', value: 3 },
       ]"
-      clicked
-      icon
     />
 
     <g-title :level="2" class="mb-3">下拉選項停留模式</g-title>

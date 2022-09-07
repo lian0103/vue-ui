@@ -1,6 +1,6 @@
 .gt-wrapper {
   @apply grid h-screen overflow-hidden bg-gray3;
-  min-width: 1280px;
+  width: inherit;
   grid-template-columns: 300px 1fr;
   grid-auto-rows: minmax(80px, auto);
   .gt-sidebar {

@@ -1,10 +1,15 @@
 <script setup>
-import { onMounted, onBeforeUpdate } from 'vue';
+import { onMounted, onBeforeUpdate, computed } from 'vue';
 import VMenu from './VMenu.vue';
 import { useRouter } from 'vue-router';
 import gsap from 'gsap';
 
 const Router = useRouter();
+
+const nameComputed = computed(()=>{
+  let cName = Router.currentRoute.value.params?.componentName || null;
+  return cName ? `GT元件-${cName}` : 'GT元件'
+})
 
 onMounted(() => {
   const timeline = gsap.timeline({ defaults: { duration: 1 } });
@@ -27,7 +32,7 @@ onBeforeUpdate(() => {
   <g-layout
     class="layout"
     headText="Great Tree UI"
-    :title="Router.currentRoute._value.meta.title"
+    :title="nameComputed"
   >
     <template #sidebar>
       <v-menu class="gt-e-menu" />

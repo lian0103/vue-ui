@@ -10,12 +10,16 @@ import { useElementBounding, useWindowSize } from '@vueuse/core';
 import dayjs from 'dayjs/esm';
 import { v4 as uuidv4 } from 'uuid';
 
-const formatStr = 'YYYY-MM-DD HH:mm';
-const { modelValue, placeholder } = defineProps({
+
+const { modelValue, placeholder , format } = defineProps({
   modelValue: {},
   placeholder: {
     default: dayjs().format('YYYY-MM-DD HH:mm'),
   },
+  format:{
+    type:String,
+    default:'YYYY-MM-DD HH:mm'
+  }
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -36,7 +40,7 @@ watch(
   () => curSelect.value,
   (val, oldVal) => {
     // console.log('val', val);
-    emit('update:modelValue', curSelect.value?.format(formatStr) || '');
+    emit('update:modelValue', curSelect.value?.format(format) || '');
   }
 );
 
@@ -255,11 +259,11 @@ const { width: winWidth, height: winHeight } = useWindowSize();
 const popupStyleComputed = computed(() => {
   if (root) {
     return {
-      top: rootTop.value + 42 + 'px',
+      top: 42 + 'px',
       left:
         rootRight.value + 100 > winWidth.value
-          ? rootLeft.value - 110 + 'px'
-          : rootLeft.value + 'px',
+          ? '-110px'
+          : 0 + 'px',
     };
   } else {
     return {};
@@ -267,7 +271,7 @@ const popupStyleComputed = computed(() => {
 });
 
 const popupClassComputed = computed(() => {
-  return isTimePickerShow.value ? 'tp-aniIn' : '';
+  return isTimePickerShow.value ? 'tp-aniIn' : 'tp-aniOut';
 });
 
 const handleHourMinuteChange = (target, value, idx) => {
@@ -307,7 +311,7 @@ const handleTimePick = () => {
           : ''
       "
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >時間: <span>{{ curSelect?.format(formatStr) }}</span>
+      >時間: <span>{{ curSelect?.format(format) }}</span>
     </span>
     <g-icon
       class="icon"
@@ -355,7 +359,7 @@ const handleTimePick = () => {
           <div class="time-select" @click.stop="handleTimePick">
             {{
               curSelect
-                ? curSelect?.format(formatStr).split(' ')[1]
+                ? curSelect?.format('YYYY-MM-DD HH:mm').split(' ')[1]
                 : '請選擇時間'
             }}
             <div class="time-select-popup" v-show="isHourPickerShow">

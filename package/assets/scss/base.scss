@@ -37,16 +37,34 @@ body {
   animation: tpFadeIn 0.5s forwards;
 }
 
+.tp-aniOut {
+  animation: tpFadeOut 0.5s forwards;
+}
+
+
 @keyframes tpFadeIn {
   0% {
     opacity: 0;
     @apply z-top-10;
-    transform: translateY(-40px);
+    transform: translateY(-30px);
   }
   100% {
     opacity: 1;
     @apply z-top-10;
     transform: translateY(0%);
+  }
+}
+
+@keyframes tpFadeOut {
+  0% {
+    opacity: 1;
+    @apply z-top-10;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    z-index: -10;
+    transform: translateY(-20px);
   }
 }
 

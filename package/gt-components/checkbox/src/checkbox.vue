@@ -32,6 +32,7 @@ const {
     default: false,
   },
   label: {
+    type:String,
     default: null,
   },
   value: {

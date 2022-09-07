@@ -24,13 +24,14 @@ const handleFocusEvent = (e) => {
       size="md"
       icon="search"
       iconPosition="left"
+      green
     />
 
     <g-title :level="2" class="mb-3">icon right </g-title>
     <g-input v-model="inputs.input0" icon="search" />
 
     <g-title :level="2" class="mb-3">clearable</g-title>
-    <g-input v-model="inputs.input0" clearable />
+    <g-input v-model="inputs.input0" green clearable />
     <g-input v-model="inputs.input0" size="md" clearable />
 
     <g-title :level="2" class="mb-3">事件(blur、focus)</g-title>

@@ -5,7 +5,8 @@ module.exports = {
   mode: 'jit', //只編譯有使用到的樣式
   content: [
     "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./src/**/*.{vue,js}",
+    "./package/**/*.{vue,js}"
   ],
   theme: {
     screens: {

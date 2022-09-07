@@ -18,8 +18,6 @@ const inputs = reactive({
         { label: 'Bbbb', value: 2 },
         { label: 'Ggggwwwwwwwsssswww', value: 3 },
       ]"
-      clicked
-      icon
     />
 
     <g-title :level="2" class="mb-3">下拉選項停留模式</g-title>

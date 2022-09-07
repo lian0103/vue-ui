@@ -32,15 +32,16 @@
     @apply py-1 px-0 bg-gray3 rounded-10;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
 
-    &.show {
-      @apply fixed flex flex-col z-100 opacity-100;
-    }
+    @apply flex flex-col z-100 opacity-100;
+    @apply absolute; 
+
   }
 }
 .gt-dropdown-hover {
   .gt-dropdown-items {
     @apply z-100 opacity-100;
-    @apply fixed flex flex-col;
+    @apply flex flex-col;
+    @apply absolute;
     &::before {
       content: '';
       height: 50px;

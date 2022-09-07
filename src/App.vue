@@ -15,5 +15,6 @@
 
 .vuepress-markdown-body {
   padding: 0 !important;
+  background: #fbfbf9 !important;
 }
 </style>
