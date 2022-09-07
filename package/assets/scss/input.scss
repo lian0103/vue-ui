@@ -36,8 +36,9 @@
   }
 
   .gt-input-error-msg {
-    @apply absolute left-0.5 -bottom-5 text-danger;
+    @apply absolute left-0.5 -bottom-4 text-danger;
     letter-spacing: 0.6px;
+    font-size: 12px;
   }
 
   .gt-input:focus ~ .clear-icon,

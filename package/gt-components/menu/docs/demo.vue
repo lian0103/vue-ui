@@ -53,9 +53,17 @@ const menuRoutes = [
 </script>
 
 <template>
-  <div class="flex justify-items-start items-start">
+  <div class="w-full box">
     <g-menu active="1-2" :menu="menuRoutes" />
     <g-menu activePath="4511116" :menu="menuRoutes" />
   </div>
 
 </template>
+
+<style lang="scss" scoped>
+.box{
+  display: flex;
+  justify-content: space-around;
+}
+
+</style>

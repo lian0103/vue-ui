@@ -30,7 +30,8 @@
   }
 
   .radiobox-error-msg{
-    @apply absolute left-0.5 -bottom-5 text-danger;
+    @apply absolute left-0.5 -bottom-4 text-danger;
+    font-size: 12px;
     letter-spacing: 0.6px;
     white-space: nowrap;
   }

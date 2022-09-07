@@ -110,7 +110,8 @@ export default {
     >
       <div>{{ item.label }}</div>
       <g-icon
-        :name="item.active ? 'chevron-up' : 'chevron-down'"
+        name="chevron-up"
+        :style="item.active ? {}:{'transform':'rotate(180deg)'}"
         size="md"
         class="group-icon"
         v-if="!item.path"
@@ -118,7 +119,8 @@ export default {
       <template v-if="item.children.length > 0">
         <div
           class="childBox"
-          :class="item.active ? 'gt-menu-aniIn' : 'gt-menu-aniOut'"
+          :class="item.active ? 'open' : ''"
+          :style="item.active ? {'padding-bottom':`${item.children.length*35 + 30}px`} : {}"
           @click.stop="() => {}"
         >
           <div class="line"></div>

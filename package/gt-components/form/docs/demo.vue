@@ -125,7 +125,7 @@ onMounted(() => {
 
     <p>inputs.test.dropdown:{{ inputs.test.dropdown }}</p>
 
-    <p>inputs.test.dropdown:{{ inputs.test.checked0 }}</p>
-    <p>inputs.test.dropdown:{{ inputs.test.checked1 }}</p>
+    <p>inputs.test.checked0:{{ inputs.test.checked0 }}</p>
+    <p>inputs.test.checked1:{{ inputs.test.checked1 }}</p>
   </div>
 </template>
