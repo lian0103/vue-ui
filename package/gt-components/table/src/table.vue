@@ -38,7 +38,9 @@ const {
     type: Boolean,
     default: true,
   },
-  height: {},
+  height: {
+    type: Number,
+  },
   rowClick: {
     type: Boolean,
     default: false,

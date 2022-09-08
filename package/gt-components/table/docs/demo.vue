@@ -95,7 +95,7 @@ const showLoading = () => {
     <g-table
       :columns="tableInfo.columns"
       :data="tableInfo.data"
-      height="450"
+      :height="450"
       name="products"
       rowClick
       :isLoading="tableInfo.isLoading"

@@ -55,7 +55,6 @@ const maxWidth = computed(() => {
 const maxHeight = computed(() => {
   return DialogEnum[size]?.maxHeight || 820;
 });
-const show = ref(modelValue);
 const dialogBodyIn = ref();
 const isScroll = ref(false);
 const emit = defineEmits(['update:modelValue']);

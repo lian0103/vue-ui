@@ -5,7 +5,7 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | label | 狀態值 | String | | |
-| type | 樣式類型 | TagTypeEnum(String) | DEFAULT、SECOND、DANGER、WARNING、ACTIVITY | DEFAULT |
+| type | 樣式類型 | String | DEFAULT、SECOND、DANGER、WARNING、ACTIVITY | DEFAULT |
 | border | 邊框 | Boolean | | false |
 | dot | 圓點圖示 | Boolean | | false |
 

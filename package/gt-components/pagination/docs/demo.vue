@@ -1,5 +1,5 @@
 <script setup>
-const handleUpdatePage = (val) => {};
+const handleUpdatePage = (val) => {console.log(val)};
 </script>
 
 <template>

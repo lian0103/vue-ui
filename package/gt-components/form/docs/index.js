@@ -6,8 +6,9 @@ module.exports = {
 | - | - | - |- | -  |
 | name | 表單名稱 | String |  |  |
 | v-model | 表單數據 | Object{ItemName:ItemValue} |  |  |
-| rules | 驗證規則 | Object{RuleItem} |  |  |
-|  |  | RuleItem:{ ItemName : Array[{require?:Boolean,message:String,trigger?:EventType('blur')}] } |  |  |
+| rules | 驗證規則 | Object{ItemName:Rules(Array)} |  |  |
+|  |  | Rules(Array):[{require?:Boolean,message:String,trigger?:EventType(String)}] |  |  |
+|  |  | EventType(String):'blur' |  |  |
 `,
   method: `
 ## 方法

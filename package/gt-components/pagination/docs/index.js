@@ -1,15 +1,10 @@
 module.exports = {
-  show: ['prop'],
+  show: ['prop','event'],
   prop: `
 ## 屬性
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
-| v-model | 狀態值 | Boolean | | false |
-| label | 標籤 | String | | |
-| disabled | 禁用 | Boolean | | false |
-| **群組勾選使用**|
-| v-model | 狀態值 | Array[Value(Any)] | | |
-| value | 選項 | Any | |  |
+| pageInfo | 頁籤資料 | Object{currentPage(Number),total(Number),perPageNums(Number)} | | |
 
 
 `,
@@ -17,14 +12,14 @@ module.exports = {
 ## 方法
 | 方法 | 說明 | 參數 |
 | - | - | - |
-| | | 
+| handleMessageToastTrigger | 呼叫通知 | time:Number (default 1200) 毫秒 |
 
 `,
   event: `
 ## 事件
 | 事件 | 說明 | 參數 |
 | - | - | - |
-| | | |
+| updatePage | 回傳currentPage| |
 
 `,
   slot: `

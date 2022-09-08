@@ -4,20 +4,14 @@ module.exports = {
 ## 屬性
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
-| v-model | 狀態值 | Boolean | | false |
-| label | 標籤 | String | | |
-| disabled | 禁用 | Boolean | | false |
-| **群組勾選使用**|
-| v-model | 狀態值 | Array[Value(Any)] | | |
-| value | 選項 | Any | |  |
-
-
+| v-model | 選項值 | Boolean | | false |
+| optionName | 選項名稱 | Array[OptionObject{label(String),value(Any)}] | | |
 `,
   method: `
 ## 方法
 | 方法 | 說明 | 參數 |
 | - | - | - |
-| | | 
+|  |  | |
 
 `,
   event: `

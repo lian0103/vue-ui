@@ -19,7 +19,8 @@
     @apply absolute;
     @apply text-gray1;
     right: 5px;
-    top: 6px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   &:hover {
     @apply border-gray2;

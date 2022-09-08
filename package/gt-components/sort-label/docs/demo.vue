@@ -21,6 +21,10 @@ const inputs = reactive({
           label: '遞減',
           value: 'DESC',
         },
+        {
+          label: '無',
+          value: 'none',
+        },
       ]"
     />
   </div>

@@ -8,8 +8,8 @@ module.exports = {
 | label | 標籤 | String | | |
 | disabled | 禁用 | Boolean | | false |
 | **群組單選使用**|
-| v-model | 狀態值 | any | | |
-| value | 選項 | any | |  |
+| v-model | 狀態值 | Any | | |
+| value | 選項 | Any | |  |
 
 
 `,

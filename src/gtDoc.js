@@ -830,7 +830,7 @@ const inputs = reactive({
 <template>
   <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">日期選擇</g-title>
-    <g-time-picker v-model="inputs.time1" />
+    <g-time-picker v-model="inputs.time1" format="YYYY-MM-DD" />
     <p>inputs.time1:{{ inputs.time1 }}</p>
   </div>
 </template>
@@ -933,7 +933,7 @@ const showLoading = () => {
     <g-table
       :columns="tableInfo.columns"
       :data="tableInfo.data"
-      height="450"
+      :height="450"
       name="products"
       rowClick
       :isLoading="tableInfo.isLoading"
@@ -999,7 +999,7 @@ const showLoading = () => {
   \`\`\`  `,
     'pagination': ` \`\`\` html 
 <script setup>
-const handleUpdatePage = (val) => {};
+const handleUpdatePage = (val) => {console.log(val)};
 </script>
 
 <template>
@@ -1035,6 +1035,10 @@ const inputs = reactive({
         {
           label: '遞減',
           value: 'DESC',
+        },
+        {
+          label: '無',
+          value: 'none',
         },
       ]"
     />
@@ -1080,21 +1084,6 @@ const tableInfo = reactive({
       width: 200,
       label: '',
     },
-  ],
-  data: [
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    {
-      product: 'dddddddddddddddddddddddd',
-      price: 400,
-      storage: 65,
-      id: uuidv4(),
-    },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
   ],
   filterOtions: {},
   isLoading: false,

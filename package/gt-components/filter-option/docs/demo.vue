@@ -37,21 +37,6 @@ const tableInfo = reactive({
       label: '',
     },
   ],
-  data: [
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    {
-      product: 'dddddddddddddddddddddddd',
-      price: 400,
-      storage: 65,
-      id: uuidv4(),
-    },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-  ],
   filterOtions: {},
   isLoading: false,
 });

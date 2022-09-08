@@ -5,7 +5,7 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | v-model | 選項數據 | Object{ItemName:ItemValue} |  |  |
-| options | 選項 | Array[Option{label:String,value:Any}] |  |  |
+| options | 選項 | Array[Option{label(String),value(Any)}] |  |  |
 | clicked | 點擊模式 | Boolean |  | true |
 | icon | 是否顯示選項圖示 | Boolean |  | false |
 `,
