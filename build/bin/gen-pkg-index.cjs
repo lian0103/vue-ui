@@ -89,7 +89,7 @@ ComponentNames.forEach((name) => {
 var template = render(MAIN_TEMPLATE, {
   include: includeComponentTemplate.join(endOfLine),
   install: installTemplate.join("," + endOfLine),
-  version: process.env.VERSION || require("../../package.json").version,
+  version: require("../../package.json").version,
   list: listTemplate.join("," + endOfLine),
 });
 

@@ -23,10 +23,10 @@ package
 # .npmrc
 
 # 指定@greattree package的倉庫地址
-@greattree:registry=https://prg.greattree.com.tw/repository/npm-gt/
+@greattree:registry=https://npmrg.greattree.com.tw/repository/npm-gt/
 
 # 使用npm安裝套件時 會優先指向這個私有倉庫 如果沒有才會再去公開庫查找
-registry=https://prg.greattree.com.tw/repository/npm-npmjs/
+registry=https://npmrg.greattree.com.tw/repository/npm-gt/
 \`\`\`
 
 
@@ -55,7 +55,7 @@ optional
 未來應把vite打包的腳本對應回**package** (if necessary) 
 
 ## 打包發佈
--- **npm login --registry=https://prg.greattree.com.tw/repository/npm-gt/**
+-- **npm login --registry=https://npmrg.greattree.com.tw/repository/npm-gt/**
 登入私有庫空間
 
 -- **npm publish**
@@ -72,7 +72,7 @@ optional
 部署去github page。
 
 ## 元件庫安裝
-**npm install @greattree/front-ui --registry=https://prg.greattree.com.tw/repository/npm-npmjs/**
+**npm install @greattree/front-ui --registry=https://npmrg.greattree.com.tw/repository/npm-gt/**
 安裝時要指定倉庫地址
 
 ## 使用GT UI
