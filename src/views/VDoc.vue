@@ -51,6 +51,7 @@ npm run gen:component button
 
 ## 打包發佈
 > npm版本6.14 node版本14.18
+
 -- **npm login --registry=https://npmrg.greattree.com.tw/repository/npm-gt/**
 登入私有庫空間
 
@@ -63,8 +64,7 @@ npm run gen:component button
 - **npm run doc**
 產出./demo的展示頁面打包結果
 
-optional
-- **sh deploy.sh**
+- **sh deploy.sh** 
 部署去github page。
 
 ## 元件庫安裝
