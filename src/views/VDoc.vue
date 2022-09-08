@@ -50,7 +50,7 @@ npm run gen:component button
 - **npm run build**
 
 ## 打包發佈
-> npm版本6.14 node版本14.16
+> npm版本6.14 node版本14.18
 -- **npm login --registry=https://npmrg.greattree.com.tw/repository/npm-gt/**
 登入私有庫空間
 
