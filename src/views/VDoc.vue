@@ -49,12 +49,8 @@ npm run gen:component button
 - **npm run gen**
 - **npm run build**
 
-optional
-- **npm run build-GT**
-將**packages**(上一版本元件的切分結構)打包透過vite做成es和umd格式，和壓縮的結果
-未來應把vite打包的腳本對應回**package** (if necessary) 
-
 ## 打包發佈
+> npm版本6.14 node版本14.16
 -- **npm login --registry=https://npmrg.greattree.com.tw/repository/npm-gt/**
 登入私有庫空間
 
