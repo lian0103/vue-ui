@@ -108,19 +108,26 @@ export default {
       :class="item.active ? 'active' : ''"
       @click="handleGroupClick(item, index)"
     >
-      <div>{{ item.label }}</div>
-      <g-icon
-        name="chevron-up"
-        :style="item.active ? {}:{'transform':'rotate(180deg)'}"
-        size="md"
-        class="group-icon"
-        v-if="!item.path"
-      />
+      <div class="menu-text">
+        {{ item.label }}
+        <g-icon
+          name="chevron-up"
+          :style="item.active ? {} : { transform: 'rotate(180deg)' }"
+          size="md"
+          class="group-icon"
+          v-if="!item.path"
+        />
+      </div>
+
       <template v-if="item.children.length > 0">
         <div
           class="childBox"
+          :style="
+            item.active
+              ? { 'height': `${item.children.length * 44 + 25}px` }
+              : { 'height': `0px` }
+          "
           :class="item.active ? 'open' : ''"
-          :style="item.active ? {'padding-bottom':`${item.children.length*35 + 30}px`} : {}"
           @click.stop="() => {}"
         >
           <div class="line"></div>
