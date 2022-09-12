@@ -5,7 +5,8 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | tabs | 頁籤 | Array[Tab{name:String}] | | |
-
+| currentTab | 當前頁籤 | String | | |
+| clickCallback | 回傳點擊的Tab Object | Function | | |
 
 `,
   method: `

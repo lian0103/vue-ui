@@ -431,13 +431,20 @@ const handleFile = (file) => {
   </div>
 </template>  \`\`\`  `,
     'layout': ` \`\`\` html 
+<script setup>
+
+const RouteTabs = [{ name: 'child-route A' , path:'/icon' }, { name: 'child-route B',path:'/gt/layout' }, { name: 'child-route C',path:'/gt/title' }]
+
+</script>
+
+
 <template>
   <div class="w-full mx-auto border-2">
-    <g-layout class="layout" headText="Great Tree UI" title="hello">
+    <g-layout class="layout" headText="Great Tree UI" title="hello" :menuTabs="RouteTabs">
       <template #sidebar> menu </template>
       <template #header>
         <div class="w-1/4 flex justify-center items-center px-4">
-          <span>v10</span>
+          <span>v22</span>
         </div>
       </template>
       <template #content> <div class="bg-purple-400 h-64 p-6">content</div> </template>
@@ -517,8 +524,16 @@ const menuRoutes = [
 </style>
   \`\`\`  `,
     'tabs': ` \`\`\` html 
+<script setup>
+  const clickFn = (param)=>{
+    console.log('in',param)
+  }
+
+
+</script>
+
 <template>
-  <g-tabs :tabs="[{ name: 'tab1' }, { name: 'tab2' }]">
+  <g-tabs :tabs="[{ name: 'tab1' }, { name: 'tab2' }]" :clickCallback="clickFn" :currentTab="'tab2'">
     <template v-slot:tab1="context">
       <g-title :level="1" class="mb-3">hello , tab1 </g-title>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quis

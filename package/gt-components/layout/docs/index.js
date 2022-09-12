@@ -6,6 +6,7 @@ module.exports = {
 | - | - | - |- | -  |
 | headText | 左上標題 | String | | |
 | title | 頁面標題 | String | | |
+| menuTabs | 選單頁籤 | Array[Item{name(String),path(String)}] | | |
 
 `,
   method: `
