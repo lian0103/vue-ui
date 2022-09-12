@@ -1,18 +1,29 @@
 <script setup>
 import { ref, useSlots } from 'vue';
 
-const { tabs } = defineProps({
+const { tabs , clickCallback , currentTab } = defineProps({
   tabs: {
     type: Array,
     default: [{ name: 'tab1' }, { name: 'tab2' }],
   },
+  currentTab:{
+    type:String,
+    default:null
+  },
+  clickCallback:{
+    type:Function,
+  }
 });
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
 
-const current = ref(tabs[0].name);
+const current = tabs.find(item=>item.name==currentTab) ? ref(currentTab) : ref(tabs[0].name);
 
 const handleTabChange = (name) => {
+  if(clickCallback){
+    let toTab = tabs.filter(item=>item.name==name)[0] || null;
+    clickCallback(toTab);
+  }
   current.value = name;
 };
 </script>

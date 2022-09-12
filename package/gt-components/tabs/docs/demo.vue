@@ -1,5 +1,13 @@
+<script setup>
+  const clickFn = (param)=>{
+    console.log('in',param)
+  }
+
+
+</script>
+
 <template>
-  <g-tabs :tabs="[{ name: 'tab1' }, { name: 'tab2' }]">
+  <g-tabs :tabs="[{ name: 'tab1' }, { name: 'tab2' }]" :clickCallback="clickFn" :currentTab="'tab2'">
     <template v-slot:tab1="context">
       <g-title :level="1" class="mb-3">hello , tab1 </g-title>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quis
