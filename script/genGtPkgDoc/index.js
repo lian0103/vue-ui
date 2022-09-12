@@ -20,7 +20,7 @@ function genGtDoc() {
     .map((compName) => {
       let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
       let demoFile = fs.readFileSync(resolve(__dirname, demoFilePath), 'utf-8');
-      demoFile = demoFile.replaceAll('`', "'").replaceAll('${', '');
+      demoFile = demoFile.replace(/\`/g,"'").replace(/\$\{/g,'');
       // console.log(demoFile);
       return `'${compName}': \` \\\`\\\`\\\` html 
 ${demoFile}  \\\`\\\`\\\`  \`,`;
@@ -79,13 +79,13 @@ function genVGtComponent() {
     .map((compName) => {
       let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
       return `import ${compName
-        .replaceAll('-', '')
+        .replace(/\-/g,'')
         .toUpperCase()} from '${demoFilePath}';`;
     })
     .join('\n');
   const mapObj = listFileContent
     .map((compName) => {
-      return `'${compName}' : ${compName.replaceAll('-', '').toUpperCase()} ,`;
+      return `'${compName}' : ${compName.replace(/\-/g, '').toUpperCase()} ,`;
     })
     .join('\n    ');
 
