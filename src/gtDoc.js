@@ -468,11 +468,56 @@ const menuRoutes = [
         icon: '',
         path: '456',
       },
+      {
+        label: 'route3',
+        icon: '',
+        path: '456',
+      },
     ],
   },
   {
     label: 'group2',
     children: [
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '456',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '123',
+      },
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '456',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '123',
+      },
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '456',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '123',
+      },
+      {
+        label: 'route3',
+        icon: 'file',
+        path: '456',
+      },
+      {
+        label: 'route4',
+        icon: 'file',
+        path: '123',
+      },
       {
         label: 'route3',
         icon: 'file',
