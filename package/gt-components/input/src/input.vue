@@ -19,7 +19,6 @@ const {
   green,
   clearable,
   parentValue,
-  parentvalue,
   placeholder,
   validResult,
   handleValChange,
@@ -58,7 +57,7 @@ const {
     type: Boolean,
     default: false,
   },
-  parentvalue: {
+  parentValue: {
     default: null,
   },
   placeholder: {
@@ -121,7 +120,7 @@ const inputVal = ref(modelValue || parentValue?.value || '');
 
 const handleInput = (evt) => {
   if (parentValue && handleValChange) {
-    // console.log('~~~', inputVal.value);
+    console.log('~~~', inputVal.value);
     handleValChange(inputVal.value, name);
   } else {
     emit('update:modelValue', inputVal.value);
