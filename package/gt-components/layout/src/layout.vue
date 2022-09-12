@@ -1,7 +1,11 @@
 <script setup>
 import GTitle from '../../title';
+import GTabs from '../../tabs';
+import { ref , getCurrentInstance, computed } from 'vue';
 
-const { headText, title } = defineProps({
+const instance = getCurrentInstance();
+
+const { headText, title, menuTabs } = defineProps({
   headText: {
     type: String,
     default: '',
@@ -10,7 +14,30 @@ const { headText, title } = defineProps({
     type: String,
     default: '',
   },
+  menuTabs: {
+    type: Array,
+    default: null,
+  },
 });
+
+const currentTab = computed(()=>{
+  let path = instance.appContext.config.globalProperties?.$route.path;
+  if(menuTabs && path){
+    console.log('menuTabs',menuTabs)
+    console.log('path',path)
+    return menuTabs.filter(item=>item.path == path)[0].name;
+  }
+  return null;
+});
+
+const handleMenuTabCallback = (target) => {
+  let { path } = target;
+  if (path && instance.appContext.config.globalProperties.$router) {
+    instance.appContext.config.globalProperties.$router.push(path);
+  }
+};
+
+// console.log(instance.appContext.config.globalProperties.$route.path)
 </script>
 <script>
 export default {
@@ -38,6 +65,14 @@ export default {
       </div>
       <slot name="header" />
     </div>
-    <div class="gt-content"><slot name="content" /></div>
+    <div class="gt-content">
+      <g-tabs
+        v-if="menuTabs && menuTabs.length > 0"
+        :tabs="menuTabs"
+        :clickCallback="handleMenuTabCallback"
+        :currentTab="currentTab"
+      />
+      <slot name="content" />
+    </div>
   </div>
 </template>

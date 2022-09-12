@@ -1,27 +1,31 @@
 <script setup>
 import { ref, useSlots } from 'vue';
 
-const { tabs , clickCallback , currentTab } = defineProps({
+const { tabs, clickCallback, currentTab } = defineProps({
   tabs: {
     type: Array,
     default: [{ name: 'tab1' }, { name: 'tab2' }],
   },
-  currentTab:{
-    type:String,
-    default:null
+  currentTab: {
+    type: String,
+    default: null,
   },
-  clickCallback:{
-    type:Function,
-  }
+  clickCallback: {
+    type: Function,
+  },
 });
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
 
-const current = tabs.find(item=>item.name==currentTab) ? ref(currentTab) : ref(tabs[0].name);
+console.log('currentTab',currentTab)
+
+const current = tabs.find((item) => item.name == currentTab)
+  ? ref(currentTab)
+  : ref(tabs[0].name);
 
 const handleTabChange = (name) => {
-  if(clickCallback){
-    let toTab = tabs.filter(item=>item.name==name)[0] || null;
+  if (clickCallback) {
+    let toTab = tabs.filter((item) => item.name == name)[0] || null;
     clickCallback(toTab);
   }
   current.value = name;
@@ -49,11 +53,11 @@ export default {
         {{ tab.name }}
       </div>
     </div>
-    <div class="content">
+    <div :class="slotTabs.includes(current) ? 'content' : ''">
       <template v-if="slotTabs.includes(current)">
         <slot :name="current" />
       </template>
-      <template v-else> //無對應slot </template>
+      <template v-else> </template>
     </div>
   </div>
 </template>
