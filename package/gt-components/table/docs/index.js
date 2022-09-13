@@ -16,7 +16,7 @@ module.exports = {
 ## 方法
 | 方法 | 說明 | 參數 |
 | - | - | - |
-| getCheckedList | 呼叫勾選清單。使用table的名稱註冊於全局屬性中。例如name是product，globalProperties['gt-table-product']會有此方法 | |
+| getCheckedList | 呼叫勾選清單。使用table的名稱註冊於全局屬性中。例如name是product，globalProperties['gt-table-product']會有此方法<br>或以instance.refs方式使用 | |
 `,
   event: `
 ## 事件

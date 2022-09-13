@@ -1,6 +1,6 @@
 <script setup>
 import GMessage from '../../message/index.js';
-import { reactive , getCurrentInstance } from 'vue';
+import { ref , reactive, getCurrentInstance, onMounted, watch } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const instance = getCurrentInstance();
@@ -65,10 +65,12 @@ const handleRowClick = (row, dialogType) => {
   dialogInfo['show' + dialogType] = true;
 };
 const handleTableChecked = () => {
-  let arr =
-    instance.appContext.config.globalProperties[
-      'gt-table-products'
-    ].getCheckedList();
+  // let arr =
+  //   instance.appContext.config.globalProperties[
+  //     'gt-table-products'
+  //   ].getCheckedList();
+
+  let arr = instance.refs.tableRef.getCheckedList();
   arr = arr.map((obj) => obj.id);
   instance.appContext.config.globalProperties.handleMessageTrigger({
     type: 'info',
@@ -79,7 +81,7 @@ const handleTableChecked = () => {
 
 const dialogInfo = reactive({
   show1: false,
-  show2: false
+  show2: false,
 });
 
 const showLoading = () => {
@@ -88,11 +90,13 @@ const showLoading = () => {
     tableInfo.isLoading = false;
   }, 3000);
 };
+
 </script>
 <template>
   <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">表格</g-title>
     <g-table
+      ref="tableRef"
       :columns="tableInfo.columns"
       :data="tableInfo.data"
       :height="450"

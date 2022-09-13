@@ -14,7 +14,7 @@ module.exports = {
 ## 方法
 | 方法 | 說明 | 參數 |
 | - | - | - |
-callValid | 使用form的名稱註冊於全局屬性中。例如name是form1，globalProperties['gForms-form1']會有此方法 | |
+callValid | 使用form的名稱註冊於全局屬性中。例如name是form1，globalProperties['gForms-form1']會有此方法<br>或以instance.refs方式使用| |
 
 `,
   event: `

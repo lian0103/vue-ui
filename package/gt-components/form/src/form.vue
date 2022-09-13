@@ -18,33 +18,35 @@ export default {
     },
   },
   emits: ['update:modelValue'],
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, expose }) {
     const instance = getCurrentInstance();
     const validResult = reactive({});
     const inputs = reactive(props.modelValue);
+
+    const callValid = () => {
+      return new Promise(async (resolv, reject) => {
+        for (let fieldName in props.rules) {
+          // console.log('fieldName',fieldName)
+          await handleRulesValid(inputs[fieldName], fieldName)
+            .then((res) => {
+              validResult[fieldName] = null;
+            })
+            .catch((err) => {
+              validResult[fieldName] = { message: err };
+            });
+        }
+        resolv(validResult);
+      });
+    };
+
     if (props.name) {
       instance.appContext.config.globalProperties['gForms' + '-' + props.name] =
         {
-          callValid: () => {
-            return new Promise(async (resolv, reject) => {
-              for(let fieldName in props.rules){
-                // console.log('fieldName',fieldName)
-                await handleRulesValid(inputs[fieldName], fieldName)
-                  .then((res) => {
-                    validResult[fieldName] = null;
-                    
-                  })
-                  .catch((err) => {
-                    validResult[fieldName] = { message: err };
-            
-                  });
-              };
-              resolv(validResult);
-            });
-          },
+          callValid,
         };
-
     }
+
+    expose({ callValid });
 
     const handleValChange = (val, name) => {
       inputs[name] = val;

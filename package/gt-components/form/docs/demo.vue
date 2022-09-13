@@ -1,9 +1,11 @@
 <script setup>
 import { isNull } from 'lodash';
-import { reactive, getCurrentInstance, onMounted } from 'vue';
+import { ref , reactive, getCurrentInstance, onMounted } from 'vue';
 import GForm from '../index.js';
 
 const instance = getCurrentInstance();
+
+const formRef = ref(null);
 
 const inputs = reactive({
   test: {
@@ -65,21 +67,24 @@ const formRule = {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  let result = await instance.appContext.config.globalProperties[
-    'gForms-form1'
-  ].callValid();
+  // let result = await instance.appContext.config.globalProperties[
+  //   'gForms-form1'
+  // ].callValid();
   // console.log(result);
+
+  instance.refs.formRef.callValid();
 };
 
 onMounted(() => {
   // console.log('mounted',instance.appContext.config.globalProperties['gForms-form1']);
+  console.log(instance.refs.formRef)
 });
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
-    <g-form v-model="inputs.test" :rules="formRule" name="form1">
+    <g-form ref="formRef" v-model="inputs.test" :rules="formRule" name="form1">
       <g-input label="驗證1" name="test1" green clearable />
       <g-input label="驗證2" name="test2" green clearable />
       <g-input label="驗證3" name="test3" green clearable />

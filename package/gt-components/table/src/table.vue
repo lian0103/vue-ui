@@ -21,7 +21,6 @@ const {
   isCheckBox,
   data,
   height,
-  getCheckedList,
   rowClick,
   isLoading,
 } = defineProps({
@@ -148,13 +147,19 @@ const handleRowClick = (row) => {
   row.checked = !row.checked;
 };
 
+const getCheckedList = () => {
+  return dataWithStatus.value.filter((dItem) => dItem.checked);
+};
+
+defineExpose({
+  getCheckedList,
+});
+
 onMounted(() => {
   if (name) {
     const instance = getCurrentInstance();
     instance.appContext.config.globalProperties[`gt-table-${name}`] = {
-      getCheckedList: () => {
-        return dataWithStatus.value.filter((dItem) => dItem.checked);
-      },
+      getCheckedList,
     };
   }
 });
