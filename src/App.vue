@@ -10,7 +10,7 @@
 }
 
 .paragraphHead {
-  @apply w-full pl-14 py-8 text-left;
+  @apply w-full py-8 text-left md:w-3/4;
 }
 
 .vuepress-markdown-body {
