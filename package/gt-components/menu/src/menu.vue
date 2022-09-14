@@ -1,12 +1,5 @@
 <script setup>
-import {
-  computed,
-  reactive,
-  getCurrentInstance,
-  onMounted,
-  ref,
-  watch,
-} from 'vue';
+import { computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
 
 const instance = getCurrentInstance();
 const { active, menu, activePath, isCollapsed } = defineProps({
@@ -32,19 +25,18 @@ const findRouteIndexByPath = () => {
   let routerMenuIndex = null;
   let groupIndex = null;
   let activeItemIndex = null;
-  if (!isCollapsed) {
-    menu.forEach((item, idx) => {
-      if (Array.isArray(item.children)) {
-        item.children.forEach((cItem, cIdx) => {
-          if (cItem.path === activePath) {
-            groupIndex = idx + 1;
-            activeItemIndex = cIdx + 1;
-            routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
-          }
-        });
-      }
-    });
-  }
+
+  menu.forEach((item, idx) => {
+    if (Array.isArray(item.children)) {
+      item.children.forEach((cItem, cIdx) => {
+        if (cItem.path === activePath) {
+          groupIndex = idx + 1;
+          activeItemIndex = cIdx + 1;
+          routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
+        }
+      });
+    }
+  });
 
   return {
     routerMenuIndex,

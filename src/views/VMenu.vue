@@ -1,16 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import appInfo from '../stores';
 import { useRouter } from 'vue-router';
 import packageMap from '../../package/components.json';
 
 // console.log("packagesList",packagesList)
 const packagesCompNameList = Object.keys(packageMap);
-
-const { isCollapsed } = defineProps({
-  isCollapsed: {
-    type: Boolean,
-  },
-});
 
 const Router = useRouter();
 
@@ -43,19 +38,31 @@ const menuRoutes = [
   },
 ];
 
-// console.log(menuRoutes);
-watch(()=>isCollapsed,(val)=>{
-  console.log(val)
-})
+const isCollapsed = ref(appInfo.value.isCollapsed);
 
+watch(
+  () => appInfo.value.isCollapsed,
+  (val) => {
+    console.log('in watch', val);
+    isCollapsed.value = val;
+  }
+);
 </script>
 
 <template>
   <g-menu
+    v-if="isCollapsed"
     class="mx-auto"
     :activePath="activePath"
     :menu="menuRoutes"
-    :isCollapsed="isCollapsed"
+    :isCollapsed="true"
+  />
+  <g-menu
+    v-else
+    class="mx-auto"
+    :activePath="activePath"
+    :menu="menuRoutes"
+    :isCollapsed="false"
   />
 </template>
 

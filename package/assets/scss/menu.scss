@@ -83,11 +83,12 @@
       .childBox {
         width: 160px;
         max-height: 50vh;
-        transition: 0.4s opacity ease-in-out;
+        transition: 0.4s opacity ease-in-out , 0.4s height ease-in-out;
         position: absolute;
         left: 60px;
         top: 0px;
-        @apply bg-gray3 rounded-4;
+        @apply rounded-4;
+        background: rgba(251,251,249,0.3);
         .gt-menu-group-item {
           width: 160px;
           padding-left: 10px;

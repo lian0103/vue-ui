@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onBeforeUpdate, computed , ref } from 'vue';
 import VMenu from './VMenu.vue';
+import appInfo from '../stores';
 import { useRouter } from 'vue-router';
 import gsap from 'gsap';
 
@@ -27,17 +28,10 @@ onBeforeUpdate(() => {
     .fromTo('.gt-content', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
 });
 
-const isCollapsed = ref(false);
-const isCollapsedComputed = computed(()=>{
-  return isCollapsed.value;
-})
-
 const handleCollapsed = (val)=>{
   // console.log('handleCollapsed',val)
-  isCollapsed.value = val;
+  appInfo.value.isCollapsed = val;
 }
-
-
 
 </script>
 
@@ -49,7 +43,7 @@ const handleCollapsed = (val)=>{
     @collapsed="handleCollapsed"
   >
     <template #sidebar>
-      <v-menu class="gt-e-menu" :isCollapsed="isCollapsedComputed"/>
+      <v-menu class="gt-e-menu" />
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
