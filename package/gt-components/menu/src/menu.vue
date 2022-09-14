@@ -1,8 +1,8 @@
 <script setup>
-import { computed, reactive, getCurrentInstance } from 'vue';
+import { computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
 
 const instance = getCurrentInstance();
-const { active, menu, activePath } = defineProps({
+const { active, menu, activePath, isCollapsed } = defineProps({
   active: {
     type: String,
   },
@@ -13,7 +13,13 @@ const { active, menu, activePath } = defineProps({
     type: Array,
     default: [],
   },
+  isCollapsed: {
+    type: Boolean,
+    default: true,
+  },
 });
+
+const initProcess = ref(true);
 
 const findRouteIndexByPath = () => {
   let routerMenuIndex = null;
@@ -40,12 +46,18 @@ const findRouteIndexByPath = () => {
 const result = findRouteIndexByPath();
 
 const info = reactive({
-  menuGroupActiveArr: result.routerMenuIndex
-    ? [result.groupIndex]
-    : [parseInt(active?.split('-')[0])],
-  menuGroupActive: result.groupIndex
-    ? result.groupIndex
-    : parseInt(active?.split('-')[0]),
+  menuGroupActiveArr:
+    initProcess && isCollapsed
+      ? []
+      : result.routerMenuIndex
+      ? [result.groupIndex]
+      : [parseInt(active?.split('-')[0])],
+  menuGroupActive:
+    initProcess && isCollapsed
+      ? []
+      : result.groupIndex
+      ? result.groupIndex
+      : parseInt(active?.split('-')[0]),
   menuGroupItemActive: result.activeItemIndex
     ? result.activeItemIndex
     : parseInt(active?.split('-')[1]),
@@ -69,18 +81,24 @@ const menuComputed = computed(() => {
 });
 
 const handleGroupClick = (item, gIdx) => {
+  console.log(item);
   let { active, path } = item;
   if (path) {
     if (instance.appContext.config.globalProperties.$router) {
       instance.appContext.config.globalProperties.$router.push(path);
     }
   } else if (!active) {
-    info.menuGroupActiveArr = [...info.menuGroupActiveArr, gIdx + 1];
+    info.menuGroupActive = gIdx + 1;
+    info.menuGroupActiveArr = isCollapsed
+      ? [gIdx + 1]
+      : [...info.menuGroupActiveArr, gIdx + 1];
   } else {
     info.menuGroupActiveArr = info.menuGroupActiveArr.filter(
       (i) => i != gIdx + 1
     );
   }
+
+  console.log(info);
 };
 
 const handleRouteTo = (path, gIdx, cIdx) => {
@@ -93,6 +111,10 @@ const handleRouteTo = (path, gIdx, cIdx) => {
     instance.appContext.config.globalProperties.$router.push(path);
   }
 };
+
+onMounted(() => {
+  initProcess.value = false;
+});
 </script>
 <script>
 export default {
@@ -100,7 +122,7 @@ export default {
 };
 </script>
 <template>
-  <div class="gt-menus">
+  <div class="gt-menus" :class="isCollapsed ? 'collapsed' : ''">
     <div
       class="gt-menu-group"
       v-for="(item, index) in menuComputed"
@@ -110,16 +132,20 @@ export default {
     >
       <div class="menu-text">
         <div class="left">
-          <g-icon v-if="item.icon" :name="item.icon" size="md" />
-          {{ item.label }}
+          <g-icon
+            v-if="item.icon || isCollapsed"
+            :name="item.icon || 'items'"
+            size="md"
+          />
+          <span v-if="!isCollapsed">{{ item.label }}</span>
         </div>
 
         <g-icon
+          v-if="!item.path && !isCollapsed"
           name="chevron-up"
           :style="item.active ? {} : { transform: 'rotate(180deg)' }"
           size="md"
           class="group-icon"
-          v-if="!item.path"
         />
       </div>
 
@@ -128,15 +154,19 @@ export default {
           class="childBox"
           :style="
             item.active
-              ? { height: `${item.children.length * 44 + 25}px` }
+              ? {
+                  height: isCollapsed
+                    ? `${item.children.length * 40}px`
+                    : `${item.children.length * 44 + 25}px`,
+                }
               : { height: `0px` }
           "
           :class="item.active ? 'open' : ''"
           @click.stop="() => {}"
         >
-          <div class="line"></div>
+          <div v-if="!isCollapsed" class="line"></div>
           <div
-            :key="`c-${index}-${cIndex}`"
+            :key="`child-${index}-${cIndex}`"
             v-for="(cItem, cIndex) in item.children"
             class="gt-menu-group-item"
             :class="

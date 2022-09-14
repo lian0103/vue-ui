@@ -11,16 +11,13 @@
     line-height: 24px;
     @apply select-none;
     @apply bg-gray3;
-    @apply text-gray1 flex flex-col items-center ;
-
-
-
-    .menu-text{
+    @apply text-gray1 flex flex-col items-center;
+    .menu-text {
       @apply w-full flex justify-between items-center cursor-pointer;
 
-      .left{
+      .left {
         @apply flex justify-center items-center;
-        .gt-icon{
+        .gt-icon {
           margin-right: 10px;
         }
       }
@@ -51,7 +48,7 @@
         letter-spacing: 0.8px;
         border-radius: 5px;
         margin: 4px 0;
-        z-index: -1000;
+        z-index: -100;
         @apply text-gray1 flex justify-start items-center cursor-pointer;
         .child-icon {
           margin-right: 10px;
@@ -70,6 +67,39 @@
       &.open {
         opacity: 1;
         z-index: 10;
+      }
+    }
+  }
+}
+
+.gt-menus {
+  &.collapsed {
+    width: 60px;
+
+    .menu-text {
+      @apply justify-center;
+    }
+    .gt-menu-group {
+      position: relative;
+      .childBox {
+        width: 160px;
+        max-height: 50vh;
+        position: absolute;
+        transition: 0.4s opacity ease-in-out , 0.4s height ease-in-out ;
+        left: 60px;
+        top: 0px;
+        @apply bg-gray3 rounded-4;
+        .gt-menu-group-item {
+          width: 160px;
+          padding-left: 10px;
+        }
+
+        &::-webkit-scrollbar {
+          width: 0px !important;
+        }
+        &.open{
+          overflow-y: scroll;
+        }
       }
     }
   }
