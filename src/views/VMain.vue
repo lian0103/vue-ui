@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onBeforeUpdate, computed } from 'vue';
+import { onMounted, onBeforeUpdate, computed , ref } from 'vue';
 import VMenu from './VMenu.vue';
 import { useRouter } from 'vue-router';
 import gsap from 'gsap';
@@ -26,6 +26,19 @@ onBeforeUpdate(() => {
     // .from('.gt-header', { y: '-100%' })
     .fromTo('.gt-content', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
 });
+
+const isCollapsed = ref(false);
+const isCollapsedComputed = computed(()=>{
+  return isCollapsed.value;
+})
+
+const handleCollapsed = (val)=>{
+  // console.log('handleCollapsed',val)
+  isCollapsed.value = val;
+}
+
+
+
 </script>
 
 <template>
@@ -33,9 +46,10 @@ onBeforeUpdate(() => {
     class="layout"
     headText="Great Tree UI"
     :title="nameComputed"
+    @collapsed="handleCollapsed"
   >
     <template #sidebar>
-      <v-menu class="gt-e-menu" />
+      <v-menu class="gt-e-menu" :isCollapsed="isCollapsedComputed"/>
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">

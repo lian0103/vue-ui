@@ -1,5 +1,12 @@
 <script setup>
-import { computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
+import {
+  computed,
+  reactive,
+  getCurrentInstance,
+  onMounted,
+  ref,
+  watch,
+} from 'vue';
 
 const instance = getCurrentInstance();
 const { active, menu, activePath, isCollapsed } = defineProps({
@@ -15,7 +22,7 @@ const { active, menu, activePath, isCollapsed } = defineProps({
   },
   isCollapsed: {
     type: Boolean,
-    default: true,
+    default: false,
   },
 });
 
@@ -25,17 +32,20 @@ const findRouteIndexByPath = () => {
   let routerMenuIndex = null;
   let groupIndex = null;
   let activeItemIndex = null;
-  menu.forEach((item, idx) => {
-    if (Array.isArray(item.children)) {
-      item.children.forEach((cItem, cIdx) => {
-        if (cItem.path === activePath) {
-          groupIndex = idx + 1;
-          activeItemIndex = cIdx + 1;
-          routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
-        }
-      });
-    }
-  });
+  if (!isCollapsed) {
+    menu.forEach((item, idx) => {
+      if (Array.isArray(item.children)) {
+        item.children.forEach((cItem, cIdx) => {
+          if (cItem.path === activePath) {
+            groupIndex = idx + 1;
+            activeItemIndex = cIdx + 1;
+            routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
+          }
+        });
+      }
+    });
+  }
+
   return {
     routerMenuIndex,
     groupIndex,
@@ -81,7 +91,7 @@ const menuComputed = computed(() => {
 });
 
 const handleGroupClick = (item, gIdx) => {
-  console.log(item);
+  console.log(isCollapsed);
   let { active, path } = item;
   if (path) {
     if (instance.appContext.config.globalProperties.$router) {
@@ -97,8 +107,7 @@ const handleGroupClick = (item, gIdx) => {
       (i) => i != gIdx + 1
     );
   }
-
-  console.log(info);
+  // console.log(info);
 };
 
 const handleRouteTo = (path, gIdx, cIdx) => {
@@ -161,7 +170,15 @@ export default {
                 }
               : { height: `0px` }
           "
-          :class="item.active ? 'open' : ''"
+          :class="
+            !isCollapsed
+              ? item.active
+                ? 'open'
+                : ''
+              : info.menuGroupActive == index + 1
+              ? 'open'
+              : ''
+          "
           @click.stop="() => {}"
         >
           <div v-if="!isCollapsed" class="line"></div>

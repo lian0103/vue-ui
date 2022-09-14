@@ -90,7 +90,7 @@ const menuRoutes = [
         path: '4511116',
       },
       {
-        label: 'route4',
+        label: 'route466',
         icon: 'file',
         path: '123',
       },
@@ -101,7 +101,7 @@ const menuRoutes = [
 
 <template>
   <div class="w-full box">
-    <g-menu active="1-2" :menu="menuRoutes" />
+    <g-menu active="1-2" :menu="menuRoutes" :isCollapsed="true" />
     <g-menu activePath="4511116" :menu="menuRoutes" />
   </div>
 
@@ -111,6 +111,7 @@ const menuRoutes = [
 .box{
   display: flex;
   justify-content: space-around;
+  position: relative;
 }
 
 </style>
