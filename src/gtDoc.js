@@ -129,37 +129,37 @@ const icons = [
   'sequence',
   'trash',
   'x',
+  'distribute',
+  'home',
+  'info',
+  'items',
+  'lock',
+  'setting',
+  'store',
+  'tool',
+  'user',
 ];
 </script>
 
 <template>
-  <div class="mb-3 px-2 w-full md:w-3/4">
-    <g-title :level="3" class="mb-3">sm:14px;md:24px;lg:36px;</g-title>
+  <g-title :level="3" class="mb-3 w-full">sm:14px;md:24px;lg:36px;</g-title>
+  <div class="mb-3 px-2 w-full md:w-3/4 flex flex-wrap justify-between">
     <span
-      class="flex justify-start mb-2"
+      class="flex justify-start mb-2 w-1/2"
       v-for="(item, idx) in icons"
       :key="item"
     >
-      <template v-if="idx % 2 == 0">
-        <div class="flex justify-center items-center leading-8 h-16">
-          <g-icon :name="item" class="text-main" size="sm" />
-          <g-icon :name="item" class="text-main" size="md" />
-          <g-icon :name="item" class="text-main" size="lg" />
-          <span class="text-gray-600 leading-10">
-            {{ '<g-icon name="item}" size="sm | md | lg" />'}}
-          </span>
-        </div>
-      </template>
-      <template v-else>
-        <div class="flex justify-center items-center leading-8 h-16">
-          <g-icon :name="item" class="text-second" size="sm" />
-          <g-icon :name="item" class="text-second" size="md" />
-          <g-icon :name="item" class="text-second" size="lg" />
-          <span class="text-gray-600 leading-10">
-            {{ '<g-icon name="item}" size="sm | md | lg" />'}}
-          </span>
-        </div>
-      </template>
+      <div class="flex justify-center items-center leading-4">
+        <template v-if="idx % 2 == 0">
+          <g-icon :name="item" class="text-purple-600" size="md" />
+        </template>
+        <template v-else>
+          <g-icon :name="item" class="text-blue-600" size="md" />
+        </template>
+        <span class="text-gray-600 leading-10">
+          {{ '<g-icon name="item}" />'}}
+        </span>
+      </div>
     </span>
   </div>
 </template>
