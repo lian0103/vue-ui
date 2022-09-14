@@ -85,12 +85,6 @@ export default {
     class="gt-btn"
     :style="width ? { width: `${width}px` } : {}"
   >
-    <template v-if="isLoading">
-      <div>
-        
-      </div>
-    </template>
-
     <g-loading-icon v-if="isLoading" />
     <g-icon :name="icon" v-if="icon && iconPosition == 'left' && !isLoading" />
     <slot></slot>
