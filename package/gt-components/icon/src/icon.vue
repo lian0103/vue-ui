@@ -1,7 +1,6 @@
-<script setup>
-</script>
-
 <script>
+const fixPosition = ['lock','store','user']
+
 export default {
   name: "GIcon",
   props: {
@@ -21,6 +20,10 @@ export default {
       };
       result["gt-icon-" + this.name] = true;
       result["gt-icon-" + this.size] = true;
+
+      if(fixPosition.includes(this.name)){
+        result['gt-icon-fix'] = true;
+      }
 
       return result;
     },

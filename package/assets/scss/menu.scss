@@ -17,6 +17,14 @@
 
     .menu-text{
       @apply w-full flex justify-between items-center cursor-pointer;
+
+      .left{
+        @apply flex justify-center items-center;
+        .gt-icon{
+          margin-right: 10px;
+        }
+      }
+
       &:hover {
         @apply text-main;
         .group-icon {
@@ -28,6 +36,7 @@
 
     .childBox {
       width: 230px;
+      margin-bottom: 10px;
       overflow: hidden;
       transition: 0.4s all ease-in-out;
       .line {

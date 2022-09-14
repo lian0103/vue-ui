@@ -15,6 +15,7 @@ const activePath =  ref(Router.currentRoute.value.path)
 const menuRoutes = [
   {
     label: '文件',
+    icon:'tool',
     children: [
       {
         label: '指引',
@@ -25,6 +26,7 @@ const menuRoutes = [
   },
   {
     label: 'GT元件',
+    icon:'items',
     children: [
       ...packagesCompNameList.map((name) => {
         return {

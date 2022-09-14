@@ -2,6 +2,7 @@
 const menuRoutes = [
   {
     label: 'group1',
+    icon:'user',
     children: [
       {
         label: 'route1',
@@ -22,6 +23,7 @@ const menuRoutes = [
   },
   {
     label: 'group2',
+    icon:'tool',
     children: [
       {
         label: 'route3',

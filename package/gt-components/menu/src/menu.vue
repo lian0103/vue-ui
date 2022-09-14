@@ -109,7 +109,11 @@ export default {
       @click="handleGroupClick(item, index)"
     >
       <div class="menu-text">
-        {{ item.label }}
+        <div class="left">
+          <g-icon v-if="item.icon" :name="item.icon" size="md" />
+          {{ item.label }}
+        </div>
+
         <g-icon
           name="chevron-up"
           :style="item.active ? {} : { transform: 'rotate(180deg)' }"
@@ -124,8 +128,8 @@ export default {
           class="childBox"
           :style="
             item.active
-              ? { 'height': `${item.children.length * 44 + 25}px` }
-              : { 'height': `0px` }
+              ? { height: `${item.children.length * 44 + 25}px` }
+              : { height: `0px` }
           "
           :class="item.active ? 'open' : ''"
           @click.stop="() => {}"

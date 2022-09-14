@@ -9,6 +9,11 @@
 
 .gt-icon {
 	display: flex;
+	position: relative;
+}
+
+.gt-icon-fix::before{
+	transform: translateX(-30%) translateY(-30%) !important;
 }
 
 .gt-icon:before {
@@ -21,6 +26,10 @@
 	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
 	text-decoration: none;
 	text-transform: none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
 }
 
 
