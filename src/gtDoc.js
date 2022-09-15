@@ -477,10 +477,12 @@ const RouteTabs = [{ name: 'child-route A' , path:'/icon' }, { name: 'child-rout
   \`\`\`  `,
     'menu': ` \`\`\` html 
 <script setup>
+import { getCurrentInstance, ref } from 'vue';
+const instance = getCurrentInstance();
 const menuRoutes = [
   {
     label: 'group1',
-    icon:'user',
+    icon: 'user',
     children: [
       {
         label: 'route1',
@@ -501,7 +503,7 @@ const menuRoutes = [
   },
   {
     label: 'group2',
-    icon:'tool',
+    icon: 'tool',
     children: [
       {
         label: 'route3',
@@ -556,8 +558,8 @@ const menuRoutes = [
     ],
   },
   {
-    label:'link',
-    path:'ccc'
+    label: 'link',
+    path: 'ccc',
   },
   {
     label: 'group3',
@@ -573,25 +575,35 @@ const menuRoutes = [
         path: '123',
       },
     ],
-  }
+  },
 ];
+
+const menuRef = ref(null);
+
+const handleClick = () => {
+  // console.log('instance.refs.menuRef', instance.refs.menuRef.collapsed);
+  let val = !instance.refs.menuRef.collapsed;
+  instance.refs.menuRef.collapsed = val;
+};
 </script>
 
 <template>
   <div class="w-full box">
-    <g-menu active="1-2" :menu="menuRoutes" :collapsed="true" />
+    <div class="flex flex-col">
+      <g-button @click="handleClick" :width="100">收開</g-button>
+      <g-menu ref="menuRef" active="1-2" :menu="menuRoutes" :collapsed="true" />
+    </div>
+
     <g-menu activePath="4511116" :menu="menuRoutes" />
   </div>
-
 </template>
 
 <style lang="scss" scoped>
-.box{
+.box {
   display: flex;
   justify-content: space-around;
   position: relative;
 }
-
 </style>
   \`\`\`  `,
     'tabs': ` \`\`\` html 

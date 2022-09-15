@@ -1,8 +1,13 @@
 <script setup>
-import { computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
+import { watch , computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
 
 const instance = getCurrentInstance();
-const { active, menu, activePath, collapsed } = defineProps({
+const {
+  active,
+  menu,
+  activePath,
+  collapsed: collapsedFromParent,
+} = defineProps({
   active: {
     type: String,
   },
@@ -18,6 +23,8 @@ const { active, menu, activePath, collapsed } = defineProps({
     default: false,
   },
 });
+
+const collapsed = ref(collapsedFromParent);
 
 const initProcess = ref(true);
 
@@ -48,18 +55,16 @@ const findRouteIndexByPath = () => {
 const result = findRouteIndexByPath();
 
 const info = reactive({
-  menuGroupActiveArr:
-    initProcess && collapsed
-      ? []
-      : result.routerMenuIndex
-      ? [result.groupIndex]
-      : [parseInt(active?.split('-')[0])],
-  menuGroupActive:
-    initProcess && collapsed
-      ? []
-      : result.groupIndex
-      ? result.groupIndex
-      : parseInt(active?.split('-')[0]),
+  menuGroupActiveArr: collapsed.value
+    ? []
+    : result.routerMenuIndex
+    ? [result.groupIndex]
+    : [parseInt(active?.split('-')[0])],
+  menuGroupActive: collapsed.value
+    ? []
+    : result.groupIndex
+    ? result.groupIndex
+    : parseInt(active?.split('-')[0]),
   menuGroupItemActive: result.activeItemIndex
     ? result.activeItemIndex
     : parseInt(active?.split('-')[1]),
@@ -83,7 +88,7 @@ const menuComputed = computed(() => {
 });
 
 const handleGroupClick = (item, gIdx) => {
-  // console.log(collapsed);
+  // console.log(collapsed.value);
   let { active, path } = item;
   if (path) {
     if (instance.appContext.config.globalProperties.$router) {
@@ -91,7 +96,7 @@ const handleGroupClick = (item, gIdx) => {
     }
   } else if (!active) {
     info.menuGroupActive = gIdx + 1;
-    info.menuGroupActiveArr = collapsed
+    info.menuGroupActiveArr = collapsed.value
       ? [gIdx + 1]
       : [...info.menuGroupActiveArr, gIdx + 1];
   } else {
@@ -112,6 +117,17 @@ const handleRouteTo = (path, gIdx, cIdx) => {
     instance.appContext.config.globalProperties.$router.push(path);
   }
 };
+
+defineExpose({
+  collapsed,
+});
+
+watch(()=>collapsed.value,(val)=>{
+  if(val){
+    info.menuGroupActiveArr = [];
+    info.menuGroupActive = [];
+  }
+})
 
 onMounted(() => {
   initProcess.value = false;

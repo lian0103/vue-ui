@@ -7,7 +7,7 @@ module.exports = {
 | active | 當前路由，格式範例 "2-1"，即對應menu第二項的第一個children | String | | |
 | activePath | 當前路由，格式範例 "/gt/menu"，即對應menu中相同path | String | | |
 | menu | Vue Router 路由樹狀物件。 | Array[MenuItem] <br> MenuItem : {label:String,path?:String,children?:{label:String,icon:IconType(String),path:String},icon?:IconType(String)} | | |
-| collapsed | 收合狀態 | Boolean | | false |
+| collapsed | 收開狀態。可綁ref後訪問，如instance.refs.menuRef.collapsed來變更狀態 | Boolean | | false |
 `,
   method: `
 ## 方法

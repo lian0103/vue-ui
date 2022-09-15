@@ -1,16 +1,56 @@
 <script setup>
-import { onMounted, onBeforeUpdate, computed , ref } from 'vue';
-import VMenu from './VMenu.vue';
-import appInfo from '../stores';
+import { onMounted, onBeforeUpdate, computed, ref , getCurrentInstance } from 'vue';
 import { useRouter } from 'vue-router';
 import gsap from 'gsap';
+import packageMap from '../../package/components.json';
+
+const instance = getCurrentInstance();
 
 const Router = useRouter();
 
-const nameComputed = computed(()=>{
+const nameComputed = computed(() => {
   let cName = Router.currentRoute.value.params?.componentName || null;
-  return cName ? `GT元件-${cName}` : 'GT元件'
-})
+  return cName ? `GT元件-${cName}` : 'GT元件';
+});
+
+// console.log("packagesList",packagesList)
+const appMenu = ref(null)
+
+const packagesCompNameList = Object.keys(packageMap);
+
+const activePath = ref(Router.currentRoute.value.path);
+
+const menuRoutes = [
+  {
+    label: '文件',
+    icon: 'tool',
+    children: [
+      {
+        label: '指引',
+        icon: 'file',
+        path: '/doc',
+      },
+    ],
+  },
+  {
+    label: 'GT元件',
+    icon: 'items',
+    children: [
+      ...packagesCompNameList.map((name) => {
+        return {
+          label: name,
+          icon: '',
+          path: `/gt/${name}`,
+        };
+      }),
+    ],
+  },
+];
+
+const handleCollapsed = (val) => {
+  // console.log('handleCollapsed',val)
+  instance.refs.appMenu.collapsed = val;
+};
 
 onMounted(() => {
   const timeline = gsap.timeline({ defaults: { duration: 1 } });
@@ -28,11 +68,6 @@ onBeforeUpdate(() => {
     .fromTo('.gt-content', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
 });
 
-const handleCollapsed = (val)=>{
-  // console.log('handleCollapsed',val)
-  appInfo.value.isCollapsed = val;
-}
-
 </script>
 
 <template>
@@ -43,7 +78,13 @@ const handleCollapsed = (val)=>{
     @collapsed="handleCollapsed"
   >
     <template #sidebar>
-      <v-menu class="gt-e-menu" />
+      <g-menu
+        ref="appMenu"
+        class="mx-auto gt-e-menu"
+        :activePath="activePath"
+        :menu="menuRoutes"
+        :collapsed="false"
+      />
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">

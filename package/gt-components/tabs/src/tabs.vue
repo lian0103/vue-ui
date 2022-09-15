@@ -17,7 +17,7 @@ const { tabs, clickCallback, currentTab } = defineProps({
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
 
-console.log('currentTab',currentTab)
+// console.log('currentTab',currentTab)
 
 const current = tabs.find((item) => item.name == currentTab)
   ? ref(currentTab)
