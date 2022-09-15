@@ -1,5 +1,9 @@
 set -e
 
+npm run doc
+
+npm run demo
+
 cd demo
 
 git init
