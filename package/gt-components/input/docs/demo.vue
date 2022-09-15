@@ -1,5 +1,7 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, getCurrentInstance } from 'vue';
+
+const instance = getCurrentInstance();
 
 const inputs = reactive({
   input0: 'hello',
@@ -14,10 +16,27 @@ const handleBlurEvent = (e) => {
 const handleFocusEvent = (e) => {
   console.log('focus', e);
 };
+
+const handleFocusInput = () => {
+  // console.log(instance.refs.inputA);
+  instance.refs.inputA.focusInput();
+};
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">focus input </g-title>
+    <div class="flex">
+      <g-input
+        ref="inputA"
+        v-model="inputs.input0"
+        size="md"
+        green
+        class="mr-4"
+      />
+      <g-button pill @click="handleFocusInput">focus input</g-button>
+    </div>
+
     <g-title :level="2" class="mb-3">icon left </g-title>
     <g-input
       v-model="inputs.input0"

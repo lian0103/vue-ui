@@ -1,6 +1,9 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref , getCurrentInstance } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
 
+const inputUuid = uuidv4();
+const instance = getCurrentInstance();
 const TYPES = ['text', 'number', 'password'];
 const placeholderDefaultMap = {
   text: '輸入文字內容',
@@ -36,7 +39,7 @@ const {
   },
   modelValue: {},
   label: {
-    type:String,
+    type: String,
     default: null,
   },
   width: {
@@ -61,7 +64,7 @@ const {
     default: null,
   },
   placeholder: {
-    type:String,
+    type: String,
     default: null,
   },
   validResult: {
@@ -149,6 +152,18 @@ const handleClear = () => {
     handleRulesValid(inputVal.value, name, 'blur');
   }
 };
+
+const focusInput = ()=>{
+  if(instance.refs[inputUuid]){
+    // console.log(instance.refs[inputUuid])
+    instance.refs[inputUuid].focus()
+  }
+}
+
+defineExpose({
+  focusInput
+})
+
 </script>
 <script>
 export default {
@@ -160,6 +175,7 @@ export default {
     <div class="gt-input-label" v-if="label">{{ label }}</div>
     <div class="gt-relative">
       <input
+        :ref="inputUuid"
         :class="classComputed"
         :style="width ? { width: width + 'px' } : {}"
         :placeholder="placeholder || placeholderDefaultMap[type]"
