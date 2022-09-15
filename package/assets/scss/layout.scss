@@ -54,7 +54,6 @@
       }
     }
     .gt-content {
-      width: calc(100vw - 300px);
       @apply overflow-y-scroll;
       height: calc(100vh - 80px);
       &::-webkit-scrollbar {
@@ -89,10 +88,6 @@
             top: 80px;
           }
         }
-      }
-
-      .gt-content {
-        width: calc(100vw - 80px);
       }
     }
   }

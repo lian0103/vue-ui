@@ -72,7 +72,7 @@ export default {
     </div>
 
     <div class="gt-sidebar-content">
-      <div class="gt-sidebar">
+      <div class="gt-sidebar" :style="{width:isCollapsed?'80px':'300px'}">
         <div class="flex flex-col">
           <div class="gt-menu-box"><slot name="sidebar" /></div>
 
@@ -87,7 +87,7 @@ export default {
         </div>
       </div>
 
-      <div class="gt-content">
+      <div class="gt-content" :style="{width:isCollapsed?'calc(100% - 80px)':'calc(100% - 300px)'}">
         <g-tabs
           v-if="menuTabs && menuTabs.length > 0"
           :tabs="menuTabs"
