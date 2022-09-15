@@ -151,10 +151,14 @@ const icons = [
     >
       <div class="flex justify-center items-center leading-4">
         <template v-if="idx % 2 == 0">
-          <g-icon :name="item" class="text-purple-600" size="md" />
+          <g-icon :name="item" class="text-purple-600 mr-2" size="sm" />
+          <g-icon :name="item" class="text-purple-600 mr-2" size="md" />
+          <g-icon :name="item" class="text-purple-600 mr-2" size="lg" />
         </template>
         <template v-else>
+          <g-icon :name="item" class="text-blue-600" size="sm" />
           <g-icon :name="item" class="text-blue-600" size="md" />
+          <g-icon :name="item" class="text-blue-600" size="lg" />
         </template>
         <span class="text-gray-600 leading-10">
           {{ '<g-icon name="item}" />'}}
@@ -284,7 +288,9 @@ const inputs = reactive({
   \`\`\`  `,
     'input': ` \`\`\` html 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, getCurrentInstance } from 'vue';
+
+const instance = getCurrentInstance();
 
 const inputs = reactive({
   input0: 'hello',
@@ -299,10 +305,27 @@ const handleBlurEvent = (e) => {
 const handleFocusEvent = (e) => {
   console.log('focus', e);
 };
+
+const handleFocusInput = () => {
+  // console.log(instance.refs.inputA);
+  instance.refs.inputA.focusInput();
+};
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">focus input </g-title>
+    <div class="flex">
+      <g-input
+        ref="inputA"
+        v-model="inputs.input0"
+        size="md"
+        green
+        class="mr-4"
+      />
+      <g-button pill @click="handleFocusInput">focus input</g-button>
+    </div>
+
     <g-title :level="2" class="mb-3">icon left </g-title>
     <g-input
       v-model="inputs.input0"
@@ -441,12 +464,12 @@ const RouteTabs = [{ name: 'child-route A' , path:'/icon' }, { name: 'child-rout
 <template>
   <div class="w-full mx-auto border-2">
     <g-layout class="layout" headText="Great Tree UI" title="hello" :menuTabs="RouteTabs">
-      <template #sidebar> menu </template>
       <template #header>
         <div class="w-1/4 flex justify-center items-center px-4">
           <span>v22</span>
         </div>
       </template>
+      <template #sidebar> menu </template>
       <template #content> <div class="bg-purple-400 h-64 p-6">content</div> </template>
     </g-layout>
   </div>
@@ -457,6 +480,7 @@ const RouteTabs = [{ name: 'child-route A' , path:'/icon' }, { name: 'child-rout
 const menuRoutes = [
   {
     label: 'group1',
+    icon:'user',
     children: [
       {
         label: 'route1',
@@ -477,6 +501,7 @@ const menuRoutes = [
   },
   {
     label: 'group2',
+    icon:'tool',
     children: [
       {
         label: 'route3',
@@ -543,7 +568,7 @@ const menuRoutes = [
         path: '4511116',
       },
       {
-        label: 'route4',
+        label: 'route466',
         icon: 'file',
         path: '123',
       },
@@ -554,7 +579,7 @@ const menuRoutes = [
 
 <template>
   <div class="w-full box">
-    <g-menu active="1-2" :menu="menuRoutes" />
+    <g-menu active="1-2" :menu="menuRoutes" :collapsed="true" />
     <g-menu activePath="4511116" :menu="menuRoutes" />
   </div>
 
@@ -564,6 +589,7 @@ const menuRoutes = [
 .box{
   display: flex;
   justify-content: space-around;
+  position: relative;
 }
 
 </style>

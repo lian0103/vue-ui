@@ -7,7 +7,7 @@ module.exports = {
 | headText | 左上標題 | String | | |
 | title | 頁面標題 | String | | |
 | menuTabs | 選單頁籤 | Array[Item{name(String),path(String)}] | | |
-
+| collapsed | sidebar區塊收開狀態。收:寬80px，開:寬300px。 | Boolean | | false |
 `,
   method: `
 ## 方法

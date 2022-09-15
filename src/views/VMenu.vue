@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import appInfo from '../stores';
 import { useRouter } from 'vue-router';
 import packageMap from '../../package/components.json';
@@ -43,7 +43,7 @@ const isCollapsed = ref(appInfo.value.isCollapsed);
 watch(
   () => appInfo.value.isCollapsed,
   (val) => {
-    console.log('in watch', val);
+    // console.log('in watch', val);
     isCollapsed.value = val;
   }
 );
@@ -55,14 +55,14 @@ watch(
     class="mx-auto"
     :activePath="activePath"
     :menu="menuRoutes"
-    :isCollapsed="true"
+    :collapsed="true"
   />
   <g-menu
     v-else
     class="mx-auto"
     :activePath="activePath"
     :menu="menuRoutes"
-    :isCollapsed="false"
+    :collapsed="false"
   />
 </template>
 

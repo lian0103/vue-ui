@@ -2,7 +2,7 @@
 import { computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
 
 const instance = getCurrentInstance();
-const { active, menu, activePath, isCollapsed } = defineProps({
+const { active, menu, activePath, collapsed } = defineProps({
   active: {
     type: String,
   },
@@ -13,7 +13,7 @@ const { active, menu, activePath, isCollapsed } = defineProps({
     type: Array,
     default: [],
   },
-  isCollapsed: {
+  collapsed: {
     type: Boolean,
     default: false,
   },
@@ -49,13 +49,13 @@ const result = findRouteIndexByPath();
 
 const info = reactive({
   menuGroupActiveArr:
-    initProcess && isCollapsed
+    initProcess && collapsed
       ? []
       : result.routerMenuIndex
       ? [result.groupIndex]
       : [parseInt(active?.split('-')[0])],
   menuGroupActive:
-    initProcess && isCollapsed
+    initProcess && collapsed
       ? []
       : result.groupIndex
       ? result.groupIndex
@@ -83,7 +83,7 @@ const menuComputed = computed(() => {
 });
 
 const handleGroupClick = (item, gIdx) => {
-  console.log(isCollapsed);
+  // console.log(collapsed);
   let { active, path } = item;
   if (path) {
     if (instance.appContext.config.globalProperties.$router) {
@@ -91,7 +91,7 @@ const handleGroupClick = (item, gIdx) => {
     }
   } else if (!active) {
     info.menuGroupActive = gIdx + 1;
-    info.menuGroupActiveArr = isCollapsed
+    info.menuGroupActiveArr = collapsed
       ? [gIdx + 1]
       : [...info.menuGroupActiveArr, gIdx + 1];
   } else {
@@ -123,7 +123,7 @@ export default {
 };
 </script>
 <template>
-  <div class="gt-menus" :class="isCollapsed ? 'collapsed' : ''">
+  <div class="gt-menus" :class="collapsed ? 'collapsed' : ''">
     <div
       class="gt-menu-group"
       v-for="(item, index) in menuComputed"
@@ -134,15 +134,15 @@ export default {
       <div class="menu-text">
         <div class="left">
           <g-icon
-            v-if="item.icon || isCollapsed"
+            v-if="item.icon || collapsed"
             :name="item.icon || 'items'"
             size="md"
           />
-          <span v-if="!isCollapsed">{{ item.label }}</span>
+          <span v-if="!collapsed">{{ item.label }}</span>
         </div>
 
         <g-icon
-          v-if="!item.path && !isCollapsed"
+          v-if="!item.path && !collapsed"
           name="chevron-up"
           :style="item.active ? {} : { transform: 'rotate(180deg)' }"
           size="md"
@@ -156,14 +156,14 @@ export default {
           :style="
             item.active
               ? {
-                  height: isCollapsed
+                  height: collapsed
                     ? `${item.children.length * 40}px`
                     : `${item.children.length * 44 + 25}px`,
                 }
               : { height: `0px` }
           "
           :class="
-            !isCollapsed
+            !collapsed
               ? item.active
                 ? 'open'
                 : ''
@@ -173,7 +173,7 @@ export default {
           "
           @click.stop="() => {}"
         >
-          <div v-if="!isCollapsed" class="line"></div>
+          <div v-if="!collapsed" class="line"></div>
           <div
             :key="`child-${index}-${cIndex}`"
             v-for="(cItem, cIndex) in item.children"

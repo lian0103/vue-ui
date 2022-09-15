@@ -19,15 +19,15 @@ module.exports = {
 ## 方法
 | 方法 | 說明 | 參數 |
 | - | - | - |
-| blur | 觸發blur事件 |
-| focus | 觸發focus事件 |  
+| focusInput | 使input進入focus狀態。透過ref綁定後使用該方法，如instance.refs.inputA.focusInput() |  
 
 `,
   event: `
 ## 事件
 | 事件 | 說明 | 參數 |
 | - | - | - |
-| | | |
+| blur | 觸發blur事件後回傳 |
+| focus | 觸發focus事件後回傳 | 
 
 `,
   slot: `

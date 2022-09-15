@@ -101,7 +101,7 @@ const menuRoutes = [
 
 <template>
   <div class="w-full box">
-    <g-menu active="1-2" :menu="menuRoutes" :isCollapsed="true" />
+    <g-menu active="1-2" :menu="menuRoutes" :collapsed="true" />
     <g-menu activePath="4511116" :menu="menuRoutes" />
   </div>
 

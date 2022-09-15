@@ -40,10 +40,14 @@ const icons = [
     >
       <div class="flex justify-center items-center leading-4">
         <template v-if="idx % 2 == 0">
-          <g-icon :name="item" class="text-purple-600" size="md" />
+          <g-icon :name="item" class="text-purple-600 mr-2" size="sm" />
+          <g-icon :name="item" class="text-purple-600 mr-2" size="md" />
+          <g-icon :name="item" class="text-purple-600 mr-2" size="lg" />
         </template>
         <template v-else>
+          <g-icon :name="item" class="text-blue-600" size="sm" />
           <g-icon :name="item" class="text-blue-600" size="md" />
+          <g-icon :name="item" class="text-blue-600" size="lg" />
         </template>
         <span class="text-gray-600 leading-10">
           {{ `<g-icon name="${item}" />`}}

@@ -55,9 +55,3 @@ const handleCollapsed = (val)=>{
     </template>
   </g-layout>
 </template>
-
-<style lang="scss" scoped>
-  .gt-content{
-    max-width: 1280px;
-  }
-</style>
