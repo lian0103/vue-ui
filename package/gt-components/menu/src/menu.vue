@@ -1,11 +1,18 @@
 <script setup>
-import { watch , computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
-import { v4 as uuid} from 'uuid'
+import {
+  watch,
+  computed,
+  reactive,
+  getCurrentInstance,
+  onMounted,
+  ref,
+} from 'vue';
+import { v4 as uuid } from 'uuid';
 
 const instance = getCurrentInstance();
 const {
   active,
-  menu,
+  menu: menuFromParent,
   activePath,
   collapsed: collapsedFromParent,
 } = defineProps({
@@ -29,6 +36,21 @@ const collapsed = ref(collapsedFromParent);
 
 const initProcess = ref(true);
 
+const menu = menuFromParent.map((item, idx) => {
+  // console.log(info.menuGroupActiveArr);
+  return {
+    ...item,
+    children: item.children
+      ? item.children.map((cItem, cIdx) => {
+          return {
+            ...cItem,
+            uuid: uuid(),
+          };
+        })
+      : [],
+  };
+});
+
 const findRouteIndexByPath = () => {
   let routerMenuIndex = null;
   let groupIndex = null;
@@ -39,7 +61,7 @@ const findRouteIndexByPath = () => {
       item.children.forEach((cItem, cIdx) => {
         if (cItem.path === activePath) {
           groupIndex = idx + 1;
-          activeItemIndex = cIdx + 1;
+          activeItemIndex = cItem.uuid;
           routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
         }
       });
@@ -66,9 +88,7 @@ const info = reactive({
     : result.groupIndex
     ? result.groupIndex
     : parseInt(active?.split('-')[0]),
-  menuGroupItemActive: result.activeItemIndex
-    ? result.activeItemIndex
-    : parseInt(active?.split('-')[1]),
+  menuGroupItemActive: result.activeItemIndex || '',
 });
 
 const menuComputed = computed(() => {
@@ -77,13 +97,7 @@ const menuComputed = computed(() => {
     return {
       ...item,
       active: info.menuGroupActiveArr.includes(idx + 1) ? true : false,
-      children: item.children
-        ? item.children.map((cItem, cIdx) => {
-            return {
-              ...cItem,
-            };
-          })
-        : [],
+      children: item.children || [],
     };
   });
 });
@@ -108,11 +122,11 @@ const handleGroupClick = (item, gIdx) => {
   // console.log(info);
 };
 
-const handleRouteTo = (path, gIdx, cIdx) => {
+const handleRouteTo = (path, gIdx, cItemUuid) => {
   let arr = [...new Set([...info.menuGroupActiveArr, gIdx + 1])];
 
   info.menuGroupActive = gIdx + 1;
-  info.menuGroupItemActive = cIdx + 1;
+  info.menuGroupItemActive = cItemUuid;
   info.menuGroupActiveArr = arr;
   if (path && instance.appContext.config.globalProperties.$router) {
     instance.appContext.config.globalProperties.$router.push(path);
@@ -123,12 +137,15 @@ defineExpose({
   collapsed,
 });
 
-watch(()=>collapsed.value,(val)=>{
-  if(val){
-    info.menuGroupActiveArr = [];
-    info.menuGroupActive = [];
+watch(
+  () => collapsed.value,
+  (val) => {
+    if (val) {
+      info.menuGroupActiveArr = [];
+      info.menuGroupActive = [];
+    }
   }
-})
+);
 
 onMounted(() => {
   initProcess.value = false;
@@ -192,18 +209,13 @@ export default {
         >
           <div v-if="!collapsed" class="line"></div>
           <div
-            :key="uuid()"
+            :key="cItem.uuid"
             v-for="(cItem, cIndex) in item.children"
             class="gt-menu-group-item"
-            :class="
-              info.menuGroupItemActive == cIndex + 1 &&
-              info.menuGroupActiveArr.includes(index + 1) 
-                ? 'active'
-                : ''
-            "
+            :class="info.menuGroupItemActive == cItem.uuid ? 'active' : ''"
             @click.stop="
               () => {
-                handleRouteTo(cItem.path, index, cIndex);
+                handleRouteTo(cItem.path, index, cItem.uuid);
               }
             "
           >
