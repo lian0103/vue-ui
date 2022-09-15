@@ -1,5 +1,6 @@
 <script setup>
 import { watch , computed, reactive, getCurrentInstance, onMounted, ref } from 'vue';
+import { v4 as uuid} from 'uuid'
 
 const instance = getCurrentInstance();
 const {
@@ -191,12 +192,12 @@ export default {
         >
           <div v-if="!collapsed" class="line"></div>
           <div
-            :key="`child-${index}-${cIndex}`"
+            :key="uuid()"
             v-for="(cItem, cIndex) in item.children"
             class="gt-menu-group-item"
             :class="
               info.menuGroupItemActive == cIndex + 1 &&
-              info.menuGroupActive == index + 1
+              info.menuGroupActiveArr.includes(index + 1) 
                 ? 'active'
                 : ''
             "
