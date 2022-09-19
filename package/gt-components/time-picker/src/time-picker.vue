@@ -10,16 +10,23 @@ import { useElementBounding, useWindowSize } from '@vueuse/core';
 import dayjs from 'dayjs/esm';
 import { v4 as uuidv4 } from 'uuid';
 
-
-const { modelValue, placeholder , format } = defineProps({
+const { modelValue, placeholder, format, width } = defineProps({
   modelValue: {},
   placeholder: {
     default: dayjs().format('YYYY-MM-DD HH:mm'),
   },
-  format:{
-    type:String,
-    default:'YYYY-MM-DD HH:mm'
-  }
+  format: {
+    type: String,
+    default: 'YYYY-MM-DD HH:mm',
+  },
+  width: {
+    type: Number,
+    default: 180,
+  },
+  autoHideLabel: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -260,10 +267,7 @@ const popupStyleComputed = computed(() => {
   if (root) {
     return {
       top: 42 + 'px',
-      left:
-        rootRight.value + 100 > winWidth.value
-          ? '-110px'
-          : 0 + 'px',
+      left: rootRight.value + 100 > winWidth.value ? '-110px' : 0 + 'px',
     };
   } else {
     return {};
@@ -299,6 +303,7 @@ const handleTimePick = () => {
   <div ref="root" class="gt-timepicker-box gt-input-wrapper">
     <span
       class="gt-time-input"
+      :style="{ width: `${width}px` }"
       @mouseenter="isMouseIn = true"
       @mouseleave="isMouseIn = false"
       :class="
@@ -311,7 +316,8 @@ const handleTimePick = () => {
           : ''
       "
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >時間: <span>{{ curSelect?.format(format) }}</span>
+      >{{ !isTimePickerShow & isSelect && autoHideLabel ? '' : '時間: ' }}
+      <span>{{ curSelect?.format(format) }}</span>
     </span>
     <g-icon
       class="icon"
