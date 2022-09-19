@@ -1,6 +1,4 @@
 <script>
-const fixPosition = ['lock', 'store', 'user'];
-
 export default {
   name: 'GIcon',
   props: {
@@ -26,10 +24,6 @@ export default {
 
       if (this.classes) {
         arr.push(this.classes);
-      }
-
-      if (fixPosition.includes(this.name)) {
-        arr.push('gt-icon-fix');
       }
 
       return arr;

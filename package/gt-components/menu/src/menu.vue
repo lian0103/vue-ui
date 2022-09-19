@@ -203,7 +203,7 @@ export default {
           <div class="iconBox" :class="collapsed ? 'collapesed' : ''">
             <g-icon
               v-if="item.icon || collapsed"
-              :name="item.icon || item.iconClasses ? null : 'items'"
+              :name="item.icon ? item.icon : item.iconClasses ? null : 'items'"
               :classes="item.iconClasses"
               size="md"
             />
