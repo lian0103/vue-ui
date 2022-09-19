@@ -39,6 +39,7 @@ export default {
         <g-title :level="2" class="mb-3">PILL</g-title>
         <div class="flex justify-between mb-3">
           <g-button pill>按鈕</g-button>
+          <g-button pill type="green">按鈕</g-button>
           <g-button pill type="yellow">按鈕</g-button>
           <g-button pill type="red">按鈕</g-button>
           <g-button pill type="white">按鈕</g-button>
@@ -49,6 +50,7 @@ export default {
 
         <div class="flex justify-between mb-3">
           <g-button flat>按鈕</g-button>
+          <g-button flat type="green">按鈕</g-button>
           <g-button flat type="yellow">按鈕</g-button>
           <g-button flat type="red">按鈕</g-button>
           <g-button flat type="white">按鈕</g-button>
@@ -60,6 +62,9 @@ export default {
 
         <div class="flex justify-between mb-3">
           <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
+          <g-button flat type="green"
+            ><g-icon name="chevron-left" />上一頁</g-button
+          >
           <g-button flat type="yellow"
             ><g-icon name="chevron-left" />上一頁</g-button
           >
@@ -72,6 +77,9 @@ export default {
         </div>
         <div class="flex justify-between mb-3">
           <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
+          <g-button flat type="green"
+            ><g-icon name="chevron-right" />下一頁</g-button
+          >
           <g-button flat type="yellow"
             ><g-icon name="chevron-right" />下一頁</g-button
           >
@@ -88,6 +96,7 @@ export default {
         <g-title :level="2" class="mb-3">ROUND</g-title>
         <div class="w-full flex justify-between mb-3">
           <g-button round>按鈕</g-button>
+          <g-button round type="green">按鈕</g-button>
           <g-button round type="yellow">按鈕</g-button>
           <g-button round type="red">按鈕</g-button>
           <g-button round type="black">按鈕</g-button>
@@ -911,13 +920,6 @@ const options = [
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
-    <g-title :level="2" class="mb-3">下拉選項</g-title>
-    <div class="w-16">
-      <g-dropdown-item :label="options[0].label" :value="options[0].value" />
-      <g-dropdown-item :label="options[1].label" :value="options[1].value" />
-      <g-dropdown-item :label="options[2].label" :value="options[2].value" />
-    </div>
-
     <g-title :level="2" class="mb-3">下拉選項點擊模式</g-title>
     <g-dropdown class="mr-4" v-model="inputs.dropdown0" :options="options" />
 
@@ -928,7 +930,6 @@ const options = [
   \`\`\`  `,
     'dropdownitem': ` \`\`\` html 
 <script setup>
-    
 const options = [
   { label: 'Aaaa', value: 1 },
   { label: 'Bbbb', value: 2 },
