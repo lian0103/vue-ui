@@ -32,9 +32,11 @@
     @apply py-1 px-0 bg-gray3 rounded-10;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
 
-    @apply flex flex-col z-100 opacity-100;
-    @apply absolute; 
-
+    &.tp-aniIn,
+    &.tp-aniOut {
+      @apply flex flex-col z-100 opacity-100;
+      @apply absolute;
+    }
   }
 }
 .gt-dropdown-hover {
@@ -84,7 +86,7 @@
   }
 }
 
-.dropdown-error-msg{
+.dropdown-error-msg {
   @apply absolute left-0.5 -bottom-5 text-danger;
   letter-spacing: 0.6px;
   white-space: nowrap;

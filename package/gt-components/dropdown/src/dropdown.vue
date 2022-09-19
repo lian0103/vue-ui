@@ -86,9 +86,14 @@ export default {
     });
 
     const classShowComputed = computed(() => {
+      console.log('classShowComputed', classShowComputed.value);
+      let hadOpend =
+        classShowComputed.value && classShowComputed.value.includes('tp-aniIn');
       return props.clicked && isShow.value
         ? 'gt-dropdown-items tp-aniIn'
-        : 'gt-dropdown-items tp-aniOut';
+        : hadOpend
+        ? 'gt-dropdown-items tp-aniOut'
+        : 'gt-dropdown-items';
     });
 
     const labelComputed = computed(() => {
@@ -165,8 +170,8 @@ export default {
           // console.log('rootTop.value', rootTop.value);
           if (rootObj[id]) {
             popupStyle.value = {
-              top:  42 + 'px',
-              left:'0px',
+              top: 42 + 'px',
+              left: '0px',
               width: maxWidth.value + 48 + 'px',
             };
           }

@@ -275,7 +275,7 @@ const popupStyleComputed = computed(() => {
 });
 
 const popupClassComputed = computed(() => {
-  return isTimePickerShow.value ? 'tp-aniIn' : 'tp-aniOut';
+  return isSelect.value ? isTimePickerShow.value ? 'tp-aniIn' : 'tp-aniOut' : '';
 });
 
 const handleHourMinuteChange = (target, value, idx) => {
