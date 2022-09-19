@@ -5,7 +5,7 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | width | 寬度 | Number | | |
-| type | 類型 | String | second、yellow、red、black、white  | second |
+| type | 類型 | String | second、green、yellow、red、black、white  | second |
 | pill | 膠囊型 | Boolean | | |
 | flat | 文字型 | Boolean | | |
 | noBorder | 無框型 | Boolean | | |
