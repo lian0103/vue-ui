@@ -29,6 +29,7 @@
         <g-title :level="2" class="mb-3">PILL</g-title>
         <div class="flex justify-between mb-3">
           <g-button pill>按鈕</g-button>
+          <g-button pill type="green">按鈕</g-button>
           <g-button pill type="yellow">按鈕</g-button>
           <g-button pill type="red">按鈕</g-button>
           <g-button pill type="white">按鈕</g-button>
@@ -39,6 +40,7 @@
 
         <div class="flex justify-between mb-3">
           <g-button flat>按鈕</g-button>
+          <g-button flat type="green">按鈕</g-button>
           <g-button flat type="yellow">按鈕</g-button>
           <g-button flat type="red">按鈕</g-button>
           <g-button flat type="white">按鈕</g-button>
@@ -50,6 +52,9 @@
 
         <div class="flex justify-between mb-3">
           <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
+          <g-button flat type="green"
+            ><g-icon name="chevron-left" />上一頁</g-button
+          >
           <g-button flat type="yellow"
             ><g-icon name="chevron-left" />上一頁</g-button
           >
@@ -62,6 +67,9 @@
         </div>
         <div class="flex justify-between mb-3">
           <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
+          <g-button flat type="green"
+            ><g-icon name="chevron-right" />下一頁</g-button
+          >
           <g-button flat type="yellow"
             ><g-icon name="chevron-right" />下一頁</g-button
           >
@@ -78,6 +86,7 @@
         <g-title :level="2" class="mb-3">ROUND</g-title>
         <div class="w-full flex justify-between mb-3">
           <g-button round>按鈕</g-button>
+          <g-button round type="green">按鈕</g-button>
           <g-button round type="yellow">按鈕</g-button>
           <g-button round type="red">按鈕</g-button>
           <g-button round type="black">按鈕</g-button>

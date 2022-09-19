@@ -1,3 +1,12 @@
+.gt-btn-green{
+  --btn-color: #32A03D;
+  --btn-color-hover: #EEF5EB;
+  --text-color: #fff;
+  &.gt-btn-round-no-border {
+    --btn-color-hover: #26832f;
+  }
+}
+
 .gt-btn-second {
   --btn-color: #517bba;
   --btn-color-hover: #dad9f3;

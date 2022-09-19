@@ -51,6 +51,9 @@ const classStr = computed(() => {
 
 const typeStr = computed(() => {
   switch (type) {
+    case 'green': {
+      return 'gt-btn-green';
+    }
     case 'second': {
       return 'gt-btn-second';
     }
