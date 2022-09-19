@@ -39,7 +39,7 @@ const {
 
 const collapsed = ref(collapsedFromParent);
 
-const initProcess = ref(true);
+const isCollapsedAndHadOpenedOne = ref(false);
 
 const menu = menuFromParent.map((item, idx) => {
   // console.log(info.menuGroupActiveArr);
@@ -136,10 +136,13 @@ const handleGroupClick = (item, gIdx) => {
     info.menuGroupActiveArr = collapsed.value
       ? [gIdx + 1]
       : [...info.menuGroupActiveArr, gIdx + 1];
+
+    isCollapsedAndHadOpenedOne.value = collapsed.value ? gIdx + 1 : false;
   } else {
     info.menuGroupActiveArr = info.menuGroupActiveArr.filter(
       (i) => i != gIdx + 1
     );
+    isCollapsedAndHadOpenedOne.value = false;
   }
   // console.log(info);
 };
@@ -169,9 +172,17 @@ watch(
   }
 );
 
-onMounted(() => {
-  initProcess.value = false;
-});
+watch(
+  () => isCollapsedAndHadOpenedOne.value,
+  (val) => {
+    let dom = document.getElementsByClassName('gt-sidebar');
+    if (val && collapsed.value) {
+      dom[0].classList.add('fix-area');
+    } else {
+      dom[0].classList.remove('fix-area');
+    }
+  }
+);
 </script>
 <script>
 export default {

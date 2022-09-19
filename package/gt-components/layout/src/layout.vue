@@ -5,7 +5,7 @@ import { ref, getCurrentInstance, computed, watch } from 'vue';
 
 const instance = getCurrentInstance();
 
-const { headText, title, menuTabs, collapsed } = defineProps({
+const { headText, title, menuTabs, collapsed, onlyOneLevel } = defineProps({
   headText: {
     type: String,
     default: '',
@@ -45,8 +45,8 @@ const handleMenuTabCallback = (target = {}) => {
   let { path } = target;
   if (path && Router) {
     Router.push(path);
-  }else{
-    console.log('target is empty')
+  } else {
+    console.log('target is empty');
   }
 };
 
@@ -86,33 +86,22 @@ export default {
           width: isCollapsed ? '80px' : onlyOneLevel ? '220px' : '300px',
         }"
       >
-        <div class="flex flex-col">
-          <div class="gt-menu-box"><slot name="sidebar" /></div>
+        <div class="gt-menu-box"><slot name="sidebar" /></div>
 
-          <div class="gt-bottomLogo">
-            <img src="../../../assets/images/gt-logo.png" alt="" />
-            <img
-              v-if="!isCollapsed"
-              src="../../../assets/images/gt-logo-text.png"
-              alt=""
-            />
-          </div>
+        <div class="gt-bottomLogo">
+          <img src="../../../assets/images/gt-logo.png" alt="" />
+          <img
+            v-if="!isCollapsed"
+            src="../../../assets/images/gt-logo-text.png"
+            alt=""
+          />
         </div>
       </div>
 
-      <div
-        class="gt-content-wrapper"
-        :style="{
-          width: isCollapsed
-            ? 'calc(100% - 80px)'
-            : onlyOneLevel
-            ? 'calc(100% - 220px)'
-            : 'calc(100% - 300px)',
-        }"
-      >
+      <div class="gt-content-wrapper">
         <g-tabs
           name="layoutTab"
-          v-if="menuTabs && menuTabs.length > 0"
+          v-if="onlyOneLevel && menuTabs && menuTabs.length > 0"
           class="gt-route-tabs"
           :tabs="menuTabs"
           :clickCallback="handleMenuTabCallback"
