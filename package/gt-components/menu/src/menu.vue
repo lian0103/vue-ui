@@ -119,9 +119,12 @@ const handleGroupClick = (item, gIdx) => {
     if (Router) {
       if (Router.currentRoute.value.meta.title != item.label) {
         // console.log(item.children[0].path);
-
-        instance.appContext.config.globalProperties.handleLayoutTablayoutTab(
+        // console.log(item.children[0].name);
+        instance.appContext.config.globalProperties.handleCurrentlayoutTab(
           item.children[0].name
+        );
+        instance.appContext.config.globalProperties.handleTabslayoutTab(
+          item.children
         );
 
         // instance.refs.layoutTab.current.value = item.children[0].name;

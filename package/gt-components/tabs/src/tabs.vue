@@ -3,7 +3,13 @@ import { ref, useSlots, getCurrentInstance, computed } from 'vue';
 
 const instance = getCurrentInstance();
 
-const { name, tabs, clickCallback, currentTab, layoutMode } = defineProps({
+const {
+  name,
+  tabs: tabsFromParent,
+  clickCallback,
+  currentTab,
+  layoutMode,
+} = defineProps({
   name: {
     type: String,
   },
@@ -25,18 +31,25 @@ const { name, tabs, clickCallback, currentTab, layoutMode } = defineProps({
 });
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
+
+const tabs = ref(tabsFromParent);
 const current = ref(currentTab);
 
-instance.appContext.config.globalProperties['handleLayoutTab' + name] = (
+instance.appContext.config.globalProperties['handleCurrent' + name] = (
   tabName
 ) => {
   current.value = tabName;
+};
+instance.appContext.config.globalProperties['handleTabs' + name] = (
+  newTabs
+) => {
+  tabs.value = newTabs;
 };
 
 const handleTabChange = (name) => {
   current.value = name;
   if (clickCallback) {
-    let toTab = tabs.filter((item) => item.name == name)[0] || {};
+    let toTab = tabs.value.filter((item) => item.name == name)[0] || {};
     clickCallback(toTab);
   }
 };
