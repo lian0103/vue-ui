@@ -1,17 +1,60 @@
 .gt-tabs-wrapper {
   width: 100%;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: #d9d9d9;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #aaaaaa;
+    &:hover {
+      background-color: #666666;
+    }
+  }
+
+  &.layoutMode {
+    height: 45px;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin: auto;
+    padding-bottom: 10px;
+  }
+
+  &.mouse-in {
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 4px;
+      background-color: #d9d9d9;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 0px;
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #666666;
+      }
+    }
+  }
+
   .tabs {
     @apply flex justify-start items-center;
     height: 32px;
-    @apply border-b border-solid border-color3;
     .tab {
       @apply cursor-pointer;
+      width: fit-content;
+      white-space: nowrap;
       height: 32px;
       font-weight: 400;
       font-size: 18px;
       line-height: 24px;
       padding: 0 32px 7px 32px;
       @apply text-gray4 bg-gray3;
+      @apply border-b border-solid border-color3;
       &.current {
         @apply text-main bg-gray3 border-primaryDarker;
         border-bottom-width: 3px;

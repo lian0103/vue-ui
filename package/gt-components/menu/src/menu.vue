@@ -15,6 +15,7 @@ const {
   menu: menuFromParent,
   activePath,
   collapsed: collapsedFromParent,
+  onlyOneLevel,
 } = defineProps({
   active: {
     type: String,
@@ -27,6 +28,10 @@ const {
     default: [],
   },
   collapsed: {
+    type: Boolean,
+    default: false,
+  },
+  onlyOneLevel: {
     type: Boolean,
     default: false,
   },
@@ -104,10 +109,24 @@ const menuComputed = computed(() => {
 
 const handleGroupClick = (item, gIdx) => {
   // console.log(collapsed.value);
+  const Router = instance.appContext.config.globalProperties.$router || null;
   let { active, path } = item;
   if (path) {
-    if (instance.appContext.config.globalProperties.$router) {
-      instance.appContext.config.globalProperties.$router.push(path);
+    if (Router) {
+      Router.push(path);
+    }
+  } else if (onlyOneLevel) {
+    if (Router) {
+      if (Router.currentRoute.value.meta.title != item.label) {
+        // console.log(item.children[0].path);
+
+        instance.appContext.config.globalProperties.handleLayoutTablayoutTab(
+          item.children[0].name
+        );
+
+        // instance.refs.layoutTab.current.value = item.children[0].name;
+        Router.push(item.children[0].path);
+      }
     }
   } else if (!active) {
     info.menuGroupActive = gIdx + 1;
@@ -167,16 +186,19 @@ export default {
     >
       <div class="menu-text">
         <div class="left">
-          <g-icon
-            v-if="item.icon || collapsed"
-            :name="item.icon || 'items'"
-            size="md"
-          />
+          <div class="iconBox" :class="collapsed ? 'collapesed' : ''">
+            <g-icon
+              v-if="item.icon || collapsed"
+              :name="item.icon || 'items'"
+              size="md"
+            />
+          </div>
+
           <span v-if="!collapsed">{{ item.label }}</span>
         </div>
 
         <g-icon
-          v-if="!item.path && !collapsed"
+          v-if="!item.path && !collapsed && !onlyOneLevel"
           name="chevron-up"
           :style="item.active ? {} : { transform: 'rotate(180deg)' }"
           size="md"
@@ -184,7 +206,7 @@ export default {
         />
       </div>
 
-      <template v-if="item.children.length > 0">
+      <template v-if="item.children.length > 0 && !onlyOneLevel">
         <div
           class="childBox"
           :style="

@@ -138,6 +138,7 @@ const icons = [
   'store',
   'tool',
   'user',
+  'menu'
 ];
 </script>
 

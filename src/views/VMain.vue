@@ -1,8 +1,16 @@
 <script setup>
-import { onMounted, onBeforeUpdate, computed, ref , getCurrentInstance } from 'vue';
-import { useRouter } from 'vue-router';
+import {
+  onMounted,
+  onBeforeUpdate,
+  computed,
+  ref,
+  getCurrentInstance,
+  watch,
+} from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import gsap from 'gsap';
 import packageMap from '../../package/components.json';
+import { set } from '@vueuse/core';
 
 const instance = getCurrentInstance();
 
@@ -14,7 +22,7 @@ const nameComputed = computed(() => {
 });
 
 // console.log("packagesList",packagesList)
-const appMenu = ref(null)
+const appMenu = ref(null);
 
 const packagesCompNameList = Object.keys(packageMap);
 
@@ -22,11 +30,12 @@ const activePath = ref(Router.currentRoute.value.path);
 
 const menuRoutes = [
   {
-    label: '文件',
+    label: '指引',
     icon: 'tool',
     children: [
       {
-        label: '指引',
+        name: 'README.md',
+        label: 'README.md',
         icon: 'file',
         path: '/doc',
       },
@@ -38,6 +47,7 @@ const menuRoutes = [
     children: [
       ...packagesCompNameList.map((name) => {
         return {
+          name: name,
           label: name,
           icon: '',
           path: `/gt/${name}`,
@@ -47,27 +57,36 @@ const menuRoutes = [
   },
 ];
 
+const menuChildrenComputed = computed({
+  get() {
+    return (
+      menuRoutes.filter(
+        (item) => item.label === Router.currentRoute.value?.meta?.title
+      )[0]?.children || []
+    );
+  },
+});
+
 const handleCollapsed = (val) => {
   // console.log('handleCollapsed',val)
   instance.refs.appMenu.collapsed = val;
 };
 
 onMounted(() => {
-  const timeline = gsap.timeline({ defaults: { duration: 1 } });
-  timeline
-    .from('.gt-e-menu', { x: '-100%', ease: 'power1.in' })
-    .from('.gt-header', { y: '-100%' })
-    .fromTo('.gt-content', { opacity: 0 }, { opacity: 1 });
+  // const timeline = gsap.timeline({ defaults: { duration: 1 } });
+  // timeline
+  //   .from('.gt-e-menu', { x: '-100%', ease: 'power1.in' })
+  //   .from('.gt-header', { y: '-100%' })
+  // .fromTo('.gt-content .innerWrapper', { opacity: 0 }, { opacity: 1 });
 });
 
 onBeforeUpdate(() => {
-  const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
-  timeline
-    .to('.gt-content', { opacity: 0 })
-    // .from('.gt-header', { y: '-100%' })
-    .fromTo('.gt-content', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
+  // const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
+  // timeline
+  //   .to('.gt-content .innerWrapper', { opacity: 0 })
+  // .from('.gt-header', { y: '-100%' })
+  // .fromTo('.gt-content .innerWrapper', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
 });
-
 </script>
 
 <template>
@@ -76,6 +95,8 @@ onBeforeUpdate(() => {
     headText="Great Tree UI"
     :title="nameComputed"
     @collapsed="handleCollapsed"
+    :menuTabs="menuChildrenComputed"
+    :onlyOneLevel="true"
   >
     <template #sidebar>
       <g-menu
@@ -84,6 +105,7 @@ onBeforeUpdate(() => {
         :activePath="activePath"
         :menu="menuRoutes"
         :collapsed="false"
+        :onlyOneLevel="true"
       />
     </template>
     <template #header>

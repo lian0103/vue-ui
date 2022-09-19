@@ -7,7 +7,7 @@ const RouteTabs = [{ name: 'child-route A' , path:'/icon' }, { name: 'child-rout
 
 <template>
   <div class="w-full mx-auto border-2">
-    <g-layout class="layout" headText="Great Tree UI" title="hello" :menuTabs="RouteTabs">
+    <g-layout class="layout" headText="Great Tree UI" title="hello" :menuTabs="RouteTabs" :onlyOneLevel="true">
       <template #header>
         <div class="w-1/4 flex justify-center items-center px-4">
           <span>v22</span>

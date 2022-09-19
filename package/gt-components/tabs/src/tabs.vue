@@ -1,7 +1,12 @@
 <script setup>
-import { ref, useSlots } from 'vue';
+import { ref, useSlots, getCurrentInstance, computed } from 'vue';
 
-const { tabs, clickCallback, currentTab } = defineProps({
+const instance = getCurrentInstance();
+
+const { name, tabs, clickCallback, currentTab, layoutMode } = defineProps({
+  name: {
+    type: String,
+  },
   tabs: {
     type: Array,
     default: [{ name: 'tab1' }, { name: 'tab2' }],
@@ -13,23 +18,41 @@ const { tabs, clickCallback, currentTab } = defineProps({
   clickCallback: {
     type: Function,
   },
+  layoutMode: {
+    type: Boolean,
+    default: false,
+  },
 });
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
+const current = ref(currentTab);
 
-// console.log('currentTab',currentTab)
-
-const current = tabs.find((item) => item.name == currentTab)
-  ? ref(currentTab)
-  : ref(tabs[0].name);
+instance.appContext.config.globalProperties['handleLayoutTab' + name] = (
+  tabName
+) => {
+  current.value = tabName;
+};
 
 const handleTabChange = (name) => {
+  current.value = name;
   if (clickCallback) {
-    let toTab = tabs.filter((item) => item.name == name)[0] || null;
+    let toTab = tabs.filter((item) => item.name == name)[0] || {};
     clickCallback(toTab);
   }
-  current.value = name;
 };
+
+const isMouseIn = ref(false);
+
+const classComputed = computed(() => {
+  let arr = [];
+  if (isMouseIn.value) {
+    arr.push('mouse-in');
+  }
+  if (layoutMode) {
+    arr.push('layoutMode');
+  }
+  return arr;
+});
 </script>
 <script>
 export default {
@@ -37,7 +60,12 @@ export default {
 };
 </script>
 <template>
-  <div class="gt-tabs-wrapper">
+  <div
+    class="gt-tabs-wrapper"
+    :class="classComputed"
+    @mouseenter="isMouseIn = true"
+    @mouseleave="isMouseIn = false"
+  >
     <div class="tabs">
       <div
         class="tab"
