@@ -96,7 +96,6 @@ onBeforeUpdate(() => {
     :title="nameComputed"
     @collapsed="handleCollapsed"
     :menuTabs="menuChildrenComputed"
-    :onlyOneLevel="true"
   >
     <template #sidebar>
       <g-menu
@@ -105,7 +104,6 @@ onBeforeUpdate(() => {
         :activePath="activePath"
         :menu="menuRoutes"
         :collapsed="false"
-        :onlyOneLevel="true"
       />
     </template>
     <template #header>

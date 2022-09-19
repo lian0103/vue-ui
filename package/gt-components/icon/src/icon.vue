@@ -1,31 +1,38 @@
 <script>
-const fixPosition = ['lock','store','user']
+const fixPosition = ['lock', 'store', 'user'];
 
 export default {
-  name: "GIcon",
+  name: 'GIcon',
   props: {
     name: {
       type: String,
       require: true,
     },
+    classes: {
+      type: String,
+    },
     size: {
       type: String,
-      default: "md",
+      default: 'md',
     },
   },
   computed: {
     clz() {
-      let result = {
-        "gt-icon": true,
-      };
-      result["gt-icon-" + this.name] = true;
-      result["gt-icon-" + this.size] = true;
+      let arr = ['gt-icon', `gt-icon-${this.size}`];
 
-      if(fixPosition.includes(this.name)){
-        result['gt-icon-fix'] = true;
+      if (this.name) {
+        arr.push(`gt-icon-${this.name}`);
       }
 
-      return result;
+      if (this.classes) {
+        arr.push(this.classes);
+      }
+
+      if (fixPosition.includes(this.name)) {
+        arr.push('gt-icon-fix');
+      }
+
+      return arr;
     },
   },
   data() {
@@ -35,5 +42,5 @@ export default {
 </script>
 
 <template>
-  <i :class='clz'></i>
+  <i :class="clz"></i>
 </template>

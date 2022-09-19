@@ -27,8 +27,10 @@ const icons = [
   'store',
   'tool',
   'user',
-  'menu'
+  'menu',
 ];
+
+const customIconClasses = `寫法: <g-icon classes="fa-solid fa-store" />。渲染結果:<i class="gt-icon gt-icon-md fa-solid fa-store"></i>`;
 </script>
 
 <template>
@@ -56,4 +58,8 @@ const icons = [
       </div>
     </span>
   </div>
+
+  <g-title :level="3" class="mb-3 w-full">自定義classes</g-title>
+  <g-icon classes="fa-solid fa-store" />
+  {{ customIconClasses }}
 </template>
