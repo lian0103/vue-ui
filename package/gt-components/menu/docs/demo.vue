@@ -4,17 +4,19 @@ const instance = getCurrentInstance();
 const menuRoutes = [
   {
     label: 'group1',
-    icon: 'user',
+    icon: 'info',
     children: [
       {
         label: 'route1',
         icon: '',
         path: 'doc',
+        iconClasses:'fa-solid fa-store'
       },
       {
         label: 'route2',
         icon: '',
         path: '456',
+        iconClasses:'fa-solid fa-store'
       },
       {
         label: 'route3',

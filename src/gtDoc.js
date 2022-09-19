@@ -138,8 +138,10 @@ const icons = [
   'store',
   'tool',
   'user',
-  'menu'
+  'menu',
 ];
+
+const customIconClasses = '寫法: <g-icon classes="fa-solid fa-store" />。渲染結果:<i class="gt-icon gt-icon-md fa-solid fa-store"></i>';
 </script>
 
 <template>
@@ -167,6 +169,10 @@ const icons = [
       </div>
     </span>
   </div>
+
+  <g-title :level="3" class="mb-3 w-full">自定義classes</g-title>
+  <g-icon classes="fa-solid fa-store" />
+  {{ customIconClasses }}
 </template>
   \`\`\`  `,
     'title': ` \`\`\` html 
@@ -464,7 +470,7 @@ const RouteTabs = [{ name: 'child-route A' , path:'/icon' }, { name: 'child-rout
 
 <template>
   <div class="w-full mx-auto border-2">
-    <g-layout class="layout" headText="Great Tree UI" title="hello" :menuTabs="RouteTabs">
+    <g-layout class="layout" headText="Great Tree UI" title="hello" :menuTabs="RouteTabs" :onlyOneLevel="true">
       <template #header>
         <div class="w-1/4 flex justify-center items-center px-4">
           <span>v22</span>
@@ -483,17 +489,19 @@ const instance = getCurrentInstance();
 const menuRoutes = [
   {
     label: 'group1',
-    icon: 'user',
+    icon: 'info',
     children: [
       {
         label: 'route1',
         icon: '',
         path: 'doc',
+        iconClasses:'fa-solid fa-store'
       },
       {
         label: 'route2',
         icon: '',
         path: '456',
+        iconClasses:'fa-solid fa-store'
       },
       {
         label: 'route3',
@@ -893,32 +901,49 @@ const inputs = reactive({
   dropdown0: 2,
   dropdown1: 3,
 });
+
+const options = [
+  { label: 'Aaaa', value: 1 },
+  { label: 'Bbbb', value: 2 },
+  { label: 'Ggggwwwwwwwsssswww', value: 3 },
+];
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">下拉選項</g-title>
+    <div class="w-16">
+      <g-dropdown-item :label="options[0].label" :value="options[0].value" />
+      <g-dropdown-item :label="options[1].label" :value="options[1].value" />
+      <g-dropdown-item :label="options[2].label" :value="options[2].value" />
+    </div>
+
     <g-title :level="2" class="mb-3">下拉選項點擊模式</g-title>
-    <g-dropdown
-      class="mr-4"
-      v-model="inputs.dropdown0"
-      :options="[
-        { label: 'Aaaa', value: 1 },
-        { label: 'Bbbb', value: 2 },
-        { label: 'Ggggwwwwwwwsssswww', value: 3 },
-      ]"
-    />
+    <g-dropdown class="mr-4" v-model="inputs.dropdown0" :options="options" />
 
     <g-title :level="2" class="mb-3">下拉選項停留模式</g-title>
-    <g-dropdown
-      v-model="inputs.dropdown1"
-      :options="[
-        { label: 'Aaaa', value: 1 },
-        { label: 'Bbbb', value: 2 },
-        { label: 'Gggggeeeeewaaaaaaaaaaaaaaassssssssswww', value: 3 },
-      ]"
-      icon
-      hover
-    />
+    <g-dropdown v-model="inputs.dropdown1" :options="options" icon hover />
+  </div>
+</template>
+  \`\`\`  `,
+    'dropdownitem': ` \`\`\` html 
+<script setup>
+    
+const options = [
+  { label: 'Aaaa', value: 1 },
+  { label: 'Bbbb', value: 2 },
+  { label: 'Ggggwwwwwwwsssswww', value: 3 },
+];
+</script>
+
+<template>
+  <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">下拉選項</g-title>
+    <div class="w-16">
+      <g-dropdown-item :label="options[0].label" :value="options[0].value" />
+      <g-dropdown-item :label="options[1].label" :value="options[1].value" />
+      <g-dropdown-item :label="options[2].label" :value="options[2].value" />
+    </div>
   </div>
 </template>
   \`\`\`  `,
@@ -934,7 +959,7 @@ const inputs = reactive({
 <template>
   <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">日期選擇</g-title>
-    <g-time-picker v-model="inputs.time1" format="YYYY-MM-DD" />
+    <g-time-picker v-model="inputs.time1" format="YYYY-MM-DD" :width="250" />
     <p>inputs.time1:{{ inputs.time1 }}</p>
   </div>
 </template>

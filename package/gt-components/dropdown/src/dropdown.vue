@@ -1,7 +1,7 @@
 <script>
 import { h, ref, computed, watch, shallowRef } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
-import GDropdownItem from './dropdownItem.vue';
+import GDropdownItem from '../../dropdownitem/src/dropdownitem.vue';
 import GIcon from '../../icon';
 import { useElementBounding } from '@vueuse/core';
 
@@ -86,7 +86,7 @@ export default {
     });
 
     const classShowComputed = computed(() => {
-      console.log('classShowComputed', classShowComputed.value);
+      // console.log('classShowComputed', classShowComputed.value);
       let hadOpend =
         classShowComputed.value && classShowComputed.value.includes('tp-aniIn');
       return props.clicked && isShow.value
@@ -133,6 +133,7 @@ export default {
           label: item.label,
           value: item.value,
           icon: props.icon,
+          withGDropdown:true,
           parentValue: computed(() => valRef.value),
           handleChildClick: (val) => {
             handleIsShow('childClick');

@@ -30,6 +30,7 @@ import MESSAGE from '../../package/gt-components/message/docs/demo.vue';
 import MESSAGETOAST from '../../package/gt-components/message-toast/docs/demo.vue';
 import FORM from '../../package/gt-components/form/docs/demo.vue';
 import DROPDOWN from '../../package/gt-components/dropdown/docs/demo.vue';
+import DROPDOWNITEM from '../../package/gt-components/dropdownitem/docs/demo.vue';
 import TIMEPICKER from '../../package/gt-components/time-picker/docs/demo.vue';
 import TABLE from '../../package/gt-components/table/docs/demo.vue';
 import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
@@ -63,6 +64,7 @@ const mapObj = {
     'message-toast' : MESSAGETOAST ,
     'form' : FORM ,
     'dropdown' : DROPDOWN ,
+    'dropdownitem' : DROPDOWNITEM ,
     'time-picker' : TIMEPICKER ,
     'table' : TABLE ,
     'pagination' : PAGINATION ,

@@ -26,6 +26,7 @@ import Pagination from './gt-components/pagination/index.js';
 import SortLabel from './gt-components/sort-label/index.js';
 import FilterOption from './gt-components/filter-option/index.js';
 import Dialog from './gt-components/dialog/index.js';
+import Dropdownitem from './gt-components/dropdownitem/index.js';
 
 const components = [
   Button,
@@ -53,7 +54,8 @@ const components = [
   Pagination,
   SortLabel,
   FilterOption,
-  Dialog
+  Dialog,
+  Dropdownitem
 ];
 
 const install = function(Vue, opts = {}) {
@@ -89,7 +91,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.0',
+  version: '1.2.0',
   install,
   Button,
   Icon,
@@ -116,5 +118,6 @@ export default {
   Pagination,
   SortLabel,
   FilterOption,
-  Dialog
+  Dialog,
+  Dropdownitem
 };
