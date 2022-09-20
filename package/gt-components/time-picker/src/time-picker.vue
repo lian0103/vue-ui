@@ -8,26 +8,38 @@ export default {
 import { computed, reactive, ref, shallowRef, watch } from 'vue';
 import { useElementBounding, useWindowSize } from '@vueuse/core';
 import dayjs from 'dayjs/esm';
+import isBetween from 'dayjs/plugin/isBetween';
 import { v4 as uuidv4 } from 'uuid';
 
-const { modelValue, placeholder, format, width } = defineProps({
-  modelValue: {},
-  placeholder: {
-    default: dayjs().format('YYYY-MM-DD HH:mm'),
-  },
-  format: {
-    type: String,
-    default: 'YYYY-MM-DD HH:mm',
-  },
-  width: {
-    type: Number,
-    default: 180,
-  },
-  autoHideLabel: {
-    type: Boolean,
-    default: true,
-  },
-});
+dayjs.extend(isBetween);
+
+const timeRangeFormat = 'YYYY-MM-DD';
+const rangeSelectResult = ref('');
+
+const { modelValue, placeholder, format, width, rangeSelectMode } = defineProps(
+  {
+    modelValue: {},
+    placeholder: {
+      default: dayjs().format('YYYY-MM-DD HH:mm'),
+    },
+    format: {
+      type: String,
+      default: 'YYYY-MM-DD HH:mm',
+    },
+    width: {
+      type: Number,
+      default: 180,
+    },
+    autoHideLabel: {
+      type: Boolean,
+      default: true,
+    },
+    rangeSelectMode: {
+      type: Boolean,
+      default: false,
+    },
+  }
+);
 
 const emit = defineEmits(['update:modelValue']);
 const root = shallowRef();
@@ -35,31 +47,46 @@ const isSelect = ref(false);
 const isMouseIn = ref(false);
 const isTimePickerShow = ref(false);
 const isHourPickerShow = ref(false);
-const curSelect = ref(dayjs());
+const curSelect = rangeSelectMode ? ref([null, null]) : ref(dayjs());
 const curDay = ref(dayjs());
-const curDayIndex = ref(null);
+const curDayIndex = rangeSelectMode ? ref([null, null]) : ref(null);
 const curCalenderInfo = reactive({
   curMonthDayStartIndex: null,
   curMonthDayEndIndex: null,
 });
 
 watch(
-  () => curSelect.value,
+  () => (rangeSelectMode ? curSelect.value[1] : curSelect.value),
   (val, oldVal) => {
-    // console.log('val', val);
-    emit('update:modelValue', curSelect.value?.format(format) || '');
+    if (!rangeSelectMode) {
+      emit('update:modelValue', curSelect.value?.format(format));
+    }
+
+    if (curSelect.value[0] && curSelect.value[1]) {
+      let needReverse = curSelect.value[1].isBefore(
+        curSelect.value[0].format(timeRangeFormat),
+        'day'
+      );
+      let emitVal = needReverse
+        ? `${curSelect.value[1].format(
+            timeRangeFormat
+          )} - ${curSelect.value[0].format(timeRangeFormat)}`
+        : `${curSelect.value[0].format(
+            timeRangeFormat
+          )} - ${curSelect.value[1].format(timeRangeFormat)}`;
+      rangeSelectResult.value = emitVal;
+      emit('update:modelValue', emitVal);
+    }
   }
 );
 
 const eventHandle = () => {
-  //   console.log('aaa');
   isTimePickerShow.value = false;
 };
 
 watch(
   () => isTimePickerShow.value,
   (val, oldVal) => {
-    // console.log('in~', val, document.getElementsByTagName('html'));
     isHourPickerShow.value = false;
     isSelect.value = true;
     if (val && document.getElementsByTagName('html')[0]) {
@@ -75,7 +102,6 @@ watch(
 );
 
 const monthAll = computed(() => {
-  //   console.log('curDay.value', curDay.value);
   return curDay.value ? `${curDay.value.$y}年${curDay.value.$M + 1}月` : '';
 });
 const isMonthAllShow = ref(false);
@@ -98,19 +124,18 @@ const hours = new Array(24).fill('').map((i, idx) => idx);
 const minutes = new Array(60).fill('').map((i, idx) => idx);
 const curHourIndex = ref(hours.findIndex((ele) => ele == curDay.value.$H));
 const curMinuteIndex = ref(minutes.findIndex((ele) => ele == curDay.value.$m));
+const calenderDaysInfo = ref([]);
 
 const calenderDays = computed(() => {
   curCalenderInfo.curMonthDayStartIndex = null;
   curCalenderInfo.curMonthDayEndIndex = null;
   let arr = new Array(42);
   if (curDay.value) {
-    // console.log('curDay.value', curDay.value);
     let { $y: year, $M: month, $D: day, $W: weekday } = curDay.value;
     let { $W: monthStartDayWeekday } = dayjs(new Date(year, month, 1));
-    let { $D: preMonthLastday } = dayjs(new Date(year, month, 1)).subtract(
-      1,
-      'day'
-    );
+    let { $D: preMonthLastday, $M: preMonth } = dayjs(
+      new Date(year, month, 1)
+    ).subtract(1, 'day');
 
     let { $D: monthEndDay, $W: monthEndWeekday } = dayjs(
       new Date(month == 11 ? year + 1 : year, month == 11 ? 0 : month + 1, 1)
@@ -121,28 +146,34 @@ const calenderDays = computed(() => {
     let idx2 = 0;
     for (let index = 0; index < 42; index++) {
       if (rowOnediff - index > 0) {
-        // console.log('in..1');
-        arr[index] = preMonthLastday - rowOnediff + 1 + index;
+        let day = preMonthLastday - rowOnediff + 1 + index;
+        arr[index] = day;
+        calenderDaysInfo.value[index] = dayjs(new Date(year, preMonth, day));
       } else if (
         index < 42 - rowLastPlus + 1 &&
         1 + index - rowOnediff <= monthEndDay
       ) {
-        // console.log('in..2');
         if (!curCalenderInfo.curMonthDayStartIndex) {
           curCalenderInfo.curMonthDayStartIndex = index;
         }
-        arr[index] = 1 + index - rowOnediff;
+        let day = 1 + index - rowOnediff;
+        arr[index] = day;
+        calenderDaysInfo.value[index] = dayjs(new Date(year, month, day));
       } else {
-        // console.log('in..3');
         if (!curCalenderInfo.curMonthDayEndIndex) {
           curCalenderInfo.curMonthDayEndIndex = index;
         }
-        arr[index] = 1 + idx2;
+        let day = 1 + idx2;
+        arr[index] = day;
+        calenderDaysInfo.value[index] = dayjs(new Date(year, month, day)).add(
+          1,
+          'month'
+        );
         idx2++;
       }
     }
 
-    // console.log(arr);
+    // console.log(calenderDaysInfo.value);
   }
   return arr;
 });
@@ -150,7 +181,33 @@ const calenderDays = computed(() => {
 const getCalenderClass = (cdStr, idx) => {
   let rowClass = 'calDay-r-' + parseInt(idx / 7) + ' calDay-c-' + (idx % 7);
 
-  if (curDayIndex.value != null && idx == curDayIndex.value) {
+  if (
+    rangeSelectMode &&
+    (curSelect.value[0]?.isSame(calenderDaysInfo.value[idx], 'day') ||
+      curSelect.value[1]?.isSame(calenderDaysInfo.value[idx], 'day'))
+  ) {
+    rowClass += ' curSelect';
+  }
+
+  if (
+    rangeSelectMode &&
+    curSelect.value[0] &&
+    curSelect.value[1] &&
+    dayjs(calenderDaysInfo.value[idx]).isBetween(
+      curSelect.value[0]?.format(timeRangeFormat),
+      curSelect.value[1]?.format(timeRangeFormat),
+      'day',
+      ')'
+    )
+  ) {
+    rowClass += ' curSelectRange';
+  }
+
+  if (
+    curDayIndex.value != null &&
+    idx == curDayIndex.value &&
+    !rangeSelectMode
+  ) {
     rowClass += ' curSelect';
   }
 
@@ -182,21 +239,35 @@ const handleCalDayClick = (idx) => {
       ? curDay.value.$y - 1
       : curDay.value.$y;
 
-  curSelect.value = dayjs(
-    new Date(
-      year,
-      month,
-      calenderDays.value[idx],
-      curHourIndex.value ? hours[curHourIndex.value] : 0,
-      curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0
-    )
+  let selectTime = new Date(
+    year,
+    month,
+    calenderDays.value[idx],
+    curHourIndex.value ? hours[curHourIndex.value] : 0,
+    curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0
   );
 
-  curDayIndex.value = idx;
+  if (rangeSelectMode) {
+    if (!curSelect.value[0]) {
+      curSelect.value[0] = dayjs(calenderDaysInfo.value[idx]);
+    } else if (!curSelect.value[1]) {
+      curSelect.value[1] = dayjs(calenderDaysInfo.value[idx]);
+    } else {
+      curSelect.value = [null, null];
+    }
+  }
+
+  if (!rangeSelectMode) {
+    curSelect.value = dayjs(selectTime);
+    curDayIndex.value = idx;
+  }
 };
 
 const handleMonthPre = () => {
-  curDayIndex.value = null;
+  if (!rangeSelectMode) {
+    curDayIndex.value = null;
+  }
+
   curDay.value = dayjs(
     new Date(
       curDay.value.$M == 0 ? curDay.value.$y - 1 : curDay.value.$y,
@@ -207,7 +278,9 @@ const handleMonthPre = () => {
 };
 
 const handleMonthNext = () => {
-  curDayIndex.value = null;
+  if (!rangeSelectMode) {
+    curDayIndex.value = null;
+  }
   curDay.value = dayjs(
     new Date(
       curDay.value.$M == 11 ? curDay.value.$y + 1 : curDay.value.$y,
@@ -222,7 +295,9 @@ const handleMonthAll = () => {
 };
 
 const handleMonthChange = (month) => {
-  curDayIndex.value = null;
+  if (!rangeSelectMode) {
+    curDayIndex.value = null;
+  }
   if (month == 'current') {
     isMonthAllShow.value = !isMonthAllShow.value;
     return true;
@@ -234,34 +309,28 @@ const handleMonthChange = (month) => {
 };
 
 const handleUseNow = () => {
-  curDay.value = dayjs();
-  curSelect.value = dayjs();
-  curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.$H);
-  curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.$m);
-  // console.log(' curDay.value', curDay.value);
-  calenderDays.value.forEach((day, idx) => {
-    if (
-      day == curDay.value.$D &&
-      idx >= curCalenderInfo.curMonthDayStartIndex &&
-      idx < curCalenderInfo.curMonthDayEndIndex
-    ) {
-      curDayIndex.value = idx;
-    }
-  });
+  if (!rangeSelectMode) {
+    curDay.value = dayjs();
+    curSelect.value = dayjs();
+    curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.$H);
+    curMinuteIndex.value = minutes.findIndex((ele) => ele == curDay.value.$m);
+    calenderDays.value.forEach((day, idx) => {
+      if (
+        day == curDay.value.$D &&
+        idx >= curCalenderInfo.curMonthDayStartIndex &&
+        idx < curCalenderInfo.curMonthDayEndIndex
+      ) {
+        curDayIndex.value = idx;
+      }
+    });
+  }
+
   // isTimePickerShow.value = false;
 };
 
-const {
-  height: rootHeight,
-  width: rootWidth,
-  top: rootTop,
-  bottom: rootBottom,
-  right: rootRight,
-  left: rootLeft,
-  update: updateRoot,
-} = useElementBounding(root);
+const { right: rootRight } = useElementBounding(root);
 
-const { width: winWidth, height: winHeight } = useWindowSize();
+const { width: winWidth } = useWindowSize();
 
 const popupStyleComputed = computed(() => {
   if (root) {
@@ -275,21 +344,30 @@ const popupStyleComputed = computed(() => {
 });
 
 const popupClassComputed = computed(() => {
-  return isSelect.value ? isTimePickerShow.value ? 'tp-aniIn' : 'tp-aniOut' : '';
+  let arr = [];
+
+  if(isSelect.value){
+    arr.push(isTimePickerShow.value?'tp-aniIn':'tp-aniOut')
+  }
+  if(rangeSelectMode){
+    arr.push('rangeSelectMode')
+  }
+  return arr;
 });
 
 const handleHourMinuteChange = (target, value, idx) => {
-  // console.log(curSelect.value);
-  switch (target) {
-    case 'hour': {
-      curSelect.value = curSelect.value.hour(value);
-      curHourIndex.value = idx;
-      break;
-    }
-    case 'minute': {
-      curSelect.value = curSelect.value.minute(value);
-      curMinuteIndex.value = idx;
-      break;
+  if (!rangeSelectMode) {
+    switch (target) {
+      case 'hour': {
+        curSelect.value = curSelect.value.hour(value);
+        curHourIndex.value = idx;
+        break;
+      }
+      case 'minute': {
+        curSelect.value = curSelect.value.minute(value);
+        curMinuteIndex.value = idx;
+        break;
+      }
     }
   }
 };
@@ -317,7 +395,9 @@ const handleTimePick = () => {
       "
       @click.stop="isTimePickerShow = !isTimePickerShow"
       >{{ !isTimePickerShow & isSelect && autoHideLabel ? '' : '時間: ' }}
-      <span>{{ curSelect?.format(format) }}</span>
+      <span>{{
+        rangeSelectMode ? rangeSelectResult : curSelect?.format(format)
+      }}</span>
     </span>
     <g-icon
       class="icon"
@@ -332,7 +412,7 @@ const handleTimePick = () => {
       :class="popupClassComputed"
       :style="popupStyleComputed"
     >
-      <div class="calender">
+      <div class="calender" :class="rangeSelectMode?'rangeSelectMode':''">
         <span class="month-pre" @click.stop="handleMonthPre">
           <g-icon name="chevron-left"
         /></span>
@@ -362,9 +442,13 @@ const handleTimePick = () => {
           >
             {{ cdStr }}
           </span>
-          <div class="time-select" @click.stop="handleTimePick">
+          <div
+            class="time-select"
+            v-if="!rangeSelectMode"
+            @click.stop="handleTimePick"
+          >
             {{
-              curSelect
+              !rangeSelectMode && curSelect
                 ? curSelect?.format('YYYY-MM-DD HH:mm').split(' ')[1]
                 : '請選擇時間'
             }}
@@ -400,7 +484,10 @@ const handleTimePick = () => {
             </div>
           </div>
 
-          <span class="use-cur-time" @click.stop="handleUseNow"
+          <span
+            class="use-cur-time"
+            v-if="!rangeSelectMode"
+            @click.stop="handleUseNow"
             >套用現在時間</span
           >
 

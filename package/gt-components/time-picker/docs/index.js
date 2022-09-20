@@ -8,6 +8,8 @@ module.exports = {
 | format | 格式。參考dayjs format | String |  | YYYY-MM-DD HH:mm |
 | width | 寬度 | Number |  | 180 |
 | autoHideLabel | 標籤選取後隱藏 | Boolean |  | true |
+| rangeSelectMode | 日期範圍選擇模式 | Boolean |  | false |
+
 `,
   method: `
 ## 方法
