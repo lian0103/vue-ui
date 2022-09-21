@@ -1,5 +1,5 @@
 module.exports = {
-  show: ['prop','slot'],
+  show: ['prop', 'event', 'slot'],
   prop: `
 ## 屬性
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
@@ -22,7 +22,7 @@ module.exports = {
 ## 事件
 | 事件 | 說明 | 參數 |
 | - | - | - |
-| | | |
+| collapsed | 接收collapsed變動的回傳 | |
 
 `,
   slot: `

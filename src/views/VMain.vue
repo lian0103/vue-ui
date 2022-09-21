@@ -7,10 +7,12 @@ import {
   getCurrentInstance,
   watch,
 } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import packageMap from '../../package/components.json';
-import { set } from '@vueuse/core';
+
+gsap.registerPlugin(ScrollToPlugin)
 
 const instance = getCurrentInstance();
 
@@ -23,6 +25,8 @@ const nameComputed = computed(() => {
 
 // console.log("packagesList",packagesList)
 const appMenu = ref(null);
+
+const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 
 const packagesCompNameList = Object.keys(packageMap);
 
@@ -70,23 +74,29 @@ const menuChildrenComputed = computed({
 const handleCollapsed = (val) => {
   // console.log('handleCollapsed',val)
   instance.refs.appMenu.collapsed = val;
+  appMenuCollaped.value = val;
+  localStorage.setItem('app-menu', val);
 };
 
 onMounted(() => {
-  // const timeline = gsap.timeline({ defaults: { duration: 1 } });
-  // timeline
-  //   .from('.gt-e-menu', { x: '-100%', ease: 'power1.in' })
-  //   .from('.gt-header', { y: '-100%' })
-  // .fromTo('.gt-content .innerWrapper', { opacity: 0 }, { opacity: 1 });
+  const timeline = gsap.timeline({ defaults: { duration: 1 } });
+  timeline
+    .from('.gt-e-menu', { x: '-100%', ease: 'power1.in' })
+    .from('.gt-header', { y: '-100%' })
+    .fromTo('.gt-content', { opacity: 0 }, { opacity: 1 });
 });
 
-onBeforeUpdate(() => {
-  // const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
-  // timeline
-  //   .to('.gt-content .innerWrapper', { opacity: 0 })
-  // .from('.gt-header', { y: '-100%' })
-  // .fromTo('.gt-content .innerWrapper', { opacity: 0 }, { opacity: 1, ease: 'power1.in' });
-});
+watch(
+  () => Router.currentRoute.value.fullPath,
+  (val) => {
+    const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
+    timeline
+      .to('.gt-content ', { opacity: 0 })
+      .from('.gt-header', { y: '-100%' })
+      .fromTo('.gt-content', { opacity: 0 }, { opacity: 1, ease: 'power1.in' })
+      .to('.gt-content', { scrollTo: { y: 0 } });
+  }
+);
 </script>
 
 <template>
@@ -94,6 +104,7 @@ onBeforeUpdate(() => {
     class="layout"
     headText="Great Tree UI"
     :title="nameComputed"
+    :collapsed="appMenuCollaped"
     @collapsed="handleCollapsed"
     :menuTabs="menuChildrenComputed"
   >
@@ -103,7 +114,7 @@ onBeforeUpdate(() => {
         class="mx-auto gt-e-menu"
         :activePath="activePath"
         :menu="menuRoutes"
-        :collapsed="false"
+        :collapsed="appMenuCollaped"
       />
     </template>
     <template #header>
