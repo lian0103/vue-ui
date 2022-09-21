@@ -1,5 +1,6 @@
 <script setup>
-import { ref, useSlots, getCurrentInstance, computed } from 'vue';
+import { ref, useSlots, getCurrentInstance, computed, onMounted } from 'vue';
+import { useElementBounding } from '@vueuse/core';
 
 const instance = getCurrentInstance();
 
@@ -54,6 +55,9 @@ const handleTabChange = (name) => {
   }
 };
 
+const tabRef = ref(null);
+const { width: widthTabs } = useElementBounding(tabRef);
+
 const isMouseIn = ref(false);
 
 const classComputed = computed(() => {
@@ -64,8 +68,12 @@ const classComputed = computed(() => {
   if (layoutMode) {
     arr.push('layoutMode');
   }
+  if( parseInt(widthTabs.value) > 1440){
+    arr.push('overTabsWrapper');
+  }
   return arr;
 });
+
 </script>
 <script>
 export default {
@@ -79,7 +87,7 @@ export default {
     @mouseenter="isMouseIn = true"
     @mouseleave="isMouseIn = false"
   >
-    <div class="tabs">
+    <div class="tabs" ref="tabRef">
       <div
         class="tab"
         v-for="tab in tabs"
