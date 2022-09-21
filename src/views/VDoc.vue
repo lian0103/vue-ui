@@ -18,7 +18,7 @@ package
     
 
 ## 開發專案配置
-- 使用**.npmrc**設定檔
+- 使用 **.npmrc** 設定檔
 \`\`\`npmrc
 # .npmrc
 
@@ -27,8 +27,8 @@ package
 
 # 使用npm安裝套件時 會優先指向這個私有倉庫 如果沒有才會再去公開庫查找
 registry=https://npmrg.greattree.com.tw/repository/npm-gt/
-\`\`\`
 
+\`\`\`
 
 ## 開發
 
@@ -40,10 +40,9 @@ registry=https://npmrg.greattree.com.tw/repository/npm-gt/
 npm run gen:component button
 元件名稱不能重複
 
-- 更新gtDoc 讓新元件的demo.vue能在開發頁面呈現
-**npm run gen:pkgDoc**
-./src/gtDoc.js 和 ./src/views/VGtComponent.vue 就會自動生成
-在dev啟動情況下，也會熱更新不用再重新啟動。
+- 更新各元件開發文檔
+**npm run doc**
+此腳本生成:gtDoc.js、gtDocTable.js、VGtComponent.vue
 
 ## 打包
 - **npm run gen**
@@ -59,9 +58,10 @@ npm run gen:component button
 留意版號規則
 
 ## 展示頁面發佈 
-- **npm run gen:pkgDoc**
-產出相應需要的元件說明文檔
 - **npm run doc**
+產出相應需要的元件說明文檔
+
+- **npm run demo**
 產出./demo的展示頁面打包結果
 
 - **sh deploy.sh** 
@@ -69,7 +69,7 @@ npm run gen:component button
 
 ## 元件庫安裝
 **npm install @greattree/front-ui --registry=https://npmrg.greattree.com.tw/repository/npm-gt/**
-安裝時要指定倉庫地址
+安裝時要指定倉庫地址。此為私有倉庫，公司外網應無法直接使用。
 
 ## 使用GT UI
 
