@@ -7,6 +7,20 @@
  */
 
 export default {
+    'avatar': ` \`\`\` html 
+<script setup></script>
+<template>
+  <div>
+    <g-title :level="1" class="mb-3">頭像</g-title>
+
+    <div class="mb-3 px-2 w-full md:w-3/4 flex">
+      <g-avatar class="m-2" imgUrl="https://i.imgur.com/m6NInWZ.jpg" />
+
+      <g-avatar class="m-2" />
+    </div>
+  </div>
+</template>
+  \`\`\`  `,
     'button': ` \`\`\` html 
 <template>
   <div>
@@ -935,15 +949,31 @@ const options = [
   { label: 'Bbbb', value: 2 },
   { label: 'Ggggwwwwwwwsssswww', value: 3 },
 ];
+
+const handleClick = (e) => {
+  console.log('click', e);
+};
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">下拉選項</g-title>
     <div class="w-16">
-      <g-dropdown-item :label="options[0].label" :value="options[0].value" />
-      <g-dropdown-item :label="options[1].label" :value="options[1].value" />
-      <g-dropdown-item :label="options[2].label" :value="options[2].value" />
+      <g-dropdown-item
+        :label="options[0].label"
+        :value="options[0].value"
+        @itemClick="handleClick"
+      />
+      <g-dropdown-item
+        :label="options[1].label"
+        :value="options[1].value"
+        @itemClick="handleClick"
+      />
+      <g-dropdown-item
+        :label="options[2].label"
+        :value="options[2].value"
+        @itemClick="handleClick"
+      />
     </div>
   </div>
 </template>
@@ -1407,20 +1437,6 @@ const handleDialog = (target = 1, size = 'sm') => {
         "
         >Large & Delete</g-button
       >
-    </div>
-  </div>
-</template>
-  \`\`\`  `,
-    'avatar': ` \`\`\` html 
-<script setup></script>
-<template>
-  <div>
-    <g-title :level="1" class="mb-3">頭像</g-title>
-
-    <div class="mb-3 px-2 w-full md:w-3/4 flex">
-      <g-avatar imgUrl="https://i.imgur.com/m6NInWZ.jpg" />
-
-      <g-avatar />
     </div>
   </div>
 </template>

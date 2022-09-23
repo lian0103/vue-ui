@@ -64,6 +64,12 @@ const classComputed = computed(() => {
   }
   return arr;
 });
+
+const emit = defineEmits(['itemClick']);
+
+const handleClick = () => {
+  emit('itemClick', { label, value });
+};
 </script>
 
 <template>
@@ -72,10 +78,15 @@ const classComputed = computed(() => {
     @mouseleave="handleMouseLeave"
     class="gt-dropdown-item"
     :class="classComputed"
-    @click.stop="
-      () => {
-        if (handleChildClick) {
-          handleChildClick(value || null);
+    @click="
+      (e) => {
+        if (withGDropdown) {
+          e.stopPropagation();
+          if (handleChildClick) {
+            handleChildClick(value || null);
+          }
+        } else {
+          handleClick();
         }
 
         isCurrentClick = true;

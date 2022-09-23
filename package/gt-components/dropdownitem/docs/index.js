@@ -1,5 +1,5 @@
 module.exports = {
-  show: ['prop'],
+  show: ['prop','event'],
   prop: `
 ## 屬性
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
@@ -17,7 +17,7 @@ module.exports = {
 ## 事件
 | 事件 | 說明 | 參數 |
 | - | - | - |
-|  |  |  |
+| itemClick | 綁定click，回傳當前label,value |  |
 `,
   slot: `
 ## 插槽

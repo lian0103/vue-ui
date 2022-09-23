@@ -10,6 +10,7 @@ import { computed, shallowRef } from 'vue';
 
 import gtDocTable from '../gtDocTable';
 import gtDoc from '../gtDoc';
+import AVATAR from '../../package/gt-components/avatar/docs/demo.vue';
 import BUTTON from '../../package/gt-components/button/docs/demo.vue';
 import ICON from '../../package/gt-components/icon/docs/demo.vue';
 import TITLE from '../../package/gt-components/title/docs/demo.vue';
@@ -37,7 +38,6 @@ import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
 import SORTLABEL from '../../package/gt-components/sort-label/docs/demo.vue';
 import FILTEROPTION from '../../package/gt-components/filter-option/docs/demo.vue';
 import DIALOG from '../../package/gt-components/dialog/docs/demo.vue';
-import AVATAR from '../../package/gt-components/avatar/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -45,6 +45,7 @@ const demoRef = shallowRef(null);
 const demoSourceRef = shallowRef(null);
 
 const mapObj = {
+    'avatar' : AVATAR ,
     'button' : BUTTON ,
     'icon' : ICON ,
     'title' : TITLE ,
@@ -72,7 +73,6 @@ const mapObj = {
     'sort-label' : SORTLABEL ,
     'filter-option' : FILTEROPTION ,
     'dialog' : DIALOG ,
-    'avatar' : AVATAR ,
 }
 
 const componentName = computed(async () => {
