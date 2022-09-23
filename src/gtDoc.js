@@ -1411,5 +1411,19 @@ const handleDialog = (target = 1, size = 'sm') => {
   </div>
 </template>
   \`\`\`  `,
+    'avatar': ` \`\`\` html 
+<script setup></script>
+<template>
+  <div>
+    <g-title :level="1" class="mb-3">頭像</g-title>
+
+    <div class="mb-3 px-2 w-full md:w-3/4 flex">
+      <g-avatar imgUrl="https://i.imgur.com/m6NInWZ.jpg" />
+
+      <g-avatar />
+    </div>
+  </div>
+</template>
+  \`\`\`  `,
 };
 

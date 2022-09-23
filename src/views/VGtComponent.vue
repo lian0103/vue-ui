@@ -37,6 +37,7 @@ import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
 import SORTLABEL from '../../package/gt-components/sort-label/docs/demo.vue';
 import FILTEROPTION from '../../package/gt-components/filter-option/docs/demo.vue';
 import DIALOG from '../../package/gt-components/dialog/docs/demo.vue';
+import AVATAR from '../../package/gt-components/avatar/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -71,6 +72,7 @@ const mapObj = {
     'sort-label' : SORTLABEL ,
     'filter-option' : FILTEROPTION ,
     'dialog' : DIALOG ,
+    'avatar' : AVATAR ,
 }
 
 const componentName = computed(async () => {

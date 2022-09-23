@@ -1,4 +1,5 @@
 {
+  "avatar": "./gt-components/avatar/index.js",
   "button": "./gt-components/button/index.js",
   "icon": "./gt-components/icon/index.js",
   "title": "./gt-components/title/index.js",

@@ -20,13 +20,14 @@ import Message from './gt-components/message/index.js';
 import MessageToast from './gt-components/message-toast/index.js';
 import Form from './gt-components/form/index.js';
 import Dropdown from './gt-components/dropdown/index.js';
+import Dropdownitem from './gt-components/dropdownitem/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
 import Table from './gt-components/table/index.js';
 import Pagination from './gt-components/pagination/index.js';
 import SortLabel from './gt-components/sort-label/index.js';
 import FilterOption from './gt-components/filter-option/index.js';
 import Dialog from './gt-components/dialog/index.js';
-import Dropdownitem from './gt-components/dropdownitem/index.js';
+import Avatar from './gt-components/avatar/index.js';
 
 const components = [
   Button,
@@ -49,13 +50,14 @@ const components = [
   MessageToast,
   Form,
   Dropdown,
+  Dropdownitem,
   TimePicker,
   Table,
   Pagination,
   SortLabel,
   FilterOption,
   Dialog,
-  Dropdownitem
+  Avatar
 ];
 
 const install = function(Vue, opts = {}) {
@@ -91,7 +93,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.2.0',
+  version: '1.3.0',
   install,
   Button,
   Icon,
@@ -113,11 +115,12 @@ export default {
   MessageToast,
   Form,
   Dropdown,
+  Dropdownitem,
   TimePicker,
   Table,
   Pagination,
   SortLabel,
   FilterOption,
   Dialog,
-  Dropdownitem
+  Avatar
 };
