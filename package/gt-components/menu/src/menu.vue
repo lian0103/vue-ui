@@ -37,6 +37,8 @@ const {
   },
 });
 
+const minHeight = 75;
+
 const collapsed = ref(collapsedFromParent);
 
 const isCollapsedAndHadOpenedOne = ref(false);
@@ -228,8 +230,16 @@ export default {
             item.active
               ? {
                   height: collapsed
-                    ? `${item.children.length * 40}px`
-                    : `${item.children.length * 44 + 25}px`,
+                    ? `${
+                        item.children.length * 40 < 75
+                          ? '75'
+                          : item.children.length * 40
+                      }px`
+                    : `${
+                        item.children.length * 44 + 25 < 75
+                          ?'75'
+                          : item.children.length * 44 + 25
+                      }px`,
                 }
               : { height: `0px` }
           "

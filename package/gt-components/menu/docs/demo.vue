@@ -10,13 +10,13 @@ const menuRoutes = [
         label: 'route1',
         icon: '',
         path: 'doc',
-        iconClasses:'fa-solid fa-store'
+        iconClasses:'fas fa-vote-yea iconWidth'
       },
       {
         label: 'route2',
         icon: '',
         path: '456',
-        iconClasses:'fa-solid fa-store'
+        iconClasses:'fas fa-user iconWidth'
       },
       {
         label: 'route3',
@@ -84,6 +84,7 @@ const menuRoutes = [
   {
     label: 'link',
     path: 'ccc',
+    iconClasses:'fas fa-vote-yea iconWidth50'
   },
   {
     label: 'group3',
@@ -122,10 +123,19 @@ const handleClick = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .box {
   display: flex;
   justify-content: space-around;
   position: relative;
+}
+.iconWidth {
+  width: 12px !important;
+  margin-right: 4px;
+}
+
+.iconWidth50 {
+  width: 50% !important;
+  margin-right: 4px;
 }
 </style>

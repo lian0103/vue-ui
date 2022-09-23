@@ -6,6 +6,7 @@ module.exports = {
 | - | - | - |- | -  |
 | name | 圖示名 | String | | |
 | size | 尺寸 | String | sm、md、lg  | md |
+| classes | 自定義classes | String |   |  |
 
 `,
   method: `

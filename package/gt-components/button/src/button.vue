@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-const { flat, pill, type, noBorder, icon, width , isLoading } = defineProps({
+const { flat, pill, type, noBorder, icon, width, isLoading , iconClasses } = defineProps({
   flat: {
     type: Boolean,
   },
@@ -18,9 +18,9 @@ const { flat, pill, type, noBorder, icon, width , isLoading } = defineProps({
   icon: {
     type: String,
   },
-  iconNarrowPadding:{
+  iconNarrowPadding: {
     type: Boolean,
-    default:false
+    default: false,
   },
   iconPosition: {
     type: String,
@@ -29,10 +29,13 @@ const { flat, pill, type, noBorder, icon, width , isLoading } = defineProps({
   width: {
     type: Number,
   },
-  isLoading:{
-    type:Boolean,
-    default:false
-  }
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  iconClasses: {
+    type: String,
+  },
 });
 
 const classStr = computed(() => {
@@ -82,16 +85,16 @@ export default {
     :class="[
       classStr,
       typeStr,
-      iconNarrowPadding ? 'gt-icon-narrow-padding':'',
+      iconNarrowPadding ? 'gt-icon-narrow-padding' : '',
       icon && iconPosition ? iconPosition : '',
     ]"
     class="gt-btn"
     :style="width ? { width: `${width}px` } : {}"
   >
     <g-loading-icon v-if="isLoading" />
-    <g-icon :name="icon" v-if="icon && iconPosition == 'left' && !isLoading" />
+    <g-icon :name="icon" :classes="iconClasses" v-if="(icon||iconClasses) && iconPosition == 'left' && !isLoading" />
     <slot></slot>
-    <g-icon :name="icon" v-if="icon && iconPosition == 'right' && !isLoading " />
+    <g-icon :name="icon"  :classes="iconClasses" v-if="(icon||iconClasses) && iconPosition == 'right' && !isLoading" />
     <div class="textLine"></div>
   </button>
 </template>

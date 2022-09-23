@@ -5,7 +5,8 @@
   .gt-menu-group {
     width: 100%;
     min-height: 36px;
-    padding: 8px 0 0 0;
+    padding: 0;
+    margin-bottom: 10px;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -38,7 +39,6 @@
 
     .childBox {
       width: 230px;
-      margin-bottom: 10px;
       overflow: hidden;
       transition: 0.4s all ease-in-out;
       .line {

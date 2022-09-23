@@ -4,11 +4,20 @@
 
     <div class="mb-3 px-2 w-full md:w-3/4">
       <div class="mb-8">
+        <g-title :level="2" class="mb-3"
+          >自定義icon按鈕 ex: font-awesome v5.15.4 (fas fa-user)</g-title
+        >
+        <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+
         <g-title :level="2" class="mb-3">loading</g-title>
         <div class="flex justify-between mb-3">
           <g-button pill icon="search" :isLoading="true">按鈕</g-button>
-          <g-button pill icon="search" :isLoading="true" type="yellow">按鈕</g-button>
-          <g-button pill icon="search" :isLoading="true" type="red">按鈕</g-button>
+          <g-button pill icon="search" :isLoading="true" type="yellow"
+            >按鈕</g-button
+          >
+          <g-button pill icon="search" :isLoading="true" type="red"
+            >按鈕</g-button
+          >
         </div>
         <g-title :level="2" class="mb-3">icon left</g-title>
         <div class="flex justify-between mb-3">
@@ -106,3 +115,11 @@
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.iconWidth {
+  width: 12px !important;
+  margin-right: 4px;
+}
+</style>
+>

@@ -28,11 +28,20 @@ export default {
 
     <div class="mb-3 px-2 w-full md:w-3/4">
       <div class="mb-8">
+        <g-title :level="2" class="mb-3"
+          >自定義icon按鈕 ex: font-awesome v5.15.4 (fas fa-user)</g-title
+        >
+        <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+
         <g-title :level="2" class="mb-3">loading</g-title>
         <div class="flex justify-between mb-3">
           <g-button pill icon="search" :isLoading="true">按鈕</g-button>
-          <g-button pill icon="search" :isLoading="true" type="yellow">按鈕</g-button>
-          <g-button pill icon="search" :isLoading="true" type="red">按鈕</g-button>
+          <g-button pill icon="search" :isLoading="true" type="yellow"
+            >按鈕</g-button
+          >
+          <g-button pill icon="search" :isLoading="true" type="red"
+            >按鈕</g-button
+          >
         </div>
         <g-title :level="2" class="mb-3">icon left</g-title>
         <div class="flex justify-between mb-3">
@@ -130,6 +139,14 @@ export default {
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.iconWidth {
+  width: 12px !important;
+  margin-right: 4px;
+}
+</style>
+>
   \`\`\`  `,
     'icon': ` \`\`\` html 
 <script setup>
@@ -326,7 +343,14 @@ const inputs = reactive({
   input0: 'hello',
   input2: 123,
   input1: '',
+  select: null,
 });
+
+const selectOptions = [
+  { label: 'aaa', value: 'aaa' },
+  { label: 'bbb', value: 'bbb' },
+  { label: 'ccc', value: 'ccc' },
+];
 
 const handleBlurEvent = (e) => {
   console.log('blur', e);
@@ -344,6 +368,30 @@ const handleFocusInput = () => {
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">search Select Mode</g-title>
+    <div class="flex">
+      <g-input
+        v-model="inputs.select"
+        size="md"
+        green
+        class="mr-4"
+        clearable
+        searchSelectMode
+        :selectOptions="selectOptions"
+      />
+      <g-input
+        v-model="inputs.select"
+        size="sm"
+        :width="120"
+        placeholder="請選擇"
+        green
+        class="mr-4"
+        clearable
+        searchSelectMode
+        :selectOptions="selectOptions"
+      />
+    </div>
+
     <g-title :level="2" class="mb-3">focus input </g-title>
     <div class="flex">
       <g-input
@@ -518,13 +566,13 @@ const menuRoutes = [
         label: 'route1',
         icon: '',
         path: 'doc',
-        iconClasses:'fa-solid fa-store'
+        iconClasses:'fas fa-vote-yea iconWidth'
       },
       {
         label: 'route2',
         icon: '',
         path: '456',
-        iconClasses:'fa-solid fa-store'
+        iconClasses:'fas fa-user iconWidth'
       },
       {
         label: 'route3',
@@ -592,6 +640,7 @@ const menuRoutes = [
   {
     label: 'link',
     path: 'ccc',
+    iconClasses:'fas fa-vote-yea iconWidth50'
   },
   {
     label: 'group3',
@@ -630,11 +679,20 @@ const handleClick = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .box {
   display: flex;
   justify-content: space-around;
   position: relative;
+}
+.iconWidth {
+  width: 12px !important;
+  margin-right: 4px;
+}
+
+.iconWidth50 {
+  width: 50% !important;
+  margin-right: 4px;
 }
 </style>
   \`\`\`  `,
