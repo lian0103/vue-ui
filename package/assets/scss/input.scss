@@ -29,7 +29,7 @@
       padding: 6.5px 34px 6.5px 12px;
     }
 
-    &.icon-left{
+    &.icon-left {
       padding: 6.5px 12px 6.5px 34px;
     }
   }
@@ -56,7 +56,7 @@
     transform: translateY(-50%);
   }
 
-  .gt-input-icon-left{
+  .gt-input-icon-left {
     width: 22px;
     @apply text-gray0;
     @apply absolute cursor-pointer transition-all duration-300;
@@ -66,7 +66,7 @@
     transform: translateY(-50%);
   }
 
-  .gt-input-icon-right{
+  .gt-input-icon-right {
     width: 22px;
     @apply text-gray0;
     @apply absolute cursor-pointer transition-all duration-300;
@@ -74,5 +74,21 @@
     font-size: 22px;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  .gt-input-select-mode {
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    @apply bg-color4 rounded-4;
+    @apply absolute;
+    .input-option {
+      width: 98%;
+      padding: 6px 10px;
+      @apply cursor-pointer;
+      margin:5px auto;
+      &:hover{
+        @apply bg-color1 text-main;
+      }
+    }
   }
 }

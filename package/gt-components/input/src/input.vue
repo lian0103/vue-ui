@@ -1,10 +1,10 @@
 <script setup>
-import { computed, onMounted, ref , getCurrentInstance } from 'vue';
+import { computed, onMounted, ref, getCurrentInstance, watch } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const inputUuid = uuidv4();
 const instance = getCurrentInstance();
-const TYPES = ['text', 'number', 'password'];
+const TYPES = ['text', 'number', 'password', 'tex-select'];
 const placeholderDefaultMap = {
   text: '輸入文字內容',
   number: '輸入數字內容',
@@ -29,6 +29,8 @@ const {
   size,
   icon,
   iconPosition,
+  searchSelectMode,
+  selectOptions,
 } = defineProps({
   name: {
     default: null,
@@ -93,7 +95,17 @@ const {
     type: String,
     default: 'right',
   },
+  searchSelectMode: {
+    type: Boolean,
+    default: false,
+  },
+  selectOptions: {
+    type: Array,
+  },
 });
+
+const isFocused = ref(false);
+const inputVal = ref(modelValue || parentValue?.value || '');
 
 const emit = defineEmits(['update:modelValue', 'focus', 'blur']);
 
@@ -119,11 +131,32 @@ const classComputed = computed(() => {
   return classStr;
 });
 
-const inputVal = ref(modelValue || parentValue?.value || '');
+const selectModeClassComputed = computed(() => {
+  let arr = [];
+
+  arr.push(isFocused.value ? 'tp-aniIn' : 'tp-aniOut');
+
+  return arr;
+});
+
+const selectModeStyleComputed = computed(() => {
+  return {
+    width: width ? width + 'px' : '260px',
+    top: size === 'sm' ? '40px' : '48px',
+    left: '0px',
+  };
+});
+
+const selectOptionsComputed = computed(() => {
+  if (!inputVal.value) return selectOptions;
+
+  return selectOptions.filter((item) => {
+    return ('' + item.value).includes(inputVal.value);
+  });
+});
 
 const handleInput = (evt) => {
   if (parentValue && handleValChange) {
-    console.log('~~~', inputVal.value);
     handleValChange(inputVal.value, name);
   } else {
     emit('update:modelValue', inputVal.value);
@@ -135,11 +168,12 @@ const handleBlur = async (e) => {
   if (handleRulesValid && name) {
     handleRulesValid(inputVal.value, name, 'blur');
   }
-
+  isFocused.value = false;
   emit('blur', e);
 };
 
 const handleFocus = (e) => {
+  isFocused.value = true;
   emit('focus', e);
 };
 
@@ -153,17 +187,21 @@ const handleClear = () => {
   }
 };
 
-const focusInput = ()=>{
-  if(instance.refs[inputUuid]){
+const focusInput = () => {
+  if (instance.refs[inputUuid]) {
     // console.log(instance.refs[inputUuid])
-    instance.refs[inputUuid].focus()
+    instance.refs[inputUuid].focus();
   }
-}
+};
+
+const handleClickOption = (item) => {
+  inputVal.value = item.value;
+};
+
 
 defineExpose({
-  focusInput
-})
-
+  focusInput,
+});
 </script>
 <script>
 export default {
@@ -198,6 +236,30 @@ export default {
         v-if="icon"
       />
       <div class="gt-input-error-msg" v-if="errorMsg">{{ errorMsg }}</div>
+      <div
+        v-if="searchSelectMode"
+        class="gt-input-select-mode"
+        :class="selectModeClassComputed"
+        :style="selectModeStyleComputed"
+      >
+        <template v-if="!selectOptions || selectOptions.length == 0">
+          無選項
+        </template>
+        <template v-else>
+          <div
+            class="input-option"
+            v-for="item in selectOptionsComputed"
+            :key="item.label"
+            @click.stop="
+              () => {
+                handleClickOption(item);
+              }
+            "
+          >
+            {{ item.label }}
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>

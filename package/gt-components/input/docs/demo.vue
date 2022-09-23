@@ -7,7 +7,14 @@ const inputs = reactive({
   input0: 'hello',
   input2: 123,
   input1: '',
+  select: null,
 });
+
+const selectOptions = [
+  { label: 'aaa', value: 'aaa' },
+  { label: 'bbb', value: 'bbb' },
+  { label: 'ccc', value: 'ccc' },
+];
 
 const handleBlurEvent = (e) => {
   console.log('blur', e);
@@ -25,6 +32,30 @@ const handleFocusInput = () => {
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">search Select Mode</g-title>
+    <div class="flex">
+      <g-input
+        v-model="inputs.select"
+        size="md"
+        green
+        class="mr-4"
+        clearable
+        searchSelectMode
+        :selectOptions="selectOptions"
+      />
+      <g-input
+        v-model="inputs.select"
+        size="sm"
+        :width="120"
+        placeholder="請選擇"
+        green
+        class="mr-4"
+        clearable
+        searchSelectMode
+        :selectOptions="selectOptions"
+      />
+    </div>
+
     <g-title :level="2" class="mb-3">focus input </g-title>
     <div class="flex">
       <g-input
