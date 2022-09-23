@@ -20,10 +20,6 @@
     @apply flex justify-between items-center pl-14;
     @apply col-start-3 col-end-4 row-start-1 row-end-2;
     @apply relative;
-    .gt-icon {
-      @apply absolute left-0 cursor-pointer;
-      top: 22px;
-    }
     .title {
       width: 33%;
       @apply flex;
