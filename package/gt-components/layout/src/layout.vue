@@ -68,7 +68,8 @@ export default {
       <div
         class="gt-headline"
         :style="{
-          width: isCollapsed ? '80px' : onlyOneLevel ? '220px' : '300px',
+          width: isCollapsed ? '80px' : '290px',
+          'min-width': isCollapsed ? '80px' : '290px',
         }"
       >
         <g-icon name="menu" size="lg" @click="handleCollapsed" />
@@ -90,7 +91,8 @@ export default {
         class="gt-sidebar"
         :class="onlyOneLevel ? 'onlyOneLevel' : ''"
         :style="{
-          width: isCollapsed ? '80px' : onlyOneLevel ? '220px' : '300px',
+          width: isCollapsed ? '80px' : '290px',
+          'min-width': isCollapsed ? '80px' : '290px',
         }"
       >
         <div class="gt-menu-box"><slot name="sidebar" /></div>

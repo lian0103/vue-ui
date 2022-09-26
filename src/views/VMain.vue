@@ -9,10 +9,10 @@ import {
 } from 'vue';
 import { useRouter } from 'vue-router';
 import gsap from 'gsap';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import packageMap from '../../package/components.json';
 
-gsap.registerPlugin(ScrollToPlugin)
+gsap.registerPlugin(ScrollToPlugin);
 
 const instance = getCurrentInstance();
 
@@ -25,6 +25,8 @@ const nameComputed = computed(() => {
 
 // console.log("packagesList",packagesList)
 const appMenu = ref(null);
+
+const redLine = ref(false);
 
 const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 
@@ -101,7 +103,7 @@ watch(
 
 <template>
   <g-layout
-    class="layout"
+    :class="redLine ? 'redLine' : ''"
     headText="Great Tree UI"
     :title="nameComputed"
     :collapsed="appMenuCollaped"
@@ -120,6 +122,9 @@ watch(
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
         <span>v1.3.2</span>
+        <span class="ml-2 flex"
+          >對齊線<g-switch v-model="redLine" class="ml-2"
+        /></span>
       </div>
     </template>
     <template #content>
@@ -127,3 +132,11 @@ watch(
     </template>
   </g-layout>
 </template>
+
+<style lang="scss">
+.redLine {
+  * {
+    outline: 1px solid red !important;
+  }
+}
+</style>

@@ -37,7 +37,6 @@ const {
   },
 });
 
-const minHeight = 75;
 
 const collapsed = ref(collapsedFromParent);
 
@@ -231,8 +230,8 @@ export default {
               ? {
                   height: collapsed
                     ? `${
-                        item.children.length * 40 < 75
-                          ? '75'
+                        item.children.length * 40 < 45
+                          ? '45'
                           : item.children.length * 40
                       }px`
                     : `${
