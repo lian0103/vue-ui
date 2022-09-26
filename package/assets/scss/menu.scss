@@ -91,7 +91,7 @@
         transition: 0.4s opacity ease-in-out, 0.4s height ease-in-out;
         position: absolute;
         left: 60px;
-        top: 4px;
+        top: -4px;
         @apply rounded-4;
         background: rgba(251, 251, 249, 0.3);
         .gt-menu-group-item {
