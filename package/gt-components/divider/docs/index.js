@@ -5,7 +5,8 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | horizontal | 水平分割線 | Boolean | | true |
-| vertical | 垂直分割線。高度設為100%，會吃結構中的父層高度。 | Boolean | | false |
+| vertical | 垂直分割線。會吃結構中的父層高度。 | Boolean | | false |
+| height | vertical模式中，分割線佔父層高度的佔比  | String | | 100% |
 
 `,
   method: `

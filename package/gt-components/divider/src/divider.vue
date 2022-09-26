@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from '@vue/runtime-core';
 
-const { horizontal, vertical } = defineProps({
+const { horizontal, vertical, height } = defineProps({
   horizontal: {
     type: Boolean,
     default: true,
@@ -10,11 +10,16 @@ const { horizontal, vertical } = defineProps({
     type: Boolean,
     default: false,
   },
+  height: {
+    type: String,
+    default: '100%',
+  },
 });
 
 const classComputer = computed(() => {
-  return vertical ? ['vertical'] : ['horizontal'] ;
+  return vertical ? ['vertical'] : ['horizontal'];
 });
+
 </script>
 <script>
 export default {
@@ -22,5 +27,15 @@ export default {
 };
 </script>
 <template>
-  <div class="g-divider" :class="classComputer"></div>
+  <div
+    class="g-divider"
+    :class="classComputer"
+    :style="
+      vertical
+        ? {
+            height: height,
+          }
+        : {}
+    "
+  ></div>
 </template>

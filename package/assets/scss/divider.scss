@@ -4,7 +4,7 @@
     min-height: 1em;
     height: 100%;
     @apply border-l border-l-color3;
-    @apply mx-6;
+    @apply mx-6 my-auto;
   }
   &.horizontal {
     width: 100%;
