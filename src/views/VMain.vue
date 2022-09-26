@@ -119,7 +119,7 @@ watch(
     </template>
     <template #header>
       <div class="w-1/4 flex justify-center items-center px-4">
-        <span>v0.0.23</span>
+        <span>v1.3.2</span>
       </div>
     </template>
     <template #content>

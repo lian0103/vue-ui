@@ -12,6 +12,7 @@ import gtDocTable from '../gtDocTable';
 import gtDoc from '../gtDoc';
 import AVATAR from '../../package/gt-components/avatar/docs/demo.vue';
 import BUTTON from '../../package/gt-components/button/docs/demo.vue';
+import DIVIDER from '../../package/gt-components/divider/docs/demo.vue';
 import ICON from '../../package/gt-components/icon/docs/demo.vue';
 import TITLE from '../../package/gt-components/title/docs/demo.vue';
 import CHECKBOX from '../../package/gt-components/checkbox/docs/demo.vue';
@@ -47,6 +48,7 @@ const demoSourceRef = shallowRef(null);
 const mapObj = {
     'avatar' : AVATAR ,
     'button' : BUTTON ,
+    'divider' : DIVIDER ,
     'icon' : ICON ,
     'title' : TITLE ,
     'checkbox' : CHECKBOX ,

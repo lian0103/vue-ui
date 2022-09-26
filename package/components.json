@@ -1,6 +1,7 @@
 {
   "avatar": "./gt-components/avatar/index.js",
   "button": "./gt-components/button/index.js",
+  "divider": "./gt-components/divider/index.js",
   "icon": "./gt-components/icon/index.js",
   "title": "./gt-components/title/index.js",
   "checkbox": "./gt-components/checkbox/index.js",
