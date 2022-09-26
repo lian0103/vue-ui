@@ -28,6 +28,11 @@ const icons = [
   'tool',
   'user',
   'menu',
+  'cus01',
+  'file',
+  'cus03',
+  'cus04',
+  'cus05',
 ];
 
 const customIconClasses = `寫法: <g-icon classes="fa-solid fa-store" />。渲染結果:<i class="gt-icon gt-icon-md fa-solid fa-store"></i>`;
