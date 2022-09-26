@@ -64,18 +64,25 @@ export default {
 </script>
 <template>
   <div class="gt-wrapper" :class="isCollapsed ? 'collapsed' : ''">
-    <div class="gt-headline">
-      <g-icon name="menu" @click="handleCollapsed" />
-      <div>
-        {{ headText }}
+    <div class="gt-headline-header">
+      <div
+        class="gt-headline"
+        :style="{
+          width: isCollapsed ? '80px' : onlyOneLevel ? '220px' : '300px',
+        }"
+      >
+        <g-icon name="menu" size="lg" @click="handleCollapsed" />
+        <div v-if="!isCollapsed">
+          {{ headText }}
+        </div>
       </div>
-    </div>
 
-    <div class="gt-header">
-      <div class="title">
-        <g-title :level="1">{{ title }}</g-title>
+      <div class="gt-header">
+        <div class="title">
+          <g-title :level="1">{{ title }}</g-title>
+        </div>
+        <slot name="header" />
       </div>
-      <slot name="header" />
     </div>
 
     <div class="gt-sidebar-content">

@@ -72,7 +72,7 @@ const menuChildrenComputed = computed({
 });
 
 const handleCollapsed = (val) => {
-  console.log('handleCollapsed',val)
+  // console.log('handleCollapsed',val)
   instance.refs.appMenu.collapsed = val;
   appMenuCollaped.value = val;
   localStorage.setItem('app-menu', val);
