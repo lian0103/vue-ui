@@ -1,26 +1,24 @@
 const fs = require('fs-extra');
 const handlebars = require('handlebars');
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 
 const listFilePath = '../../package/components.json';
 const listFile = fs.readFileSync(resolve(__dirname, listFilePath), 'utf-8');
-var listFileContent = JSON.parse(listFile);
+const componentListObj = JSON.parse(listFile);
 
-listFileContent = Object.keys(listFileContent);
-
-// console.log('listFileContent', listFileContent);
+let componentList = Object.keys(componentListObj);
 
 function genGtDoc() {
   const tpl = fs.readFileSync(
     resolve(__dirname, './.template/gtDoc.js.tpl'),
     'utf-8'
   );
-  // console.log('listFileContent',listFileContent)
-  const docList = listFileContent
+
+  const docList = componentList
     .map((compName) => {
       let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
       let demoFile = fs.readFileSync(resolve(__dirname, demoFilePath), 'utf-8');
-      demoFile = demoFile.replace(/\`/g,"'").replace(/\$\{/g,'');
+      demoFile = demoFile.replace(/\`/g, "'").replace(/\$\{/g, '');
       // console.log(demoFile);
       return `'${compName}': \` \\\`\\\`\\\` html 
 ${demoFile}  \\\`\\\`\\\`  \`,`;
@@ -46,7 +44,7 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
     'utf-8'
   );
 
-  const docTableList = listFileContent
+  const docTableList = componentList
     .map((compName) => {
       let jsObjFilePath = `../../package/gt-components/${compName}/docs/index.js`;
       let obj = fs.existsSync(resolve(__dirname, jsObjFilePath))
@@ -75,15 +73,15 @@ function genVGtComponent() {
     'utf-8'
   );
 
-  const allDemos = listFileContent
+  const allDemos = componentList
     .map((compName) => {
       let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
       return `import ${compName
-        .replace(/\-/g,'')
+        .replace(/\-/g, '')
         .toUpperCase()} from '${demoFilePath}';`;
     })
     .join('\n');
-  const mapObj = listFileContent
+  const mapObj = componentList
     .map((compName) => {
       return `'${compName}' : ${compName.replace(/\-/g, '').toUpperCase()} ,`;
     })
@@ -102,8 +100,23 @@ function genVGtComponent() {
   );
 }
 
+function sortComponentList() {
+  let obj = {};
+  componentList.sort();
+
+  componentList.forEach((key) => {
+    obj[key] = componentListObj[key];
+  });
+
+  fs.writeFileSync(
+    join(__dirname, '../../package/components.json'),
+    JSON.stringify(obj, null, 2)
+  );
+}
+
 async function run() {
   genGtDoc();
   genVGtComponent();
+  sortComponentList();
 }
 run();
