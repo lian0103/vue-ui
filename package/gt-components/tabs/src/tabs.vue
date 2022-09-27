@@ -10,6 +10,8 @@ const {
   clickCallback,
   currentTab,
   layoutMode,
+  parentWidth,
+  collapsed:collapsedFromParent
 } = defineProps({
   name: {
     type: String,
@@ -29,12 +31,23 @@ const {
     type: Boolean,
     default: false,
   },
+  parentWidth: {
+    type: Number,
+  },
+  collapsed:{
+    type: Boolean,
+  }
 });
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
 
 const tabs = ref(tabsFromParent);
 const current = ref(currentTab);
+const collapsed = ref(collapsedFromParent);
+
+defineExpose({
+  collapsed
+});
 
 instance.appContext.config.globalProperties['handleCurrent' + name] = (
   tabName
@@ -68,12 +81,11 @@ const classComputed = computed(() => {
   if (layoutMode) {
     arr.push('layoutMode');
   }
-  if( parseInt(widthTabs.value) > 1440){
+  if (parseInt(widthTabs.value) > 1440) {
     arr.push('overTabsWrapper');
   }
   return arr;
 });
-
 </script>
 <script>
 export default {
@@ -86,6 +98,7 @@ export default {
     :class="classComputed"
     @mouseenter="isMouseIn = true"
     @mouseleave="isMouseIn = false"
+    :style="parentWidth ? { 'max-width': `${collapsed ? parentWidth - 300 : parentWidth - 400 }px` } : {}"
   >
     <div class="tabs" ref="tabRef">
       <div

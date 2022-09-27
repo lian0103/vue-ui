@@ -15,7 +15,7 @@ const {
   menu: menuFromParent,
   activePath,
   collapsed: collapsedFromParent,
-  onlyOneLevel,
+  onlyOneLevel: onlyOneLevelFromParent,
 } = defineProps({
   active: {
     type: String,
@@ -38,6 +38,8 @@ const {
 });
 
 const collapsed = ref(collapsedFromParent);
+
+const onlyOneLevel = ref(onlyOneLevelFromParent);
 
 const isCollapsedAndHadOpenedOne = ref(false);
 
@@ -108,13 +110,14 @@ const menuComputed = computed(() => {
 });
 
 const handleGroupClick = (item, gIdx) => {
+  // console.log('handleGroupClick', onlyOneLevel.value);
   const Router = instance.appContext.config.globalProperties.$router || null;
   let { active, path } = item;
   if (path) {
     if (Router) {
       Router.push(path);
     }
-  } else if (onlyOneLevel) {
+  } else if (onlyOneLevel.value) {
     if (Router) {
       if (Router.currentRoute.value.meta.title != item.label) {
         // console.log(item.children[0].path);
@@ -159,6 +162,7 @@ const handleRouteTo = (path, gIdx, cItemUuid) => {
 
 defineExpose({
   collapsed,
+  onlyOneLevel
 });
 
 watch(
@@ -167,18 +171,6 @@ watch(
     if (val) {
       info.menuGroupActiveArr = [];
       info.menuGroupActive = [];
-    }
-  }
-);
-
-watch(
-  () => isCollapsedAndHadOpenedOne.value,
-  (val) => {
-    let dom = document.getElementsByClassName('gt-sidebar');
-    if (val && collapsed.value) {
-      dom[0].classList.add('fix-area');
-    } else {
-      dom[0].classList.remove('fix-area');
     }
   }
 );

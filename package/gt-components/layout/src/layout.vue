@@ -2,6 +2,7 @@
 import GTitle from '../../title';
 import GTabs from '../../tabs';
 import { ref, getCurrentInstance, computed, watch } from 'vue';
+import { useElementBounding } from '@vueuse/core';
 
 const instance = getCurrentInstance();
 
@@ -27,6 +28,10 @@ const { headText, title, menuTabs, collapsed, onlyOneLevel } = defineProps({
     default: false,
   },
 });
+
+const gtSidebarContentRef = ref(null);
+const { width: widthGtSidebarContent } =
+  useElementBounding(gtSidebarContentRef);
 
 const emit = defineEmits(['collapsed']);
 const isCollapsed = ref(collapsed);
@@ -54,6 +59,7 @@ const handleCollapsed = () => {
   let val = !isCollapsed.value;
   isCollapsed.value = val;
   emit('collapsed', val);
+  instance.refs.layoutTabs.collapsed = val;
 };
 // console.log(instance.appContext.config.globalProperties.$route.path)
 </script>
@@ -86,7 +92,7 @@ export default {
       </div>
     </div>
 
-    <div class="gt-sidebar-content">
+    <div class="gt-sidebar-content" ref="gtSidebarContentRef">
       <div
         class="gt-sidebar"
         :class="onlyOneLevel ? 'onlyOneLevel' : ''"
@@ -109,6 +115,7 @@ export default {
 
       <div class="gt-content-wrapper">
         <g-tabs
+          ref="layoutTabs"
           name="layoutTab"
           v-if="onlyOneLevel && menuTabs && menuTabs.length > 0"
           class="gt-route-tabs"
@@ -116,6 +123,8 @@ export default {
           :clickCallback="handleMenuTabCallback"
           :currentTab="currentTab"
           :layoutMode="true"
+          :parentWidth="widthGtSidebarContent"
+          :collapsed="isCollapsed"
         />
 
         <div
