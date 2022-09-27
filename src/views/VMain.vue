@@ -113,7 +113,7 @@ watch(
     <template #sidebar>
       <g-menu
         ref="appMenu"
-        class="mx-auto gt-e-menu"
+        class="gt-e-menu"
         :activePath="activePath"
         :menu="menuRoutes"
         :collapsed="appMenuCollaped"
