@@ -73,7 +73,7 @@ export default {
         }"
       >
         <g-icon name="menu" size="lg" @click="handleCollapsed" />
-        <div v-if="!isCollapsed">
+        <div class="head-text">
           {{ headText }}
         </div>
       </div>

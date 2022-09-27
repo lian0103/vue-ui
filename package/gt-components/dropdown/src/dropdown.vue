@@ -133,7 +133,7 @@ export default {
           label: item.label,
           value: item.value,
           icon: props.icon,
-          withGDropdown:true,
+          withGDropdown: true,
           parentValue: computed(() => valRef.value),
           handleChildClick: (val) => {
             handleIsShow('childClick');

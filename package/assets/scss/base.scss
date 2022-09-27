@@ -1,13 +1,13 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "google-fonts.scss";
+@import 'google-fonts.scss';
 
 body {
   font-size: 14px;
   font-weight: 300;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 .gt-relative {
@@ -34,24 +34,50 @@ body {
 }
 
 .tp-aniIn {
-  animation: tpFadeIn 0.5s forwards;
+  animation-name: tpFadeIn;
+  animation-duration: .5s;
+  animation-fill-mode: both;
 }
 
 .tp-aniOut {
-  animation: tpFadeOut 0.5s forwards;
+  animation-name: tpFadeOut;
+  animation-duration: .5s;
+  animation-fill-mode: both;
 }
 
+.tp-aniIn-NoTran {
+  animation-name: tpFadeInNoTransform;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.tp-aniOut-Notran {
+  animation-name: tpFadeOutNoTransform;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
 
 @keyframes tpFadeIn {
   0% {
     opacity: 0;
     @apply z-top-10;
-    transform: translateY(-30px);
+    transform: translate3d(0, -25%, 0);
   }
   100% {
     opacity: 1;
     @apply z-top-10;
-    transform: translateY(0%);
+    transform: none;
+  }
+}
+
+@keyframes tpFadeInNoTransform {
+  0% {
+    opacity: 0;
+    @apply z-top-10;
+  }
+  100% {
+    opacity: 1;
+    @apply z-top-10;
   }
 }
 
@@ -59,14 +85,26 @@ body {
   0% {
     opacity: 1;
     @apply z-top-10;
-    transform: translateY(0%);
+    transform: none;
   }
   100% {
     opacity: 0;
     z-index: -10;
-    transform: translateY(-20px);
+    transform: translate3d(0, -25%, 0);
   }
 }
+
+@keyframes tpFadeOutNoTransform {
+  0% {
+    opacity: 1;
+    @apply z-top-10;
+  }
+  100% {
+    opacity: 0;
+    z-index: -10;
+  }
+}
+
 
 .gt-button-close {
   padding: 6px;

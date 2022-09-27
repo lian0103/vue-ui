@@ -37,7 +37,6 @@ const {
   },
 });
 
-
 const collapsed = ref(collapsedFromParent);
 
 const isCollapsedAndHadOpenedOne = ref(false);
@@ -109,7 +108,6 @@ const menuComputed = computed(() => {
 });
 
 const handleGroupClick = (item, gIdx) => {
-  // console.log(collapsed.value);
   const Router = instance.appContext.config.globalProperties.$router || null;
   let { active, path } = item;
   if (path) {
@@ -236,7 +234,7 @@ export default {
                       }px`
                     : `${
                         item.children.length * 44 + 25 < 75
-                          ?'75'
+                          ? '75'
                           : item.children.length * 44 + 25
                       }px`,
                 }
@@ -248,8 +246,8 @@ export default {
                 ? 'open'
                 : ''
               : info.menuGroupActive == index + 1
-              ? 'open'
-              : ''
+              ? 'open tp-aniIn-NoTran'
+              : 'tp-aniOut-Notran'
           "
           @click.stop="() => {}"
         >

@@ -20,9 +20,11 @@
         @apply flex justify-center items-center;
         .iconBox {
           @apply flex justify-center items-center;
+          @apply bg-transparent;
+          transition: background 0.4s ease-in-out;
           width: 36px;
           height: 36px;
-          &.collapesed{
+          &.collapesed {
             @apply bg-color2;
           }
         }
@@ -40,7 +42,7 @@
     .childBox {
       width: 230px;
       overflow: hidden;
-      transition: 0.4s all ease-in-out;
+      transition: 0.4s height ease-in-out;
       .line {
         width: 100%;
         height: 1px;
@@ -86,14 +88,14 @@
     .gt-menu-group {
       position: relative;
       .childBox {
+        transition: 0.4s opacity ease-in-out;
         width: 160px;
         max-height: 50vh;
-        transition: 0.4s opacity ease-in-out, 0.4s height ease-in-out;
         position: absolute;
-        left: 60px;
         top: -4px;
+        left: 60px;
         @apply rounded-4;
-        background: rgba(251, 251, 249, 0.3);
+        @apply bg-gray3;
         .gt-menu-group-item {
           width: 160px;
           padding-left: 10px;

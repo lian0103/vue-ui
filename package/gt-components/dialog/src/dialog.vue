@@ -39,14 +39,6 @@ const { modelValue, title, align, handleCallback, mode, size } = defineProps({
     type: String,
     default: 'sm',
   },
-  // maxWidth: {
-  //   type: Number,
-  //   default: 480,
-  // },
-  // maxHeight: {
-  //   type: Number,
-  //   default: 400,
-  // },
 });
 
 const maxWidth = computed(() => {
