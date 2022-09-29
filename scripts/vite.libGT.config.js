@@ -20,6 +20,7 @@ export default () => {
         fileName: (format) => `gt-ui.${format}.min.js`,
       },
       outDir: `./dist/`,
+      minify:false,
       rollupOptions: {
         external: ['vue'],
         output: {
