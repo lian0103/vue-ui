@@ -9,35 +9,26 @@
     "build-GT": "vite build --config ./scripts/vite.libGT.config.js",
     "doc": "node ./scripts/genGtPkgDoc/index.js",
     "demo": "vite build --config ./scripts/vite.doc.config.js",
+    "preview": "vite preview --config ./scripts/vite.doc.config.js",
     "deploy": "sh ./scripts/deploy.sh"
   },
   "devDependencies": {
     "@kangc/v-md-editor": "^2.3.15",
-    "@testing-library/vue": "^6.6.0",
     "@vitejs/plugin-vue": "^2.3.1",
-    "async": "^3.2.4",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^10.4.8",
     "fs-extra": "^10.0.0",
     "gsap": "^3.10.4",
     "handlebars": "^4.7.7",
-    "happy-dom": "^6.0.4",
-    "inquirer": "^8.2.0",
     "postcss": "^8.4.16",
-    "postcss-import": "^14.1.0",
-    "postcss-nesting": "^10.1.10",
     "sass": "^1.52.2",
     "sass-loader": "^12.0.0",
     "tailwindcss": "^3.1.8",
-    "unplugin-auto-import": "^0.7.1",
-    "vite": "^2.9.7",
-    "vite-plugin-md": "^0.20.2",
-    "vite-svg-loader": "^3.3.0",
-    "vitest": "^0.16.0",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.13",
-    "vue-types": "^4.1.1"
-  },
-  "peerDependencies": {
-    "vue": "^3.2.25"
+    "@vueuse/core": "^9.3.0",
+    "dayjs": "^1.11.5",
+    "uuid": "^9.0.0",
+    "vite": "^3.1.4",
+    "vite-plugin-md": "^0.20.4",
+    "vite-svg-loader": "^3.6.0",
+    "vue-router": "^4.1.5"
   }
 }

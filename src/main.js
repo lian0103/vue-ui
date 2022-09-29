@@ -12,7 +12,10 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
 import './assets/init.css';
 import '../package/assets/scss/index.scss';
-import GtUI from '../package/index';
+
+// import GtUI from '../package/index';
+
+import GtUI from '../dist/gt-ui.es.min.js';
 
 console.log('GtUI', GtUI);
 
