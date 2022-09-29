@@ -15,7 +15,7 @@ function compile() {
       postcss([
         postcssImport,
         tailwindcssNesting,
-        tailwindcss('../../tailwind.config.js'),
+        tailwindcss('../tailwind.config.js'),
         autoprefixer,
       ])
     )

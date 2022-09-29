@@ -6,7 +6,6 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{vue,js}",
-    "./package/**/*.{vue,js}"
   ],
   theme: {
     screens: {

@@ -11,10 +11,6 @@ import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/
 import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
 import './assets/init.css';
-
-// import '@greattree/front-ui/dist/assets/css/index.css';
-// import GtUI from '@greattree/front-ui';
-import './assets/init.css';
 import '../package/assets/scss/index.scss';
 import GtUI from '../package/index';
 

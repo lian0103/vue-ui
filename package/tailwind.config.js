@@ -4,9 +4,8 @@ const plugin = require('tailwindcss/plugin');
 module.exports = {
   mode: 'jit', //只編譯有使用到的樣式
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js}",
-    "./package/**/*.{vue,js}"
+    "./components/**/*.{vue,js}",
+    "./gt-components/**/*.{vue,js}"
   ],
   theme: {
     screens: {
