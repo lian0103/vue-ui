@@ -1,0 +1,59 @@
+{
+  "name": "@greattree/front-ui",
+  "author": {
+    "name": "Jason Lien",
+    "email": "k1319900103@gmail.com"
+  },
+  "version": "1.3.3-beta",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "gen": "npm run gen:google-fonts && npm run gen:css-index && npm run gen:pkg-index && npm run gen:svg2css",
+    "gen:component": "node scripts/gen-component.cjs",
+    "gen:svg2css": "gulp build --gulpfile scripts/gen-svg2font.cjs",
+    "gen:google-fonts": "gulp build --gulpfile scripts/gen-google-fonts.cjs",
+    "gen:pkg-index": "node scripts/gen-pkg-index.cjs",
+    "gen:css-index": "node scripts/gen-css-index.cjs",
+    "build": "npm run build:theme && npm run build:pkg",
+    "build:theme": "gulp build --gulpfile scripts/build-theme.cjs",
+    "build:pkg": "gulp build --gulpfile scripts/build-pkg.cjs"
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.5.0",
+    "dayjs": "^1.11.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "async": "^3.2.4",
+    "autoprefixer": "^10.4.8",
+    "c8": "^7.11.3",
+    "fs-extra": "^10.0.0",
+    "gsap": "^3.10.4",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-iconfont": "^11.0.1",
+    "gulp-iconfont-css": "^3.0.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "handlebars": "^4.7.7",
+    "inquirer": "^8.2.0",
+    "jsdom": "^20.0.0",
+    "json-templater": "^1.2.0",
+    "lodash.defaults": "^4.2.0",
+    "postcss": "^8.4.16",
+    "postcss-import": "^14.1.0",
+    "postcss-nesting": "^10.1.10",
+    "sass": "^1.52.2",
+    "sass-loader": "^12.0.0",
+    "svg-sprite-loader": "^6.0.11",
+    "tailwindcss": "^3.1.8",
+    "testing-library": "^0.0.2",
+    "unplugin-auto-import": "^0.7.1",
+    "uppercamelcase": "^3.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.25"
+  }
+}
