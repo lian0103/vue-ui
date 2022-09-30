@@ -74,11 +74,11 @@ export default {
       <div
         class="gt-headline"
         :style="{
-          width: isCollapsed ? '80px' : '290px',
-          'min-width': isCollapsed ? '80px' : '290px',
+          width: isCollapsed ? '100px' : '290px',
+          'min-width': isCollapsed ? '100px' : '290px',
         }"
       >
-        <g-icon name="menu" size="lg" @click="handleCollapsed" />
+        <g-icon name="menu" @click="handleCollapsed" />
         <div class="head-text">
           {{ headText }}
         </div>
@@ -92,13 +92,13 @@ export default {
       </div>
     </div>
 
-    <div class="gt-sidebar-content" ref="gtSidebarContentRef">
+    <div class="gt-sidebar-content" id="gtSidebarContentRef" ref="gtSidebarContentRef">
       <div
         class="gt-sidebar"
         :class="onlyOneLevel ? 'onlyOneLevel' : ''"
         :style="{
-          width: isCollapsed ? '80px' : '290px',
-          'min-width': isCollapsed ? '80px' : '290px',
+          width: isCollapsed ? '100px' : '290px',
+          'min-width': isCollapsed ? '100px' : '290px',
         }"
       >
         <div class="gt-menu-box"><slot name="sidebar" /></div>

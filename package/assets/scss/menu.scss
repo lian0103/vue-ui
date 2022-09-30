@@ -1,6 +1,6 @@
 .gt-menus {
-  width: 230px;
-  padding: 0px 0;
+  width: 212px;
+  padding: 0px;
 
   .gt-menu-group {
     width: 100%;
@@ -40,7 +40,7 @@
     }
 
     .childBox {
-      width: 230px;
+      width: 212px;
       overflow: hidden;
       transition: 0.4s height ease-in-out;
       .line {
@@ -93,7 +93,7 @@
         max-height: 50vh;
         position: absolute;
         top: -4px;
-        left: 60px;
+        left: 65px;
         @apply rounded-4;
         @apply bg-gray3;
         .gt-menu-group-item {

@@ -10,8 +10,8 @@ const {
   clickCallback,
   currentTab,
   layoutMode,
-  parentWidth,
-  collapsed:collapsedFromParent
+  parentWidth: parentWidthFromParent,
+  collapsed: collapsedFromParent,
 } = defineProps({
   name: {
     type: String,
@@ -34,9 +34,9 @@ const {
   parentWidth: {
     type: Number,
   },
-  collapsed:{
+  collapsed: {
     type: Boolean,
-  }
+  },
 });
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
@@ -44,9 +44,10 @@ const slotTabs = Object.keys(slots);
 const tabs = ref(tabsFromParent);
 const current = ref(currentTab);
 const collapsed = ref(collapsedFromParent);
+const parentWidth = ref(parentWidthFromParent);
 
 defineExpose({
-  collapsed
+  collapsed,
 });
 
 instance.appContext.config.globalProperties['handleCurrent' + name] = (
@@ -69,11 +70,14 @@ const handleTabChange = (name) => {
 };
 
 const tabRef = ref(null);
-const { width: widthTabs } = useElementBounding(tabRef);
+const { width } = useElementBounding(tabRef);
+
+const widthTabs = ref(width.value);
 
 const isMouseIn = ref(false);
 
 const classComputed = computed(() => {
+  console.log('widthTabs.value', widthTabs.value);
   let arr = [];
   if (isMouseIn.value) {
     arr.push('mouse-in');
@@ -85,6 +89,25 @@ const classComputed = computed(() => {
     arr.push('overTabsWrapper');
   }
   return arr;
+});
+
+const styleComputed = computed(() => {
+  // console.log('parentWidth', parentWidth);
+  return parentWidth.value
+    ? {
+        'max-width': `${
+          collapsed.value ? parentWidth.value - 300 : parentWidth.value - 400
+        }px`,
+      }
+    : {};
+});
+
+onMounted(() => {
+  let target = document.getElementById('gtSidebarContentRef');
+  parentWidth.value = target.offsetWidth;
+
+  let target2 = document.getElementById('tabRef');
+  widthTabs.value = target2.offsetWidth;
 });
 </script>
 <script>
@@ -98,9 +121,9 @@ export default {
     :class="classComputed"
     @mouseenter="isMouseIn = true"
     @mouseleave="isMouseIn = false"
-    :style="parentWidth ? { 'max-width': `${collapsed ? parentWidth - 300 : parentWidth - 400 }px` } : {}"
+    :style="styleComputed"
   >
-    <div class="tabs" ref="tabRef">
+    <div class="tabs" id="tabRef" ref="tabRef">
       <div
         class="tab"
         v-for="tab in tabs"

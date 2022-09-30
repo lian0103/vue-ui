@@ -3,7 +3,7 @@
   @apply grid h-screen bg-gray3;
   transition: 0.4s width ease-in-out;
   width: inherit;
-  grid-template-columns: 80px 140px 1fr;
+  grid-template-columns: 100px 120px 1fr;
   grid-auto-rows: 80px 1fr;
 
   .gt-headline-header {
@@ -14,11 +14,17 @@
       animation: layoutOpen 0.5s both;
       height: 80px;
       @apply relative;
+
       .gt-icon {
-        margin-right: 10px;
+        @apply absolute;
+        top: 30px;
+        left: 51px;
         cursor: pointer;
       }
       .head-text {
+        position: absolute;
+        top: 30px;
+        left: 82px;
         transition: all 0.4s ease-in-out;
         width: fit-content;
         white-space: nowrap;
@@ -50,7 +56,7 @@
         margin: auto;
         flex-grow: 2;
         @apply w-full relative;
-        height: calc(100vh - 150px);
+        height: calc(100vh - 170px);
         @apply overflow-y-scroll;
         &::-webkit-scrollbar {
           width: 0px !important;
@@ -58,7 +64,7 @@
         &::after {
           content: '';
           width: 1px;
-          height: calc(100vh - 150px);
+          height: calc(100vh - 170px);
           @apply block bg-gray3 absolute top-0 right-0;
         }
 
@@ -66,13 +72,26 @@
           transition: left 0.4s ease-in-out;
           position: relative;
           top: 0px;
-          left: 30px;
+          left: 76px;
         }
       }
 
       .gt-bottomLogo {
-        @apply flex justify-center items-center;
-        height: 45px;
+        @apply relative;
+        height: 65px;
+        img {
+          &:nth-child(1) {
+            transition: left .4s ease-in-out;
+            @apply absolute;
+            top: 10px;
+            left: 76px;
+          }
+          &:nth-child(2) {
+            @apply absolute;
+            top: 15px;
+            left: 106px;
+          }
+        }
       }
     }
 
@@ -128,8 +147,17 @@
           }
           .gt-menus {
             position: fixed;
-            left: 0px;
+            left: 32px;
             top: 80px;
+          }
+        }
+        .gt-bottomLogo {
+          @apply relative;
+          height: 65px;
+          img {
+            &:nth-child(1) {
+              left: 32px;
+            }
           }
         }
       }
@@ -139,7 +167,7 @@
 
 @keyframes layoutOpen {
   0% {
-    width: 80px;
+    width: 100px;
   }
   100% {
     width: 290px;
@@ -151,6 +179,6 @@
     width: 290px;
   }
   100% {
-    width: 80px;
+    width: 100px;
   }
 }
