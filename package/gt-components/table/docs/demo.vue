@@ -1,5 +1,4 @@
 <script setup>
-import GMessage from '../../message/index.js';
 import { ref , reactive, getCurrentInstance, onMounted, watch } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 

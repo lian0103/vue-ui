@@ -1,6 +1,7 @@
 node_modules
 dist
 demo
+docs
 package/assets/fonts/google
 package/assets/fonts/greattree/icon
 package/assets/scss/_icons.scss

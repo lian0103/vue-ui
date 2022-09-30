@@ -1,7 +1,6 @@
 <script setup>
 import { isNull } from 'lodash';
 import { ref , reactive, getCurrentInstance, onMounted } from 'vue';
-import GForm from '../index.js';
 
 const instance = getCurrentInstance();
 

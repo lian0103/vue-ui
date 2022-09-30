@@ -67,7 +67,7 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
   );
 }
 
-function genVGtComponent() {
+function genVGtComponent(MODE = 'develop') {
   const tpl = fs.readFileSync(
     resolve(__dirname, './.template/VGtComponent.vue.tpl'),
     'utf-8'
@@ -75,7 +75,10 @@ function genVGtComponent() {
 
   const allDemos = componentList
     .map((compName) => {
-      let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
+      let demoFilePath =
+        MODE === 'develop'
+          ? `../../package/gt-components/${compName}/docs/demo.vue`
+          : `../../docs/${compName}/demo.vue`;
       return `import ${compName
         .replace(/\-/g, '')
         .toUpperCase()} from '${demoFilePath}';`;
@@ -91,13 +94,14 @@ function genVGtComponent() {
     noEscape: true,
   })({ allDemos, mapObj });
 
-  fs.outputFile(
-    resolve(__dirname, '../../src/views/VGtComponent.vue'),
-    contentCompiled,
-    (err) => {
-      if (err) console.log(err);
-    }
-  );
+  let outputPath =
+    MODE === 'develop'
+      ? resolve(__dirname, '../../src/views/VGtComponent.vue')
+      : resolve(__dirname, '../../src/views/VGtComponentProd.vue');
+
+  fs.outputFile(outputPath, contentCompiled, (err) => {
+    if (err) console.log(err);
+  });
 }
 
 function sortComponentList() {
@@ -114,9 +118,28 @@ function sortComponentList() {
   );
 }
 
+function cpDoc() {
+  componentList.forEach((compName) => {
+    let src = join(
+      __dirname,
+      `../../package/gt-components/${compName}/docs/demo.vue`
+    );
+    let dirDist = join(__dirname, `../../docs/${compName}`);
+    let dist = join(__dirname, `../../docs/${compName}/demo.vue`);
+    if (fs.existsSync(dirDist)) {
+      fs.copyFileSync(src, dist);
+    } else {
+      fs.mkdirSync(dirDist);
+      fs.copyFileSync(src, dist);
+    }
+  });
+}
+
 async function run() {
   genGtDoc();
   genVGtComponent();
   sortComponentList();
+  cpDoc();
+  genVGtComponent('product');
 }
 run();

@@ -1,0 +1,130 @@
+/** 
+ * !--------- FBI WARNING ----------!
+ * 
+ * 根据 /packages 目录下的组件所生成的模块导出，请勿手动修改
+ */
+
+<script setup>
+import { useRoute } from 'vue-router';
+import { computed, shallowRef } from 'vue';
+
+import gtDocTable from '../gtDocTable';
+import gtDoc from '../gtDoc';
+import AVATAR from '../../docs/avatar/demo.vue';
+import BUTTON from '../../docs/button/demo.vue';
+import CHECKBOX from '../../docs/checkbox/demo.vue';
+import DIALOG from '../../docs/dialog/demo.vue';
+import DIVIDER from '../../docs/divider/demo.vue';
+import DOWNLOADICON from '../../docs/download-icon/demo.vue';
+import DROPDOWN from '../../docs/dropdown/demo.vue';
+import DROPDOWNITEM from '../../docs/dropdownitem/demo.vue';
+import FILTEROPTION from '../../docs/filter-option/demo.vue';
+import FORM from '../../docs/form/demo.vue';
+import ICON from '../../docs/icon/demo.vue';
+import IMGUPLOAD from '../../docs/img-upload/demo.vue';
+import INPUT from '../../docs/input/demo.vue';
+import LAYOUT from '../../docs/layout/demo.vue';
+import LOADING from '../../docs/loading/demo.vue';
+import LOADINGICON from '../../docs/loading-icon/demo.vue';
+import MENU from '../../docs/menu/demo.vue';
+import MESSAGE from '../../docs/message/demo.vue';
+import MESSAGETOAST from '../../docs/message-toast/demo.vue';
+import PAGINATION from '../../docs/pagination/demo.vue';
+import RADIOBOX from '../../docs/radiobox/demo.vue';
+import SORTLABEL from '../../docs/sort-label/demo.vue';
+import SWITCH from '../../docs/switch/demo.vue';
+import TABLE from '../../docs/table/demo.vue';
+import TABS from '../../docs/tabs/demo.vue';
+import TAG from '../../docs/tag/demo.vue';
+import TIMEPICKER from '../../docs/time-picker/demo.vue';
+import TITLE from '../../docs/title/demo.vue';
+import UPLOADICON from '../../docs/upload-icon/demo.vue';
+
+const Route = useRoute();
+const docTableRef = shallowRef(null);
+const demoRef = shallowRef(null);
+const demoSourceRef = shallowRef(null);
+
+const mapObj = {
+    'avatar' : AVATAR ,
+    'button' : BUTTON ,
+    'checkbox' : CHECKBOX ,
+    'dialog' : DIALOG ,
+    'divider' : DIVIDER ,
+    'download-icon' : DOWNLOADICON ,
+    'dropdown' : DROPDOWN ,
+    'dropdownitem' : DROPDOWNITEM ,
+    'filter-option' : FILTEROPTION ,
+    'form' : FORM ,
+    'icon' : ICON ,
+    'img-upload' : IMGUPLOAD ,
+    'input' : INPUT ,
+    'layout' : LAYOUT ,
+    'loading' : LOADING ,
+    'loading-icon' : LOADINGICON ,
+    'menu' : MENU ,
+    'message' : MESSAGE ,
+    'message-toast' : MESSAGETOAST ,
+    'pagination' : PAGINATION ,
+    'radiobox' : RADIOBOX ,
+    'sort-label' : SORTLABEL ,
+    'switch' : SWITCH ,
+    'table' : TABLE ,
+    'tabs' : TABS ,
+    'tag' : TAG ,
+    'time-picker' : TIMEPICKER ,
+    'title' : TITLE ,
+    'upload-icon' : UPLOADICON ,
+}
+
+const componentName = computed(async () => {
+  let compName = Route.params.componentName;
+  docTableRef.value = gtDocTable['' + compName];
+  demoSourceRef.value = gtDoc['' + compName];
+  demoRef.value = mapObj[compName]
+  return compName;
+});
+
+
+</script>
+
+<template>
+  <div class="innerWrapper">
+    <div class="w-full py-4 flex justify-center items-center">
+      <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4">
+        <template v-if="docTableRef">
+          <div class="mb-4" v-for="item in docTableRef.show" :key="item">
+            <v-md-editor v-model="docTableRef[item]" mode="preview" />
+          </div>
+        </template>
+        <component :is="demoRef"></component>
+        <v-md-editor
+          v-if="demoSourceRef"
+          v-model="demoSourceRef"
+          mode="preview"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+.innerWrapper {
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #aaaaaa;
+    &:hover {
+      background-color: #666666;
+    }
+  }
+}
+.scrollbar__view,
+.scrollbar__wrap {
+  overflow: hidden;
+}
+</style>

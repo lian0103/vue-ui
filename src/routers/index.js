@@ -3,6 +3,25 @@ import packageMap from '../../package/components.json';
 
 const packagesCompNameList = Object.keys(packageMap);
 
+function getDemoRoute() {
+  const isDev = import.meta.env.MODE === 'development';
+  return isDev
+    ? {
+        path: 'gt/:componentName',
+        components: {
+          mainView: () => import('../views/VGtComponent.vue'),
+        },
+        meta: { title: 'GT元件', idx: null },
+      }
+    : {
+        path: 'gt/:componentName',
+        components: {
+          mainView: () => import('../views/VGtComponentProd.vue'),
+        },
+        meta: { title: 'GT元件', idx: null },
+      };
+}
+
 export const routes = [
   {
     path: '/',
@@ -16,13 +35,7 @@ export const routes = [
         },
         meta: { title: '指引', idx: '1-1' },
       },
-      {
-        path: 'gt/:componentName',
-        components: {
-          mainView: () => import('../views/VGtComponent.vue'),
-        },
-        meta: { title: 'GT元件', idx: null },
-      },
+      getDemoRoute(),
     ],
   },
   {
@@ -32,18 +45,16 @@ export const routes = [
   },
 ];
 
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
 
 router.beforeEach((to, from, next) => {
-
   if (to.path === '/') {
     return next('/doc');
   }
-  
+
   if (
     to.path.includes('/gt/') &&
     !packagesCompNameList.includes(to.params.componentName)
