@@ -1,5 +1,7 @@
 set -e
 
+npm run build-GT
+
 npm run doc
 
 npm run demo
