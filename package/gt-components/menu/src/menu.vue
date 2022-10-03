@@ -166,6 +166,27 @@ defineExpose({
   activePath,
 });
 
+const handleMenuHtmlEvent = () => {
+  isCollapsedAndHadOpenedOne.value = false;
+  info.menuGroupActiveArr = [];
+};
+
+watch(
+  () => isCollapsedAndHadOpenedOne.value,
+  (val) => {
+    // console.log('in', val);
+    if (val && document.getElementsByTagName('html')[0]) {
+      document
+        .getElementsByTagName('html')[0]
+        .addEventListener('click', handleMenuHtmlEvent, false);
+    } else {
+      document
+        .getElementsByTagName('html')[0]
+        ?.removeEventListener('click', handleMenuHtmlEvent);
+    }
+  }
+);
+
 watch(
   () => collapsed.value,
   (val) => {
@@ -188,7 +209,7 @@ export default {
       v-for="(item, index) in menuComputed"
       :key="'group' + item.label"
       :class="item.active ? 'active' : ''"
-      @click="handleGroupClick(item, index)"
+      @click.stop="handleGroupClick(item, index)"
     >
       <div class="menu-text">
         <div class="left">
