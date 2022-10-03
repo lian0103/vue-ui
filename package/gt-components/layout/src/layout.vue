@@ -6,7 +6,7 @@ import { useElementBounding } from '@vueuse/core';
 
 const instance = getCurrentInstance();
 
-const { headText, title, menuTabs, collapsed, onlyOneLevel } = defineProps({
+const props = defineProps({
   headText: {
     type: String,
     default: '',
@@ -34,14 +34,14 @@ const { width: widthGtSidebarContent } =
   useElementBounding(gtSidebarContentRef);
 
 const emit = defineEmits(['collapsed']);
-const isCollapsed = ref(collapsed);
+const isCollapsed = ref(props.collapsed);
 
 const Router = instance.appContext.config.globalProperties?.$router;
 
 const currentTab = computed(() => {
   let { path } = Router.currentRoute.value;
-  if (menuTabs && path) {
-    return menuTabs.filter((item) => item.path == path)[0]?.name;
+  if (props.menuTabs && path) {
+    return props.menuTabs.filter((item) => item.path == path)[0]?.name;
   }
   return null;
 });
@@ -92,7 +92,11 @@ export default {
       </div>
     </div>
 
-    <div class="gt-sidebar-content" id="gtSidebarContentRef" ref="gtSidebarContentRef">
+    <div
+      class="gt-sidebar-content"
+      id="gtSidebarContentRef"
+      ref="gtSidebarContentRef"
+    >
       <div
         class="gt-sidebar"
         :class="onlyOneLevel ? 'onlyOneLevel' : ''"

@@ -4,15 +4,7 @@ import { useElementBounding } from '@vueuse/core';
 
 const instance = getCurrentInstance();
 
-const {
-  name,
-  tabs: tabsFromParent,
-  clickCallback,
-  currentTab,
-  layoutMode,
-  parentWidth: parentWidthFromParent,
-  collapsed: collapsedFromParent,
-} = defineProps({
+const props = defineProps({
   name: {
     type: String,
   },
@@ -38,34 +30,23 @@ const {
     type: Boolean,
   },
 });
+
 const slots = useSlots();
 const slotTabs = Object.keys(slots);
-
-const tabs = ref(tabsFromParent);
-const current = ref(currentTab);
-const collapsed = ref(collapsedFromParent);
-const parentWidth = ref(parentWidthFromParent);
+const current = ref(props.currentTab || slotTabs[0]);
+const collapsed = ref(props.collapsedFromParent);
+const parentWidth = ref(props.parentWidthFromParent);
 
 defineExpose({
   collapsed,
+  current,
 });
-
-instance.appContext.config.globalProperties['handleCurrent' + name] = (
-  tabName
-) => {
-  current.value = tabName;
-};
-instance.appContext.config.globalProperties['handleTabs' + name] = (
-  newTabs
-) => {
-  tabs.value = newTabs;
-};
 
 const handleTabChange = (name) => {
   current.value = name;
-  if (clickCallback) {
-    let toTab = tabs.value.filter((item) => item.name == name)[0] || {};
-    clickCallback(toTab);
+  if (props.clickCallback) {
+    let toTab = props.tabs.filter((item) => item.name == name)[0] || {};
+    props.clickCallback(toTab);
   }
 };
 
@@ -77,15 +58,15 @@ const widthTabs = ref(width.value);
 const isMouseIn = ref(false);
 
 const classComputed = computed(() => {
-  console.log('widthTabs.value', widthTabs.value);
+  // console.log('widthTabs.value', widthTabs.value);
   let arr = [];
   if (isMouseIn.value) {
     arr.push('mouse-in');
   }
-  if (layoutMode) {
+  if (props.layoutMode) {
     arr.push('layoutMode');
   }
-  if (parseInt(widthTabs.value) > 1440) {
+  if (parseInt(widthTabs.value) > parseInt(parentWidth.value)) {
     arr.push('overTabsWrapper');
   }
   return arr;
@@ -102,12 +83,34 @@ const styleComputed = computed(() => {
     : {};
 });
 
-onMounted(() => {
-  let target = document.getElementById('gtSidebarContentRef');
-  parentWidth.value = target.offsetWidth;
+const calcTargetWidth = () => {
+  if (props.name == 'layoutTab') {
+    setTimeout(() => {
+      let target = document.getElementById('gtSidebarContentRef');
+      parentWidth.value = target.offsetWidth;
 
-  let target2 = document.getElementById('tabRef');
-  widthTabs.value = target2.offsetWidth;
+      let target2 = document.getElementById(`${props.name}-tabRef`);
+      widthTabs.value = target2.offsetWidth;
+    }, 300);
+  }
+};
+
+instance.appContext.config.globalProperties['handleCurrent' + props.name] = (
+  tabName
+) => {
+  current.value = tabName;
+};
+instance.appContext.config.globalProperties['handleTabs' + props.name] = (
+  newTabs
+) => {
+  props.tabs.value = newTabs;
+  setTimeout(() => {
+    calcTargetWidth();
+  }, 300);
+};
+
+onMounted(() => {
+  calcTargetWidth();
 });
 </script>
 <script>
@@ -123,7 +126,7 @@ export default {
     @mouseleave="isMouseIn = false"
     :style="styleComputed"
   >
-    <div class="tabs" id="tabRef" ref="tabRef">
+    <div class="tabs" :id="name ? `${name}-tabRef` : ''" ref="tabRef">
       <div
         class="tab"
         v-for="tab in tabs"
