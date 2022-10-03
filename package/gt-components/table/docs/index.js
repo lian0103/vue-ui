@@ -5,7 +5,7 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | name | 表名稱。 | String |  |  |
-| columns | 欄位 | Array[ColumnObject{Column(String),label(String),width(Number),sort(Boolean)}] |  |  |
+| columns | 欄位 | Array[ColumnObject{Column(String),label(String),width(Number),sort(Boolean),handleSortCallback(function) }] |  |  |
 | data | 資料 | Array[RowObject{ Column:DataCell(Any) }] |  |  |
 | isCheckBox | 顯示勾選欄 | Boolean |  | true |
 | width | 表高度。超過寬度則有X捲軸 | Number |  |  |

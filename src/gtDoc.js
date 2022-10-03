@@ -1262,7 +1262,7 @@ const inputs = reactive({
   \`\`\`  `,
     'table': ` \`\`\` html 
 <script setup>
-import { ref , reactive, getCurrentInstance, onMounted, watch } from 'vue';
+import { reactive, getCurrentInstance } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const instance = getCurrentInstance();
@@ -1278,6 +1278,9 @@ const tableInfo = reactive({
       name: 'product',
       label: '商品名稱',
       sort: false,
+      handleSortCallback: function (){
+        alert('custom sort callback')
+      },
       width: 480,
     },
     {
@@ -1347,14 +1350,6 @@ const showLoading = () => {
     tableInfo.isLoading = false;
   }, 3000);
 };
-
-const targetBoxWidth = ref();
-
-onMounted(()=>{
-  targetBoxWidth.value = document.querySelector('.innerWrapper').offsetWidth;
-  console.log(targetBoxWidth.value)
-})
-
 </script>
 <template>
   <div class="w-full mx-auto mb-6">
@@ -1363,7 +1358,6 @@ onMounted(()=>{
       ref="tableRef"
       :columns="tableInfo.columns"
       :data="tableInfo.data"
-      :width="800"
       :height="450"
       name="products"
       :isLoading="tableInfo.isLoading"

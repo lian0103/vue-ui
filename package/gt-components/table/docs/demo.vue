@@ -15,6 +15,9 @@ const tableInfo = reactive({
       name: 'product',
       label: '商品名稱',
       sort: false,
+      handleSortCallback: function (){
+        alert('custom sort callback')
+      },
       width: 480,
     },
     {

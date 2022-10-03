@@ -58,6 +58,7 @@ const columnsComputed = computed(() => {
     .map((cItem, cIdx) => {
       return cItem.name
         ? {
+            ...cItem,
             name: cItem.name,
             label: cItem.label || '',
             width: cItem.width || 80,
@@ -72,7 +73,7 @@ const columnsComputed = computed(() => {
 
 const columnsClassComputed = (cItem) => {
   let arr = [];
-  if (cItem.sort) arr.push('gt-cursor-pointer');
+  if (cItem.sort || cItem.handleSortCallback) arr.push('gt-cursor-pointer');
   return arr;
 };
 
@@ -119,9 +120,13 @@ watch(
 );
 
 const handleColumnSort = (cItem) => {
+  console.log(cItem);
+  if (cItem.handleSortCallback) {
+    cItem.handleSortCallback();
+  }
+
   if (cItem.sort) {
     let target = cItem.name;
-
     if (
       columnSortStatus[target] === tableEnum.ASC ||
       !columnSortStatus[target]
@@ -197,7 +202,11 @@ export default {
           @click="() => handleColumnSort(cItem)"
         >
           <span> {{ cItem.label }}</span>
-          <g-icon v-if="cItem.sort" class="sort-icon" name="sequence" />
+          <g-icon
+            v-if="cItem.sort || typeof cItem.handleSortCallback === 'function'"
+            class="sort-icon"
+            name="sequence"
+          />
         </div>
       </div>
 
