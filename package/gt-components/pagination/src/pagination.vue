@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 
-const { pageInfo } = defineProps({
+const props = defineProps({
   pageInfo: {
     type: Object,
     default: {
@@ -14,9 +14,9 @@ const { pageInfo } = defineProps({
 
 const emit = defineEmits(['updatePage']);
 
-const current = ref(pageInfo.currentPage || 1);
+const current = ref(props.pageInfo.currentPage || 1);
 const firstPage = 1;
-const lastPage = Math.ceil(pageInfo.total / pageInfo.perPageNums);
+const lastPage = Math.ceil(props.pageInfo.total / props.pageInfo.perPageNums);
 
 watch(
   () => current.value,
@@ -35,8 +35,8 @@ const pagesComputed = computed(() => {
     headAndTail = true;
   }
   headAndTail = {
-    head: [firstPage, 'pre-dot'],
-    tail: ['next-dot', lastPage],
+    head: lastPage > 7 ? [firstPage, 'pre-dot'] : [firstPage],
+    tail: lastPage > 7 ? ['next-dot', lastPage] : [lastPage],
   };
 
   if (current.value <= firstPage + 3) {
@@ -69,8 +69,14 @@ const pagesComputed = computed(() => {
     ];
   }
 
-  let arr = [...headAndTail.head, ...middle, ...headAndTail.tail];
-  //   console.log(arr);
+  middle = middle.filter((val) => val > firstPage && val < lastPage);
+
+  let arr = [
+    ...headAndTail.head,
+    ...middle,
+    ...headAndTail.tail,
+  ];
+  console.log(arr);
   return arr;
 });
 
@@ -110,7 +116,7 @@ export default {
 </script>
 <template>
   <div class="gt-pagination">
-    <div class="flex">
+    <div class="gt-flex">
       <div
         class="pre-next pre"
         :class="current == firstPage ? 'disable' : ''"
@@ -141,11 +147,7 @@ export default {
             {{ num }}
           </template>
           <template v-else>
-            <g-icon
-              v-if="pageInfo.total"
-              name="ellipsis"
-              size="md"
-            />
+            <g-icon v-if="pageInfo.total" name="ellipsis" size="md" />
           </template>
         </div>
       </div>

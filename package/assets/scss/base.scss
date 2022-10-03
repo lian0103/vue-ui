@@ -37,6 +37,9 @@ body {
   @apply overflow-hidden;
 }
 
+.gt-flex{
+  @apply flex;
+}
 
 .flexImportant {
   display: flex !important;

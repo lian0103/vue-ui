@@ -6,7 +6,20 @@ const handleUpdatePage = (val) => {console.log(val)};
   <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">分頁選擇</g-title>
     <g-pagination
-      :pageInfo="{ currentPage: 1, total: 200, perPageNums: 15 }"
+      :pageInfo="{ currentPage: 1, total: 60, perPageNums: 15 }"
+      @updatePage="handleUpdatePage"
+    />    
+    <g-pagination
+      :pageInfo="{ currentPage: 2, total: 600, perPageNums: 100 }"
+      @updatePage="handleUpdatePage"
+    />
+    <g-pagination
+      :pageInfo="{ currentPage: 3, total: 420, perPageNums: 60 }"
+      @updatePage="handleUpdatePage"
+    />
+
+    <g-pagination
+      :pageInfo="{ currentPage: 7, total: 600, perPageNums: 40 }"
       @updatePage="handleUpdatePage"
     />
   </div>
