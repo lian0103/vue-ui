@@ -1,5 +1,5 @@
 <script setup>
-import { ref , reactive, getCurrentInstance, onMounted, watch } from 'vue';
+import { reactive, getCurrentInstance } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const instance = getCurrentInstance();
@@ -84,7 +84,6 @@ const showLoading = () => {
     tableInfo.isLoading = false;
   }, 3000);
 };
-
 </script>
 <template>
   <div class="w-full mx-auto mb-6">
@@ -93,7 +92,6 @@ const showLoading = () => {
       ref="tableRef"
       :columns="tableInfo.columns"
       :data="tableInfo.data"
-      :width="800"
       :height="450"
       name="products"
       :isLoading="tableInfo.isLoading"

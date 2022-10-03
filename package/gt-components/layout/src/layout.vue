@@ -117,7 +117,7 @@ export default {
         </div>
       </div>
 
-      <div class="gt-content-wrapper">
+      <div class="gt-content-wrapper" :style="{width:isCollapsed?'calc(100% - 100px)':'calc(100% - 290px)'}">
         <g-tabs
           ref="layoutTabs"
           name="layoutTab"

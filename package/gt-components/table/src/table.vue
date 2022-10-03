@@ -31,6 +31,7 @@ const props = defineProps({
   },
   width: {
     type: Number,
+    default: null,
   },
   height: {
     type: Number,
@@ -177,7 +178,7 @@ export default {
         ? 'overflow-with-x-scroll'
         : ''
     "
-    :style="{ width: width + 'px' }"
+    :style="width ? { width: width + 'px' } : {}"
   >
     <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
       <div class="table-head">
