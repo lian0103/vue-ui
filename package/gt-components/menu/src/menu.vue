@@ -117,17 +117,20 @@ const handleGroupClick = (item, gIdx) => {
   } else if (onlyOneLevel.value) {
     if (Router) {
       if (Router.currentRoute.value.meta.title != item.label) {
-        // console.log(item.children[0].path);
-        // console.log(item.children[0].name);
-        instance.appContext.config.globalProperties.handleCurrentlayoutTab(
-          item.children[0].name
-        );
-        instance.appContext.config.globalProperties.handleTabslayoutTab(
-          item.children
-        );
+        console.log(item.children[0].path);
+        console.log(item.children[0].name);
 
         // instance.refs.layoutTab.current.value = item.children[0].name;
         Router.push(item.children[0].path);
+
+        setTimeout(() => {
+          instance.appContext.config.globalProperties.handleCurrentlayoutTab(
+            item.children[0].name
+          );
+          instance.appContext.config.globalProperties.handleTabslayoutTab(
+            item.children
+          );
+        }, 500);
       }
     }
   } else if (!active) {
@@ -160,7 +163,7 @@ const handleRouteTo = (path, gIdx, cItemUuid) => {
 defineExpose({
   collapsed,
   onlyOneLevel,
-  activePath
+  activePath,
 });
 
 watch(

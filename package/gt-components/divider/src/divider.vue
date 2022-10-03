@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue';
 
-const { horizontal, vertical, height } = defineProps({
+const props = defineProps({
   horizontal: {
     type: Boolean,
     default: true,
@@ -17,9 +17,8 @@ const { horizontal, vertical, height } = defineProps({
 });
 
 const classComputer = computed(() => {
-  return vertical ? ['vertical'] : ['horizontal'];
+  return props.vertical ? ['vertical'] : ['horizontal'];
 });
-
 </script>
 <script>
 export default {

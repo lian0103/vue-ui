@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue';
 const sizeType = ['sm', 'md', 'lg'];
-const { imgUrl, size, clickCallback } = defineProps({
+const props = defineProps({
   imgUrl: {
     type: String,
     default: null,
@@ -13,17 +13,17 @@ const { imgUrl, size, clickCallback } = defineProps({
 });
 
 const styleComputed = computed(() => {
-  return imgUrl ? {
-    'background-image': `url(${imgUrl})`,
+  return props.imgUrl ? {
+    'background-image': `url(${props.imgUrl})`,
   }:{};
 });
 
 const classComputed = computed(() => {
   let arr = [];
 
-  arr.push(sizeType.includes('size') ? `size-${size}` : 'size-md');
+  arr.push(sizeType.includes('size') ? `size-${props.size}` : 'size-md');
 
-  if(!imgUrl){
+  if(!props.imgUrl){
     arr.push('no-bg-img')
   }
 
