@@ -10,13 +10,8 @@ import {
 import { v4 as uuid } from 'uuid';
 
 const instance = getCurrentInstance();
-const {
-  active,
-  menu: menuFromParent,
-  activePath,
-  collapsed: collapsedFromParent,
-  onlyOneLevel: onlyOneLevelFromParent,
-} = defineProps({
+
+const props = defineProps({
   active: {
     type: String,
   },
@@ -37,13 +32,15 @@ const {
   },
 });
 
-const collapsed = ref(collapsedFromParent);
+const collapsed = ref(props.collapsed);
 
-const onlyOneLevel = ref(onlyOneLevelFromParent);
+const activePath = ref(props.activePath);
+
+const onlyOneLevel = ref(props.onlyOneLevel);
 
 const isCollapsedAndHadOpenedOne = ref(false);
 
-const menu = menuFromParent.map((item, idx) => {
+const menu = props.menu.map((item, idx) => {
   // console.log(info.menuGroupActiveArr);
   return {
     ...item,
@@ -66,7 +63,7 @@ const findRouteIndexByPath = () => {
   menu.forEach((item, idx) => {
     if (Array.isArray(item.children)) {
       item.children.forEach((cItem, cIdx) => {
-        if (cItem.path === activePath) {
+        if (cItem.path === props.activePath) {
           groupIndex = idx + 1;
           activeItemIndex = cItem.uuid;
           routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
@@ -89,12 +86,12 @@ const info = reactive({
     ? []
     : result.routerMenuIndex
     ? [result.groupIndex]
-    : [parseInt(active?.split('-')[0])],
+    : [parseInt(props.active?.split('-')[0])],
   menuGroupActive: collapsed.value
     ? []
     : result.groupIndex
     ? result.groupIndex
-    : parseInt(active?.split('-')[0]),
+    : parseInt(props.active?.split('-')[0]),
   menuGroupItemActive: result.activeItemIndex || '',
 });
 
@@ -162,7 +159,8 @@ const handleRouteTo = (path, gIdx, cItemUuid) => {
 
 defineExpose({
   collapsed,
-  onlyOneLevel
+  onlyOneLevel,
+  activePath
 });
 
 watch(
@@ -248,7 +246,15 @@ export default {
             :key="cItem.uuid"
             v-for="(cItem, cIndex) in item.children"
             class="gt-menu-group-item"
-            :class="info.menuGroupItemActive == cItem.uuid ? 'active' : ''"
+            :class="
+              activePath
+                ? cItem.path == activePath
+                  ? 'active'
+                  : ''
+                : info.menuGroupItemActive == cItem.uuid
+                ? 'active'
+                : ''
+            "
             @click.stop="
               () => {
                 handleRouteTo(cItem.path, index, cItem.uuid);

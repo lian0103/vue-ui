@@ -93,8 +93,10 @@ onMounted(() => {
 });
 
 watch(
-  () => Router.currentRoute.value.fullPath,
+  () => Router.currentRoute.value.path,
   (val) => {
+    instance.refs.appMenu.activePath = val;
+    
     const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
 
     if (onlyOneLevel.value) {

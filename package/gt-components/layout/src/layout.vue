@@ -46,6 +46,16 @@ const currentTab = computed(() => {
   return null;
 });
 
+watch(
+  () => Router.currentRoute.value.path,
+  (val) => {
+    if (props.menuTabs && val && props.onlyOneLevel) {
+      let name = props.menuTabs.filter((item) => item.path == val)[0]?.name;
+      instance.refs.layoutTabs.current = name;
+    }
+  }
+);
+
 const handleMenuTabCallback = (target = {}) => {
   let { path } = target;
   if (path && Router) {
@@ -117,7 +127,12 @@ export default {
         </div>
       </div>
 
-      <div class="gt-content-wrapper" :style="{width:isCollapsed?'calc(100% - 100px)':'calc(100% - 290px)'}">
+      <div
+        class="gt-content-wrapper"
+        :style="{
+          width: isCollapsed ? 'calc(100% - 100px)' : 'calc(100% - 290px)',
+        }"
+      >
         <g-tabs
           ref="layoutTabs"
           name="layoutTab"
