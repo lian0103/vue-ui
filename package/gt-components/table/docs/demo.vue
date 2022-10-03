@@ -15,8 +15,8 @@ const tableInfo = reactive({
       name: 'product',
       label: '商品名稱',
       sort: false,
-      handleSortCallback: function (){
-        alert('custom sort callback')
+      handleSortCallback: function () {
+        alert('custom sort callback');
       },
       width: 480,
     },
@@ -61,6 +61,27 @@ const tableInfo = reactive({
   isLoading: false,
 });
 
+const tableInfo2 = reactive({
+  columns: [
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      sort: true,
+    },
+  ],
+  data: [
+    { product: 'aaa', price: 200, id: uuidv4() },
+    { product: 'bbbb', price: 100, id: uuidv4() },
+  ],
+  filterOtions: {},
+  isLoading: false,
+});
+
 const handleRowClick = (row, dialogType) => {
   // console.log(row);
   // handleDialog(dialogType);
@@ -90,6 +111,12 @@ const showLoading = () => {
 </script>
 <template>
   <div class="w-full mx-auto mb-6">
+    <g-title :level="2" class="mb-3">表格</g-title>
+    <g-table
+      :columns="tableInfo2.columns"
+      :data="tableInfo2.data"
+    />
+
     <g-title :level="2" class="mb-3">表格</g-title>
     <g-table
       ref="tableRef"

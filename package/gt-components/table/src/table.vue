@@ -72,7 +72,7 @@ const columnsComputed = computed(() => {
 });
 
 const columnsClassComputed = (cItem) => {
-  let arr = [];
+  let arr = ['with-flex-grow'];
   if (cItem.sort || cItem.handleSortCallback) arr.push('gt-cursor-pointer');
   return arr;
 };
@@ -257,7 +257,7 @@ export default {
               v-for="(cItem, cIdx) in columnsComputed"
               :key="cItem.name + '-' + rIdx + '-' + cIdx"
               :style="{ width: cItem.width + 'px' }"
-              class="row-cell"
+              class="row-cell with-flex-grow"
             >
               <template v-if="slotColumns.includes(cItem.name)">
                 <slot :name="cItem.name" :row="rItem" />

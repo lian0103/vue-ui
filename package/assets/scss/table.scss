@@ -36,6 +36,9 @@
       &.checknoxColumn {
         padding: 5px 33px 5px 23px;
       }
+      &.with-flex-grow{
+        flex-grow: 2;
+      }
     }
     .sortIcon {
       @apply text-gray1;
@@ -78,6 +81,9 @@
         line-height: 23px;
         &.checknoxColumn {
           padding: 5px 33px 5px 23px;
+        }
+        &.with-flex-grow{
+          flex-grow: 2;
         }
       }
 
