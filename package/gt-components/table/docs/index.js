@@ -8,6 +8,7 @@ module.exports = {
 | columns | 欄位 | Array[ColumnObject{Column(String),label(String),width(Number),sort(Boolean)}] |  |  |
 | data | 資料 | Array[RowObject{ Column:DataCell(Any) }] |  |  |
 | isCheckBox | 顯示勾選欄 | Boolean |  | true |
+| width | 表高度。超過寬度則有X捲軸 | Number |  |  |
 | height | 表高度。超過高度則有Y捲軸 | Number |  |  |
 | rowClick | 點選row即可勾選 | Boolean |  | false |
 | isLoading | 顯示載入效果 | Boolean |  | false |

@@ -15,15 +15,7 @@ const tableEnum = {
   DESC: 'desc',
 };
 
-const {
-  name,
-  columns,
-  isCheckBox,
-  data,
-  height,
-  rowClick,
-  isLoading,
-} = defineProps({
+const props = defineProps({
   name: {},
   columns: {
     type: Array,
@@ -36,6 +28,9 @@ const {
   isCheckBox: {
     type: Boolean,
     default: true,
+  },
+  width: {
+    type: Number,
   },
   height: {
     type: Number,
@@ -58,7 +53,7 @@ const isCheckAll = ref(false);
 const columnSortStatus = reactive({});
 
 const columnsComputed = computed(() => {
-  let arr = columns
+  let arr = props.columns
     .map((cItem, cIdx) => {
       return cItem.name
         ? {
@@ -81,7 +76,7 @@ const columnsClassComputed = (cItem) => {
 };
 
 const dataWithStatus = ref([
-  ...data.map((dItem) => {
+  ...props.data.map((dItem) => {
     return {
       ...dItem,
       checked: false,
@@ -103,9 +98,11 @@ const tableWidthComputed = computed(() => {
   return width;
 });
 
-const tableMaxHeightComputed = computed(() => {
-  let maxHeight = parseInt(height) - 40;
-  return maxHeight ? maxHeight + 'px' : 'none';
+const tableInnerStyleComputed = computed(() => {
+  let height = parseInt(props.height) - 40;
+  return {
+    height: height ? height + 'px' : 'none',
+  };
 });
 
 watch(
@@ -142,7 +139,7 @@ const handleColumnSort = (cItem) => {
 };
 
 const handleRowClick = (row) => {
-  if (!rowClick) return false;
+  if (!props.rowClick) return false;
   // console.log(row)
   row.checked = !row.checked;
 };
@@ -156,9 +153,9 @@ defineExpose({
 });
 
 onMounted(() => {
-  if (name) {
+  if (props.name) {
     const instance = getCurrentInstance();
-    instance.appContext.config.globalProperties[`gt-table-${name}`] = {
+    instance.appContext.config.globalProperties[`gt-table-${props.name}`] = {
       getCheckedList,
     };
   }
@@ -174,8 +171,13 @@ export default {
     ref="gtTable"
     class="gt-table-wrapper"
     :class="
-      isLoading ? 'overflow-hidden' : isOverflowX ? 'overflow-x-scroll' : ''
+      isLoading
+        ? 'overflow-with-hidden'
+        : isOverflowX
+        ? 'overflow-with-x-scroll'
+        : ''
     "
+    :style="{ width: width + 'px' }"
   >
     <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
       <div class="table-head">
@@ -200,8 +202,8 @@ export default {
 
       <div
         class="table-body"
-        :class="isLoading ? 'overflow-hidden' : ''"
-        :style="{ 'max-height': tableMaxHeightComputed }"
+        :class="isLoading ? 'overflow-with-hidden' : ''"
+        :style="tableInnerStyleComputed"
       >
         <template v-if="isLoading">
           <div class="loading">

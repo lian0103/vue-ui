@@ -29,6 +29,15 @@ body {
   @apply cursor-pointer;
 }
 
+.overflow-with-x-scroll{
+  @apply overflow-x-scroll;
+}
+
+.overflow-with-hidden{
+  @apply overflow-hidden;
+}
+
+
 .flexImportant {
   display: flex !important;
 }

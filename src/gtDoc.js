@@ -1278,12 +1278,12 @@ const tableInfo = reactive({
       name: 'product',
       label: '商品名稱',
       sort: false,
-      width: 180,
+      width: 480,
     },
     {
       name: 'price',
       label: '價格',
-      width: 180,
+      width: 380,
       sort: true,
     },
     {
@@ -1293,7 +1293,7 @@ const tableInfo = reactive({
     },
     {
       name: 'tags',
-      width: 220,
+      width: 620,
       label: '標籤',
     },
     {
@@ -1327,11 +1327,6 @@ const handleRowClick = (row, dialogType) => {
   dialogInfo['show' + dialogType] = true;
 };
 const handleTableChecked = () => {
-  // let arr =
-  //   instance.appContext.config.globalProperties[
-  //     'gt-table-products'
-  //   ].getCheckedList();
-
   let arr = instance.refs.tableRef.getCheckedList();
   arr = arr.map((obj) => obj.id);
   instance.appContext.config.globalProperties.handleMessageTrigger({
@@ -1353,6 +1348,13 @@ const showLoading = () => {
   }, 3000);
 };
 
+const targetBoxWidth = ref();
+
+onMounted(()=>{
+  targetBoxWidth.value = document.querySelector('.innerWrapper').offsetWidth;
+  console.log(targetBoxWidth.value)
+})
+
 </script>
 <template>
   <div class="w-full mx-auto mb-6">
@@ -1361,9 +1363,9 @@ const showLoading = () => {
       ref="tableRef"
       :columns="tableInfo.columns"
       :data="tableInfo.data"
+      :width="800"
       :height="450"
       name="products"
-      rowClick
       :isLoading="tableInfo.isLoading"
     >
       <template v-slot:tags="{ row }">

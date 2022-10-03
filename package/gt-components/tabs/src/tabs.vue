@@ -111,6 +111,7 @@ instance.appContext.config.globalProperties['handleTabs' + props.name] = (
 
 onMounted(() => {
   calcTargetWidth();
+  window.addEventListener('resize', calcTargetWidth);
 });
 </script>
 <script>

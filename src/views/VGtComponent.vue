@@ -91,7 +91,7 @@ const componentName = computed(async () => {
 <template>
   <div class="innerWrapper">
     <div class="w-full py-4 flex justify-center items-center">
-      <div v-if="componentName" class="mb-3 px-2 pt-6 w-full md:w-3/4">
+      <div v-if="componentName" class="mb-3 px-2 pt-6 w-full 2xl:w-3/4">
         <template v-if="docTableRef">
           <div class="mb-4" v-for="item in docTableRef.show" :key="item">
             <v-md-editor v-model="docTableRef[item]" mode="preview" />
