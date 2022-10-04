@@ -101,7 +101,7 @@ watch(
   () => Router.currentRoute.value.path,
   (val) => {
     instance.refs.appMenu.activePath = val;
-    
+
     const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
 
     if (onlyOneLevel.value) {
@@ -137,6 +137,7 @@ watch(
 
 <template>
   <g-layout
+    class="doc-layout"
     :class="redLine ? 'redLine' : ''"
     headText="Great Tree UI"
     :title="nameComputed"
@@ -179,6 +180,28 @@ watch(
 .redLine {
   * {
     outline: 1px solid red !important;
+  }
+}
+.doc-layout {
+  min-width: 1080px;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 1px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #aaaaaa;
+    &:hover {
+      background-color: #666666;
+    }
   }
 }
 </style>
