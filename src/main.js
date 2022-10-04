@@ -13,9 +13,10 @@ import 'prismjs/components/prism-json';
 import './assets/init.css';
 import '../package/assets/scss/index.scss';
 
-import GtUI from '../package/index';
+import GtUIDev from '../package/index';
+import GtUIProd from '../dist/gt-ui.es.min.js';
 
-// import GtUI from '../dist/gt-ui.es.min.js';
+const GtUI = import.meta.env.MODE === 'development' ? GtUIDev : GtUIProd;
 
 console.log('GtUI', GtUI);
 
