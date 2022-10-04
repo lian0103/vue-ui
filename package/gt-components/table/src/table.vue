@@ -9,6 +9,8 @@ import {
   getCurrentInstance,
 } from 'vue';
 
+import { v4 as uuidv4 } from 'uuid';
+
 const tableEnum = {
   CHECKBOX: 'checkbox',
   ASC: 'asc',
@@ -46,12 +48,15 @@ const props = defineProps({
   },
 });
 
-const gtTable = ref();
+const gtTableId = uuidv4();
+const gtTableWidth = ref(0);
+
 const slots = useSlots();
 const slotColumns = Object.keys(slots);
 
 const isCheckAll = ref(false);
 const columnSortStatus = reactive({});
+const isOverflowX = ref(false);
 
 const columnsComputed = computed(() => {
   let arr = props.columns
@@ -77,6 +82,17 @@ const columnsClassComputed = (cItem) => {
   return arr;
 };
 
+const wrapperComputed = computed(() => {
+  let arr = [];
+  if (props.isLoading) {
+    return ['overflow-with-hidden'];
+  }
+  if (isOverflowX.value) {
+    return ['overflow-with-x-scroll'];
+  }
+  return arr;
+});
+
 const dataWithStatus = ref([
   ...props.data.map((dItem) => {
     return {
@@ -86,19 +102,19 @@ const dataWithStatus = ref([
   }),
 ]);
 
-const isOverflowX = ref(false);
-
 const tableWidthComputed = computed(() => {
   let width =
     columnsComputed.value.map((item) => item.width).reduce((a, b) => a + b) +
     80;
-
-  if (width > Math.ceil(gtTable.value?.getBoundingClientRect()?.width)) {
-    isOverflowX.value = true;
-  }
-
   return width;
 });
+
+watch(
+  () => gtTableWidth.value,
+  (val) => {
+    console.log(val);
+  }
+);
 
 const tableInnerStyleComputed = computed(() => {
   let height = parseInt(props.height) - 40;
@@ -165,6 +181,12 @@ onMounted(() => {
       getCheckedList,
     };
   }
+  gtTableWidth.value = document.getElementById(`gt-${gtTableId}`).offsetWidth;
+
+  console.log(tableWidthComputed.value, gtTableWidth.value);
+  if (tableWidthComputed.value > gtTableWidth.value) {
+    isOverflowX.value = true;
+  }
 });
 </script>
 <script>
@@ -174,15 +196,10 @@ export default {
 </script>
 <template>
   <div
+    :id="'gt-' + gtTableId"
     ref="gtTable"
     class="gt-table-wrapper"
-    :class="
-      isLoading
-        ? 'overflow-with-hidden'
-        : isOverflowX
-        ? 'overflow-with-x-scroll'
-        : ''
-    "
+    :class="wrapperComputed"
     :style="width ? { width: width + 'px' } : {}"
   >
     <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">

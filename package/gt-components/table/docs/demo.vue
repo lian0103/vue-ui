@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, getCurrentInstance } from 'vue';
+import { reactive, getCurrentInstance, onMounted, ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const instance = getCurrentInstance();
@@ -115,7 +115,10 @@ const showLoading = () => {
     <g-table
       :columns="tableInfo2.columns"
       :data="tableInfo2.data"
+      :width="500"
     />
+
+    <g-divider />
 
     <g-title :level="2" class="mb-3">表格</g-title>
     <g-table

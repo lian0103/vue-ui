@@ -1,4 +1,6 @@
 .gt-table-wrapper {
+  width: 100%;
+  max-width: 100%;
   border-radius: 8px;
   padding-bottom: 10px;
   @apply bg-white relative;
@@ -21,7 +23,6 @@
 .gt-table {
   min-width: 100%;
   letter-spacing: 0.8px;
-  min-height: 200px;
   .table-head {
     margin-bottom: 2px;
     padding: 0 10px;
