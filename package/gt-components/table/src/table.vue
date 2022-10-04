@@ -120,7 +120,7 @@ watch(
 );
 
 const handleColumnSort = (cItem) => {
-  console.log(cItem);
+  // console.log(cItem);
   if (cItem.handleSortCallback) {
     cItem.handleSortCallback();
   }

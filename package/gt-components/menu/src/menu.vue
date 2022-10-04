@@ -117,8 +117,8 @@ const handleGroupClick = (item, gIdx) => {
   } else if (onlyOneLevel.value) {
     if (Router) {
       if (Router.currentRoute.value.meta.title != item.label) {
-        console.log(item.children[0].path);
-        console.log(item.children[0].name);
+        // console.log(item.children[0].path);
+        // console.log(item.children[0].name);
 
         // instance.refs.layoutTab.current.value = item.children[0].name;
         Router.push(item.children[0].path);

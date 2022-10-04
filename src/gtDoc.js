@@ -8,14 +8,33 @@
 
 export default {
     'avatar': ` \`\`\` html 
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+const imgs = [
+  'https://i.imgur.com/m6NInWZ.jpg',
+  'https://i.imgur.com/hmYWWE7.jpg',
+];
+
+const img = ref(imgs[0]);
+const index = ref(0);
+
+const toggleImg = () => {
+  // console.log('toggleImg', index.value);
+  if (index.value == 0) {
+    img.value = imgs[1];
+    index.value = 1;
+  } else {
+    img.value = imgs[0];
+    index.value = 0;
+  }
+};
+</script>
 <template>
   <div>
     <g-title :level="1" class="mb-3">頭像</g-title>
-
+    <g-button @click="toggleImg" :width="100">資料改動</g-button>
     <div class="mb-3 px-2 w-full md:w-3/4 flex">
-      <g-avatar class="m-2" imgUrl="https://i.imgur.com/m6NInWZ.jpg" />
-
+      <g-avatar class="m-2" :imgUrl="img" />
       <g-avatar class="m-2" />
     </div>
   </div>
@@ -507,13 +526,15 @@ const tableInfo = reactive({
       width: 220,
       label: '標籤',
     },
-    {
-      name: 'btns',
-      width: 200,
-      label: '',
-    },
   ],
   filterOtions: {},
+  filterOtions2: {
+    id: '',
+    product: true,
+    price: '',
+    storage: '',
+    tags: '',
+  },
   isLoading: false,
 });
 </script>
@@ -524,12 +545,23 @@ const tableInfo = reactive({
     <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
     <div class="flex">
       <g-filter-option
-        v-for="column in tableInfo.columns.filter((item) => item.label)"
+        v-for="column in tableInfo.columns"
         v-model="tableInfo.filterOtions[column.name]"
         :key="column.name"
         :optionName="column.label"
       />
     </div>
+
+    <g-title :level="2" class="my-4">篩選選項-單選模式</g-title>
+    <p class="mb-4">tableInfo.filterOtions2:{{ tableInfo.filterOtions2 }}</p>
+    <p>暫不支援迴圈渲染slot內容</p>
+    <g-filter-option-group class="flex" v-model="tableInfo.filterOtions2">
+      <g-filter-option name="id" label="ID" />
+      <g-filter-option name="product" label="商品名稱" />
+      <g-filter-option name="price" label="價格" />
+      <g-filter-option name="storage" label="庫存" />
+      <g-filter-option name="tags" label="標籤" />
+    </g-filter-option-group>
   </div>
 </template>
   \`\`\`  `,
@@ -785,10 +817,17 @@ const handleFocusInput = () => {
   // console.log(instance.refs.inputA);
   instance.refs.inputA.focusInput();
 };
+
+const handleKeyup = (e) => {
+  console.log(e.target.value);
+};
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">input @keyup</g-title>
+    <g-input green v-model="inputs.input0" @keyup="handleKeyup" />
+
     <g-title :level="2" class="mb-3">search Select Mode</g-title>
     <div class="flex">
       <g-input
@@ -799,6 +838,7 @@ const handleFocusInput = () => {
         clearable
         searchSelectMode
         :selectOptions="selectOptions"
+        @keyup="handleKeyup"
       />
       <g-input
         v-model="inputs.select"
@@ -813,7 +853,7 @@ const handleFocusInput = () => {
       />
     </div>
 
-    <g-title :level="2" class="mb-3">focus input </g-title>
+    <g-title :level="2" class="mb-3">input @focus</g-title>
     <div class="flex">
       <g-input
         ref="inputA"
@@ -1162,7 +1202,20 @@ const handleUpdatePage = (val) => {console.log(val)};
   <div class="w-full mx-auto mb-6">
     <g-title :level="2" class="mb-3">分頁選擇</g-title>
     <g-pagination
-      :pageInfo="{ currentPage: 1, total: 200, perPageNums: 15 }"
+      :pageInfo="{ currentPage: 1, total: 60, perPageNums: 15 }"
+      @updatePage="handleUpdatePage"
+    />    
+    <g-pagination
+      :pageInfo="{ currentPage: 2, total: 600, perPageNums: 100 }"
+      @updatePage="handleUpdatePage"
+    />
+    <g-pagination
+      :pageInfo="{ currentPage: 3, total: 420, perPageNums: 60 }"
+      @updatePage="handleUpdatePage"
+    />
+
+    <g-pagination
+      :pageInfo="{ currentPage: 7, total: 600, perPageNums: 40 }"
       @updatePage="handleUpdatePage"
     />
   </div>
@@ -1278,8 +1331,8 @@ const tableInfo = reactive({
       name: 'product',
       label: '商品名稱',
       sort: false,
-      handleSortCallback: function (){
-        alert('custom sort callback')
+      handleSortCallback: function () {
+        alert('custom sort callback');
       },
       width: 480,
     },
@@ -1324,6 +1377,27 @@ const tableInfo = reactive({
   isLoading: false,
 });
 
+const tableInfo2 = reactive({
+  columns: [
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      sort: true,
+    },
+  ],
+  data: [
+    { product: 'aaa', price: 200, id: uuidv4() },
+    { product: 'bbbb', price: 100, id: uuidv4() },
+  ],
+  filterOtions: {},
+  isLoading: false,
+});
+
 const handleRowClick = (row, dialogType) => {
   // console.log(row);
   // handleDialog(dialogType);
@@ -1353,6 +1427,12 @@ const showLoading = () => {
 </script>
 <template>
   <div class="w-full mx-auto mb-6">
+    <g-title :level="2" class="mb-3">表格</g-title>
+    <g-table
+      :columns="tableInfo2.columns"
+      :data="tableInfo2.data"
+    />
+
     <g-title :level="2" class="mb-3">表格</g-title>
     <g-table
       ref="tableRef"
@@ -1427,7 +1507,7 @@ import { ref, getCurrentInstance } from 'vue';
 const instance = getCurrentInstance();
 
 const clickFn = (param) => {
-  console.log('in', param);
+  // console.log('in', param);
 };
 
 const target = {

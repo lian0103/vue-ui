@@ -3,7 +3,7 @@ import { ref, getCurrentInstance } from 'vue';
 const instance = getCurrentInstance();
 
 const clickFn = (param) => {
-  console.log('in', param);
+  // console.log('in', param);
 };
 
 const target = {

@@ -9,7 +9,7 @@ const img = ref(imgs[0]);
 const index = ref(0);
 
 const toggleImg = () => {
-  console.log('toggleImg', index.value);
+  // console.log('toggleImg', index.value);
   if (index.value == 0) {
     img.value = imgs[1];
     index.value = 1;
