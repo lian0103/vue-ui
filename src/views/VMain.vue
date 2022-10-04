@@ -52,6 +52,11 @@ const menuRoutes = [
     ],
   },
   {
+    label: '樣式',
+    icon: 'cus03',
+    path: '/style',
+  },
+  {
     label: 'GT元件',
     icon: 'items',
     children: [

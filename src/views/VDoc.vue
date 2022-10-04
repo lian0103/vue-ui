@@ -95,10 +95,6 @@ app.use(GtUI).mount('#app');
     <div class="mb-8 w-full md:w-3/4 mx-auto">
       <p>- Vue3專案</p>
     </div>
-
-    <div class="paragraphHead" id="dev">
-      <g-title :level="1" class="mb-4"> README.md </g-title>
-    </div>
     <div class="mb-8 w-full md:w-3/4 mx-auto">
       <v-md-editor v-model="filesText" mode="preview"></v-md-editor>
     </div>

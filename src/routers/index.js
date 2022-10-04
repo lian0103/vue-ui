@@ -35,6 +35,13 @@ export const routes = [
         },
         meta: { title: '指引', idx: '1-1' },
       },
+      {
+        path: 'style',
+        components: {
+          mainView: () => import('../views/VStyle.vue'),
+        },
+        meta: { title: '樣式', idx: '2-1' },
+      },
       getDemoRoute(),
     ],
   },
