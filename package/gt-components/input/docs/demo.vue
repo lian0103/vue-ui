@@ -28,10 +28,17 @@ const handleFocusInput = () => {
   // console.log(instance.refs.inputA);
   instance.refs.inputA.focusInput();
 };
+
+const handleKeyup = (e) => {
+  console.log(e.target.value);
+};
 </script>
 
 <template>
   <div class="w-full mx-auto mb-6 relative">
+    <g-title :level="2" class="mb-3">input @keyup</g-title>
+    <g-input green v-model="inputs.input0" @keyup="handleKeyup" />
+
     <g-title :level="2" class="mb-3">search Select Mode</g-title>
     <div class="flex">
       <g-input
@@ -42,6 +49,7 @@ const handleFocusInput = () => {
         clearable
         searchSelectMode
         :selectOptions="selectOptions"
+        @keyup="handleKeyup"
       />
       <g-input
         v-model="inputs.select"
@@ -56,7 +64,7 @@ const handleFocusInput = () => {
       />
     </div>
 
-    <g-title :level="2" class="mb-3">focus input </g-title>
+    <g-title :level="2" class="mb-3">input @focus</g-title>
     <div class="flex">
       <g-input
         ref="inputA"

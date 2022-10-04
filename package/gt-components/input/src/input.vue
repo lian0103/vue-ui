@@ -107,7 +107,7 @@ const {
 const isFocused = ref(false);
 const inputVal = ref(modelValue || parentValue?.value || '');
 
-const emit = defineEmits(['update:modelValue', 'focus', 'blur']);
+const emit = defineEmits(['update:modelValue', 'focus', 'blur', 'keyup']);
 
 const errorMsg = computed(() => {
   return validResult[name]?.message;
@@ -177,6 +177,10 @@ const handleFocus = (e) => {
   emit('focus', e);
 };
 
+const handleKeyup = (e) => {
+  emit('keyup', e);
+};
+
 const handleClear = () => {
   inputVal.value = '';
   if (handleValChange) {
@@ -197,7 +201,6 @@ const focusInput = () => {
 const handleClickOption = (item) => {
   inputVal.value = item.value;
 };
-
 
 defineExpose({
   focusInput,
@@ -221,6 +224,7 @@ export default {
         @blur="handleBlur"
         @change="handleInput"
         @focus="handleFocus"
+        @keyup="handleKeyup"
         class="gt-input"
         v-model="inputVal"
       />

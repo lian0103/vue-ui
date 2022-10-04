@@ -1,5 +1,5 @@
 module.exports = {
-  show: ['prop','method'],
+  show: ['prop','method','event'],
   prop: `
 ## 屬性
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
@@ -28,6 +28,7 @@ module.exports = {
 | - | - | - |
 | blur | 觸發blur事件後回傳 |
 | focus | 觸發focus事件後回傳 | 
+| keyup | 觸發keyup事件後回傳 | 
 
 `,
   slot: `
