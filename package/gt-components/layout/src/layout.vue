@@ -49,7 +49,7 @@ const currentTab = computed(() => {
 watch(
   () => Router.currentRoute.value.path,
   (val) => {
-    if (props.menuTabs && val && props.onlyOneLevel) {
+    if (props.menuTabs && val && props.onlyOneLevel && instance.refs.layoutTabs) {
       let name = props.menuTabs.filter((item) => item.path == val)[0]?.name;
       instance.refs.layoutTabs.current = name;
     }
@@ -69,7 +69,10 @@ const handleCollapsed = () => {
   let val = !isCollapsed.value;
   isCollapsed.value = val;
   emit('collapsed', val);
-  instance.refs.layoutTabs.collapsed = val;
+
+  if (instance.refs.layoutTabs) {
+    instance.refs.layoutTabs.collapsed = val;
+  }
 };
 // console.log(instance.appContext.config.globalProperties.$route.path)
 </script>
