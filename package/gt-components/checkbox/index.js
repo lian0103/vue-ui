@@ -1,5 +1,6 @@
 import GCheckbox from "./src/checkbox.vue";
 import GCheckboxGroup from "./src/checkboxGroup.vue";
+import "../icon";
 
 /* istanbul ignore next */
 GCheckbox.install = function (Vue) {
@@ -11,4 +12,4 @@ GCheckboxGroup.install = function (Vue) {
 };
 export default { GCheckbox, GCheckboxGroup };
 
-import "../icon";
+
