@@ -35,8 +35,9 @@
 .gt-timepicker {
   width: 326px;
   opacity: 0;
-  display: none;
-  @apply flex-col -z-10;
+  display: block !important;
+  @apply absolute;
+  @apply flex-col -z-10; 
   max-width: 326px;
   height: 416px;
   padding: 16px;
@@ -50,11 +51,6 @@
     height: 380px;
   }
 
-  &.tp-aniIn,
-  &.tp-aniOut {
-    display: block !important;
-    @apply absolute;
-  }
   .calender {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -280,5 +276,44 @@
       height: 42px;
       margin: 5px;
     }
+  }
+}
+
+
+.tp-aniInTimepicker {
+  animation-name: tpFadeInTimepicker;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.tp-aniOutTimepicker {
+  animation-name: tpFadeOutTimepicker;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+@keyframes tpFadeInTimepicker {
+  0% {
+    opacity: 0;
+    @apply z-top-10;
+    transform: translate3d(0, -21px, 0);
+  }
+  100% {
+    opacity: 1;
+    @apply z-top-10;
+    transform: none;
+  }
+}
+
+@keyframes tpFadeOutTimepicker  {
+  0% {
+    opacity: 1;
+    @apply z-top-10;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    z-index: -10;
+    transform: translate3d(0, -21px, 0);
   }
 }

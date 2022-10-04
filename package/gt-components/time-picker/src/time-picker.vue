@@ -56,10 +56,22 @@ const curCalenderInfo = reactive({
 });
 
 watch(
-  () => (rangeSelectMode ? curSelect.value[1] : curSelect.value),
+  () =>
+    rangeSelectMode
+      ? [curSelect.value[0], curSelect.value[1]]
+      : curSelect.value,
   (val, oldVal) => {
     if (!rangeSelectMode) {
       emit('update:modelValue', curSelect.value?.format(format));
+    }
+
+    if (!curSelect.value[0] && !curSelect.value[1]) {
+      rangeSelectResult.value = '';
+      emit('update:modelValue', '');
+    }
+
+    if (curSelect.value[0] && !curSelect.value[1]) {
+      curSelect.value = [curSelect.value[0], curSelect.value[0]];
     }
 
     if (curSelect.value[0] && curSelect.value[1]) {
@@ -252,6 +264,8 @@ const handleCalDayClick = (idx) => {
       curSelect.value[0] = dayjs(calenderDaysInfo.value[idx]);
     } else if (!curSelect.value[1]) {
       curSelect.value[1] = dayjs(calenderDaysInfo.value[idx]);
+    } else if (curSelect.value[0] == curSelect.value[1]) {
+      curSelect.value[1] = dayjs(calenderDaysInfo.value[idx]);
     } else {
       curSelect.value = [null, null];
     }
@@ -346,11 +360,13 @@ const popupStyleComputed = computed(() => {
 const popupClassComputed = computed(() => {
   let arr = [];
 
-  if(isSelect.value){
-    arr.push(isTimePickerShow.value?'tp-aniIn':'tp-aniOut')
+  if (isSelect.value) {
+    arr.push(
+      isTimePickerShow.value ? 'tp-aniInTimepicker' : 'tp-aniOutTimepicker'
+    );
   }
-  if(rangeSelectMode){
-    arr.push('rangeSelectMode')
+  if (rangeSelectMode) {
+    arr.push('rangeSelectMode');
   }
   return arr;
 });
@@ -394,7 +410,13 @@ const handleTimePick = () => {
           : ''
       "
       @click.stop="isTimePickerShow = !isTimePickerShow"
-      >{{ !isTimePickerShow & isSelect && autoHideLabel ? '' : '時間: ' }}
+      >{{
+        !isTimePickerShow & isSelect && autoHideLabel
+          ? rangeSelectMode && curSelect[0] && curSelect[1]
+            ? ''
+            : '時間: '
+          : '時間: '
+      }}
       <span>{{
         rangeSelectMode ? rangeSelectResult : curSelect?.format(format)
       }}</span>
@@ -412,7 +434,7 @@ const handleTimePick = () => {
       :class="popupClassComputed"
       :style="popupStyleComputed"
     >
-      <div class="calender" :class="rangeSelectMode?'rangeSelectMode':''">
+      <div class="calender" :class="rangeSelectMode ? 'rangeSelectMode' : ''">
         <span class="month-pre" @click.stop="handleMonthPre">
           <g-icon name="chevron-left"
         /></span>
