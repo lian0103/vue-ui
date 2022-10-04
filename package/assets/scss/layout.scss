@@ -98,6 +98,7 @@
 
     .gt-content-wrapper { 
       display: flex;
+      flex-grow: 2;
       flex-direction: column;
       transition: 0.4s width ease-in-out;
     }
