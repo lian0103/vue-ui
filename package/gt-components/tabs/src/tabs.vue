@@ -23,9 +23,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  parentWidth: {
-    type: Number,
-  },
   collapsed: {
     type: Boolean,
   },
@@ -35,7 +32,7 @@ const slots = useSlots();
 const slotTabs = Object.keys(slots);
 const current = ref(props.currentTab || slotTabs[0]);
 const collapsed = ref(props.collapsedFromParent);
-const parentWidth = ref(props.parentWidthFromParent);
+const parentWidth = ref(null);
 
 defineExpose({
   collapsed,
@@ -59,6 +56,8 @@ const isMouseIn = ref(false);
 
 const classComputed = computed(() => {
   // console.log('widthTabs.value', widthTabs.value);
+  // console.log('parentWidth.value', parentWidth.value);
+
   let arr = [];
   if (isMouseIn.value) {
     arr.push('mouse-in');
@@ -66,32 +65,28 @@ const classComputed = computed(() => {
   if (props.layoutMode) {
     arr.push('layoutMode');
   }
-  if (parseInt(widthTabs.value) > parseInt(parentWidth.value)) {
+
+  if (parentWidth.value && parseInt(widthTabs.value) > parentWidth.value) {
     arr.push('overTabsWrapper');
   }
   return arr;
 });
 
 const styleComputed = computed(() => {
-  // console.log('parentWidth', parentWidth);
-  return parentWidth.value
+  return props.layoutMode
     ? {
-        'max-width': `${
-          collapsed.value ? parentWidth.value - 300 : parentWidth.value - 400
-        }px`,
+        'max-width': 'calc(100% - 20px)',
       }
     : {};
 });
 
 const calcTargetWidth = () => {
   if (props.name == 'layoutTab') {
-    setTimeout(() => {
-      let target = document.getElementById('gtSidebarContentRef');
-      parentWidth.value = target.offsetWidth;
+    let target = document.getElementById('gtContentRef');
+    parentWidth.value = target.offsetWidth;
 
-      let target2 = document.getElementById(`${props.name}-tabRef`);
-      widthTabs.value = target2.offsetWidth;
-    }, 300);
+    let target2 = document.getElementById(`${props.name}-tabRef`);
+    widthTabs.value = target2.offsetWidth;
   }
 };
 
@@ -104,9 +99,8 @@ instance.appContext.config.globalProperties['handleTabs' + props.name] = (
   newTabs
 ) => {
   props.tabs.value = newTabs;
-  setTimeout(() => {
-    calcTargetWidth();
-  }, 300);
+  parentWidth.value = null;
+  calcTargetWidth();
 };
 
 onMounted(() => {

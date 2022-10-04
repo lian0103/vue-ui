@@ -29,10 +29,6 @@ const props = defineProps({
   },
 });
 
-const gtSidebarContentRef = ref(null);
-const { width: widthGtSidebarContent } =
-  useElementBounding(gtSidebarContentRef);
-
 const emit = defineEmits(['collapsed']);
 const isCollapsed = ref(props.collapsed);
 
@@ -112,7 +108,6 @@ export default {
     <div
       class="gt-sidebar-content"
       id="gtSidebarContentRef"
-      ref="gtSidebarContentRef"
     >
       <div
         class="gt-sidebar"
@@ -134,6 +129,7 @@ export default {
       </div>
 
       <div
+        id="gtContentRef"
         class="gt-content-wrapper"
         :style="{
           width: isCollapsed ? 'calc(100% - 100px)' : 'calc(100% - 290px)',
@@ -148,7 +144,6 @@ export default {
           :clickCallback="handleMenuTabCallback"
           :currentTab="currentTab"
           :layoutMode="true"
-          :parentWidth="widthGtSidebarContent"
           :collapsed="isCollapsed"
         />
 

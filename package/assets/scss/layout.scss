@@ -37,10 +37,11 @@
     .gt-header {
       flex-grow: 2;
       @apply flex justify-between items-center;
-      @apply pl-14;
+      @apply pl-0;
       @apply relative;
       .title {
         @apply flex;
+        white-space: nowrap;
       }
     }
   }
@@ -97,7 +98,7 @@
       }
     }
 
-    .gt-content-wrapper { 
+    .gt-content-wrapper {
       display: flex;
       flex-grow: 2;
       flex-direction: column;
