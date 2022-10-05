@@ -19,8 +19,9 @@ const instance = getCurrentInstance();
 const Router = useRouter();
 
 const nameComputed = computed(() => {
+  let title = Router.currentRoute.value.meta.title;
   let cName = Router.currentRoute.value.params?.componentName || null;
-  return cName ? `GT元件-${cName}` : 'GT元件';
+  return cName ? `GT元件-${cName}` : title;
 });
 
 // console.log("packagesList",packagesList)
@@ -42,7 +43,6 @@ const menuRoutes = [
   {
     label: '指引',
     icon: 'tool',
-    mapKey: 'doc',
     children: [
       {
         name: 'README.md',
@@ -55,7 +55,6 @@ const menuRoutes = [
   {
     label: '樣式',
     icon: 'cus03',
-    mapKey: 'style',
     path: '/style',
   },
   {
