@@ -42,6 +42,7 @@ const menuRoutes = [
   {
     label: '指引',
     icon: 'tool',
+    mapKey: 'doc',
     children: [
       {
         name: 'README.md',
@@ -54,20 +55,55 @@ const menuRoutes = [
   {
     label: '樣式',
     icon: 'cus03',
+    mapKey: 'style',
     path: '/style',
   },
   {
-    label: 'GT元件',
-    icon: 'items',
+    label: 'GT元件a-i',
+    iconClasses: 'fas fa-file-code',
     children: [
-      ...packagesCompNameList.map((name) => {
-        return {
-          name: name,
-          label: name,
-          icon: '',
-          path: `/gt/${name}`,
-        };
-      }),
+      ...packagesCompNameList
+        .filter((name) => /^[a-iA-I].*$/.test(name))
+        .map((name) => {
+          return {
+            name: name,
+            label: name,
+            icon: '',
+            path: `/gt/a-i/${name}`,
+          };
+        }),
+    ],
+  },
+  {
+    label: 'GT元件j-r',
+    iconClasses: 'fas fa-file-code',
+    children: [
+      ...packagesCompNameList
+        .filter((name) => /^[j-rJ-R].*$/.test(name))
+        .map((name) => {
+          return {
+            name: name,
+            label: name,
+            icon: '',
+            path: `/gt/j-r/${name}`,
+          };
+        }),
+    ],
+  },
+  {
+    label: 'GT元件s-z',
+    iconClasses: 'fas fa-file-code',
+    children: [
+      ...packagesCompNameList
+        .filter((name) => /^[s-zS-Z].*$/.test(name))
+        .map((name) => {
+          return {
+            name: name,
+            label: name,
+            icon: '',
+            path: `/gt/s-z/${name}`,
+          };
+        }),
     ],
   },
 ];
@@ -92,7 +128,7 @@ const handleCollapsed = (val) => {
 onMounted(() => {
   const timeline = gsap.timeline({ defaults: { duration: 1 } });
   timeline
-    .from('.gt-e-menu', { x: '-100%', ease: 'power1.in' })
+    .from('.gt-e-menu', { x: '-50%', ease: 'power1.in' })
     .from('.gt-header', { y: '-100%' })
     .fromTo('.gt-content-wrapper', { opacity: 0 }, { opacity: 1 });
 });
@@ -202,6 +238,11 @@ body {
     &:hover {
       background-color: #666666;
     }
+  }
+}
+.iconBox{
+  svg{
+    width: 14px !important;
   }
 }
 </style>

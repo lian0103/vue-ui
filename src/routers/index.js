@@ -6,20 +6,52 @@ const packagesCompNameList = Object.keys(packageMap);
 function getDemoRoute() {
   const isDev = import.meta.env.MODE === 'development';
   return isDev
-    ? {
-        path: 'gt/:componentName',
-        components: {
-          mainView: () => import('../views/VGtComponent.vue'),
+    ? [
+        {
+          path: 'gt/a-i/:componentName',
+          components: {
+            mainView: () => import('../views/VGtComponent.vue'),
+          },
+          meta: { title: 'GT元件a-i', idx: null },
         },
-        meta: { title: 'GT元件', idx: null },
-      }
-    : {
-        path: 'gt/:componentName',
-        components: {
-          mainView: () => import('../views/VGtComponentProd.vue'),
+        {
+          path: 'gt/j-r/:componentName',
+          components: {
+            mainView: () => import('../views/VGtComponent.vue'),
+          },
+          meta: { title: 'GT元件j-r', idx: null },
         },
-        meta: { title: 'GT元件', idx: null },
-      };
+        {
+          path: 'gt/s-z/:componentName',
+          components: {
+            mainView: () => import('../views/VGtComponent.vue'),
+          },
+          meta: { title: 'GT元件s-z', idx: null },
+        },
+      ]
+    : [
+        {
+          path: 'gt/a-i/:componentName',
+          components: {
+            mainView: () => import('../views/VGtComponentProd.vue'),
+          },
+          meta: { title: 'GT元件a-i', idx: null },
+        },
+        {
+          path: 'gt/j-r/:componentName',
+          components: {
+            mainView: () => import('../views/VGtComponentProd.vue'),
+          },
+          meta: { title: 'GT元件j-r', idx: null },
+        },
+        {
+          path: 'gt/s-z/:componentName',
+          components: {
+            mainView: () => import('../views/VGtComponentProd.vue'),
+          },
+          meta: { title: 'GT元件s-z', idx: null },
+        },
+      ];
 }
 
 export const routes = [
@@ -42,7 +74,7 @@ export const routes = [
         },
         meta: { title: '樣式', idx: '2-1' },
       },
-      getDemoRoute(),
+      ...getDemoRoute(),
     ],
   },
   {
