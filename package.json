@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite --config ./scripts/vite.dev.config.js",
     "build-GT": "vite build --config ./scripts/vite.libGT.config.js",
+    "build-Chart": "vite build --config ./scripts/vite.libChart.config.js",
     "doc": "node ./scripts/genGtPkgDoc/index.js",
     "demo": "vite build --config ./scripts/vite.doc.config.js",
     "preview": "vite preview --config ./scripts/vite.doc.config.js",

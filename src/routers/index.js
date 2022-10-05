@@ -28,6 +28,13 @@ function getDemoRoute() {
           },
           meta: { title: 'GT元件s-z', idx: null },
         },
+        {
+          path: 'chart/:componentName',
+          components: {
+            mainView: () => import('../views/VGtChart.vue'),
+          },
+          meta: { title: '圖表', idx: null },
+        }
       ]
     : [
         {
@@ -51,6 +58,13 @@ function getDemoRoute() {
           },
           meta: { title: 'GT元件s-z', idx: null },
         },
+        {
+          path: 'chart/:componentName',
+          components: {
+            mainView: () => import('../views/VGtChartProd.vue'),
+          },
+          meta: { title: '圖表', idx: null },
+        }
       ];
 }
 
@@ -74,7 +88,7 @@ export const routes = [
         },
         meta: { title: '樣式', idx: '2-1' },
       },
-      ...getDemoRoute(),
+      ...getDemoRoute()
     ],
   },
   {

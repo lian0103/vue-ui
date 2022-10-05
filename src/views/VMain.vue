@@ -11,6 +11,7 @@ import { useRouter } from 'vue-router';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import packageMap from '../../package/components.json';
+import packageChartMap from '../../package-echart/components.json';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -36,6 +37,9 @@ const onlyOneLevel = ref(
 const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 
 const packagesCompNameList = Object.keys(packageMap);
+const packagesChartCompNameList = Object.keys(packageChartMap);
+
+console.log(packagesChartCompNameList)
 
 const activePath = ref(Router.currentRoute.value.path);
 
@@ -56,6 +60,21 @@ const menuRoutes = [
     label: '樣式',
     icon: 'cus03',
     path: '/style',
+  },
+  {
+    label: '圖表',
+    iconClasses: 'fas fa-chart-pie',
+    children: [
+    ...packagesChartCompNameList
+        .map((name) => {
+          return {
+            name: name,
+            label: name,
+            icon: '',
+            path: `/chart/${name}`,
+          };
+        }),
+    ]
   },
   {
     label: 'GT元件a-i',
@@ -106,6 +125,8 @@ const menuRoutes = [
     ],
   },
 ];
+
+console.log(menuRoutes)
 
 const menuChildrenComputed = computed({
   get() {

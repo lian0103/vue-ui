@@ -1,0 +1,19 @@
+{
+    "name": "@greattree/front-ui-chart",
+    "author": {
+        "name": "Jason Lien",
+        "email": "k1319900103@gmail.com"
+    },
+    "scripts": {
+        "build-Echart": "vite build"
+    },
+    "dependencies": {
+        "echarts": "^5.3.3"
+    },
+    "devDependencies": {
+        "vite": "^2.9.7"
+    },
+    "peerDependencies": {
+        "vue": "^3.2.25"
+    }
+}

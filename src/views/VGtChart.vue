@@ -7,8 +7,11 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { computed, shallowRef } from 'vue';
-{{ docSource}}
-{{ allDemos }}
+
+import gtDocTable from '../gtDocChartTable';
+import gtDoc from '../gtDocChart';
+    
+import BARGRAPH from '../../package-echart/gt-components/barGraph/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -16,7 +19,7 @@ const demoRef = shallowRef(null);
 const demoSourceRef = shallowRef(null);
 
 const mapObj = {
-    {{mapObj}}
+    'barGraph' : BARGRAPH ,
 }
 
 const componentName = computed(async () => {

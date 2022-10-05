@@ -3,20 +3,61 @@ const handlebars = require('handlebars');
 const { resolve, join } = require('path');
 
 const listFilePath = '../../package/components.json';
+const listFileChaetPath = '../../package-echart/components.json';
 const listFile = fs.readFileSync(resolve(__dirname, listFilePath), 'utf-8');
+const listFileChart = fs.readFileSync(
+  resolve(__dirname, listFileChaetPath),
+  'utf-8'
+);
+
 const componentListObj = JSON.parse(listFile);
+const componentListChartObj = JSON.parse(listFileChart);
 
 let componentList = Object.keys(componentListObj);
+let componentChartList = Object.keys(componentListChartObj);
 
-function genGtDoc() {
+const targetMap = {
+  package: {
+    list: componentList,
+    getDemoFilePath: (compName) =>
+      `../../package/gt-components/${compName}/docs/demo.vue`,
+    getDocIndexPath: (compName) =>
+      `../../package/gt-components/${compName}/docs/index.js`,
+    demoFileOutputPath: '../../src/gtDoc.js',
+    docIndexOutputPath: '../../src/gtDocTable.js',
+    outputViewFilePathDev: '../../src/views/VGtComponent.vue',
+    outputViewFilePathProd: '../../src/views/VGtComponentProd.vue',
+    docSource: `
+import gtDocTable from '../gtDocTable';
+import gtDoc from '../gtDoc';
+    `,
+  },
+  'package-echart': {
+    list: componentChartList,
+    getDemoFilePath: (compName) =>
+      `../../package-echart/gt-components/${compName}/docs/demo.vue`,
+    getDocIndexPath: (compName) =>
+      `../../package-echart/gt-components/${compName}/docs/index.js`,
+    demoFileOutputPath: '../../src/gtDocChart.js',
+    docIndexOutputPath: '../../src/gtDocChartTable.js',
+    outputViewFilePathDev: '../../src/views/VGtChart.vue',
+    outputViewFilePathProd: '../../src/views/VGtChartProd.vue',
+    docSource: `
+import gtDocTable from '../gtDocChartTable';
+import gtDoc from '../gtDocChart';
+    `,
+  },
+};
+function genGtDoc(target) {
   const tpl = fs.readFileSync(
     resolve(__dirname, './.template/gtDoc.js.tpl'),
     'utf-8'
   );
+  let list = targetMap[target].list;
 
-  const docList = componentList
+  const docList = list
     .map((compName) => {
-      let demoFilePath = `../../package/gt-components/${compName}/docs/demo.vue`;
+      let demoFilePath = targetMap[target].getDemoFilePath(compName);
       let demoFile = fs.readFileSync(resolve(__dirname, demoFilePath), 'utf-8');
       demoFile = demoFile.replace(/\`/g, "'").replace(/\$\{/g, '');
       // console.log(demoFile);
@@ -31,7 +72,7 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
   })({ docList });
 
   fs.outputFile(
-    resolve(__dirname, '../../src/gtDoc.js'),
+    resolve(__dirname, targetMap[target].demoFileOutputPath),
     contentCompiled,
     (err) => {
       if (err) console.log(err);
@@ -44,9 +85,9 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
     'utf-8'
   );
 
-  const docTableList = componentList
+  const docTableList = list
     .map((compName) => {
-      let jsObjFilePath = `../../package/gt-components/${compName}/docs/index.js`;
+      let jsObjFilePath = targetMap[target].getDocIndexPath(compName);
       let obj = fs.existsSync(resolve(__dirname, jsObjFilePath))
         ? require(jsObjFilePath)
         : {};
@@ -59,7 +100,7 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
   })({ docTableList });
 
   fs.outputFile(
-    resolve(__dirname, '../../src/gtDocTable.js'),
+    resolve(__dirname, targetMap[target].docIndexOutputPath),
     docJsContentCompiled,
     (err) => {
       if (err) console.log(err);
@@ -67,37 +108,41 @@ ${demoFile}  \\\`\\\`\\\`  \`,`;
   );
 }
 
-function genVGtComponent(MODE = 'develop') {
+function genVGtComponent(target, MODE = 'develop') {
   const tpl = fs.readFileSync(
     resolve(__dirname, './.template/VGtComponent.vue.tpl'),
     'utf-8'
   );
 
-  const allDemos = componentList
+  let list = targetMap[target].list;
+
+  const allDemos = list
     .map((compName) => {
       let demoFilePath =
         MODE === 'develop'
-          ? `../../package/gt-components/${compName}/docs/demo.vue`
+          ? targetMap[target].getDemoFilePath(compName)
           : `../../docs/${compName}/demo.vue`;
       return `import ${compName
         .replace(/\-/g, '')
         .toUpperCase()} from '${demoFilePath}';`;
     })
     .join('\n');
-  const mapObj = componentList
+  const mapObj = list
     .map((compName) => {
       return `'${compName}' : ${compName.replace(/\-/g, '').toUpperCase()} ,`;
     })
     .join('\n    ');
 
+  const docSource = targetMap[target].docSource;
+
   const contentCompiled = handlebars.compile(tpl, {
     noEscape: true,
-  })({ allDemos, mapObj });
+  })({ allDemos, mapObj, docSource });
 
   let outputPath =
     MODE === 'develop'
-      ? resolve(__dirname, '../../src/views/VGtComponent.vue')
-      : resolve(__dirname, '../../src/views/VGtComponentProd.vue');
+      ? resolve(__dirname, targetMap[target].outputViewFilePathDev)
+      : resolve(__dirname, targetMap[target].outputViewFilePathProd);
 
   fs.outputFile(outputPath, contentCompiled, (err) => {
     if (err) console.log(err);
@@ -118,12 +163,23 @@ function sortComponentList() {
   );
 }
 
-function cpDoc() {
-  componentList.forEach((compName) => {
-    let src = join(
-      __dirname,
-      `../../package/gt-components/${compName}/docs/demo.vue`
-    );
+function sortChartComponentList() {
+  let obj = {};
+  componentChartList.sort();
+
+  componentChartList.forEach((key) => {
+    obj[key] = componentListChartObj[key];
+  });
+
+  fs.writeFileSync(
+    join(__dirname, '../../package-echart/components.json'),
+    JSON.stringify(obj, null, 2)
+  );
+}
+
+function cpDoc(target) {
+  targetMap[target].list.forEach((compName) => {
+    let src = join(__dirname, targetMap[target].getDemoFilePath(compName));
     let dirDist = join(__dirname, `../../docs/${compName}`);
     let dist = join(__dirname, `../../docs/${compName}/demo.vue`);
     if (fs.existsSync(dirDist)) {
@@ -136,10 +192,19 @@ function cpDoc() {
 }
 
 async function run() {
-  genGtDoc();
-  genVGtComponent();
+  genGtDoc('package');
+  genGtDoc('package-echart');
+
+  genVGtComponent('package');
+  genVGtComponent('package-echart');
+
   sortComponentList();
-  cpDoc();
-  genVGtComponent('product');
+  sortChartComponentList();
+
+  genVGtComponent('package', 'product');
+  genVGtComponent('package-echart', 'product');
+
+  cpDoc('package');
+  cpDoc('package-echart');
 }
 run();

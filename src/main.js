@@ -15,10 +15,14 @@ import '../package/assets/scss/index.scss';
 
 import GtUIDev from '../package/index';
 import GtUIProd from '../dist/gt-ui.es.min.js';
+import GtUIChartDev from '../package-echart/index';
+import GtUIChartProd from '../dist/chart/gt-ui-chart.es.min.js';
 
 const GtUI = import.meta.env.MODE === 'development' ? GtUIDev : GtUIProd;
+const GtUIChart = import.meta.env.MODE === 'development' ? GtUIChartDev : GtUIChartProd;
 
 console.log('GtUI', GtUI);
+console.log('GtUIChart', GtUIChart);
 
 VMdEditor.use(vuepressTheme, {
   Prism,
@@ -29,4 +33,4 @@ VMdEditor.use(createLineNumbertPlugin());
 
 const app = createApp(App);
 
-app.use(router).use(VMdEditor).use(GtUI).mount('#app');
+app.use(router).use(VMdEditor).use(GtUI).use(GtUIChart).mount('#app');

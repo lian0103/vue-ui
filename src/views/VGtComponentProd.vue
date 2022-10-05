@@ -1,7 +1,7 @@
 /** 
  * !--------- FBI WARNING ----------!
  * 
- * 根据 /packages 目录下的组件所生成的模块导出，请勿手动修改
+ * 根据目录下的组件所生成的模块导出，请勿手动修改
  */
 
 <script setup>
@@ -10,6 +10,7 @@ import { computed, shallowRef } from 'vue';
 
 import gtDocTable from '../gtDocTable';
 import gtDoc from '../gtDoc';
+    
 import AVATAR from '../../docs/avatar/demo.vue';
 import BUTTON from '../../docs/button/demo.vue';
 import CHECKBOX from '../../docs/checkbox/demo.vue';
