@@ -52,7 +52,26 @@ watch(
       instance.refs.layoutTabs
     ) {
       let name = props.menuTabs.filter((item) => item.path == val)[0]?.name;
-      instance.refs.layoutTabs.current = name;
+      if (name && instance.refs.layoutTabs) {
+        instance.refs.layoutTabs.current = name;
+      }
+    }
+  }
+);
+
+watch(
+  () => props.menuTabs,
+  (menuArr) => {
+    // console.log(menuArr);
+    if (
+      instance.refs.layoutTabs &&
+      menuArr &&
+      menuArr.find((item) => item.path == Router.currentRoute.value.path)
+    ) {
+      let target = menuArr.find(
+        (item) => item.path == Router.currentRoute.value.path
+      );
+      instance.refs.layoutTabs.current = target.name;
     }
   }
 );
@@ -105,10 +124,7 @@ export default {
       </div>
     </div>
 
-    <div
-      class="gt-sidebar-content"
-      id="gtSidebarContentRef"
-    >
+    <div class="gt-sidebar-content" id="gtSidebarContentRef">
       <div
         class="gt-sidebar"
         :class="onlyOneLevel ? 'onlyOneLevel' : ''"

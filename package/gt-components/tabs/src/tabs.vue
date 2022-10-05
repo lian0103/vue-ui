@@ -1,8 +1,16 @@
 <script setup>
-import { ref, useSlots, getCurrentInstance, computed, onMounted } from 'vue';
+import {
+  ref,
+  useSlots,
+  getCurrentInstance,
+  computed,
+  onMounted,
+  watch,
+} from 'vue';
 import { useElementBounding } from '@vueuse/core';
 
 const instance = getCurrentInstance();
+const Router = instance.appContext.config.globalProperties?.$router;
 
 const props = defineProps({
   name: {
@@ -81,11 +89,10 @@ const styleComputed = computed(() => {
 });
 
 const calcTargetWidth = () => {
-  if (props.name == 'layoutTab') {
-    let target = document.getElementById('gtContentRef');
+  let target = document.getElementById('gtContentRef');
+  let target2 = document.getElementById(`${props.name}-tabRef`);
+  if (props.name == 'layoutTab' && target && target2) {
     parentWidth.value = target.offsetWidth;
-
-    let target2 = document.getElementById(`${props.name}-tabRef`);
     widthTabs.value = target2.offsetWidth;
   }
 };
@@ -100,11 +107,32 @@ instance.appContext.config.globalProperties['handleTabs' + props.name] = (
 ) => {
   props.tabs.value = newTabs;
   parentWidth.value = null;
-  calcTargetWidth();
 };
 
+watch(
+  () => current.value,
+  () => {
+    // console.log('in~~!@##');
+    setTimeout(() => {
+      calcTargetWidth();
+    }, 200);
+  }
+);
+
+watch(
+  () => Router.currentRoute.value.path,
+  (val) => {
+    // console.log('in~~!@##');
+    setTimeout(() => {
+      calcTargetWidth();
+    }, 1000);
+  }
+);
+
 onMounted(() => {
-  calcTargetWidth();
+  setTimeout(() => {
+    calcTargetWidth();
+  }, 200);
   window.addEventListener('resize', calcTargetWidth);
 });
 </script>

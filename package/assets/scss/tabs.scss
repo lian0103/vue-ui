@@ -60,6 +60,10 @@
       @apply border-b border-solid border-color3;
       &.current {
         @apply text-main bg-gray3 border-primaryDarker;
+        border-bottom-width: 3px !important;
+      }
+      &:hover{
+        @apply bg-color1 text-main;
         border-bottom-width: 3px;
       }
     }
