@@ -46,7 +46,7 @@ const activePath = ref(Router.currentRoute.value.path);
 const menuRoutes = [
   {
     label: '指引',
-    icon: 'tool',
+    iconClasses:'fas fa-tools',
     children: [
       {
         name: 'GT元件使用',
@@ -55,8 +55,8 @@ const menuRoutes = [
         path: '/doc',
       },
       {
-        name: 'Graph元件使用',
-        label: 'Graph元件使用',
+        name: 'Graph使用',
+        label: 'Graph使用',
         icon: 'file',
         path: '/graph',
       }
@@ -64,7 +64,7 @@ const menuRoutes = [
   },
   {
     label: '樣式',
-    icon: 'cus03',
+    iconClasses: 'far fa-file-code',
     path: '/style',
   },
   {
@@ -76,7 +76,7 @@ const menuRoutes = [
           return {
             name: name,
             label: name,
-            icon: '',
+            iconClasses: 'far fa-sticky-note',
             path: `/chart/${name}`,
           };
         }),
@@ -84,7 +84,7 @@ const menuRoutes = [
   },
   {
     label: 'GT元件a-i',
-    iconClasses: 'fas fa-file-code',
+    iconClasses: 'far fa-list-alt',
     children: [
       ...packagesCompNameList
         .filter((name) => /^[a-iA-I].*$/.test(name))
@@ -92,7 +92,7 @@ const menuRoutes = [
           return {
             name: name,
             label: name,
-            icon: '',
+            iconClasses: 'far fa-sticky-note',
             path: `/gt/a-i/${name}`,
           };
         }),
@@ -100,7 +100,7 @@ const menuRoutes = [
   },
   {
     label: 'GT元件j-r',
-    iconClasses: 'fas fa-file-code',
+    iconClasses: 'far fa-list-alt',
     children: [
       ...packagesCompNameList
         .filter((name) => /^[j-rJ-R].*$/.test(name))
@@ -108,7 +108,7 @@ const menuRoutes = [
           return {
             name: name,
             label: name,
-            icon: '',
+            iconClasses: 'far fa-sticky-note',
             path: `/gt/j-r/${name}`,
           };
         }),
@@ -116,7 +116,7 @@ const menuRoutes = [
   },
   {
     label: 'GT元件s-z',
-    iconClasses: 'fas fa-file-code',
+    iconClasses: 'far fa-list-alt',
     children: [
       ...packagesCompNameList
         .filter((name) => /^[s-zS-Z].*$/.test(name))
@@ -124,7 +124,7 @@ const menuRoutes = [
           return {
             name: name,
             label: name,
-            icon: '',
+            iconClasses: 'far fa-sticky-note',
             path: `/gt/s-z/${name}`,
           };
         }),
@@ -266,7 +266,7 @@ body {
     }
   }
 }
-.iconBox{
+.iconBox,.gt-menu-group-item{
   svg{
     width: 14px !important;
   }

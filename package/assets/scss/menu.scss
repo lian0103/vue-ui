@@ -55,6 +55,8 @@
         letter-spacing: 0.8px;
         border-radius: 5px;
         margin: 4px 0;
+        white-space: nowrap;
+        overflow: hidden;
         @apply text-gray1 flex justify-start items-center cursor-pointer;
         .child-icon {
           margin-right: 10px;
