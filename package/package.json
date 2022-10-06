@@ -53,8 +53,5 @@
     "testing-library": "^0.0.2",
     "unplugin-auto-import": "^0.7.1",
     "uppercamelcase": "^3.0.0"
-  },
-  "peerDependencies": {
-    "vue": "^3.2.25"
   }
 }

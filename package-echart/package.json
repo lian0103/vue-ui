@@ -4,18 +4,20 @@
         "name": "Jason Lien",
         "email": "k1319900103@gmail.com"
     },
-    "version": "0.0.1",
+    "version": "0.0.9",
     "files": [
-        "./"
+        "dist"
     ],
     "main": "./index.js",
     "scripts": {
-        "pub": "sh ./scripts/publish.sh"
+        "pub": "sh ./scripts/publish.sh",
+        "build": "vite build --config ./scripts/vite.libChart.config.js"
     },
     "dependencies": {
         "echarts": "^5.3.3"
     },
-    "peerDependencies": {
-        "vue": "^3.2.25"
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^2.3.1",
+        "vite": "^2.9.7"
     }
 }

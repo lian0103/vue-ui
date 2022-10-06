@@ -12,6 +12,7 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
 import './assets/init.css';
 import '../package/assets/scss/index.scss';
+import '../package-echart/assets/scss/index.scss';
 
 import GtUIDev from '../package/index';
 import GtUIProd from '../dist/gt-ui.es.min.js';
