@@ -39,7 +39,7 @@ const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 const packagesCompNameList = Object.keys(packageMap);
 const packagesChartCompNameList = Object.keys(packageChartMap);
 
-console.log(packagesChartCompNameList)
+// console.log(packagesChartCompNameList)
 
 const activePath = ref(Router.currentRoute.value.path);
 
@@ -132,7 +132,7 @@ const menuRoutes = [
   },
 ];
 
-console.log(menuRoutes)
+// console.log(menuRoutes)
 
 const menuChildrenComputed = computed({
   get() {
