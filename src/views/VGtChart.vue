@@ -12,6 +12,8 @@ import gtDocTable from '../gtDocChartTable';
 import gtDoc from '../gtDocChart';
     
 import BARGRAPH from '../../package-echart/gt-components/barGraph/docs/demo.vue';
+import LINEGRAPH from '../../package-echart/gt-components/lineGraph/docs/demo.vue';
+import PIEGRAPH from '../../package-echart/gt-components/pieGraph/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -20,6 +22,8 @@ const demoSourceRef = shallowRef(null);
 
 const mapObj = {
     'barGraph' : BARGRAPH ,
+    'lineGraph' : LINEGRAPH ,
+    'pieGraph' : PIEGRAPH ,
 }
 
 const componentName = computed(async () => {

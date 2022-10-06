@@ -4,14 +4,16 @@
         "name": "Jason Lien",
         "email": "k1319900103@gmail.com"
     },
+    "version": "0.0.1",
+    "files": [
+        "./"
+    ],
+    "main": "./index.js",
     "scripts": {
-        "build-Echart": "vite build"
+        "pub": "sh ./scripts/publish.sh"
     },
     "dependencies": {
         "echarts": "^5.3.3"
-    },
-    "devDependencies": {
-        "vite": "^2.9.7"
     },
     "peerDependencies": {
         "vue": "^3.2.25"

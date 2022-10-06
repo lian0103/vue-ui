@@ -1,6 +1,8 @@
 import BarGraph from './gt-components/barGraph/index.js';
+import LineGraph from './gt-components/lineGraph/index.js';
+import PieGraph from './gt-components/pieGraph/index.js';
 
-const components = [BarGraph];
+const components = [BarGraph,LineGraph,PieGraph];
 
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
@@ -24,4 +26,6 @@ export default {
   version: '0.0.1',
   install,
   BarGraph,
+  LineGraph,
+  PieGraph
 };
