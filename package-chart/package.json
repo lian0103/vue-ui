@@ -11,7 +11,8 @@
     "main": "./index.js",
     "scripts": {
         "pub": "sh ./scripts/publish.sh",
-        "build": "vite build --config ./scripts/vite.libChart.config.js"
+        "build": "sh ./scripts/build.sh",
+        "build-prod": "vite build --config ./scripts/vite.libChart.config.js"
     },
     "dependencies": {
         "echarts": "^5.3.3"

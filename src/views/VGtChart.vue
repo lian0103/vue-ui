@@ -11,9 +11,9 @@ import { computed, shallowRef } from 'vue';
 import gtDocTable from '../gtDocChartTable';
 import gtDoc from '../gtDocChart';
     
-import BARGRAPH from '../../package-echart/gt-components/barGraph/docs/demo.vue';
-import LINEGRAPH from '../../package-echart/gt-components/lineGraph/docs/demo.vue';
-import PIEGRAPH from '../../package-echart/gt-components/pieGraph/docs/demo.vue';
+import BARGRAPH from '../../package-chart/gt-components/barGraph/docs/demo.vue';
+import LINEGRAPH from '../../package-chart/gt-components/lineGraph/docs/demo.vue';
+import PIEGRAPH from '../../package-chart/gt-components/pieGraph/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);

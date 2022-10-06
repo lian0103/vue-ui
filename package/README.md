@@ -1,5 +1,3 @@
-<script setup>
-const filesText = `
 # @greattree/front-ui
 
 ## 元件庫安裝
@@ -9,7 +7,7 @@ const filesText = `
 ## 使用GT UI
 
 全域安裝
-\`\`\`javascript
+```javascript
 // main.js
 // 載入UI的樣式檔和模組
 import '@greattree/front-ui/dist/assets/css/index.css';
@@ -17,7 +15,7 @@ import GtUI from '@greattree/front-ui';
 
 // 透過use方法會觸發GtUI install
 app.use(GtUI).mount('#app');
-\`\`\`
+```
 
 ## 開發專案配置
 所有元件位於 package結構下。
@@ -39,7 +37,7 @@ package
     
 ## 指定私有庫
 - 使用 **.npmrc** 設定檔
-\`\`\`npmrc
+```npmrc
 # .npmrc
 
 # 指定@greattree package的倉庫地址
@@ -48,7 +46,7 @@ package
 # 使用npm安裝套件時 會優先指向這個私有倉庫 如果沒有才會再去公開庫查找
 registry=https://npmrg.greattree.com.tw/repository/npm-gt/
 
-\`\`\`
+```
 
 ## 打包
 - **npm run gen**
@@ -63,21 +61,3 @@ registry=https://npmrg.greattree.com.tw/repository/npm-gt/
 留意版號規則
 
 > 2022.10.06 更新
-`;
-</script>
-
-<template>
-  <div class="pb-8 flex justify-center items-center flex-col">
-    <div class="paragraphHead" id="dev">
-      <g-title :level="1" class="mb-4">支援</g-title>
-    </div>
-    <div class="mb-8 w-full md:w-3/4 mx-auto">
-      <p>- Vue3專案</p>
-    </div>
-    <div class="mb-8 w-full md:w-3/4 mx-auto">
-      <v-md-editor v-model="filesText" mode="preview"></v-md-editor>
-    </div>
-  </div>
-</template>
-
-<style lang="scss"></style>

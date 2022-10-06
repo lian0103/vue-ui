@@ -9,7 +9,7 @@ export default () => {
     build: {
       // minify: false,
       lib: {
-        entry: path.resolve(__dirname,'../package-echart/index.js'),
+        entry: path.resolve(__dirname,'../package-chart/index.js'),
         name: 'gt-ui',
         fileName: (format) => `gt-ui-chart.${format}.min.js`,
       },

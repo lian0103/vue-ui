@@ -82,6 +82,13 @@ export const routes = [
         meta: { title: '指引', idx: '1-1' },
       },
       {
+        path: 'graph',
+        components: {
+          mainView: () => import('../views/VGraph.vue'),
+        },
+        meta: { title: '指引', idx: '1-2' },
+      },
+      {
         path: 'style',
         components: {
           mainView: () => import('../views/VStyle.vue'),

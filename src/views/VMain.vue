@@ -11,7 +11,7 @@ import { useRouter } from 'vue-router';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import packageMap from '../../package/components.json';
-import packageChartMap from '../../package-echart/components.json';
+import packageChartMap from '../../package-chart/components.json';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -49,11 +49,17 @@ const menuRoutes = [
     icon: 'tool',
     children: [
       {
-        name: 'README.md',
-        label: 'README.md',
+        name: 'GT元件使用',
+        label: 'GT元件使用',
         icon: 'file',
         path: '/doc',
       },
+      {
+        name: 'Graph元件使用',
+        label: 'Graph元件使用',
+        icon: 'file',
+        path: '/graph',
+      }
     ],
   },
   {

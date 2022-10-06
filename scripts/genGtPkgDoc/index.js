@@ -3,7 +3,7 @@ const handlebars = require('handlebars');
 const { resolve, join } = require('path');
 
 const listFilePath = '../../package/components.json';
-const listFileChaetPath = '../../package-echart/components.json';
+const listFileChaetPath = '../../package-chart/components.json';
 const listFile = fs.readFileSync(resolve(__dirname, listFilePath), 'utf-8');
 const listFileChart = fs.readFileSync(
   resolve(__dirname, listFileChaetPath),
@@ -32,12 +32,12 @@ import gtDocTable from '../gtDocTable';
 import gtDoc from '../gtDoc';
     `,
   },
-  'package-echart': {
+  'package-chart': {
     list: componentChartList,
     getDemoFilePath: (compName) =>
-      `../../package-echart/gt-components/${compName}/docs/demo.vue`,
+      `../../package-chart/gt-components/${compName}/docs/demo.vue`,
     getDocIndexPath: (compName) =>
-      `../../package-echart/gt-components/${compName}/docs/index.js`,
+      `../../package-chart/gt-components/${compName}/docs/index.js`,
     demoFileOutputPath: '../../src/gtDocChart.js',
     docIndexOutputPath: '../../src/gtDocChartTable.js',
     outputViewFilePathDev: '../../src/views/VGtChart.vue',
@@ -172,7 +172,7 @@ function sortChartComponentList() {
   });
 
   fs.writeFileSync(
-    join(__dirname, '../../package-echart/components.json'),
+    join(__dirname, '../../package-chart/components.json'),
     JSON.stringify(obj, null, 2)
   );
 }
@@ -193,18 +193,18 @@ function cpDoc(target) {
 
 async function run() {
   genGtDoc('package');
-  genGtDoc('package-echart');
+  genGtDoc('package-chart');
 
   genVGtComponent('package');
-  genVGtComponent('package-echart');
+  genVGtComponent('package-chart');
 
   sortComponentList();
   sortChartComponentList();
 
   genVGtComponent('package', 'product');
-  genVGtComponent('package-echart', 'product');
+  genVGtComponent('package-chart', 'product');
 
   cpDoc('package');
-  cpDoc('package-echart');
+  cpDoc('package-chart');
 }
 run();
