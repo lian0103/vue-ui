@@ -3,10 +3,10 @@
   @apply flex justify-start items-center;
   .gt-input-label {
     height: 36px;
-    @apply text-base leading-9 px-3;
+    @apply text-sm leading-9 px-3;
   }
   .gt-input {
-    @apply w-full text-base text-gray4 bg-color2 rounded-lg;
+    @apply w-full text-sm text-gray4 bg-color2 rounded-lg;
     @apply outline outline-1 outline-gray2;
     height: 43px;
     padding: 10px 34px 10px 12px;
