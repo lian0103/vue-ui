@@ -95,7 +95,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.3.3-beta',
+  version: '1.3.5',
   install,
   Avatar,
   Button,
