@@ -62,32 +62,36 @@ watch(
       : curSelect.value,
   (val, oldVal) => {
     if (!rangeSelectMode) {
+      // console.log('~~1');
       emit('update:modelValue', curSelect.value?.format(format));
-    }
+    } else {
+      if (!curSelect.value[0] && !curSelect.value[1]) {
+        // console.log('~~2');
+        rangeSelectResult.value = '';
+        emit('update:modelValue', '');
+      }
 
-    if (!curSelect.value[0] && !curSelect.value[1]) {
-      rangeSelectResult.value = '';
-      emit('update:modelValue', '');
-    }
+      if (curSelect.value[0] && !curSelect.value[1]) {
+        // console.log('~~3');
+        curSelect.value = [curSelect.value[0], curSelect.value[0]];
+      }
 
-    if (curSelect.value[0] && !curSelect.value[1]) {
-      curSelect.value = [curSelect.value[0], curSelect.value[0]];
-    }
-
-    if (curSelect.value[0] && curSelect.value[1]) {
-      let needReverse = curSelect.value[1].isBefore(
-        curSelect.value[0].format(timeRangeFormat),
-        'day'
-      );
-      let emitVal = needReverse
-        ? `${curSelect.value[1].format(
-            timeRangeFormat
-          )} - ${curSelect.value[0].format(timeRangeFormat)}`
-        : `${curSelect.value[0].format(
-            timeRangeFormat
-          )} - ${curSelect.value[1].format(timeRangeFormat)}`;
-      rangeSelectResult.value = emitVal;
-      emit('update:modelValue', emitVal);
+      if (curSelect.value[0] && curSelect.value[1]) {
+        // console.log('~~4');
+        let needReverse = curSelect.value[1].isBefore(
+          curSelect.value[0].format(timeRangeFormat),
+          'day'
+        );
+        let emitVal = needReverse
+          ? `${curSelect.value[1].format(
+              timeRangeFormat
+            )} - ${curSelect.value[0].format(timeRangeFormat)}`
+          : `${curSelect.value[0].format(
+              timeRangeFormat
+            )} - ${curSelect.value[1].format(timeRangeFormat)}`;
+        rangeSelectResult.value = emitVal;
+        emit('update:modelValue', emitVal);
+      }
     }
   }
 );
