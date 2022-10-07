@@ -1,6 +1,7 @@
 <script setup>
 import { getCurrentInstance, ref } from 'vue';
 const instance = getCurrentInstance();
+
 const menuRoutes = [
   {
     label: 'group1',
@@ -103,12 +104,59 @@ const menuRoutes = [
   },
 ];
 
+const menuRoutes2 = [
+  {
+    label: '群組1',
+    icon: 'info',
+    children: [
+      {
+        label: '路由1',
+        icon: '',
+        path: 'doc',
+        iconClasses:'fas fa-vote-yea iconWidth'
+      },
+      {
+        label: '路由2',
+        icon: '',
+        path: '456',
+        iconClasses:'fas fa-user iconWidth'
+      },
+      {
+        label: '路由3',
+        icon: '',
+        path: '456',
+      },
+    ],
+  },
+  {
+    label: '群組2',
+    icon: 'info',
+    children: [
+      {
+        label: '路由1',
+        icon: '',
+        path: 'doc',
+        iconClasses:'fas fa-vote-yea iconWidth'
+      }
+    ],
+  }
+];
+
 const menuRef = ref(null);
+const menuRoutesRefIndex = ref(1);
+const menuRoutesRef = ref([...menuRoutes]);
+
+
 
 const handleClick = () => {
   // console.log('instance.refs.menuRef', instance.refs.menuRef.collapsed);
   let val = !instance.refs.menuRef.collapsed;
   instance.refs.menuRef.collapsed = val;
+};
+
+const handleRouteChange = () => {
+  menuRoutesRef.value = menuRoutesRefIndex.value == 1 ? [...menuRoutes2] : [...menuRoutes];
+  menuRoutesRefIndex.value = menuRoutesRefIndex.value == 1 ? 2 : 1;
 };
 </script>
 
@@ -119,7 +167,12 @@ const handleClick = () => {
       <g-menu ref="menuRef" active="1-2" :menu="menuRoutes" :collapsed="true" />
     </div>
 
-    <g-menu activePath="4511116" :menu="menuRoutes" />
+    <div class="flex flex-col">
+      <g-button @click="handleRouteChange" :width="100">資料更換</g-button>
+      <g-menu activePath="4511116" :menu="menuRoutesRef" />
+    </div>
+
+
   </div>
 </template>
 

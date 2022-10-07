@@ -1,12 +1,5 @@
 <script setup>
-import {
-  watch,
-  computed,
-  reactive,
-  getCurrentInstance,
-  onMounted,
-  ref,
-} from 'vue';
+import { watch, computed, reactive, getCurrentInstance, ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 
 const instance = getCurrentInstance();
@@ -40,19 +33,21 @@ const onlyOneLevel = ref(props.onlyOneLevel);
 
 const isCollapsedAndHadOpenedOne = ref(false);
 
-const menu = props.menu.map((item, idx) => {
-  // console.log(info.menuGroupActiveArr);
-  return {
-    ...item,
-    children: item.children
-      ? item.children.map((cItem, cIdx) => {
-          return {
-            ...cItem,
-            uuid: uuid(),
-          };
-        })
-      : [],
-  };
+const menu = computed(() => {
+  return props.menu.map((item, idx) => {
+    // console.log(info.menuGroupActiveArr);
+    return {
+      ...item,
+      children: item.children
+        ? item.children.map((cItem, cIdx) => {
+            return {
+              ...cItem,
+              uuid: uuid(),
+            };
+          })
+        : [],
+    };
+  });
 });
 
 const findRouteIndexByPath = () => {
@@ -60,7 +55,7 @@ const findRouteIndexByPath = () => {
   let groupIndex = null;
   let activeItemIndex = null;
 
-  menu.forEach((item, idx) => {
+  menu.value.forEach((item, idx) => {
     if (Array.isArray(item.children)) {
       item.children.forEach((cItem, cIdx) => {
         if (cItem.path === props.activePath) {
@@ -96,7 +91,7 @@ const info = reactive({
 });
 
 const menuComputed = computed(() => {
-  return menu.map((item, idx) => {
+  return menu.value.map((item, idx) => {
     // console.log(info.menuGroupActiveArr);
     return {
       ...item,
