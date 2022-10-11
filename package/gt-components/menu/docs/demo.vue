@@ -155,7 +155,8 @@ const handleClick = () => {
 };
 
 const handleRouteChange = () => {
-  menuRoutesRef.value = menuRoutesRefIndex.value == 1 ? [...menuRoutes2] : [...menuRoutes];
+  // menuRoutesRef.value = menuRoutesRefIndex.value == 1 ? [...menuRoutes2] : [...menuRoutes];
+  menuRoutesRef.value[0].label =menuRoutesRefIndex.value == 1 ? 'change!' : 'group1';
   menuRoutesRefIndex.value = menuRoutesRefIndex.value == 1 ? 2 : 1;
 };
 </script>

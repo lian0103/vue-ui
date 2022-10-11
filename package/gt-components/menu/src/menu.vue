@@ -33,8 +33,8 @@ const onlyOneLevel = ref(props.onlyOneLevel);
 
 const isCollapsedAndHadOpenedOne = ref(false);
 
-const menu = computed(() => {
-  return props.menu.map((item, idx) => {
+const menu = ref(
+  props.menu.map((item, idx) => {
     // console.log(info.menuGroupActiveArr);
     return {
       ...item,
@@ -47,8 +47,31 @@ const menu = computed(() => {
           })
         : [],
     };
-  });
-});
+  })
+);
+
+watch(
+  () => props.menu,
+  (val) => {
+    // console.log(val);
+    if (props.menu) {
+      menu.value = props.menu.map((item, idx) => {
+        return {
+          ...item,
+          children: item.children
+            ? item.children.map((cItem, cIdx) => {
+                return {
+                  ...cItem,
+                  uuid: uuid(),
+                };
+              })
+            : [],
+        };
+      });
+    }
+  },
+  { deep: true }
+);
 
 const findRouteIndexByPath = () => {
   let routerMenuIndex = null;
