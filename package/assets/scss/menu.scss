@@ -78,11 +78,6 @@
         opacity: 1;
         z-index: 100;
       }
-      &.marginFix {
-        .gt-menu-group-item {
-          margin-top: 0px;
-        }
-      }
     }
   }
 }
@@ -101,13 +96,16 @@
         width: 160px;
         max-height: 50vh;
         position: absolute;
-        top: -4px;
+        top: 0px;
         left: 65px;
         @apply rounded-4;
         @apply bg-gray3;
         .gt-menu-group-item {
           width: 160px;
           padding-left: 10px;
+          &:nth-child(n + 2) {
+            margin-top: 8px;
+          }
         }
 
         &::-webkit-scrollbar {

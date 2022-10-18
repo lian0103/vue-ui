@@ -278,7 +278,7 @@ export default {
                 ? 'open'
                 : ''
               : info.menuGroupActive == index + 1
-              ? 'open tp-aniIn-NoTran marginFix'
+              ? 'open tp-aniIn-NoTran'
               : 'tp-aniOut-Notran'
           "
           @click.stop="() => {}"
