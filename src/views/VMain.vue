@@ -219,7 +219,7 @@ watch(
     </template>
     <template #header>
       <div class="flex justify-end items-center pr-12">
-        <span>版本: v1.3.3</span>
+        <span>版本: v1.3.9</span>
         <span class="ml-2 flex"
           >對齊線<g-switch v-model="redLine" class="ml-2"
         /></span>
