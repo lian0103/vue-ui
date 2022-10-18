@@ -54,12 +54,14 @@
         padding: 6px 0 6px 30px;
         letter-spacing: 0.8px;
         border-radius: 5px;
-        margin: 4px 0;
         white-space: nowrap;
         overflow: hidden;
         @apply text-gray1 flex justify-start items-center cursor-pointer;
         .child-icon {
           margin-right: 10px;
+        }
+        &:nth-child(n + 3) {
+          margin-top: 8px;
         }
         &:hover {
           @apply bg-color1;
@@ -75,6 +77,11 @@
       &.open {
         opacity: 1;
         z-index: 100;
+      }
+      &.marginFix {
+        .gt-menu-group-item {
+          margin-top: 0px;
+        }
       }
     }
   }

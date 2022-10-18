@@ -265,9 +265,9 @@ export default {
                           : item.children.length * 40
                       }px`
                     : `${
-                        item.children.length * 44 + 25 < 75
-                          ? '75'
-                          : item.children.length * 44 + 25
+                        item.children.length * 44 + 40 < 85
+                          ? '85'
+                          : item.children.length * 44  + 40
                       }px`,
                 }
               : { height: `0px` }
@@ -278,7 +278,7 @@ export default {
                 ? 'open'
                 : ''
               : info.menuGroupActive == index + 1
-              ? 'open tp-aniIn-NoTran'
+              ? 'open tp-aniIn-NoTran marginFix'
               : 'tp-aniOut-Notran'
           "
           @click.stop="() => {}"
