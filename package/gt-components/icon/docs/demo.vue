@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 const icons = [
   'up',
   'arrow-down',
@@ -36,7 +37,17 @@ const icons = [
   'cus06',
 ];
 
-const customIconClasses = `寫法: <g-icon classes="fa-solid fa-store" />。渲染結果:<i class="gt-icon gt-icon-md fa-solid fa-store"></i>`;
+const customIconClasses = `寫法: <g-icon classes="fas fa-vote-yea" />。渲染結果:<i class="fas fa-vote-yea"></i>`;
+
+const classArr = ['fas fa-vote-yea', 'fas fa-user' , 'far fa-file-code'];
+const classRef = ref(classArr[0]);
+
+const handleIconClassChange = () => {
+  let index = classArr.findIndex((item) => item == classRef.value);
+  // console.log(index);
+  classRef.value =
+    index + 1 <= classArr.length - 1 ? classArr[index + 1] : classArr[0];
+};
 </script>
 
 <template>
@@ -65,7 +76,14 @@ const customIconClasses = `寫法: <g-icon classes="fa-solid fa-store" />。渲�
     </span>
   </div>
 
-  <g-title :level="3" class="mb-3 w-full">自定義classes</g-title>
-  <g-icon classes="fa-solid fa-store" />
-  {{ customIconClasses }}
+  <g-title :level="2" class="mt-3 w-full">自定義classes</g-title>
+
+  <g-button @click="handleIconClassChange" :width="100" class="mt-3"
+    >資料更換</g-button
+  >
+  <div class="my-2">:classes = {{ classRef }}</div>
+  <div class="my-2">
+    <g-icon :classes="classRef" />
+  </div>
+  <div class="text-red-600 my-2"> {{ customIconClasses }} </div>
 </template>

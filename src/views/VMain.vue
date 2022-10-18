@@ -46,7 +46,7 @@ const activePath = ref(Router.currentRoute.value.path);
 const menuRoutes = [
   {
     label: '指引',
-    iconClasses:'fas fa-tools',
+    iconClasses: 'fas fa-tools',
     children: [
       {
         name: 'GT元件使用',
@@ -59,7 +59,7 @@ const menuRoutes = [
         label: 'Graph使用',
         icon: 'file',
         path: '/graph',
-      }
+      },
     ],
   },
   {
@@ -71,16 +71,15 @@ const menuRoutes = [
     label: '圖表',
     iconClasses: 'fas fa-chart-pie',
     children: [
-    ...packagesChartCompNameList
-        .map((name) => {
-          return {
-            name: name,
-            label: name,
-            iconClasses: 'far fa-sticky-note',
-            path: `/chart/${name}`,
-          };
-        }),
-    ]
+      ...packagesChartCompNameList.map((name) => {
+        return {
+          name: name,
+          label: name,
+          iconClasses: 'far fa-sticky-note',
+          path: `/chart/${name}`,
+        };
+      }),
+    ],
   },
   {
     label: 'GT元件a-i',
@@ -266,9 +265,10 @@ body {
     }
   }
 }
-.iconBox,.gt-menu-group-item{
-  svg{
-    width: 14px !important;
+.iconBox,
+.gt-menu-group-item {
+  svg {
+    font-size: 14px;
   }
 }
 </style>

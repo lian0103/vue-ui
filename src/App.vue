@@ -5,10 +5,6 @@
 </template>
 
 <style lang="scss">
-.redText {
-  @apply text-red-500;
-}
-
 .paragraphHead {
   @apply w-full py-8 text-left md:w-3/4;
 }
