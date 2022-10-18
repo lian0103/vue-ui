@@ -11,9 +11,7 @@ const inputs = reactive({
 
 <template>
   <div class="mb-3 px-2 w-full md:w-3/4">
-    <div class="w-full md:w-3/4 relative">
-      <g-title :level="2" class="mb-3">勾選框</g-title>
-    </div>
+    <g-title :level="2">勾選框</g-title>
     <div class="mb-3 flex w-full">
       <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />
       <g-checkbox class="mr-4" v-model="inputs.checked3" label="選項2" />
@@ -31,11 +29,9 @@ const inputs = reactive({
       />
     </div>
 
-    <div class="w-full md:w-3/4 relative">
-      <g-title :level="2" class="mb-3">群組勾選框</g-title>
-    </div>
-    <div class="mb-3 px-2 w-full md:w-3/4">
-      <p class="py-2">inputs.checkedArr:{{ inputs.checkedArr }}</p>
+    <g-title :level="2">群組勾選框</g-title>
+    <div class="mb-3 w-full md:w-3/4">
+      <p class="mb-3">inputs.checkedArr:{{ inputs.checkedArr }}</p>
       <g-checkbox-group class="mb-3 flex w-full" v-model="inputs.checkedArr">
         <g-checkbox class="mr-4" :value="2" label="選項2" />
         <g-checkbox class="mr-4" :value="4" label="選項4" />
