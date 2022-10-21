@@ -17,6 +17,7 @@ const { flat, pill, type, noBorder, icon, width, isLoading , iconClasses } = def
   },
   icon: {
     type: String,
+    default:'btnIconName'
   },
   iconNarrowPadding: {
     type: Boolean,

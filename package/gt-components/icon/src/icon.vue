@@ -23,14 +23,15 @@ const props = defineProps({
 const componentKey = ref(0);
 
 const classesComputed = computed(() => {
-  let arr = ['gt-icon'];
+  let arr = [];
 
   if (props.name) {
+    arr.push(`gt-icon`);
     arr.push(`gt-icon-${props.name}`);
-  }
-
-  if (props.size) {
-    arr.push(`gt-icon-${props.size}`);
+    
+    if (props.size) {
+      arr.push(`gt-icon-${props.size}`);
+    }
   }
 
   if (props.classes) {
@@ -48,5 +49,7 @@ watch(
 </script>
 
 <template>
-  <div class="gt-icon-wrapper" :key="componentKey"> <i :class="classesComputed" /></div>
+  <div class="gt-icon-wrapper" :key="componentKey">
+    <i :class="classesComputed" />
+  </div>
 </template>

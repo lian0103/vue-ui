@@ -784,7 +784,7 @@ const handleIconClassChange = () => {
   >
   <div class="my-2">:classes = {{ classRef }}</div>
   <div class="my-2">
-    <g-icon :classes="classRef" />
+    <g-icon :classes="classRef" name="name" />
   </div>
   <div class="text-red-600 my-2"> {{ customIconClasses }} </div>
 </template>
