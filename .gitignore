@@ -1,7 +1,9 @@
 node_modules
 dist
 demo
-docs
+/docs
+package-lock.json
+.npmrc
 package/assets/fonts/google
 package/assets/fonts/greattree/icon
 package/assets/scss/_icons.scss
