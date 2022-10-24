@@ -39,6 +39,7 @@ import TABS from '../../docs/tabs/demo.vue';
 import TAG from '../../docs/tag/demo.vue';
 import TIMEPICKER from '../../docs/time-picker/demo.vue';
 import TITLE from '../../docs/title/demo.vue';
+import TREE from '../../docs/tree/demo.vue';
 import UPLOADICON from '../../docs/upload-icon/demo.vue';
 
 const Route = useRoute();
@@ -75,6 +76,7 @@ const mapObj = {
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,
     'title' : TITLE ,
+    'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
 }
 

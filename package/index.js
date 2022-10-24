@@ -28,7 +28,9 @@ import Tabs from './gt-components/tabs/index.js';
 import Tag from './gt-components/tag/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
 import Title from './gt-components/title/index.js';
+import Tree from './gt-components/tree/index.js';
 import UploadIcon from './gt-components/upload-icon/index.js';
+
 
 const components = [
   Avatar,
@@ -59,7 +61,8 @@ const components = [
   Tag,
   TimePicker,
   Title,
-  UploadIcon
+  UploadIcon,
+  Tree
 ];
 
 const install = function(Vue, opts = {}) {
@@ -125,5 +128,6 @@ export default {
   Tag,
   TimePicker,
   Title,
-  UploadIcon
+  UploadIcon,
+  Tree
 };

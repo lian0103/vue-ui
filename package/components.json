@@ -27,5 +27,6 @@
   "tag": "./gt-components/tag/index.js",
   "time-picker": "./gt-components/time-picker/index.js",
   "title": "./gt-components/title/index.js",
+  "tree": "./gt-components/tree/index.js",
   "upload-icon": "./gt-components/upload-icon/index.js"
 }

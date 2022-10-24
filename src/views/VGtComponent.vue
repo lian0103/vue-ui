@@ -39,6 +39,7 @@ import TABS from '../../package/gt-components/tabs/docs/demo.vue';
 import TAG from '../../package/gt-components/tag/docs/demo.vue';
 import TIMEPICKER from '../../package/gt-components/time-picker/docs/demo.vue';
 import TITLE from '../../package/gt-components/title/docs/demo.vue';
+import TREE from '../../package/gt-components/tree/docs/demo.vue';
 import UPLOADICON from '../../package/gt-components/upload-icon/docs/demo.vue';
 
 const Route = useRoute();
@@ -75,6 +76,7 @@ const mapObj = {
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,
     'title' : TITLE ,
+    'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
 }
 
