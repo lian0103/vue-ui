@@ -37,7 +37,7 @@ export default {
 <template>
   <div class="gt-tree-wrapper">
     <ul>
-      <treeItem v-for="item in dataRef" :key="item.uuid" :treeData="item" :currentArea="currentArea" />
+      <treeItem v-for="item in dataRef" :key="item.uuid" :treeData="item" />
     </ul>
   </div>
 </template>
