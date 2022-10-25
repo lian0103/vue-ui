@@ -46,6 +46,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  underline:{
+    type:Boolean,
+    default:false
+  }
 });
 
 const gtTableId = uuidv4();
@@ -242,7 +246,7 @@ export default {
             v-for="(rItem, rIdx) in dataWithStatus"
             class="row"
             :key="rIdx"
-            :class="rItem.checked ? 'row-check' : ''"
+            :class="rItem.checked ? 'row-check' : underline ? 'underline':''"
             @click="
               () => {
                 handleRowClick(rItem);

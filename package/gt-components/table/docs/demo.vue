@@ -115,6 +115,17 @@ const showLoading = () => {
     <g-table
       :columns="tableInfo2.columns"
       :data="tableInfo2.data"
+      :isCheckBox="false"
+      :height="350"
+      underline
+    />
+
+    <g-divider />
+
+    <g-title :level="2" class="mb-3">表格</g-title>
+    <g-table
+      :columns="tableInfo2.columns"
+      :data="tableInfo2.data"
       :width="500"
     />
 
