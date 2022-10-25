@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "GDialog",
+  name: 'GDialog',
 };
 </script>
 <script setup>
@@ -15,7 +15,7 @@ const DialogEnum = {
   sm: { maxWidth: 360, maxHeight: window.innerHeight - 200 },
 };
 
-const { modelValue, title, align, handleCallback, mode, size } = defineProps({
+const props = defineProps({
   modelValue: {
     type: Boolean,
     default: false,
@@ -39,20 +39,28 @@ const { modelValue, title, align, handleCallback, mode, size } = defineProps({
     type: String,
     default: 'sm',
   },
+  width: {
+    type: Number,
+    default: null,
+  },
+  height: {
+    type: Number,
+    default: null,
+  },
 });
 
 const maxWidth = computed(() => {
-  return DialogEnum[size]?.maxWidth || 360;
+  return props.width ? props.width : DialogEnum[props.size]?.maxWidth || 360;
 });
 const maxHeight = computed(() => {
-  return DialogEnum[size]?.maxHeight || 820;
+  return props.height ? props.height - 100 : DialogEnum[props.size]?.maxHeight || 820;
 });
 const dialogBodyIn = ref();
 const isScroll = ref(false);
 const emit = defineEmits(['update:modelValue']);
 
 const handleComfirm = () => {
-  handleCallback();
+  props.handleCallback();
   emit('update:modelValue', false);
 };
 
@@ -72,7 +80,8 @@ const eventHandle = () => {
 
 onUpdated(() => {
   let bodyHight = Math.ceil(dialogBodyIn.value.getBoundingClientRect()?.height);
-  isScroll.value = bodyHight > maxHeight.value ? true : false;
+  console.log(bodyHight, maxHeight.value);
+  isScroll.value = bodyHight > maxHeight.value - 160 ? true : false;
 });
 </script>
 
@@ -86,10 +95,12 @@ onUpdated(() => {
       class="gt-dialog"
       :class="[`gt-text-${align}`, modelValue ? 'active' : '']"
       @click.prevent="() => {}"
-      :style="{ maxWidth: maxWidth + 'px' }"
+      :style="{
+        maxWidth: maxWidth + 'px',
+      }"
     >
       <div class="dialog-head">
-        {{ title }} <g-button-close class="closeIcon" @click="handleClose" /> 
+        {{ title }} <g-button-close class="closeIcon" @click="handleClose" />
       </div>
       <div
         class="dialog-body"

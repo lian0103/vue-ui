@@ -10,6 +10,8 @@ module.exports = {
 | size | 對話窗尺寸 | String | sm、md、lg | sm |
 | align | 對齊位置 | String | left、center、right | left |
 | handleCallback | 自訂確認動作後回call事件 | Function | | ()=>{} |
+| width | 自定義對話窗寬度 | Number |  |  |
+| height | 自定義對話窗高度 | Number |  |  |
 
 `,
   method: `
