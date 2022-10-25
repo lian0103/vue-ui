@@ -26,7 +26,7 @@ const genTree = (collection, level = 1) => {
 const dataRef = ref(Array.isArray(props.data) ? genTree(props.data) : []);
 
 defineExpose({
-  data:dataRef,
+  data: dataRef,
 });
 </script>
 <script>
@@ -36,12 +36,8 @@ export default {
 </script>
 <template>
   <div class="gt-tree-wrapper">
-    <ul
-      class="tree-collection"
-      :class="dataRef?.collasped ? 'collasped' : 'active'"
-    >
-      <treeItem v-for="item in dataRef" :key="item.uuid" :treeData="item" />
+    <ul>
+      <treeItem v-for="item in dataRef" :key="item.uuid" :treeData="item" :currentArea="currentArea" />
     </ul>
   </div>
 </template>
-

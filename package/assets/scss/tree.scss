@@ -15,21 +15,23 @@
       display: block;
     }
   }
+  .gt-tree-item{
+    &.current {
+      @apply bg-color4;
+    }
+  }
 
   .item-row {
     @apply flex justify-start items-center;
     height: 28px;
     margin-top: 8px;
-    &:hover {
-      @apply bg-color4;
-    }
     .gt-icon-wrapper {
       transition: all 0.3s ease-in-out;
     }
     .gt-icon {
       cursor: pointer;
     }
-    .label{
+    .label {
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;

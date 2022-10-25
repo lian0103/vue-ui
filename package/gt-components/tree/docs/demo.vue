@@ -24,7 +24,10 @@ const demoData = ref([
           {
             label: '1-2-1',
             value: false,
-            children: [{ label: 'hello!', value: false , disabled:true },{ label: 'world', value: false }],
+            children: [
+              { label: 'hello!', value: false, disabled: true },
+              { label: 'world', value: false },
+            ],
           },
         ],
       },
@@ -58,8 +61,8 @@ const getData = () => {
 };
 </script>
 <template>
-  <g-tree ref="treeRef" :data="demoData" @click.stop="getData" />
-
+  <g-tree ref="treeRef" :data="demoData" />
+  <g-button pill @click="getData">取得當前資料</g-button>
   demoData: <br />
   {{ demoData }}
 </template>

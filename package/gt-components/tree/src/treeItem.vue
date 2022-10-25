@@ -1,4 +1,5 @@
 <script setup>
+import { any } from 'async';
 import { watch, ref } from 'vue';
 
 const props = defineProps({
@@ -14,12 +15,12 @@ const handleDownIcon = () => {
   props.treeData.collasped = val;
 };
 
-const checkAll = (arr, value) => {
+const checkAll = (arr, value, attr) => {
   // console.log(arr, value);
   arr.forEach((item) => {
-    item.value = value;
+    item[attr] = value;
     if (item.children.length > 0) {
-      checkAll(item.children, value);
+      checkAll(item.children, value, attr);
     }
   });
 };
@@ -30,12 +31,20 @@ const handleClick = () => {
   }
 };
 
+const handleItemClick = () => {
+  let val = !props.treeData.isCurrentArea;
+  props.treeData['isCurrentArea'] = val;
+  if (props.treeData.children.length > 0) {
+    checkAll(props.treeData.children, val, 'isCurrentArea');
+  }
+};
+
 watch(
   () => props.treeData.value,
   (val) => {
     // console.log('in treeData.value', val);
     if (props.treeData.children.length > 0) {
-      checkAll(props.treeData.children, val);
+      checkAll(props.treeData.children, val, 'value');
       componentKey.value = componentKey.value + 1;
     }
   }
@@ -43,7 +52,12 @@ watch(
 </script>
 
 <template>
-  <li class="gt-tree-item" :key="componentKey">
+  <li
+    class="gt-tree-item"
+    :class="treeData.isCurrentArea ? 'current' : ''"
+    :key="componentKey"
+    @click.stop="handleItemClick"
+  >
     <div class="item-row">
       <g-icon
         v-if="treeData.children.length > 0"
@@ -59,7 +73,7 @@ watch(
         v-model="treeData.value"
         :label="treeData.label"
         :disabled="treeData.disabled"
-        @click="
+        @click.stop="
           () => {
             handleClick(treeData);
           }
