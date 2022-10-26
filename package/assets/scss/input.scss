@@ -6,13 +6,22 @@
     @apply text-sm leading-9 px-3;
   }
   .gt-input {
-    @apply w-full text-sm text-gray4 bg-color2 rounded-lg;
-    @apply outline outline-1 outline-gray2;
+    @apply w-full text-sm text-gray4 rounded-lg;
+    @apply outline outline-1;
+    @apply bg-color4;
+    @apply outline-gray2;
     height: 43px;
     padding: 10px 34px 10px 12px;
 
-    &.gt-input-green {
-      @apply bg-color4;
+    &.gt-input-white,
+    &.gt-input-transparent {
+      @apply outline-color3;
+      &.gt-input-white {
+        @apply bg-white;
+      }
+      &.gt-input-transparent {
+        @apply bg-transparent;
+      }
     }
 
     &:focus,
@@ -77,16 +86,17 @@
   }
 
   .gt-input-select-mode {
+    width: 100%;
     overflow: hidden;
     transition: all 0.4s ease-in-out;
-    @apply bg-color4 rounded-4;
+    @apply bg-gray3 border border-gray5  border-solid rounded-xl;
     @apply absolute;
-    .input-option {
+    .gt-input-select-option {
       width: 98%;
       padding: 6px 10px;
       @apply cursor-pointer;
-      margin:5px auto;
-      &:hover{
+      margin: 5px auto;
+      &:hover {
         @apply bg-color1 text-main;
       }
     }

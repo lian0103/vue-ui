@@ -1,23 +1,23 @@
 <script>
 export default {
-  name: 'GIcon',
+  name: "GIcon",
 };
 </script>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch } from "vue";
 
 const props = defineProps({
   name: {
     type: String,
-    require: true,
+    default: null,
   },
   classes: {
     type: String,
   },
   size: {
     type: String,
-    default: 'md',
+    default: "md",
   },
 });
 const componentKey = ref(0);
@@ -26,9 +26,8 @@ const classesComputed = computed(() => {
   let arr = [];
 
   if (props.name) {
-    arr.push(`gt-icon`);
+    arr.push("gt-icon");
     arr.push(`gt-icon-${props.name}`);
-    
     if (props.size) {
       arr.push(`gt-icon-${props.size}`);
     }
@@ -37,7 +36,7 @@ const classesComputed = computed(() => {
   if (props.classes) {
     arr.push(props.classes);
   }
-  return arr.length == 1 ? [] : arr;
+  return arr;
 });
 
 watch(

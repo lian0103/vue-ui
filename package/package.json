@@ -19,7 +19,8 @@
     "build": "npm run build:theme && npm run build:pkg",
     "build:theme": "gulp build --gulpfile scripts/build-theme.cjs",
     "build:pkg": "gulp build --gulpfile scripts/build-pkg.cjs",
-    "pub": "sh ./scripts/publish.sh"
+    "pub": "sh ./scripts/publish.sh",
+    "pack": "sh ./scripts/pack.sh"
   },
   "dependencies": {
     "@vueuse/core": "^8.5.0",
