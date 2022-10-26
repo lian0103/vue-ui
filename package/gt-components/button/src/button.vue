@@ -1,7 +1,11 @@
 <script setup>
 import { computed } from 'vue';
 
-const { flat, pill, type, noBorder, icon, width, isLoading , iconClasses } = defineProps({
+const { flat , flatHover , pill, type, noBorder, icon, width, isLoading , iconClasses } = defineProps({
+  flatHover: {
+    type: Boolean,
+    default:true,
+  },
   flat: {
     type: Boolean,
   },
@@ -41,7 +45,7 @@ const { flat, pill, type, noBorder, icon, width, isLoading , iconClasses } = def
 
 const classStr = computed(() => {
   if (flat) {
-    return 'gt-btn-flat';
+    return flatHover ? 'gt-btn-flat' : 'gt-btn-flat no-hover';
   }
   if (pill) {
     return 'gt-btn-pill';

@@ -13,6 +13,8 @@ module.exports = {
 | iconPosition | 圖示位置 | String | left、right | left |
 | isLoading | 載入中 | Boolean | | |
 | iconClasses | 自定義icon樣式 | String | | |
+| flatHover | flat樣式中，是否顯示hover底線 | Boolean | | true |
+
 
 `,
   method: `

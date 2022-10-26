@@ -108,6 +108,7 @@
   padding: 0 2px;
   @apply cursor-pointer relative;
   color: var(--btn-color);
+  
   &:hover {
     .textLine {
       @apply absolute;
@@ -118,6 +119,14 @@
       animation: textLine 0.3s forwards;
     }
   }
+
+  &.no-hover:hover{
+    .textLine {
+      border-bottom:1px solid transparent;
+    }
+  }
+   
+
 }
 
 .gt-btn-pill {
