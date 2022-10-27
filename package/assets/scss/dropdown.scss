@@ -1,13 +1,13 @@
 .gt-dropdown {
-  min-width: 92px;
-  height: 36px;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0 34px 0 14px;
-  letter-spacing: 0.7px;
-  @apply bg-white border border-solid border-gray5 rounded-md select-none;
   @apply flex justify-start items-center relative cursor-pointer;
   .gt-dropdown-span {
+    min-width: 92px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0 34px 0 14px;
+    letter-spacing: 0.7px;
+    @apply bg-white border border-solid border-gray5 rounded-md select-none;
     @apply w-full leading-9 overflow-hidden;
     @apply flex justify-start items-center;
     .pre-icon {
@@ -45,7 +45,7 @@
     @apply flex flex-col;
     @apply absolute;
     &::before {
-      content: '';
+      content: "";
       height: 50px;
       @apply w-full block bg-transparent absolute left-0 -top-10 z-10;
     }

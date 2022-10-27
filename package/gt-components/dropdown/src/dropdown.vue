@@ -1,17 +1,17 @@
 <script>
-import { h, ref, computed, watch, shallowRef } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
-import GDropdownItem from '../../dropdownitem/src/dropdownitem.vue';
-import GIcon from '../../icon';
-import { useElementBounding } from '@vueuse/core';
+import { h, ref, computed, watch, shallowRef } from "vue";
+import { v4 as uuidv4 } from "uuid";
+import GDropdownItem from "../../dropdownitem/src/dropdownitem.vue";
+import GIcon from "../../icon";
+import { useElementBounding } from "@vueuse/core";
 
 const unitLength = 10;
 const calcCharLength = (text) => {
-  return text.replace(/[^\x00-\xff]/g, 'aa').length;
+  return text.replace(/[^\x00-\xff]/g, "aa").length;
 };
 
 export default {
-  name: 'GDropdown',
+  name: "GDropdown",
   props: {
     name: { default: null },
     modelValue: {},
@@ -30,7 +30,7 @@ export default {
       type: Function,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { slots, emit }) {
     // console.log(props);
     const id = uuidv4();
@@ -81,19 +81,19 @@ export default {
 
     const classHoverComputed = computed(() => {
       return props.hover && isHover.value
-        ? 'gt-dropdown gt-dropdown-hover'
-        : 'gt-dropdown';
+        ? "gt-dropdown gt-dropdown-hover"
+        : "gt-dropdown";
     });
 
     const classShowComputed = computed(() => {
       // console.log('classShowComputed', classShowComputed.value);
       let hadOpend =
-        classShowComputed.value && classShowComputed.value.includes('tp-aniIn');
+        classShowComputed.value && classShowComputed.value.includes("tp-aniIn");
       return props.clicked && isShow.value
-        ? 'gt-dropdown-items tp-aniIn'
+        ? "gt-dropdown-items tp-aniIn"
         : hadOpend
-        ? 'gt-dropdown-items tp-aniOut'
-        : 'gt-dropdown-items';
+        ? "gt-dropdown-items tp-aniOut"
+        : "gt-dropdown-items";
     });
 
     const labelComputed = computed(() => {
@@ -136,9 +136,10 @@ export default {
           withGDropdown: true,
           parentValue: computed(() => valRef.value),
           handleChildClick: (val) => {
-            handleIsShow('childClick');
+            handleIsShow();
+            // handleIsShow("childClick");
             hasSelect.value = true;
-            emit('update:modelValue', val);
+            emit("update:modelValue", val);
             if (props.formParentValue && props.handleValChange) {
               props.handleValChange(val, props.name);
             }
@@ -146,11 +147,19 @@ export default {
           },
         });
       }) || [];
-    // console.log('childs', childs);
+    const spanSlotList = slots.default
+      ? slots.default().filter((VNode) => {
+          if (typeof VNode.type === "object") {
+            return true;
+          }
+          return false;
+        })
+      : null;
+    const spanUseSlot = spanSlotList !== null && spanSlotList.length > 0;
     const textClassComputed = computed(() => {
       let arr = [];
-      if (props.icon) arr.push('span-text');
-      if (hasSelect.value) arr.push('text-main');
+      if (props.icon) arr.push("span-text");
+      if (hasSelect.value) arr.push("text-main");
       return arr;
     });
 
@@ -163,36 +172,38 @@ export default {
     watch(
       () => isShow.value,
       (val, oldVal) => {
-        if (val && document.getElementsByTagName('html')[0]) {
+        if (val && document.getElementsByTagName("html")[0]) {
           document
-            .getElementsByTagName('html')[0]
-            .addEventListener('click', eventHandle, false);
+            .getElementsByTagName("html")[0]
+            .addEventListener("click", eventHandle, false);
           // console.log('id', id);
           // console.log('rootTop.value', rootTop.value);
           if (rootObj[id]) {
             popupStyle.value = {
-              top: 42 + 'px',
-              left: '0px',
-              width: maxWidth.value + 48 + 'px',
+              top: 42 + "px",
+              left: "0px",
+              width: maxWidth.value + 48 + "px",
             };
           }
         } else {
           document
-            .getElementsByTagName('html')[0]
-            ?.removeEventListener('click', eventHandle);
+            .getElementsByTagName("html")[0]
+            ?.removeEventListener("click", eventHandle);
         }
       }
     );
 
     return () =>
       h(
-        'div',
+        "div",
         {
           ref: rootObj[id],
           class: classHoverComputed.value,
           onMouseenter: handleMouseenter,
           onMouseleave: handleLeave,
-          style: { width: curSelectWidth.value + 48 + 'px' },
+          style: {
+            width: spanUseSlot ? "auto" : curSelectWidth.value + 48 + "px",
+          },
           onClick: (e) => {
             e.stopPropagation();
             handleIsShow();
@@ -200,26 +211,28 @@ export default {
         },
         [
           h(
-            'span',
+            "span",
             {
-              class: 'gt-dropdown-span',
+              class: spanUseSlot ? "" : "gt-dropdown-span",
             },
-            [
-              // props.icon ? h(GIcons, { name: 'file',class:'pre-icon' }) : '',
-              h('span', { class: textClassComputed.value }, [
-                labelComputed.value,
-              ]),
-            ]
+            spanUseSlot
+              ? spanSlotList
+              : [
+                  // props.icon ? h(GIcons, { name: 'file',class:'pre-icon' }) : '',
+                  h("span", { class: textClassComputed.value }, [
+                    labelComputed.value,
+                  ]),
+                ]
           ),
           h(
-            'span',
+            "span",
             {
-              class: 'gt-dropdown-icon',
+              class: "gt-dropdown-icon",
             },
-            [h(GIcon, { name: 'chevronDown' })]
+            [h(GIcon, { name: "chevronDown" })]
           ),
           h(
-            'div',
+            "div",
             {
               class: classShowComputed.value,
               onMouseleave: handleLeave,
@@ -228,8 +241,9 @@ export default {
             childs
           ),
           errorMsg.value
-            ? h('span', {
-                class: 'dropdown-error-msg',
+            ? h("span", {
+                class: "dropdown-error-msg",
+
                 innerHTML: errorMsg.value,
               })
             : [],
