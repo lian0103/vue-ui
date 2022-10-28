@@ -34,6 +34,7 @@ export default {
   setup(props, { slots, emit }) {
     // console.log(props);
     const id = uuidv4();
+    const spanContent = ref();
     const rootObj = {
       [id]: shallowRef(),
     };
@@ -147,15 +148,15 @@ export default {
           },
         });
       }) || [];
-    const spanSlotList = slots.default
-      ? slots.default().filter((VNode) => {
-          if (typeof VNode.type === "object") {
+    const spanSlotList = computed(() => {
+      return slots.default
+        ? slots.default().filter((VNode) => {
             return true;
-          }
-          return false;
-        })
-      : null;
-    const spanUseSlot = spanSlotList !== null && spanSlotList.length > 0;
+          })
+        : null;
+    });
+    const spanUseSlot =
+      spanSlotList.value !== null && spanSlotList.value.length > 0;
     const textClassComputed = computed(() => {
       let arr = [];
       if (props.icon) arr.push("span-text");
@@ -180,7 +181,7 @@ export default {
           // console.log('rootTop.value', rootTop.value);
           if (rootObj[id]) {
             popupStyle.value = {
-              top: 42 + "px",
+              top: spanContent.value.offsetHeight + 10 + "px",
               left: "0px",
               width: maxWidth.value + 48 + "px",
             };
@@ -213,16 +214,27 @@ export default {
           h(
             "span",
             {
-              class: spanUseSlot ? "" : "gt-dropdown-span",
+              class: "gt-dropdown-span-content",
             },
-            spanUseSlot
-              ? spanSlotList
-              : [
-                  // props.icon ? h(GIcons, { name: 'file',class:'pre-icon' }) : '',
-                  h("span", { class: textClassComputed.value }, [
-                    labelComputed.value,
-                  ]),
-                ]
+            [
+              h(
+                "span",
+                {
+                  ref: (el) => {
+                    spanContent.value = el;
+                  },
+                  class: spanUseSlot ? "" : "gt-dropdown-span",
+                },
+                spanUseSlot
+                  ? spanSlotList.value
+                  : [
+                      // props.icon ? h(GIcons, { name: 'file',class:'pre-icon' }) : '',
+                      h("span", { class: textClassComputed.value }, [
+                        labelComputed.value,
+                      ]),
+                    ]
+              ),
+            ]
           ),
           h(
             "span",
