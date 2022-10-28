@@ -37,6 +37,15 @@
           @apply transition-all duration-500;
         }
       }
+      &.active {
+        @apply text-main;
+        .child-icon {
+          color: #32a03d !important;
+        }
+        .left .iconBox.collapesed {
+          @apply bg-soft;
+        }
+      }
     }
 
     .childBox {
@@ -84,7 +93,7 @@
 
 .gt-menus {
   &.collapsed {
-    width: 60px;
+    width: 30px;
 
     .menu-text {
       @apply justify-center;

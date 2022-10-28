@@ -1,6 +1,6 @@
 <script setup>
-import { watch, computed, reactive, getCurrentInstance, ref } from 'vue';
-import { v4 as uuid } from 'uuid';
+import { watch, computed, reactive, getCurrentInstance, ref } from "vue";
+import { v4 as uuid } from "uuid";
 
 const instance = getCurrentInstance();
 
@@ -10,6 +10,7 @@ const props = defineProps({
   },
   activePath: {
     type: String,
+    default: "/",
   },
   menu: {
     type: Array,
@@ -25,9 +26,20 @@ const props = defineProps({
   },
 });
 
-const collapsed = ref(props.collapsed);
+const collapsed = computed(() => {
+  return props.collapsed;
+});
 
-const activePath = ref(props.activePath);
+const activePath = computed(() => {
+  return props.onlyOneLevel
+    ? "/" + props.activePath?.split("/")[1]
+    : props.activePath;
+});
+
+const rootPath = computed(() => {
+  let result = "/" + props.activePath?.split("/")[1];
+  return result;
+});
 
 const onlyOneLevel = ref(props.onlyOneLevel);
 
@@ -81,7 +93,7 @@ const findRouteIndexByPath = () => {
   menu.value.forEach((item, idx) => {
     if (Array.isArray(item.children)) {
       item.children.forEach((cItem, cIdx) => {
-        if (cItem.path === props.activePath) {
+        if (cItem.path === activePath.value) {
           groupIndex = idx + 1;
           activeItemIndex = cItem.uuid;
           routerMenuIndex = `${idx + 1}-${cIdx + 1}`;
@@ -97,25 +109,28 @@ const findRouteIndexByPath = () => {
   };
 };
 
-const result = findRouteIndexByPath();
-
-const info = reactive({
-  menuGroupActiveArr: collapsed.value
-    ? []
-    : result.routerMenuIndex
-    ? [result.groupIndex]
-    : [parseInt(props.active?.split('-')[0])],
-  menuGroupActive: collapsed.value
-    ? []
-    : result.groupIndex
-    ? result.groupIndex
-    : parseInt(props.active?.split('-')[0]),
-  menuGroupItemActive: result.activeItemIndex || '',
-});
+const result = reactive(findRouteIndexByPath());
+const setActiveInfo = () => {
+  return {
+    menuGroupActiveArr: collapsed.value
+      ? []
+      : result.routerMenuIndex
+      ? [result.groupIndex]
+      : [parseInt(props.active?.split("-")[0])],
+    menuGroupActive: collapsed.value
+      ? []
+      : result.groupIndex
+      ? result.groupIndex
+      : parseInt(props.active?.split("-")[0]),
+    menuGroupItemActive: result.activeItemIndex || "",
+  };
+};
+const info = reactive(setActiveInfo());
 
 const menuComputed = computed(() => {
   return menu.value.map((item, idx) => {
     // console.log(info.menuGroupActiveArr);
+
     return {
       ...item,
       active: info.menuGroupActiveArr.includes(idx + 1) ? true : false,
@@ -127,8 +142,8 @@ const menuComputed = computed(() => {
 const handleGroupClick = (item, gIdx) => {
   // console.log('handleGroupClick', onlyOneLevel.value);
   const Router = instance.appContext.config.globalProperties.$router || null;
-  let { active, path } = item;
-  if (path) {
+  let { active, path, children } = item;
+  if (path && children.length === 0) {
     if (Router) {
       Router.push(path);
     }
@@ -141,14 +156,14 @@ const handleGroupClick = (item, gIdx) => {
         // instance.refs.layoutTab.current.value = item.children[0].name;
         Router.push(item.children[0].path);
 
-        setTimeout(() => {
-          instance.appContext.config.globalProperties.handleCurrentlayoutTab(
-            item.children[0].name
-          );
-          instance.appContext.config.globalProperties.handleTabslayoutTab(
-            item.children
-          );
-        }, 500);
+        // setTimeout(() => {
+        //   instance.appContext.config.globalProperties.handleCurrentlayoutTab(
+        //     item.children[0].name
+        //   );
+        //   instance.appContext.config.globalProperties.handleTabslayoutTab(
+        //     item.children
+        //   );
+        // }, 500);
       }
     }
   } else if (!active) {
@@ -176,6 +191,9 @@ const handleRouteTo = (path, gIdx, cItemUuid) => {
   if (path && instance.appContext.config.globalProperties.$router) {
     instance.appContext.config.globalProperties.$router.push(path);
   }
+  if (collapsed.value) {
+    handleMenuHtmlEvent();
+  }
 };
 
 defineExpose({
@@ -193,31 +211,33 @@ watch(
   () => isCollapsedAndHadOpenedOne.value,
   (val) => {
     // console.log('in', val);
-    if (val && document.getElementsByTagName('html')[0]) {
+    if (val && document.getElementsByTagName("html")[0]) {
       document
-        .getElementsByTagName('html')[0]
-        .addEventListener('click', handleMenuHtmlEvent, false);
+        .getElementsByTagName("html")[0]
+        .addEventListener("click", handleMenuHtmlEvent, false);
     } else {
       document
-        .getElementsByTagName('html')[0]
-        ?.removeEventListener('click', handleMenuHtmlEvent);
+        .getElementsByTagName("html")[0]
+        ?.removeEventListener("click", handleMenuHtmlEvent);
     }
   }
 );
-
 watch(
   () => collapsed.value,
   (val) => {
     if (val) {
       info.menuGroupActiveArr = [];
       info.menuGroupActive = [];
+    } else {
+      Object.assign(result, findRouteIndexByPath());
+      Object.assign(info, setActiveInfo());
     }
   }
 );
 </script>
 <script>
 export default {
-  name: 'GMenu',
+  name: "GMenu",
 };
 </script>
 <template>
@@ -229,12 +249,29 @@ export default {
       :class="item.active ? 'active' : ''"
       @click.stop="handleGroupClick(item, index)"
     >
-      <div class="menu-text">
+      <div
+        class="menu-text"
+        :class="{
+          active: activePath
+            ? item.path == activePath
+              ? true
+              : collapsed && !onlyOneLevel && item.path.startsWith(rootPath)
+              ? true
+              : false
+            : false,
+        }"
+      >
         <div class="left">
           <div class="iconBox" :class="collapsed ? 'collapesed' : ''">
             <g-icon
               v-if="item.icon || collapsed || item.iconClasses"
-              :name="item.icon ? item.icon : item.iconClasses ? 'menuIconName' : 'items'"
+              :name="
+                item.icon
+                  ? item.icon
+                  : item.iconClasses
+                  ? 'menuIconName'
+                  : 'items'
+              "
               :classes="item.iconClasses"
               size="md"
             />
@@ -244,7 +281,7 @@ export default {
         </div>
 
         <g-icon
-          v-if="!item.path && !collapsed && !onlyOneLevel"
+          v-if="item.children.length > 0 && !collapsed && !onlyOneLevel"
           name="chevron-up"
           :style="item.active ? {} : { transform: 'rotate(180deg)' }"
           size="md"
@@ -267,7 +304,7 @@ export default {
                     : `${
                         item.children.length * 44 + 40 < 85
                           ? '85'
-                          : item.children.length * 44  + 40
+                          : item.children.length * 44 + 40
                       }px`,
                 }
               : { height: `0px` }

@@ -6,8 +6,8 @@ import {
   computed,
   onMounted,
   watch,
-} from 'vue';
-import { useElementBounding } from '@vueuse/core';
+} from "vue";
+import { useElementBounding } from "@vueuse/core";
 
 const instance = getCurrentInstance();
 const Router = instance.appContext.config.globalProperties?.$router;
@@ -18,7 +18,7 @@ const props = defineProps({
   },
   tabs: {
     type: Array,
-    default: [{ name: 'tab1' }, { name: 'tab2' }],
+    default: [{ name: "tab1" }, { name: "tab2" }],
   },
   currentTab: {
     type: String,
@@ -68,14 +68,14 @@ const classComputed = computed(() => {
 
   let arr = [];
   if (isMouseIn.value) {
-    arr.push('mouse-in');
+    arr.push("mouse-in");
   }
   if (props.layoutMode) {
-    arr.push('layoutMode');
+    arr.push("layoutMode");
   }
 
   if (parentWidth.value && parseInt(widthTabs.value) > parentWidth.value) {
-    arr.push('overTabsWrapper');
+    arr.push("overTabsWrapper");
   }
   return arr;
 });
@@ -83,35 +83,35 @@ const classComputed = computed(() => {
 const styleComputed = computed(() => {
   return props.layoutMode
     ? {
-        'max-width': 'calc(100% - 20px)',
+        "max-width": "calc(100% - 20px)",
       }
     : {};
 });
 
 const calcTargetWidth = () => {
-  let target = document.getElementById('gtContentRef');
+  let target = document.getElementById("gtContentRef");
   let target2 = document.getElementById(`${props.name}-tabRef`);
-  if (props.name == 'layoutTab' && target && target2) {
+  if (props.name == "layoutTab" && target && target2) {
     parentWidth.value = target.offsetWidth;
     widthTabs.value = target2.offsetWidth;
   }
 };
 
-instance.appContext.config.globalProperties['handleCurrent' + props.name] = (
-  tabName
-) => {
-  current.value = tabName;
-};
-instance.appContext.config.globalProperties['handleTabs' + props.name] = (
-  newTabs
-) => {
-  props.tabs.value = newTabs;
-  parentWidth.value = null;
-};
+// instance.appContext.config.globalProperties["handleCurrent" + props.name] = (
+//   tabName
+// ) => {
+//   current.value = tabName;
+// };
+// instance.appContext.config.globalProperties["handleTabs" + props.name] = (
+//   newTabs
+// ) => {
+//   props.tabs.value = newTabs;
+//   parentWidth.value = null;
+// };
 
 watch(
   () => current.value,
-  () => {
+  (nVal) => {
     // console.log('in~~!@##');
     setTimeout(() => {
       calcTargetWidth();
@@ -133,12 +133,12 @@ onMounted(() => {
   setTimeout(() => {
     calcTargetWidth();
   }, 200);
-  window.addEventListener('resize', calcTargetWidth);
+  window.addEventListener("resize", calcTargetWidth);
 });
 </script>
 <script>
 export default {
-  name: 'GTabs',
+  name: "GTabs",
 };
 </script>
 <template>

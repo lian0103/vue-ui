@@ -1,19 +1,17 @@
 <script setup>
-import GTitle from '../../title';
-import GTabs from '../../tabs';
-import { ref, getCurrentInstance, computed, watch } from 'vue';
-import { useElementBounding } from '@vueuse/core';
+import { ref, getCurrentInstance, computed, watch } from "vue";
+import { useElementBounding } from "@vueuse/core";
 
 const instance = getCurrentInstance();
 
 const props = defineProps({
   headText: {
     type: String,
-    default: '',
+    default: "",
   },
   title: {
     type: String,
-    default: '',
+    default: "",
   },
   menuTabs: {
     type: Array,
@@ -29,7 +27,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['collapsed']);
+const emit = defineEmits(["collapsed"]);
 const isCollapsed = ref(props.collapsed);
 
 const Router = instance.appContext.config.globalProperties?.$router;
@@ -81,14 +79,14 @@ const handleMenuTabCallback = (target = {}) => {
   if (path && Router) {
     Router.push(path);
   } else {
-    console.log('target is empty');
+    console.log("target is empty");
   }
 };
 
 const handleCollapsed = () => {
   let val = !isCollapsed.value;
   isCollapsed.value = val;
-  emit('collapsed', val);
+  emit("collapsed", val);
 
   if (instance.refs.layoutTabs) {
     instance.refs.layoutTabs.collapsed = val;
@@ -98,7 +96,7 @@ const handleCollapsed = () => {
 </script>
 <script>
 export default {
-  name: 'GLayout',
+  name: "GLayout",
 };
 </script>
 <template>
