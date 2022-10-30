@@ -123,14 +123,10 @@ export default {
     </div>
 
     <div class="gt-sidebar-content" id="gtSidebarContentRef">
-      <div
-        class="gt-sidebar"
-        :class="onlyOneLevel ? 'onlyOneLevel' : ''"
-        :style="{
-          width: isCollapsed ? '100px' : '290px',
-        }"
-      >
-        <div class="gt-menu-box"><slot name="sidebar" /></div>
+      <div class="gt-sidebar" :class="onlyOneLevel ? 'onlyOneLevel' : ''">
+        <div class="gt-menu-box">
+          <slot name="sidebar" />
+        </div>
 
         <div class="gt-bottomLogo">
           <img src="../../../assets/images/gt-logo.png" alt="" />
@@ -146,7 +142,7 @@ export default {
         id="gtContentRef"
         class="gt-content-wrapper"
         :style="{
-          width: isCollapsed ? 'calc(100% - 100px)' : 'calc(100% - 290px)',
+          width: isCollapsed ? 'calc(100% - 100px)' : 'calc(100% - 280px)',
         }"
       >
         <g-tabs

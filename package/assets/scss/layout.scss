@@ -12,7 +12,7 @@
     @apply flex;
     .gt-headline {
       @apply text-main font-bold text-lg leading-6 flex justify-center items-center;
-      animation: layoutOpen 0.5s both;
+      animation: headlineOpen 0.5s both;
       height: 80px;
       @apply relative;
 
@@ -37,8 +37,8 @@
     .gt-header {
       flex-grow: 2;
       @apply flex justify-between items-center;
-      @apply pl-0;
       @apply relative;
+      padding-left: 10px;
       .title {
         @apply flex;
         white-space: nowrap;
@@ -51,24 +51,19 @@
     @apply flex;
     .gt-sidebar {
       overflow: visible;
-      animation: layoutOpen 0.5s both;
+      animation: sidebarOpen 0.5s both;
       transition: 0.4s width ease-in-out;
       z-index: 100;
       @apply flex flex-col;
       .gt-menu-box {
+        animation: menuOpen 0.5s both;
         margin: auto;
         flex-grow: 2;
-        @apply w-full relative;
+        @apply relative;
         height: calc(100vh - 170px);
         @apply overflow-y-scroll;
         &::-webkit-scrollbar {
           width: 0px !important;
-        }
-        &::after {
-          content: '';
-          width: 1px;
-          height: calc(100vh - 170px);
-          @apply block bg-gray3 absolute top-0 right-0;
         }
 
         .gt-menus {
@@ -106,6 +101,8 @@
     }
 
     .gt-content {
+      padding-left: 10px;
+      padding-right: 80px;
       @apply relative overflow-y-scroll;
       height: calc(100vh - 80px);
       &::-webkit-scrollbar {
@@ -128,23 +125,21 @@
   &.collapsed {
     .gt-headline-header {
       .gt-headline {
-        animation: layoutClose 0.5s both;
+        animation: headlineClose 0.5s both;
         .head-text {
           width: 0;
           opacity: 0;
           z-index: -1;
         }
       }
-      .gt-header {
-        @apply pl-0;
-      }
     }
 
     .gt-sidebar-content {
       .gt-sidebar {
-        animation: layoutClose 0.5s both;
+        animation: sidebarClose 0.5s both;
         .gt-menu-box {
           padding: 0 10px;
+          animation: menuClose 0.5s both;
           &::after {
             width: 0px;
           }
@@ -167,20 +162,62 @@
   }
 }
 
-@keyframes layoutOpen {
+@keyframes sidebarOpen {
   0% {
     width: 100px;
+    margin-right: 60px;
   }
   100% {
-    width: 290px;
+    width: 280px;
+    margin-right: 0px;
+  }
+}
+@keyframes sidebarClose {
+  0% {
+    width: 280px;
+    margin-right: 0px;
+  }
+  100% {
+    width: 100px;
+    margin-right: 60px;
   }
 }
 
-@keyframes layoutClose {
+@keyframes menuOpen {
   0% {
-    width: 290px;
+    width: 100px;
+  }
+  100% {
+    width: 280px;
+  }
+}
+@keyframes menuClose {
+  0% {
+    width: 280px;
   }
   100% {
     width: 100px;
+  }
+}
+
+@keyframes headlineOpen {
+  0% {
+    width: 100px;
+    margin-right: 60px;
+  }
+  100% {
+    width: 280px;
+    margin-right: 0px;
+  }
+}
+
+@keyframes headlineClose {
+  0% {
+    width: 280px;
+    margin-right: 0px;
+  }
+  100% {
+    width: 100px;
+    margin-right: 60px;
   }
 }
