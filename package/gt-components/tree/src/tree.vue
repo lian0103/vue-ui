@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref , provide } from 'vue';
 import treeItem from './treeItem.vue';
 
 const props = defineProps({
@@ -25,6 +25,23 @@ const genTree = (collection, level = 1) => {
 
 const dataRef = ref(Array.isArray(props.data) ? genTree(props.data) : []);
 
+const checkAll = (arr, value, attr) => {
+  // console.log(arr, value);
+  arr.forEach((item) => {
+    item[attr] = value;
+    if (item.children.length > 0) {
+      checkAll(item.children, value, attr);
+    }
+  });
+};
+
+const resetCurrentArea = () => {
+  checkAll(dataRef.value, false, 'isCurrentArea');
+};
+
+provide('resetCurrentArea',resetCurrentArea)
+provide('checkAll',checkAll)
+
 defineExpose({
   data: dataRef,
 });
@@ -37,7 +54,11 @@ export default {
 <template>
   <div class="gt-tree-wrapper">
     <ul>
-      <treeItem v-for="item in dataRef" :key="item.uuid" :treeData="item" />
+      <treeItem
+        v-for="(item, idx) in dataRef"
+        :key="`key-${idx}`"
+        :treeData="item"
+      />
     </ul>
   </div>
 </template>

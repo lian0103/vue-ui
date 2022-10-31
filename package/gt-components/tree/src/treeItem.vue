@@ -1,6 +1,5 @@
 <script setup>
-import { any } from 'async';
-import { watch, ref } from 'vue';
+import { watch, ref, inject } from 'vue';
 
 const props = defineProps({
   treeData: {
@@ -10,19 +9,13 @@ const props = defineProps({
 });
 const componentKey = ref(0);
 
+const resetCurrentArea = inject('resetCurrentArea');
+const checkAll = inject('checkAll')
+// console.log('resetCurrentArea',resetCurrentArea)
+
 const handleDownIcon = () => {
   let val = !props.treeData.collasped;
   props.treeData.collasped = val;
-};
-
-const checkAll = (arr, value, attr) => {
-  // console.log(arr, value);
-  arr.forEach((item) => {
-    item[attr] = value;
-    if (item.children.length > 0) {
-      checkAll(item.children, value, attr);
-    }
-  });
 };
 
 const handleClick = () => {
@@ -33,10 +26,8 @@ const handleClick = () => {
 
 const handleItemClick = () => {
   let val = !props.treeData.isCurrentArea;
+  resetCurrentArea();
   props.treeData['isCurrentArea'] = val;
-  if (props.treeData.children.length > 0) {
-    checkAll(props.treeData.children, val, 'isCurrentArea');
-  }
 };
 
 watch(
