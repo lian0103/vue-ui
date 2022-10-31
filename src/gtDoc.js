@@ -755,19 +755,19 @@ const icons = [
   'distribute',
   'home',
   'info',
-  'items',
   'lock',
   'setting',
   'store',
   'tool',
   'user',
   'menu',
-  'cus01',
   'file',
-  'cus03',
-  'cus04',
-  'cus05',
-  'cus06',
+  'info',
+  'screen-full',
+  'screen-min',
+  'text-A',
+  'text-chi',
+  'items'
 ];
 
 const customIconClasses = '寫法: <g-icon classes="fas fa-vote-yea" />。渲染結果:<i class="fas fa-vote-yea"></i>';
