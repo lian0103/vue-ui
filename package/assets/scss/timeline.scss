@@ -1,0 +1,45 @@
+.gt-timeline-wrapper {
+  @apply flex flex-col;
+  .gt-timeline-item {
+    @apply w-full relative;
+    color: #666;
+    letter-spacing: 0.8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    padding-left: 29px;
+    padding-bottom: 21px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      z-index: 2;
+      @apply absolute left-0;
+      top: 6px;
+      @apply bg-gray0;
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 100%;
+      z-index: 1;
+      @apply absolute left-1;
+      top: 6px;
+      @apply bg-color3;
+    }
+  }
+
+  .gt-timeline-item.end {
+    @apply text-gray4;
+    &::before {
+      @apply bg-gray4;
+    }
+    &::after {
+      display: none;
+    }
+  }
+}

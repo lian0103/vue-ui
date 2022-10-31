@@ -27,9 +27,11 @@ import Table from './gt-components/table/index.js';
 import Tabs from './gt-components/tabs/index.js';
 import Tag from './gt-components/tag/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
+import Timeline from './gt-components/timeline/index.js';
 import Title from './gt-components/title/index.js';
 import Tree from './gt-components/tree/index.js';
 import UploadIcon from './gt-components/upload-icon/index.js';
+import Timelineitem from './gt-components/timelineitem/index.js';
 
 const components = [
   Avatar,
@@ -59,9 +61,11 @@ const components = [
   Tabs,
   Tag,
   TimePicker,
+  Timeline,
   Title,
   Tree,
-  UploadIcon
+  UploadIcon,
+  Timelineitem
 ];
 
 const install = function(Vue, opts = {}) {
@@ -97,7 +101,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.3.13',
+  version: '1.3.14',
   install,
   Avatar,
   Button,
@@ -126,7 +130,9 @@ export default {
   Tabs,
   Tag,
   TimePicker,
+  Timeline,
   Title,
   Tree,
-  UploadIcon
+  UploadIcon,
+  Timelineitem
 };

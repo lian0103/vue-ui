@@ -38,6 +38,8 @@ import TABLE from '../../package/gt-components/table/docs/demo.vue';
 import TABS from '../../package/gt-components/tabs/docs/demo.vue';
 import TAG from '../../package/gt-components/tag/docs/demo.vue';
 import TIMEPICKER from '../../package/gt-components/time-picker/docs/demo.vue';
+import TIMELINE from '../../package/gt-components/timeline/docs/demo.vue';
+import TIMELINEITEM from '../../package/gt-components/timelineitem/docs/demo.vue';
 import TITLE from '../../package/gt-components/title/docs/demo.vue';
 import TREE from '../../package/gt-components/tree/docs/demo.vue';
 import UPLOADICON from '../../package/gt-components/upload-icon/docs/demo.vue';
@@ -75,6 +77,8 @@ const mapObj = {
     'tabs' : TABS ,
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,
+    'timeline' : TIMELINE ,
+    'timelineitem' : TIMELINEITEM ,
     'title' : TITLE ,
     'tree' : TREE ,
     'upload-icon' : UPLOADICON ,

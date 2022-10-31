@@ -1,7 +1,6 @@
 <script setup>
 import {
   onMounted,
-  onBeforeUpdate,
   computed,
   ref,
   getCurrentInstance,
@@ -36,7 +35,8 @@ const onlyOneLevel = ref(
 
 const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 
-const packagesCompNameList = Object.keys(packageMap);
+const ignoreItems = ['timelineitem']
+const packagesCompNameList = Object.keys(packageMap).filter(item=>!ignoreItems.includes(item));
 const packagesChartCompNameList = Object.keys(packageChartMap);
 
 // console.log(packagesChartCompNameList)

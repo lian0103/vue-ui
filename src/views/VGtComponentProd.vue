@@ -38,6 +38,8 @@ import TABLE from '../../docs/table/demo.vue';
 import TABS from '../../docs/tabs/demo.vue';
 import TAG from '../../docs/tag/demo.vue';
 import TIMEPICKER from '../../docs/time-picker/demo.vue';
+import TIMELINE from '../../docs/timeline/demo.vue';
+import TIMELINEITEM from '../../docs/timelineitem/demo.vue';
 import TITLE from '../../docs/title/demo.vue';
 import TREE from '../../docs/tree/demo.vue';
 import UPLOADICON from '../../docs/upload-icon/demo.vue';
@@ -75,6 +77,8 @@ const mapObj = {
     'tabs' : TABS ,
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,
+    'timeline' : TIMELINE ,
+    'timelineitem' : TIMELINEITEM ,
     'title' : TITLE ,
     'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
