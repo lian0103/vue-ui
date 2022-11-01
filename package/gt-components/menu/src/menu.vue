@@ -255,7 +255,7 @@ export default {
           active: activePath
             ? item.path == activePath
               ? true
-              : collapsed && !onlyOneLevel && item.path.startsWith(rootPath)
+              : collapsed && !onlyOneLevel && item.path?.startsWith(rootPath)
               ? true
               : false
             : false,
