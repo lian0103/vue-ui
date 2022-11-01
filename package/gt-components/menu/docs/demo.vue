@@ -5,19 +5,19 @@ const instance = getCurrentInstance();
 const menuRoutes = [
   {
     label: 'group1',
-    icon: 'info',
+    iconClasses: 'far fa-file-code',
     children: [
       {
         label: 'route1',
         icon: '',
         path: 'doc',
-        iconClasses: 'fas fa-vote-yea iconWidth',
+        iconClasses: 'fas fa-vote-yea ',
       },
       {
         label: 'route2',
         icon: '',
         path: '456',
-        iconClasses: 'fas fa-user iconWidth',
+        iconClasses: 'fas fa-user ',
       },
       {
         label: 'route3',
@@ -28,7 +28,7 @@ const menuRoutes = [
   },
   {
     label: 'group2',
-    icon: 'tool',
+    iconClasses: 'far fa-file-code',
     children: [
       {
         label: 'route3',
@@ -107,19 +107,19 @@ const menuRoutes = [
 const menuRoutes2 = [
   {
     label: '群組1',
-    icon: 'info',
+    iconClasses: 'far fa-file-code',
     children: [
       {
         label: '路由1',
         icon: '',
         path: 'doc',
-        iconClasses: 'fas fa-vote-yea iconWidth',
+        iconClasses: 'fas fa-vote-yea ',
       },
       {
         label: '路由2',
         icon: '',
         path: '456',
-        iconClasses: 'fas fa-user iconWidth',
+        iconClasses: 'fas fa-user ',
       },
       {
         label: '路由3',
@@ -130,13 +130,13 @@ const menuRoutes2 = [
   },
   {
     label: '群組2',
-    icon: 'info',
+    iconClasses: 'far fa-file-code',
     children: [
       {
         label: '路由1',
         icon: '',
         path: 'doc',
-        iconClasses: 'fas fa-vote-yea iconWidth',
+        iconClasses: 'fas fa-vote-yea ',
       },
     ],
   },
@@ -186,10 +186,8 @@ const handleRouteChange = () => {
   display: flex;
   justify-content: space-around;
   position: relative;
-}
-.iconWidth {
-  width: 12px !important;
-  font-size: 12px;
-  margin-right: 4px;
+  .iconBox svg {
+    font-size: 14px;
+  }
 }
 </style>
