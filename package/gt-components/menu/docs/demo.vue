@@ -11,13 +11,13 @@ const menuRoutes = [
         label: 'route1',
         icon: '',
         path: 'doc',
-        iconClasses:'fas fa-vote-yea iconWidth'
+        iconClasses: 'fas fa-vote-yea iconWidth',
       },
       {
         label: 'route2',
         icon: '',
         path: '456',
-        iconClasses:'fas fa-user iconWidth'
+        iconClasses: 'fas fa-user iconWidth',
       },
       {
         label: 'route3',
@@ -85,7 +85,7 @@ const menuRoutes = [
   {
     label: 'link',
     path: 'ccc',
-    iconClasses:'fas fa-vote-yea iconWidth50'
+    iconClasses: 'fas fa-vote-yea',
   },
   {
     label: 'group3',
@@ -113,13 +113,13 @@ const menuRoutes2 = [
         label: '路由1',
         icon: '',
         path: 'doc',
-        iconClasses:'fas fa-vote-yea iconWidth'
+        iconClasses: 'fas fa-vote-yea iconWidth',
       },
       {
         label: '路由2',
         icon: '',
         path: '456',
-        iconClasses:'fas fa-user iconWidth'
+        iconClasses: 'fas fa-user iconWidth',
       },
       {
         label: '路由3',
@@ -136,27 +136,28 @@ const menuRoutes2 = [
         label: '路由1',
         icon: '',
         path: 'doc',
-        iconClasses:'fas fa-vote-yea iconWidth'
-      }
+        iconClasses: 'fas fa-vote-yea iconWidth',
+      },
     ],
-  }
+  },
 ];
 
 const menuRef = ref(null);
 const menuRoutesRefIndex = ref(1);
 const menuRoutesRef = ref([...menuRoutes]);
 
-
+const isCollapsedRef = ref(true);
 
 const handleClick = () => {
   // console.log('instance.refs.menuRef', instance.refs.menuRef.collapsed);
-  let val = !instance.refs.menuRef.collapsed;
-  instance.refs.menuRef.collapsed = val;
+  let val = !isCollapsedRef.value;
+  isCollapsedRef.value = val;
 };
 
 const handleRouteChange = () => {
   // menuRoutesRef.value = menuRoutesRefIndex.value == 1 ? [...menuRoutes2] : [...menuRoutes];
-  menuRoutesRef.value[0].label =menuRoutesRefIndex.value == 1 ? 'change!' : 'group1';
+  menuRoutesRef.value[0].label =
+    menuRoutesRefIndex.value == 1 ? 'change!' : 'group1';
   menuRoutesRefIndex.value = menuRoutesRefIndex.value == 1 ? 2 : 1;
 };
 </script>
@@ -165,15 +166,18 @@ const handleRouteChange = () => {
   <div class="w-full box">
     <div class="flex flex-col">
       <g-button @click="handleClick" :width="100">收開</g-button>
-      <g-menu ref="menuRef" active="1-2" :menu="menuRoutes" :collapsed="true" />
+      <g-menu
+        ref="menuRef"
+        active="1-2"
+        :menu="menuRoutes"
+        :collapsed="isCollapsedRef"
+      />
     </div>
 
     <div class="flex flex-col">
       <g-button @click="handleRouteChange" :width="100">資料更換</g-button>
       <g-menu activePath="4511116" :menu="menuRoutesRef" />
     </div>
-
-
   </div>
 </template>
 
@@ -185,11 +189,7 @@ const handleRouteChange = () => {
 }
 .iconWidth {
   width: 12px !important;
-  margin-right: 4px;
-}
-
-.iconWidth50 {
-  width: 50% !important;
+  font-size: 12px;
   margin-right: 4px;
 }
 </style>
