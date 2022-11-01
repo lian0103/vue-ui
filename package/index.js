@@ -3,6 +3,7 @@
 import Avatar from './gt-components/avatar/index.js';
 import Button from './gt-components/button/index.js';
 import Checkbox from './gt-components/checkbox/index.js';
+import CollapseCard from './gt-components/collapse-card/index.js';
 import Dialog from './gt-components/dialog/index.js';
 import Divider from './gt-components/divider/index.js';
 import DownloadIcon from './gt-components/download-icon/index.js';
@@ -28,15 +29,17 @@ import Tabs from './gt-components/tabs/index.js';
 import Tag from './gt-components/tag/index.js';
 import TimePicker from './gt-components/time-picker/index.js';
 import Timeline from './gt-components/timeline/index.js';
+import Timelineitem from './gt-components/timelineitem/index.js';
 import Title from './gt-components/title/index.js';
 import Tree from './gt-components/tree/index.js';
 import UploadIcon from './gt-components/upload-icon/index.js';
-import Timelineitem from './gt-components/timelineitem/index.js';
+import CollapseCardSection from './gt-components/collapse-card-section/index.js';
 
 const components = [
   Avatar,
   Button,
   Checkbox,
+  CollapseCard,
   Dialog,
   Divider,
   DownloadIcon,
@@ -62,10 +65,11 @@ const components = [
   Tag,
   TimePicker,
   Timeline,
+  Timelineitem,
   Title,
   Tree,
   UploadIcon,
-  Timelineitem
+  CollapseCardSection
 ];
 
 const install = function(Vue, opts = {}) {
@@ -106,6 +110,7 @@ export default {
   Avatar,
   Button,
   Checkbox,
+  CollapseCard,
   Dialog,
   Divider,
   DownloadIcon,
@@ -131,8 +136,9 @@ export default {
   Tag,
   TimePicker,
   Timeline,
+  Timelineitem,
   Title,
   Tree,
   UploadIcon,
-  Timelineitem
+  CollapseCardSection
 };

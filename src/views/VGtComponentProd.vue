@@ -14,6 +14,8 @@ import gtDoc from '../gtDoc';
 import AVATAR from '../../docs/avatar/demo.vue';
 import BUTTON from '../../docs/button/demo.vue';
 import CHECKBOX from '../../docs/checkbox/demo.vue';
+import COLLAPSECARD from '../../docs/collapse-card/demo.vue';
+import COLLAPSECARDSECTION from '../../docs/collapse-card-section/demo.vue';
 import DIALOG from '../../docs/dialog/demo.vue';
 import DIVIDER from '../../docs/divider/demo.vue';
 import DOWNLOADICON from '../../docs/download-icon/demo.vue';
@@ -53,6 +55,8 @@ const mapObj = {
     'avatar' : AVATAR ,
     'button' : BUTTON ,
     'checkbox' : CHECKBOX ,
+    'collapse-card' : COLLAPSECARD ,
+    'collapse-card-section' : COLLAPSECARDSECTION ,
     'dialog' : DIALOG ,
     'divider' : DIVIDER ,
     'download-icon' : DOWNLOADICON ,

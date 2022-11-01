@@ -1,11 +1,5 @@
 <script setup>
-import {
-  onMounted,
-  computed,
-  ref,
-  getCurrentInstance,
-  watch,
-} from 'vue';
+import { onMounted, computed, ref, getCurrentInstance, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -35,8 +29,10 @@ const onlyOneLevel = ref(
 
 const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 
-const ignoreItems = ['timelineitem']
-const packagesCompNameList = Object.keys(packageMap).filter(item=>!ignoreItems.includes(item));
+const ignoreItems = ['timelineitem', 'collapse-card-section'];
+const packagesCompNameList = Object.keys(packageMap).filter(
+  (item) => !ignoreItems.includes(item)
+);
 const packagesChartCompNameList = Object.keys(packageChartMap);
 
 // console.log(packagesChartCompNameList)

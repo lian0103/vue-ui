@@ -14,6 +14,8 @@ import gtDoc from '../gtDoc';
 import AVATAR from '../../package/gt-components/avatar/docs/demo.vue';
 import BUTTON from '../../package/gt-components/button/docs/demo.vue';
 import CHECKBOX from '../../package/gt-components/checkbox/docs/demo.vue';
+import COLLAPSECARD from '../../package/gt-components/collapse-card/docs/demo.vue';
+import COLLAPSECARDSECTION from '../../package/gt-components/collapse-card-section/docs/demo.vue';
 import DIALOG from '../../package/gt-components/dialog/docs/demo.vue';
 import DIVIDER from '../../package/gt-components/divider/docs/demo.vue';
 import DOWNLOADICON from '../../package/gt-components/download-icon/docs/demo.vue';
@@ -53,6 +55,8 @@ const mapObj = {
     'avatar' : AVATAR ,
     'button' : BUTTON ,
     'checkbox' : CHECKBOX ,
+    'collapse-card' : COLLAPSECARD ,
+    'collapse-card-section' : COLLAPSECARDSECTION ,
     'dialog' : DIALOG ,
     'divider' : DIVIDER ,
     'download-icon' : DOWNLOADICON ,

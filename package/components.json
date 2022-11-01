@@ -2,6 +2,8 @@
   "avatar": "./gt-components/avatar/index.js",
   "button": "./gt-components/button/index.js",
   "checkbox": "./gt-components/checkbox/index.js",
+  "collapse-card": "./gt-components/collapse-card/index.js",
+  "collapse-card-section": "./gt-components/collapse-card-section/index.js",
   "dialog": "./gt-components/dialog/index.js",
   "divider": "./gt-components/divider/index.js",
   "download-icon": "./gt-components/download-icon/index.js",
