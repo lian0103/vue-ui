@@ -157,7 +157,7 @@ onMounted(() => {
 watch(
   () => Router.currentRoute.value.path,
   (val) => {
-    instance.refs.appMenu.activePath = val;
+    activePath.value = val;
 
     const timeline = gsap.timeline({ defaults: { duration: 0.5 } });
 
