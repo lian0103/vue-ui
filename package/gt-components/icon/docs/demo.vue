@@ -21,7 +21,6 @@ const icons = [
   'x',
   'distribute',
   'home',
-  'info',
   'lock',
   'setting',
   'store',
@@ -29,12 +28,7 @@ const icons = [
   'user',
   'menu',
   'file',
-  'info',
-  'screen-full',
-  'screen-min',
-  'text-A',
-  'text-chi',
-  'items'
+  'information'
 ];
 
 const customIconClasses = `寫法: <g-icon classes="fas fa-vote-yea" />。渲染結果:<i class="fas fa-vote-yea"></i>`;

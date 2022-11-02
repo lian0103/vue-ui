@@ -456,7 +456,8 @@ const handleTimePick = () => {
         <p class="month-all" @click.stop="handleMonthAll">{{ monthAll }}</p>
         <span class="month-next" @click.stop="handleMonthNext">
           <g-icon name="chevron-right"
-        /></span>
+        />
+      </span>
 
         <template v-if="!isMonthAllShow">
           <span

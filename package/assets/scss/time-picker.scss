@@ -1,9 +1,14 @@
 .gt-timepicker-box {
   @apply relative;
-  .gt-icon {
+  .gt-icon-calendar {
     @apply w-6 absolute left-2 text-gray0 cursor-pointer;
     font-size: 20px;
     top: 4.5px;
+  }
+  .gt-icon-chevron-left,
+  .gt-icon-chevron-right {
+    @apply w-6 text-gray0 cursor-pointer;
+    font-size: 20px;
   }
   .gt-time-input {
     height: 36px;
@@ -37,7 +42,7 @@
   opacity: 0;
   display: block !important;
   @apply absolute;
-  @apply flex-col -z-10; 
+  @apply flex-col -z-10;
   max-width: 326px;
   height: 416px;
   padding: 16px;
@@ -47,7 +52,7 @@
   border-radius: 12px;
   color: #55585e;
 
-  &.rangeSelectMode{
+  &.rangeSelectMode {
     height: 380px;
   }
 
@@ -255,7 +260,7 @@
       grid-row-end: 12;
     }
 
-    &.rangeSelectMode{
+    &.rangeSelectMode {
       .comfirm {
         @apply cursor-pointer select-none;
         grid-column-start: 7;
@@ -279,16 +284,15 @@
   }
 }
 
-
 .tp-aniInTimepicker {
   animation-name: tpFadeInTimepicker;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
 }
 
 .tp-aniOutTimepicker {
   animation-name: tpFadeOutTimepicker;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
 }
 
@@ -305,7 +309,7 @@
   }
 }
 
-@keyframes tpFadeOutTimepicker  {
+@keyframes tpFadeOutTimepicker {
   0% {
     opacity: 1;
     @apply z-top-10;
