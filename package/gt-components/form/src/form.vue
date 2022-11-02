@@ -1,10 +1,10 @@
 <script>
-import { h, computed, getCurrentInstance, reactive } from 'vue';
+import { h, computed, getCurrentInstance, reactive } from "vue";
 
-const validFormTarget = ['GInput', 'GRadiobox', 'GCheckbox', 'GDropdown'];
+const validFormTarget = ["GInput", "GRadiobox", "GCheckbox", "GDropdown"];
 
 export default {
-  name: 'GForm',
+  name: "GForm",
   props: {
     name: {
       default: null,
@@ -17,7 +17,7 @@ export default {
       default: {},
     },
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { slots, emit, expose }) {
     const instance = getCurrentInstance();
     const validResult = reactive({});
@@ -26,7 +26,6 @@ export default {
     const callValid = () => {
       return new Promise(async (resolv, reject) => {
         for (let fieldName in props.rules) {
-          // console.log('fieldName',fieldName)
           await handleRulesValid(inputs[fieldName], fieldName)
             .then((res) => {
               validResult[fieldName] = null;
@@ -40,7 +39,7 @@ export default {
     };
 
     if (props.name) {
-      instance.appContext.config.globalProperties['gForms' + '-' + props.name] =
+      instance.appContext.config.globalProperties["gForms" + "-" + props.name] =
         {
           callValid,
         };
@@ -50,12 +49,12 @@ export default {
 
     const handleValChange = (val, name) => {
       inputs[name] = val;
-      emit('update:modelValue', inputs);
+      emit("update:modelValue", inputs);
     };
 
     const ruleValid = (
       value,
-      { require = false, message = '', valid = null }
+      { require = false, message = "", valid = null }
     ) => {
       return new Promise((resolv, reject) => {
         if (require && !value) {
@@ -69,7 +68,7 @@ export default {
       });
     };
 
-    const handleRulesValid = async (value, name, triggerType = 'submit') => {
+    const handleRulesValid = async (value, name, triggerType = "submit") => {
       if (validResult[name]) {
         validResult[name] = null;
       }
@@ -79,8 +78,8 @@ export default {
           let arr = [];
           rules[name].forEach((itemObj) => {
             if (
-              itemObj['trigger'] === triggerType ||
-              triggerType === 'submit'
+              itemObj["trigger"] === triggerType ||
+              triggerType === "submit"
             ) {
               arr.push(ruleValid(value, itemObj));
             }
@@ -160,7 +159,7 @@ export default {
 
     // console.log(validChilds);
 
-    return () => h('form', { class: 'gt-form' }, validChilds);
+    return () => h("form", { class: "gt-form" }, validChilds);
   },
 };
 </script>

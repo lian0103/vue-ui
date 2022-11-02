@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 const inputUuid = uuidv4();
 const instance = getCurrentInstance();
 const TYPES = ["text", "number", "password", "tex-select"];
+const value = ref(null);
 const placeholderDefaultMap = {
   text: "輸入文字內容",
   number: "輸入數字內容",
@@ -26,9 +27,6 @@ const props = defineProps({
   },
   width: {
     type: Number,
-    default: null,
-  },
-  value: {
     default: null,
   },
   type: {
@@ -97,7 +95,6 @@ const {
   disabled,
   label,
   width,
-  value,
   type,
   theme,
   clearable,
@@ -186,12 +183,10 @@ const selectOptionsComputed = computed(() => {
 });
 
 const handleClear = () => {
-  props.modelValue = "";
-  if (handleValChange) {
-    handleValChange("", name);
-  }
+  handleInput(null, null);
+
   if (handleRulesValid) {
-    handleRulesValid(props.modelValue, name, "blur");
+    handleRulesValid(value.value, name, "blur");
   }
 };
 
@@ -201,9 +196,10 @@ const handleInput = (e, val) => {
   emit("input", value);
 };
 const handleChange = (e, val) => {
-  let value = val ?? e.target.value;
-  emit("update:modelValue", value);
-  emit("change", value);
+  let temp = val ?? e.target.value;
+  value.value = temp;
+  emit("update:modelValue", temp);
+  emit("change", temp);
 };
 const handleSelectedOption = (item) => {
   props.selectedOptions[0] = item;
@@ -216,7 +212,7 @@ const handleFocus = (e) => {
 };
 const handleBlur = (e) => {
   if (handleRulesValid && name) {
-    handleRulesValid(props.modelValue, name, "blur");
+    handleRulesValid(value.value, name, "blur");
   }
   emit("blur", e);
 };
@@ -257,7 +253,7 @@ export default {
         @focus="handleFocus"
         @blur="handleBlur"
         class="gt-input"
-        :value="props.modelValue"
+        v-model="value"
       />
       <!-- @update:modelValue="props.modelValue = $event" -->
       <g-icon
