@@ -800,7 +800,6 @@ const icons = [
   'x',
   'distribute',
   'home',
-  'info',
   'lock',
   'setting',
   'store',
@@ -808,12 +807,7 @@ const icons = [
   'user',
   'menu',
   'file',
-  'info',
-  'screen-full',
-  'screen-min',
-  'text-A',
-  'text-chi',
-  'items'
+  'information'
 ];
 
 const customIconClasses = '寫法: <g-icon classes="fas fa-vote-yea" />。渲染結果:<i class="fas fa-vote-yea"></i>';
@@ -998,6 +992,26 @@ const handleKeyup = (e) => {
     <g-title :level="2" class="mb-3">輸入框-green</g-title>
     <g-input v-model="inputs.input0" green label="欄位" />
   </div>
+</template>
+  \`\`\`  `,
+    'input-number': ` \`\`\` html 
+<script setup>
+import { ref } from 'vue';
+
+const number1 = ref(1);
+const number2 = ref(10);
+const number3 = ref(3);
+</script>
+<template>
+  <g-title :level="2"> default </g-title>
+  <g-input-number v-model="number1" />
+  <g-divider />
+  <g-title :level="2"> :unit="2" </g-title>
+  <g-input-number v-model="number2" :unit="2" />
+  <g-divider />
+  <g-title :level="2"> :min="2" :max="6" </g-title>
+  <g-input-number v-model="number3" :min="2" :max="6" />
+  <g-divider />
 </template>
   \`\`\`  `,
     'layout': ` \`\`\` html 

@@ -26,6 +26,7 @@ import FORM from '../../package/gt-components/form/docs/demo.vue';
 import ICON from '../../package/gt-components/icon/docs/demo.vue';
 import IMGUPLOAD from '../../package/gt-components/img-upload/docs/demo.vue';
 import INPUT from '../../package/gt-components/input/docs/demo.vue';
+import INPUTNUMBER from '../../package/gt-components/input-number/docs/demo.vue';
 import LAYOUT from '../../package/gt-components/layout/docs/demo.vue';
 import LOADING from '../../package/gt-components/loading/docs/demo.vue';
 import LOADINGICON from '../../package/gt-components/loading-icon/docs/demo.vue';
@@ -67,6 +68,7 @@ const mapObj = {
     'icon' : ICON ,
     'img-upload' : IMGUPLOAD ,
     'input' : INPUT ,
+    'input-number' : INPUTNUMBER ,
     'layout' : LAYOUT ,
     'loading' : LOADING ,
     'loading-icon' : LOADINGICON ,
