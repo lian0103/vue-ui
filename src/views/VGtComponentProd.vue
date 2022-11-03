@@ -26,6 +26,7 @@ import FORM from '../../docs/form/demo.vue';
 import ICON from '../../docs/icon/demo.vue';
 import IMGUPLOAD from '../../docs/img-upload/demo.vue';
 import INPUT from '../../docs/input/demo.vue';
+import INPUTNUMBER from '../../docs/input-number/demo.vue';
 import LAYOUT from '../../docs/layout/demo.vue';
 import LOADING from '../../docs/loading/demo.vue';
 import LOADINGICON from '../../docs/loading-icon/demo.vue';
@@ -67,6 +68,7 @@ const mapObj = {
     'icon' : ICON ,
     'img-upload' : IMGUPLOAD ,
     'input' : INPUT ,
+    'input-number' : INPUTNUMBER ,
     'layout' : LAYOUT ,
     'loading' : LOADING ,
     'loading-icon' : LOADINGICON ,
