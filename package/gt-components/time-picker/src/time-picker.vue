@@ -40,7 +40,7 @@ const props = defineProps({
   },
 });
 
-const { format, width, rangeSelectMode } = props;
+const { format, width, rangeSelectMode, modelValue } = props;
 
 const emit = defineEmits(["update:modelValue"]);
 const root = shallowRef();
@@ -48,7 +48,12 @@ const isSelect = ref(false);
 const isMouseIn = ref(false);
 const isTimePickerShow = ref(false);
 const isHourPickerShow = ref(false);
-const curSelect = rangeSelectMode ? ref([null, null]) : ref(null);
+const curSelect =
+  modelValue.value === null
+    ? rangeSelectMode
+      ? ref([null, null])
+      : ref(null)
+    : ref(dayjs(modelValue.value));
 const curDay = ref(dayjs());
 const curDayIndex = rangeSelectMode ? ref([null, null]) : ref(null);
 const curCalenderInfo = reactive({
@@ -59,7 +64,7 @@ const curCalenderInfo = reactive({
 const placeholderShow = computed(() => {
   let result = "";
   if (props.autoHideLabel) {
-    if (props.modelValue === null || props.modelValue === "") {
+    if (modelValue.value === null || modelValue.value === "") {
       result = props.placeholder;
     }
   } else {
@@ -455,9 +460,8 @@ const handleTimePick = () => {
         /></span>
         <p class="month-all" @click.stop="handleMonthAll">{{ monthAll }}</p>
         <span class="month-next" @click.stop="handleMonthNext">
-          <g-icon name="chevron-right"
-        />
-      </span>
+          <g-icon name="chevron-right" />
+        </span>
 
         <template v-if="!isMonthAllShow">
           <span
