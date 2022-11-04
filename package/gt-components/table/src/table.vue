@@ -27,7 +27,7 @@ const props = defineProps({
     type: Array,
     default: [],
   },
-  isCheckBox: {
+  isCheckbox: {
     type: Boolean,
     default: true,
   },
@@ -116,7 +116,7 @@ const tableWidthComputed = computed(() => {
 watch(
   () => gtTableWidth.value,
   (val) => {
-    console.log(val);
+    // console.log(val);
   }
 );
 
@@ -187,7 +187,7 @@ onMounted(() => {
   }
   gtTableWidth.value = document.getElementById(`gt-${gtTableId}`).offsetWidth;
 
-  console.log(tableWidthComputed.value, gtTableWidth.value);
+  // console.log(tableWidthComputed.value, gtTableWidth.value);
   if (tableWidthComputed.value > gtTableWidth.value) {
     isOverflowX.value = true;
   }
@@ -208,7 +208,7 @@ export default {
   >
     <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
       <div class="table-head">
-        <template v-if="isCheckBox">
+        <template v-if="isCheckbox">
           <div class="head-column checknoxColumn">
             <g-checkbox v-model="isCheckAll" type="white" />
           </div>
@@ -253,7 +253,7 @@ export default {
               }
             "
           >
-            <template v-if="isCheckBox">
+            <template v-if="isCheckbox">
               <div
                 class="row-cell checknoxColumn"
                 @click="

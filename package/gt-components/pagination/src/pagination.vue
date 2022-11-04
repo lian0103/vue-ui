@@ -76,7 +76,7 @@ const pagesComputed = computed(() => {
     ...middle,
     ...headAndTail.tail,
   ];
-  console.log(arr);
+  // console.log(arr);
   return arr;
 });
 
