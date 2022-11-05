@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, reactive, ref, shallowRef, watch } from "vue";
+import { computed, reactive, ref, shallowRef, toRefs, watch } from "vue";
 import { useElementBounding, useWindowSize } from "@vueuse/core";
 import dayjs from "dayjs/esm";
 import isBetween from "dayjs/plugin/isBetween";
@@ -40,7 +40,7 @@ const props = defineProps({
   },
 });
 
-const { format, width, rangeSelectMode, modelValue } = props;
+const { format, width, rangeSelectMode, modelValue } = toRefs(props);
 
 const emit = defineEmits(["update:modelValue"]);
 const root = shallowRef();
@@ -50,12 +50,12 @@ const isTimePickerShow = ref(false);
 const isHourPickerShow = ref(false);
 const curSelect =
   modelValue.value === null
-    ? rangeSelectMode
+    ? rangeSelectMode.value
       ? ref([null, null])
       : ref(null)
     : ref(dayjs(modelValue.value));
 const curDay = ref(dayjs());
-const curDayIndex = rangeSelectMode ? ref([null, null]) : ref(null);
+const curDayIndex = rangeSelectMode.value ? ref([null, null]) : ref(null);
 const curCalenderInfo = reactive({
   curMonthDayStartIndex: null,
   curMonthDayEndIndex: null,
@@ -75,15 +75,15 @@ const placeholderShow = computed(() => {
 
 watch(
   () =>
-    rangeSelectMode
+    rangeSelectMode.value
       ? [curSelect.value[0], curSelect.value[1]]
       : curSelect.value,
   (val, oldVal) => {
-    if (!rangeSelectMode) {
+    if (!rangeSelectMode.value) {
       // console.log('~~1');
       emit(
         "update:modelValue",
-        curSelect.value ? curSelect.value.format(format) : null
+        curSelect.value ? curSelect.value.format(format.value) : null
       );
     } else {
       if (!curSelect.value[0] && !curSelect.value[1]) {
@@ -219,7 +219,7 @@ const getCalenderClass = (cdStr, idx) => {
   let rowClass = "calDay-r-" + parseInt(idx / 7) + " calDay-c-" + (idx % 7);
 
   if (
-    rangeSelectMode &&
+    rangeSelectMode.value &&
     (curSelect.value[0]?.isSame(calenderDaysInfo.value[idx], "day") ||
       curSelect.value[1]?.isSame(calenderDaysInfo.value[idx], "day"))
   ) {
@@ -227,7 +227,7 @@ const getCalenderClass = (cdStr, idx) => {
   }
 
   if (
-    rangeSelectMode &&
+    rangeSelectMode.value &&
     curSelect.value[0] &&
     curSelect.value[1] &&
     dayjs(calenderDaysInfo.value[idx]).isBetween(
@@ -243,7 +243,7 @@ const getCalenderClass = (cdStr, idx) => {
   if (
     curDayIndex.value != null &&
     idx == curDayIndex.value &&
-    !rangeSelectMode
+    !rangeSelectMode.value
   ) {
     rowClass += " curSelect";
   }
@@ -284,7 +284,7 @@ const handleCalDayClick = (idx) => {
     curMinuteIndex.value ? minutes[curMinuteIndex.value] : 0
   );
 
-  if (rangeSelectMode) {
+  if (rangeSelectMode.value) {
     if (!curSelect.value[0]) {
       curSelect.value[0] = dayjs(calenderDaysInfo.value[idx]);
     } else if (!curSelect.value[1]) {
@@ -296,14 +296,14 @@ const handleCalDayClick = (idx) => {
     }
   }
 
-  if (!rangeSelectMode) {
+  if (!rangeSelectMode.value) {
     curSelect.value = dayjs(selectTime);
     curDayIndex.value = idx;
   }
 };
 
 const handleMonthPre = () => {
-  if (!rangeSelectMode) {
+  if (!rangeSelectMode.value) {
     curDayIndex.value = null;
   }
 
@@ -317,7 +317,7 @@ const handleMonthPre = () => {
 };
 
 const handleMonthNext = () => {
-  if (!rangeSelectMode) {
+  if (!rangeSelectMode.value) {
     curDayIndex.value = null;
   }
   curDay.value = dayjs(
@@ -334,7 +334,7 @@ const handleMonthAll = () => {
 };
 
 const handleMonthChange = (month) => {
-  if (!rangeSelectMode) {
+  if (!rangeSelectMode.value) {
     curDayIndex.value = null;
   }
   if (month == "current") {
@@ -348,7 +348,7 @@ const handleMonthChange = (month) => {
 };
 
 const handleUseNow = () => {
-  if (!rangeSelectMode) {
+  if (!rangeSelectMode.value) {
     curDay.value = dayjs();
     curSelect.value = dayjs();
     curHourIndex.value = hours.findIndex((ele) => ele == curDay.value.$H);
@@ -390,14 +390,14 @@ const popupClassComputed = computed(() => {
       isTimePickerShow.value ? "tp-aniInTimepicker" : "tp-aniOutTimepicker"
     );
   }
-  if (rangeSelectMode) {
+  if (rangeSelectMode.value) {
     arr.push("rangeSelectMode");
   }
   return arr;
 });
 
 const handleHourMinuteChange = (target, value, idx) => {
-  if (!rangeSelectMode) {
+  if (!rangeSelectMode.value) {
     switch (target) {
       case "hour": {
         curSelect.value = curSelect.value.hour(value);

@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 const inputUuid = uuidv4();
 const instance = getCurrentInstance();
 const TYPES = ["text", "number", "password", "tex-select"];
-const value = ref(null);
 const placeholderDefaultMap = {
   text: "輸入文字內容",
   number: "輸入數字內容",
@@ -89,6 +88,9 @@ const props = defineProps({
     },
   },
 });
+
+
+const value = ref(props.modelValue);
 
 const {
   name,

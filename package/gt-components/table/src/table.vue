@@ -7,14 +7,17 @@ import {
   useSlots,
   onMounted,
   getCurrentInstance,
-} from 'vue';
+} from "vue";
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { debug } from "console";
+
+const emit = defineEmits(['update:data'])
 
 const tableEnum = {
-  CHECKBOX: 'checkbox',
-  ASC: 'asc',
-  DESC: 'desc',
+  CHECKBOX: "checkbox",
+  ASC: "asc",
+  DESC: "desc",
 };
 
 const props = defineProps({
@@ -46,10 +49,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  underline:{
-    type:Boolean,
-    default:false
-  }
+  underline: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const gtTableId = uuidv4();
@@ -65,12 +68,20 @@ const isOverflowX = ref(false);
 const columnsComputed = computed(() => {
   let arr = props.columns
     .map((cItem, cIdx) => {
+      let width = "";
+      if (typeof(cItem.width) === 'number') {
+        width = cItem.width + "px";
+      } else if (typeof(cItem.width) === 'string') {
+        width = cItem.width;
+      } else {
+        width = "auto";
+      }
       return cItem.name
         ? {
             ...cItem,
             name: cItem.name,
-            label: cItem.label || '',
-            width: cItem.width || 80,
+            label: cItem.label || "",
+            width: width,
             sort: cItem.sort || false,
           }
         : false;
@@ -81,18 +92,18 @@ const columnsComputed = computed(() => {
 });
 
 const columnsClassComputed = (cItem) => {
-  let arr = ['with-flex-grow'];
-  if (cItem.sort || cItem.handleSortCallback) arr.push('gt-cursor-pointer');
+  let arr = ["with-flex-grow"];
+  if (cItem.sort || cItem.handleSortCallback) arr.push("gt-cursor-pointer");
   return arr;
 };
 
 const wrapperComputed = computed(() => {
   let arr = [];
   if (props.isLoading) {
-    return ['overflow-with-hidden'];
+    return ["overflow-with-hidden"];
   }
   if (isOverflowX.value) {
-    return ['overflow-with-x-scroll'];
+    return ["overflow-with-x-scroll"];
   }
   return arr;
 });
@@ -105,6 +116,17 @@ const dataWithStatus = ref([
     };
   }),
 ]);
+
+watch(
+  () => {
+    return dataWithStatus;
+  },
+  (newValue, oldValue) => {
+    emit('update:data', newValue.value)
+  }, {
+    deep:true
+  }
+);
 
 const tableWidthComputed = computed(() => {
   let width =
@@ -123,7 +145,7 @@ watch(
 const tableInnerStyleComputed = computed(() => {
   let height = parseInt(props.height) - 40;
   return {
-    height: height ? height + 'px' : 'none',
+    height: height ? height + "px" : "none",
   };
 });
 
@@ -195,7 +217,7 @@ onMounted(() => {
 </script>
 <script>
 export default {
-  name: 'GTable',
+  name: "GTable",
 };
 </script>
 <template>
@@ -217,7 +239,7 @@ export default {
         <div
           v-for="cItem in columnsComputed"
           :key="cItem.name"
-          :style="{ width: cItem.width + 'px' }"
+          :style="{ width: cItem.width }"
           class="head-column"
           :class="columnsClassComputed(cItem)"
           @click="() => handleColumnSort(cItem)"
@@ -246,7 +268,7 @@ export default {
             v-for="(rItem, rIdx) in dataWithStatus"
             class="row"
             :key="rIdx"
-            :class="rItem.checked ? 'row-check' : underline ? 'underline':''"
+            :class="rItem.checked ? 'row-check' : underline ? 'underline' : ''"
             @click="
               () => {
                 handleRowClick(rItem);
@@ -277,7 +299,7 @@ export default {
             <div
               v-for="(cItem, cIdx) in columnsComputed"
               :key="cItem.name + '-' + rIdx + '-' + cIdx"
-              :style="{ width: cItem.width + 'px' }"
+              :style="{ width: cItem.width }"
               class="row-cell with-flex-grow"
             >
               <template v-if="slotColumns.includes(cItem.name)">
