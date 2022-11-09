@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 
 const inputs = reactive({
-  time1: '',
+  time1: new Date(),
   time2: '',
 });
 </script>

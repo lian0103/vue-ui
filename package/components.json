@@ -9,6 +9,8 @@
   "download-icon": "./gt-components/download-icon/index.js",
   "dropdown": "./gt-components/dropdown/index.js",
   "dropdownitem": "./gt-components/dropdownitem/index.js",
+  "filter-chips": "./gt-components/filter-chips/index.js",
+  "filter-chips-group": "./gt-components/filter-chips-group/index.js",
   "form": "./gt-components/form/index.js",
   "icon": "./gt-components/icon/index.js",
   "img-upload": "./gt-components/img-upload/index.js",
@@ -32,7 +34,5 @@
   "timelineitem": "./gt-components/timelineitem/index.js",
   "title": "./gt-components/title/index.js",
   "tree": "./gt-components/tree/index.js",
-  "upload-icon": "./gt-components/upload-icon/index.js",
-  "filter-chips": "./gt-components/filter-chips/index.js",
-  "filter-chips-group": "./gt-components/filter-chips-group/index.js"
+  "upload-icon": "./gt-components/upload-icon/index.js"
 }

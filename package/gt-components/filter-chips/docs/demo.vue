@@ -1,6 +1,5 @@
 <script setup>
 import { reactive } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
 
 const tableInfo = reactive({
   columns: [
@@ -49,23 +48,23 @@ const tableInfo = reactive({
     <g-title :level="2" class="my-4">篩選選項</g-title>
     <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
     <div class="flex">
-      <g-filter-option
+      <g-filter-chips
         v-for="column in tableInfo.columns"
         v-model="tableInfo.filterOtions[column.name]"
         :key="column.name"
-        :optionName="column.label"
+        :label="column.label"
       />
     </div>
 
     <g-title :level="2" class="my-4">篩選選項-單選模式</g-title>
     <p class="mb-4">tableInfo.filterOtions2:{{ tableInfo.filterOtions2 }}</p>
     <p>暫不支援迴圈渲染slot內容</p>
-    <g-filter-option-group class="flex" v-model="tableInfo.filterOtions2">
-      <g-filter-option name="id" label="ID" />
-      <g-filter-option name="product" label="商品名稱" />
-      <g-filter-option name="price" label="價格" />
-      <g-filter-option name="storage" label="庫存" />
-      <g-filter-option name="tags" label="標籤" />
-    </g-filter-option-group>
+    <g-filter-chips-group class="flex" v-model="tableInfo.filterOtions2">
+      <g-filter-chips name="id" label="ID" />
+      <g-filter-chips name="product" label="商品名稱" />
+      <g-filter-chips name="price" label="價格" />
+      <g-filter-chips name="storage" label="庫存" />
+      <g-filter-chips name="tags" label="標籤" />
+    </g-filter-chips-group>
   </div>
 </template>

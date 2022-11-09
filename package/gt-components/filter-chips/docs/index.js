@@ -5,7 +5,7 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | v-model | 選項值 | Boolean | | false |
-| optionName | 選項名稱 | Array[OptionObject{label(String),value(Any)}] | | |
+| label | 選項名稱 | Array[OptionObject{label(String),value(Any)}] | | |
 `,
   method: `
 ## 方法

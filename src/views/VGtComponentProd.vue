@@ -21,7 +21,8 @@ import DIVIDER from '../../docs/divider/demo.vue';
 import DOWNLOADICON from '../../docs/download-icon/demo.vue';
 import DROPDOWN from '../../docs/dropdown/demo.vue';
 import DROPDOWNITEM from '../../docs/dropdownitem/demo.vue';
-import FILTEROPTION from '../../docs/filter-option/demo.vue';
+import FILTERCHIPS from '../../docs/filter-chips/demo.vue';
+import FILTERCHIPSGROUP from '../../docs/filter-chips-group/demo.vue';
 import FORM from '../../docs/form/demo.vue';
 import ICON from '../../docs/icon/demo.vue';
 import IMGUPLOAD from '../../docs/img-upload/demo.vue';
@@ -63,7 +64,8 @@ const mapObj = {
     'download-icon' : DOWNLOADICON ,
     'dropdown' : DROPDOWN ,
     'dropdownitem' : DROPDOWNITEM ,
-    'filter-option' : FILTEROPTION ,
+    'filter-chips' : FILTERCHIPS ,
+    'filter-chips-group' : FILTERCHIPSGROUP ,
     'form' : FORM ,
     'icon' : ICON ,
     'img-upload' : IMGUPLOAD ,
