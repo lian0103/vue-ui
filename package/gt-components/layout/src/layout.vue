@@ -129,12 +129,18 @@ export default {
         </div>
 
         <div class="gt-bottomLogo">
-          <img src="../../../assets/images/gt-logo.png" alt="" />
           <img
-            v-if="!isCollapsed"
-            src="../../../assets/images/gt-logo-text.png"
+            style="width: 28.58px; height: 28.09px"
+            src="../../../assets/images/greattree-icon.svg"
             alt=""
           />
+          <img
+            style="width: 80px; height: 18.41px"
+            v-if="!isCollapsed"
+            src="../../../assets/images/greattree-text.svg"
+            alt=""
+          />
+          <!-- <img src="../../../assets/svg/gt-icon-with-text.svg"/> -->
         </div>
       </div>
 

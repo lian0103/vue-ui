@@ -11,7 +11,14 @@
     @apply col-start-1 col-end-4 row-start-1 row-end-2;
     @apply flex;
     .gt-headline {
-      @apply text-main font-bold text-lg leading-6 flex justify-center items-center;
+      @apply text-main font-bold text-lg leading-6 flex justify-center;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      --tw-text-opacity: 1;
+      letter-spacing: 0.9px;
+      color: rgb(50 160 61 / var(--tw-text-opacity));
+      -webkit-animation: headlineOpen 0.5s both;
       animation: headlineOpen 0.5s both;
       height: 80px;
       @apply relative;
@@ -85,9 +92,10 @@
             left: 76px;
           }
           &:nth-child(2) {
+            transition: left 0.4s ease-in-out;
             @apply absolute;
-            top: 15px;
-            left: 106px;
+            top: 14.72px;
+            left: 113.44px;
           }
         }
       }
@@ -153,7 +161,7 @@
           @apply relative;
           img {
             &:nth-child(1) {
-              left: 44px;
+              left: 49px;
             }
           }
         }

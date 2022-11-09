@@ -26,6 +26,7 @@
   .table-head {
     margin-bottom: 2px;
     padding: 0 10px;
+    border-radius: 8px 8px 0px 0px;
     @apply bg-soft flex flex-shrink-0 justify-start items-center;
     .head-column {
       padding: 7px 9px;
