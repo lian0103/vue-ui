@@ -202,9 +202,9 @@ export default {
           class: classHoverComputed.value,
           onMouseenter: handleMouseenter,
           onMouseleave: handleLeave,
-          style: {
-            width: spanUseSlot ? "auto" : curSelectWidth.value + 48 + "px",
-          },
+          // style: {
+          //   width: spanUseSlot ? "auto" : curSelectWidth.value + 48 + "px",
+          // },
           onClick: (e) => {
             e.stopPropagation();
             handleIsShow();

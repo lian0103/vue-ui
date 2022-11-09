@@ -143,9 +143,10 @@ const handleGroupClick = (item, gIdx) => {
   // console.log('handleGroupClick', onlyOneLevel.value);
   const Router = instance.appContext.config.globalProperties.$router || null;
   let { active, path, children } = item;
+  // debugger
   if (path && children.length === 0) {
     if (Router) {
-      Router.push(path);
+      Router.push(item);
     }
   } else if (onlyOneLevel.value) {
     if (Router) {
@@ -154,7 +155,7 @@ const handleGroupClick = (item, gIdx) => {
         // console.log(item.children[0].name);
 
         // instance.refs.layoutTab.current.value = item.children[0].name;
-        Router.push(item.children[0].path);
+        Router.push(item.children[0]);
 
         // setTimeout(() => {
         //   instance.appContext.config.globalProperties.handleCurrentlayoutTab(
@@ -182,14 +183,14 @@ const handleGroupClick = (item, gIdx) => {
   // console.log(info);
 };
 
-const handleRouteTo = (path, gIdx, cItemUuid) => {
+const handleRouteTo = (path, gIdx, cItemUuid, cItem) => {
   let arr = [...new Set([...info.menuGroupActiveArr, gIdx + 1])];
 
   info.menuGroupActive = gIdx + 1;
   info.menuGroupItemActive = cItemUuid;
   info.menuGroupActiveArr = arr;
   if (path && instance.appContext.config.globalProperties.$router) {
-    instance.appContext.config.globalProperties.$router.push(path);
+    instance.appContext.config.globalProperties.$router.push(cItem);
   }
   if (collapsed.value) {
     handleMenuHtmlEvent();
@@ -336,7 +337,7 @@ export default {
             "
             @click.stop="
               () => {
-                handleRouteTo(cItem.path, index, cItem.uuid);
+                handleRouteTo(cItem.path, index, cItem.uuid, cItem);
               }
             "
           >
