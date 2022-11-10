@@ -1,8 +1,5 @@
 <script setup>
-import { useElementBounding } from '@vueuse/core';
 import { computed, ref } from 'vue';
-
-const domRef = ref(null);
 
 const props = defineProps({
     position: {
@@ -13,7 +10,7 @@ const props = defineProps({
 
 const popStyleComputed = computed(() => {
     // console.log('in~?');
-    const { bottom, height, left, right, top, width, x, y } = useElementBounding(domRef);
+
     let posi = {
         top: 0,
         left: 0,
@@ -25,21 +22,21 @@ const popStyleComputed = computed(() => {
         case 'right': {
             posi = {
                 top: '0%',
-                left: `${width.value + 13}px`,
+                left: `calc(100% + 13px)`,
             };
             break;
         }
         case 'left': {
             posi = {
                 top: '0%',
-                right: `${width.value + 13}px`,
+                right: `calc(100% + 13px)`,
             };
             break;
         }
 
         case 'top': {
             posi = {
-                bottom: `${height.value + 10}px`,
+                bottom: `calc(100% + 10px)`,
                 left: '50%',
                 transform: 'translateX(-50%)',
             };
@@ -47,7 +44,7 @@ const popStyleComputed = computed(() => {
         }
         case 'bottom': {
             posi = {
-                top: `${height.value + 10}px`,
+                top: `calc(100% + 10px)`,
                 left: '50%',
                 transform: 'translateX(-50%)',
             };
@@ -75,7 +72,7 @@ export default {
 };
 </script>
 <template>
-    <div class="gt-tooltip" ref="domRef" @mouseover="handleMouseover" @mouseleave="handleMouseleave">
+    <div class="gt-tooltip" @mouseover="handleMouseover" @mouseleave="handleMouseleave">
         <slot />
         <div class="tooltip-popup" :class="isShow ? [position] : [position, 'none']" :style="popStyleComputed">
             <slot name="content" />
