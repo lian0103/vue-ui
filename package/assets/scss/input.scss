@@ -1,6 +1,8 @@
 .gt-input-wrapper {
   @apply relative;
   @apply flex justify-start items-center;
+  margin-right: 1px;
+  
   .gt-input-label {
     height: 36px;
     @apply text-sm leading-9 px-3;

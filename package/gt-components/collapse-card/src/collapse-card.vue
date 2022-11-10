@@ -31,6 +31,11 @@ export default {
         />
       </div>
     </div>
+    <g-divider
+      v-show="isOpenRef ? true : false"
+      :style="'margin: 0px 0px 12px'"
+    />
+
     <div class="content-row" :class="isOpenRef ? 'open' : ''">
       <span> <slot name="content" /></span>
     </div>
