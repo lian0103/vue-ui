@@ -45,6 +45,7 @@ import TIMEPICKER from '../../docs/time-picker/demo.vue';
 import TIMELINE from '../../docs/timeline/demo.vue';
 import TIMELINEITEM from '../../docs/timelineitem/demo.vue';
 import TITLE from '../../docs/title/demo.vue';
+import TOOLTIP from '../../docs/tooltip/demo.vue';
 import TREE from '../../docs/tree/demo.vue';
 import UPLOADICON from '../../docs/upload-icon/demo.vue';
 
@@ -88,6 +89,7 @@ const mapObj = {
     'timeline' : TIMELINE ,
     'timelineitem' : TIMELINEITEM ,
     'title' : TITLE ,
+    'tooltip' : TOOLTIP ,
     'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
 }

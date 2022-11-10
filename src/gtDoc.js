@@ -566,6 +566,151 @@ const handleClick = (e) => {
   </div>
 </template>
   \`\`\`  `,
+    'filter-chips': ` \`\`\` html 
+<script setup>
+import { reactive } from 'vue';
+
+const tableInfo = reactive({
+  columns: [
+    {
+      name: 'id',
+      label: 'ID',
+      width: 180,
+    },
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+      width: 180,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      width: 180,
+      sort: true,
+    },
+    {
+      name: 'storage',
+      label: '庫存',
+      sort: true,
+    },
+    {
+      name: 'tags',
+      width: 220,
+      label: '標籤',
+    },
+  ],
+  filterOtions: {},
+  filterOtions2: {
+    id: '',
+    product: true,
+    price: '',
+    storage: '',
+    tags: '',
+  },
+  isLoading: false,
+});
+</script>
+
+<template>
+  <div class="w-full mx-auto mb-6">
+    <g-title :level="2" class="my-4">篩選選項</g-title>
+    <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
+    <div class="flex">
+      <g-filter-chips
+        v-for="column in tableInfo.columns"
+        v-model="tableInfo.filterOtions[column.name]"
+        :key="column.name"
+        :label="column.label"
+      />
+    </div>
+
+    <g-title :level="2" class="my-4">篩選選項-單選模式</g-title>
+    <p class="mb-4">tableInfo.filterOtions2:{{ tableInfo.filterOtions2 }}</p>
+    <p>暫不支援迴圈渲染slot內容</p>
+    <g-filter-chips-group class="flex" v-model="tableInfo.filterOtions2">
+      <g-filter-chips name="id" label="ID" />
+      <g-filter-chips name="product" label="商品名稱" />
+      <g-filter-chips name="price" label="價格" />
+      <g-filter-chips name="storage" label="庫存" />
+      <g-filter-chips name="tags" label="標籤" />
+    </g-filter-chips-group>
+  </div>
+</template>
+  \`\`\`  `,
+    'filter-chips-group': ` \`\`\` html 
+<script setup>
+import { reactive } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
+
+const tableInfo = reactive({
+  columns: [
+    {
+      name: 'id',
+      label: 'ID',
+      width: 180,
+    },
+    {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+      width: 180,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      width: 180,
+      sort: true,
+    },
+    {
+      name: 'storage',
+      label: '庫存',
+      sort: true,
+    },
+    {
+      name: 'tags',
+      width: 220,
+      label: '標籤',
+    },
+  ],
+  filterOtions: {},
+  filterOtions2: {
+    id: '',
+    product: true,
+    price: '',
+    storage: '',
+    tags: '',
+  },
+  isLoading: false,
+});
+</script>
+
+<template>
+  <div class="w-full mx-auto mb-6">
+    <g-title :level="2" class="my-4">篩選選項</g-title>
+    <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
+    <div class="flex">
+      <g-filter-option
+        v-for="column in tableInfo.columns"
+        v-model="tableInfo.filterOtions[column.name]"
+        :key="column.name"
+        :optionName="column.label"
+      />
+    </div>
+
+    <g-title :level="2" class="my-4">篩選選項-單選模式</g-title>
+    <p class="mb-4">tableInfo.filterOtions2:{{ tableInfo.filterOtions2 }}</p>
+    <p>暫不支援迴圈渲染slot內容</p>
+    <g-filter-option-group class="flex" v-model="tableInfo.filterOtions2">
+      <g-filter-option name="id" label="ID" />
+      <g-filter-option name="product" label="商品名稱" />
+      <g-filter-option name="price" label="價格" />
+      <g-filter-option name="storage" label="庫存" />
+      <g-filter-option name="tags" label="標籤" />
+    </g-filter-option-group>
+  </div>
+</template>
+  \`\`\`  `,
     'form': ` \`\`\` html 
 <script setup>
 import { isNull } from 'lodash';
@@ -1701,7 +1846,7 @@ const toggleGroup = () => {
 import { reactive } from 'vue';
 
 const inputs = reactive({
-  time1: '',
+  time1: new Date(),
   time2: '',
 });
 </script>
@@ -1755,6 +1900,88 @@ const inputs = reactive({
     <g-title class="mb-4">font-weight 300 / 16 / 標題</g-title>
   </div>
 </template>
+  \`\`\`  `,
+    'tooltip': ` \`\`\` html 
+<script setup></script>
+<template>
+    <g-title :level="2" class="mb-4">position:right</g-title>
+    <div class="tip-demo">
+        <g-tooltip position="right">
+            <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+            <template #content>
+                <div class="tipbox">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, ipsum?</div>
+            </template>
+        </g-tooltip>
+        <g-tooltip position="right">
+            <g-title :level="1">hello</g-title>
+            <template #content>
+                <div class="tipbox">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, ipsum?</div>
+            </template>
+        </g-tooltip>
+    </div>
+
+    <g-divider />
+
+    <g-title :level="2" class="mb-4">position:left</g-title>
+    <div class="tip-demo">
+        <g-tooltip position="left">
+            <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+            <template #content> 123 </template>
+        </g-tooltip>
+
+        <g-tooltip position="left">
+            <g-title :level="1">hello</g-title>
+            <template #content>
+                <div class="tipbox">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, ipsum?</div>
+            </template>
+        </g-tooltip>
+    </div>
+
+    <g-divider />
+    <g-title :level="2" class="mb-4">position:top</g-title>
+
+    <div class="tip-demo">
+        <g-tooltip position="top">
+            <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+            <template #content> 123 </template>
+        </g-tooltip>
+
+        <g-tooltip position="top">
+            <g-title :level="1">hello</g-title>
+            <template #content>
+                <div class="tipbox">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, ipsum?</div>
+            </template>
+        </g-tooltip>
+    </div>
+
+    <g-divider />
+    <g-title :level="2" class="mb-4">position:bottom</g-title>
+    <div class="tip-demo">
+        <g-tooltip position="bottom">
+            <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+            <template #content> 123 </template>
+        </g-tooltip>
+
+        <g-tooltip position="bottom">
+            <g-title :level="1">hello</g-title>
+            <template #content>
+                <div class="tipbox">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, ipsum?</div>
+            </template>
+        </g-tooltip>
+    </div>
+
+    <g-divider />
+</template>
+
+<style lang="scss">
+.tip-demo {
+    @apply w-full flex justify-around;
+}
+
+.tipbox {
+    width: 200px;
+}
+</style>
   \`\`\`  `,
     'tree': ` \`\`\` html 
 <script setup>
@@ -1836,152 +2063,6 @@ const getData = () => {
       <g-upload-icon class="mr-2" :percent="80" />
       <g-upload-icon class="mr-2" :percent="0" auto />
     </div>
-  </div>
-</template>
-  \`\`\`  `,
-    'filter-chips': ` \`\`\` html 
-<script setup>
-import { reactive } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
-
-const tableInfo = reactive({
-  columns: [
-    {
-      name: 'id',
-      label: 'ID',
-      width: 180,
-    },
-    {
-      name: 'product',
-      label: '商品名稱',
-      sort: false,
-      width: 180,
-    },
-    {
-      name: 'price',
-      label: '價格',
-      width: 180,
-      sort: true,
-    },
-    {
-      name: 'storage',
-      label: '庫存',
-      sort: true,
-    },
-    {
-      name: 'tags',
-      width: 220,
-      label: '標籤',
-    },
-  ],
-  filterOtions: {},
-  filterOtions2: {
-    id: '',
-    product: true,
-    price: '',
-    storage: '',
-    tags: '',
-  },
-  isLoading: false,
-});
-</script>
-
-<template>
-  <div class="w-full mx-auto mb-6">
-    <g-title :level="2" class="my-4">篩選選項</g-title>
-    <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
-    <div class="flex">
-      <g-filter-option
-        v-for="column in tableInfo.columns"
-        v-model="tableInfo.filterOtions[column.name]"
-        :key="column.name"
-        :optionName="column.label"
-      />
-    </div>
-
-    <g-title :level="2" class="my-4">篩選選項-單選模式</g-title>
-    <p class="mb-4">tableInfo.filterOtions2:{{ tableInfo.filterOtions2 }}</p>
-    <p>暫不支援迴圈渲染slot內容</p>
-    <g-filter-option-group class="flex" v-model="tableInfo.filterOtions2">
-      <g-filter-option name="id" label="ID" />
-      <g-filter-option name="product" label="商品名稱" />
-      <g-filter-option name="price" label="價格" />
-      <g-filter-option name="storage" label="庫存" />
-      <g-filter-option name="tags" label="標籤" />
-    </g-filter-option-group>
-  </div>
-</template>
-  \`\`\`  `,
-    'filter-chips-group': ` \`\`\` html 
-<script setup>
-import { reactive } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
-
-const tableInfo = reactive({
-  columns: [
-    {
-      name: 'id',
-      label: 'ID',
-      width: 180,
-    },
-    {
-      name: 'product',
-      label: '商品名稱',
-      sort: false,
-      width: 180,
-    },
-    {
-      name: 'price',
-      label: '價格',
-      width: 180,
-      sort: true,
-    },
-    {
-      name: 'storage',
-      label: '庫存',
-      sort: true,
-    },
-    {
-      name: 'tags',
-      width: 220,
-      label: '標籤',
-    },
-  ],
-  filterOtions: {},
-  filterOtions2: {
-    id: '',
-    product: true,
-    price: '',
-    storage: '',
-    tags: '',
-  },
-  isLoading: false,
-});
-</script>
-
-<template>
-  <div class="w-full mx-auto mb-6">
-    <g-title :level="2" class="my-4">篩選選項</g-title>
-    <p class="mb-4">tableInfo.filterOtions:{{ tableInfo.filterOtions }}</p>
-    <div class="flex">
-      <g-filter-option
-        v-for="column in tableInfo.columns"
-        v-model="tableInfo.filterOtions[column.name]"
-        :key="column.name"
-        :optionName="column.label"
-      />
-    </div>
-
-    <g-title :level="2" class="my-4">篩選選項-單選模式</g-title>
-    <p class="mb-4">tableInfo.filterOtions2:{{ tableInfo.filterOtions2 }}</p>
-    <p>暫不支援迴圈渲染slot內容</p>
-    <g-filter-option-group class="flex" v-model="tableInfo.filterOtions2">
-      <g-filter-option name="id" label="ID" />
-      <g-filter-option name="product" label="商品名稱" />
-      <g-filter-option name="price" label="價格" />
-      <g-filter-option name="storage" label="庫存" />
-      <g-filter-option name="tags" label="標籤" />
-    </g-filter-option-group>
   </div>
 </template>
   \`\`\`  `,

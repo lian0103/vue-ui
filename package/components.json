@@ -33,6 +33,7 @@
   "timeline": "./gt-components/timeline/index.js",
   "timelineitem": "./gt-components/timelineitem/index.js",
   "title": "./gt-components/title/index.js",
+  "tooltip": "./gt-components/tooltip/index.js",
   "tree": "./gt-components/tree/index.js",
   "upload-icon": "./gt-components/upload-icon/index.js"
 }

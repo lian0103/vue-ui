@@ -21,6 +21,8 @@ import DIVIDER from '../../package/gt-components/divider/docs/demo.vue';
 import DOWNLOADICON from '../../package/gt-components/download-icon/docs/demo.vue';
 import DROPDOWN from '../../package/gt-components/dropdown/docs/demo.vue';
 import DROPDOWNITEM from '../../package/gt-components/dropdownitem/docs/demo.vue';
+import FILTERCHIPS from '../../package/gt-components/filter-chips/docs/demo.vue';
+import FILTERCHIPSGROUP from '../../package/gt-components/filter-chips-group/docs/demo.vue';
 import FORM from '../../package/gt-components/form/docs/demo.vue';
 import ICON from '../../package/gt-components/icon/docs/demo.vue';
 import IMGUPLOAD from '../../package/gt-components/img-upload/docs/demo.vue';
@@ -43,10 +45,9 @@ import TIMEPICKER from '../../package/gt-components/time-picker/docs/demo.vue';
 import TIMELINE from '../../package/gt-components/timeline/docs/demo.vue';
 import TIMELINEITEM from '../../package/gt-components/timelineitem/docs/demo.vue';
 import TITLE from '../../package/gt-components/title/docs/demo.vue';
+import TOOLTIP from '../../package/gt-components/tooltip/docs/demo.vue';
 import TREE from '../../package/gt-components/tree/docs/demo.vue';
 import UPLOADICON from '../../package/gt-components/upload-icon/docs/demo.vue';
-import FILTERCHIPS from '../../package/gt-components/filter-chips/docs/demo.vue';
-import FILTERCHIPSGROUP from '../../package/gt-components/filter-chips-group/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -64,6 +65,8 @@ const mapObj = {
     'download-icon' : DOWNLOADICON ,
     'dropdown' : DROPDOWN ,
     'dropdownitem' : DROPDOWNITEM ,
+    'filter-chips' : FILTERCHIPS ,
+    'filter-chips-group' : FILTERCHIPSGROUP ,
     'form' : FORM ,
     'icon' : ICON ,
     'img-upload' : IMGUPLOAD ,
@@ -86,10 +89,9 @@ const mapObj = {
     'timeline' : TIMELINE ,
     'timelineitem' : TIMELINEITEM ,
     'title' : TITLE ,
+    'tooltip' : TOOLTIP ,
     'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
-    'filter-chips' : FILTERCHIPS ,
-    'filter-chips-group' : FILTERCHIPSGROUP ,
 }
 
 const componentName = computed(async () => {
