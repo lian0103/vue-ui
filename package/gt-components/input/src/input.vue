@@ -1,10 +1,17 @@
 <script setup>
-import { computed, onMounted, ref, getCurrentInstance, watch } from "vue";
+import {
+  computed,
+  onMounted,
+  ref,
+  getCurrentInstance,
+  watch,
+  toRefs,
+} from "vue";
 import { v4 as uuidv4 } from "uuid";
 
 const inputUuid = uuidv4();
 const instance = getCurrentInstance();
-const TYPES = ["text", "number", "password", "tex-select"];
+const TYPES = ["text", "number", "password", "tex-select", "textarea"];
 const placeholderDefaultMap = {
   text: "輸入文字內容",
   number: "輸入數字內容",
@@ -31,6 +38,10 @@ const props = defineProps({
   type: {
     default: "text",
   },
+  rows: {
+    default: 3,
+  },
+  inputStyle: {},
   clearable: {
     type: Boolean,
     default: false,
@@ -89,8 +100,14 @@ const props = defineProps({
   },
 });
 
-
 const value = ref(props.modelValue);
+
+watch(
+  () => props.modelValue,
+  () => {
+    value.value = props.modelValue;
+  }
+);
 
 const {
   name,
@@ -108,6 +125,9 @@ const {
   icon,
   iconPosition,
 } = props;
+
+const rows = computed(() => props.rows);
+const inputStyle = ref(props.inputStyle);
 
 const isFocused = ref(false);
 // const inputVal = ref(modelValue || parentValue?.value || "");
@@ -186,21 +206,22 @@ const selectOptionsComputed = computed(() => {
 
 const handleClear = () => {
   handleInput(null, null);
-
+  // debugger
   if (handleRulesValid) {
     handleRulesValid(value.value, name, "blur");
   }
 };
 
 const handleInput = (e, val) => {
-  let value = val ?? e.target.value;
-  emit("update:modelValue", value);
-  emit("input", value);
+  value.value = val ?? e?.target.value;
+  emit("update:modelValue", value.value);
+  emit("input", value.value);
 };
 const handleChange = (e, val) => {
   let temp = val ?? e.target.value;
   value.value = temp;
   emit("update:modelValue", temp);
+  // debugger;
   emit("change", temp);
 };
 const handleSelectedOption = (item) => {
@@ -243,7 +264,7 @@ export default {
 <template>
   <div class="gt-input-wrapper">
     <div class="gt-input-label" v-if="label">{{ label }}</div>
-    <div class="gt-relative">
+    <div class="gt-relative" style="width: 100%">
       <input
         :ref="inputUuid"
         :class="classComputed"
@@ -256,7 +277,23 @@ export default {
         @blur="handleBlur"
         class="gt-input"
         v-model="value"
+        v-if="type !== 'textarea'"
       />
+      <textarea
+        v-else
+        :ref="inputUuid"
+        :class="classComputed"
+        :style="inputStyle"
+        :rows="rows"
+        :placeholder="placeholder || placeholderDefaultMap[type]"
+        :type="TYPES.includes(type) ? type : 'text'"
+        @input="handleInput"
+        @change="handleChange"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        class="gt-input"
+        v-model="value"
+      ></textarea>
       <!-- @update:modelValue="props.modelValue = $event" -->
       <g-icon
         @click.stop="handleClear"

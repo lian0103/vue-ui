@@ -1,6 +1,6 @@
-.gt-btn-green{
-  --btn-color: #32A03D;
-  --btn-color-hover: #EEF5EB;
+.gt-btn-green {
+  --btn-color: #32a03d;
+  --btn-color-hover: #eef5eb;
   --text-color: #fff;
   &.gt-btn-round-no-border {
     --btn-color-hover: #26832f;
@@ -59,7 +59,7 @@
   @apply overflow-hidden text-center whitespace-nowrap;
   @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
 
-  .gt-loading-icon{
+  .gt-loading-icon {
     font-size: 18px;
     margin-right: 2px;
   }
@@ -104,11 +104,10 @@
 
 .gt-btn-flat {
   border: none !important;
-  height: fit-content;
   padding: 0 2px;
   @apply cursor-pointer relative;
   color: var(--btn-color);
-  
+
   &:hover {
     .textLine {
       @apply absolute;
@@ -119,14 +118,22 @@
       animation: textLine 0.3s forwards;
     }
   }
+}
+.gt-btn-flat.no-hover {
+  font-weight: 400;
+  letter-spacing: 0.8px;
 
-  &.no-hover:hover{
+  border: none !important;
+  padding: 0 2px;
+  @apply cursor-pointer relative;
+  color: var(--btn-color);
+
+  &:hover {
+    font-weight: 500;
     .textLine {
-      border-bottom:1px solid transparent;
+      border-bottom: 1px solid transparent;
     }
   }
-   
-
 }
 
 .gt-btn-pill {
@@ -138,7 +145,7 @@
   }
 }
 
-.gt-icon-narrow-padding{
+.gt-icon-narrow-padding {
   padding: 6px !important;
 }
 

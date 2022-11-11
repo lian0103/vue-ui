@@ -75,9 +75,13 @@ watch(
 );
 
 const handleMenuTabCallback = (target = {}) => {
-  let { path } = target;
+  let { path, query } = target;
   if (path && Router) {
-    Router.push(path);
+
+    Router.push({
+      path: path, 
+      query: query
+    });
   } else {
     console.log("target is empty");
   }
@@ -167,7 +171,7 @@ export default {
           class="gt-content"
           :style="{
             height:
-              menuTabs && menuTabs.length > 0
+            onlyOneLevel && menuTabs && menuTabs.length > 0
                 ? 'calc(100vh - 125px)'
                 : 'calc(100vh - 80px)',
           }"
