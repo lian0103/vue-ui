@@ -264,7 +264,7 @@ export default {
 <template>
   <div class="gt-input-wrapper">
     <div class="gt-input-label" v-if="label">{{ label }}</div>
-    <div class="gt-relative" @click.stop="() => {}">
+    <div class="gt-relative" style="flex-grow: 1" @click.stop="() => {}">
       <input
         :ref="inputUuid"
         :class="classComputed"
