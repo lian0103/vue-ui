@@ -1,6 +1,8 @@
 .gt-input-wrapper {
   @apply relative;
   @apply flex justify-start items-center;
+  margin-right: 1px;
+  
   .gt-input-label {
     height: 36px;
     @apply text-sm leading-9 px-3;
@@ -10,7 +12,6 @@
     @apply outline outline-1;
     @apply bg-color4;
     @apply outline-gray2;
-    height: 43px;
     padding: 10px 34px 10px 12px;
 
     &.gt-input-white,
