@@ -42,21 +42,11 @@ export default {
     const isHover = ref(false);
     const hasSelect = ref(false);
     const valRef = props.formParentValue
-      ? ref(props.formParentValue?.value)
+      ? ref(props.formParentValue)
       : ref(props.modelValue);
     const errorMsg = computed(() => {
       return props.validResult[props.name]?.message;
     });
-
-    const {
-      height: rootHeight,
-      width: rootWidth,
-      top: rootTop,
-      bottom: rootBottom,
-      right: rootRight,
-      left: rootLeft,
-      update: updateRoot,
-    } = useElementBounding(rootObj[id]);
 
     const handleIsShow = (childClick = false) => {
       if (props.clicked && !childClick) {
@@ -141,7 +131,7 @@ export default {
             // handleIsShow("childClick");
             hasSelect.value = true;
             emit("update:modelValue", val);
-            if (props.formParentValue && props.handleValChange) {
+            if (props.handleValChange) {
               props.handleValChange(val, props.name);
             }
             valRef.value = val;

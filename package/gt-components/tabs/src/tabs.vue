@@ -97,18 +97,6 @@ const calcTargetWidth = () => {
   }
 };
 
-// instance.appContext.config.globalProperties["handleCurrent" + props.name] = (
-//   tabName
-// ) => {
-//   current.value = tabName;
-// };
-// instance.appContext.config.globalProperties["handleTabs" + props.name] = (
-//   newTabs
-// ) => {
-//   props.tabs.value = newTabs;
-//   parentWidth.value = null;
-// };
-
 watch(
   () => current.value,
   (nVal) => {

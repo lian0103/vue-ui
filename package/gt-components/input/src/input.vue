@@ -27,6 +27,8 @@ const props = defineProps({
     default: false,
   },
   modelValue: {},
+  formParentValue:{},
+  handleValChange:{},
   label: {
     type: String,
     default: null,
@@ -100,7 +102,7 @@ const props = defineProps({
   },
 });
 
-const value = ref(props.modelValue);
+const value = ref(props.modelValue || props.formParentValue);
 
 watch(
   () => props.modelValue,
@@ -117,8 +119,8 @@ const {
   type,
   theme,
   clearable,
-  // parentValue,
   placeholder,
+  formParentValue,
   validResult,
   handleRulesValid,
   size,
@@ -214,8 +216,13 @@ const handleClear = () => {
 
 const handleInput = (e, val) => {
   value.value = val ?? e?.target.value;
-  emit("update:modelValue", value.value);
-  emit("input", value.value);
+
+  if(props.handleValChange){
+    props.handleValChange(value.value,props.name)
+  }else{
+    emit("update:modelValue", value.value);
+    emit("input", value.value);
+  }
 };
 const handleChange = (e, val) => {
   let temp = val ?? e.target.value;

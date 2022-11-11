@@ -160,7 +160,7 @@ export default {
           name="layoutTab"
           v-if="onlyOneLevel && menuTabs && menuTabs.length > 0"
           class="gt-route-tabs"
-          :tabs="menuTabs"
+          :tabs="menuTabs" 
           :clickCallback="handleMenuTabCallback"
           :currentTab="currentTab"
           :layoutMode="true"

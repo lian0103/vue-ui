@@ -45,13 +45,11 @@ const menuRoutes = [
     iconClasses: 'fas fa-tools',
     children: [
       {
-        name: 'GT元件使用',
         label: 'GT元件使用',
         icon: 'file',
         path: '/doc',
       },
       {
-        name: 'Graph使用',
         label: 'Graph使用',
         icon: 'file',
         path: '/graph',
@@ -69,7 +67,6 @@ const menuRoutes = [
     children: [
       ...packagesChartCompNameList.map((name) => {
         return {
-          name: name,
           label: name,
           iconClasses: 'far fa-sticky-note',
           path: `/chart/${name}`,
@@ -131,8 +128,13 @@ const menuChildrenComputed = computed({
     return (
       menuRoutes.filter(
         (item) => item.label === Router.currentRoute.value?.meta?.title
-      )[0]?.children || []
-    );
+      )[0]?.children.map(cItem=>{
+        return {
+          ...cItem,
+          name:cItem.label
+        }
+      }) || []
+    ); 
   },
 });
 

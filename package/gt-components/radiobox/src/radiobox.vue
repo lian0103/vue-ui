@@ -55,8 +55,8 @@ const errorMsg = computed(() => {
   return validResult[name]?.message;
 });
 
-const isChecked = isBoolean(formParentValue?.value)
-  ? ref(formParentValue.value)
+const isChecked = isBoolean(formParentValue)
+  ? ref(formParentValue)
   : parentValue
   ? computed(() => {
       return value === parentValue.value;
@@ -74,8 +74,8 @@ const onClick = () => {
     isChecked.value = val;
     emit('update:modelValue', val);
 
-    if (formParentValue && handleValChange) {
-      // console.log(val, name);
+    if (handleValChange) {
+      console.log(val, name);
       handleValChange(val, name);
     }
   }

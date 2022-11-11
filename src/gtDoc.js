@@ -714,29 +714,27 @@ const tableInfo = reactive({
     'form': ` \`\`\` html 
 <script setup>
 import { isNull } from 'lodash';
-import { ref, reactive, getCurrentInstance, onMounted } from 'vue';
+import { ref, reactive, getCurrentInstance } from 'vue';
 
 const instance = getCurrentInstance();
 
 const formRef = ref(null);
 
 const inputs = reactive({
-    test: {
-        test1: 'hi~',
-        test2: 123,
-        test3: '',
-        radioAA: true,
-        radio0: true,
-        radio1: false,
-        radio2: true,
-        radio3: false,
-        radio4: 2,
-        checked0: true,
-        checked1: false,
-        checked2: true,
-        checked3: false,
-        dropdown: null,
-    },
+    test1: 'hi~',
+    test2: 123,
+    test3: '',
+    radioAA: true,
+    radio0: true,
+    radio1: false,
+    radio2: true,
+    radio3: false,
+    radio4: 2,
+    checked0: true,
+    checked1: false,
+    checked2: true,
+    checked3: false,
+    dropdown: null,
 });
 
 const formRule = {
@@ -780,24 +778,14 @@ const formRule = {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    // let result = await instance.appContext.config.globalProperties[
-    //   'gForms-form1'
-    // ].callValid();
-    // console.log(result);
-
     instance.refs.formRef.callValid();
 };
-
-onMounted(() => {
-    // console.log('mounted',instance.appContext.config.globalProperties['gForms-form1']);
-    console.log(instance.refs.formRef);
-});
 </script>
 
 <template>
     <div class="w-full mx-auto mb-6 relative">
         <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
-        <g-form ref="formRef" v-model="inputs.test" :rules="formRule" name="form1">
+        <g-form ref="formRef" v-model="inputs" :rules="formRule" name="form1">
             <g-input label="驗證1" name="test1" green clearable />
             <g-input label="驗證2" name="test2" green clearable />
             <g-input label="驗證3" name="test3" green clearable />
@@ -833,18 +821,18 @@ onMounted(() => {
 
             <g-button class="mb-4" @click="handleSubmit">欄位驗證</g-button>
         </g-form>
-        <p>inputs.test.test1:{{ inputs.test.test1 }}</p>
-        <p>inputs.test.test2:{{ inputs.test.test2 }}</p>
-        <p>inputs.test.test3:{{ inputs.test.test3 }}</p>
+        <p>inputs.test1:{{ inputs.test1 }}</p>
+        <p>inputs.test2:{{ inputs.test2 }}</p>
+        <p>inputs.test3:{{ inputs.test3 }}</p>
 
-        <p>inputs.test.radioAA:{{ inputs.test.radioAA }}</p>
-        <p>inputs.test.radio0:{{ inputs.test.radio0 }}</p>
-        <p>inputs.test.radio1:{{ inputs.test.radio1 }}</p>
+        <p>inputs.radioAA:{{ inputs.radioAA }}</p>
+        <p>inputs.radio0:{{ inputs.radio0 }}</p>
+        <p>inputs.radio1:{{ inputs.radio1 }}</p>
 
-        <p>inputs.test.dropdown:{{ inputs.test.dropdown }}</p>
+        <p>inputs.dropdown:{{ inputs.dropdown }}</p>
 
-        <p>inputs.test.checked0:{{ inputs.test.checked0 }}</p>
-        <p>inputs.test.checked1:{{ inputs.test.checked1 }}</p>
+        <p>inputs.checked0:{{ inputs.checked0 }}</p>
+        <p>inputs.checked1:{{ inputs.checked1 }}</p>
     </div>
 </template>
 
