@@ -85,7 +85,6 @@ const menuRoutes = [
         .filter((name) => /^[a-iA-I].*$/.test(name))
         .map((name) => {
           return {
-            name: name,
             label: name,
             iconClasses: 'far fa-sticky-note',
             path: `/gt/a-i/${name}`,
@@ -101,7 +100,6 @@ const menuRoutes = [
         .filter((name) => /^[j-rJ-R].*$/.test(name))
         .map((name) => {
           return {
-            name: name,
             label: name,
             iconClasses: 'far fa-sticky-note',
             path: `/gt/j-r/${name}`,
@@ -117,7 +115,6 @@ const menuRoutes = [
         .filter((name) => /^[s-zS-Z].*$/.test(name))
         .map((name) => {
           return {
-            name: name,
             label: name,
             iconClasses: 'far fa-sticky-note',
             path: `/gt/s-z/${name}`,

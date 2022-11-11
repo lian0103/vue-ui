@@ -1,11 +1,9 @@
 <script setup>
 import {
   computed,
-  onMounted,
   ref,
   getCurrentInstance,
-  watch,
-  toRefs,
+  watch
 } from "vue";
 import { v4 as uuidv4 } from "uuid";
 
@@ -264,7 +262,7 @@ export default {
 <template>
   <div class="gt-input-wrapper">
     <div class="gt-input-label" v-if="label">{{ label }}</div>
-    <div class="gt-relative" style="width: 100%">
+    <div class="gt-relative" @click.stop="() => {}">
       <input
         :ref="inputUuid"
         :class="classComputed"
