@@ -1,0 +1,63 @@
+.gt-option-wrapper {
+  height: 100%;
+
+  &.selected {
+    .gt-option-content-wrapper {
+      padding-left: 3px;
+      color: #32a03d;
+      .gt-option-prefix {
+        --selected: grid;
+      }
+    }
+  }
+
+  &:hover {
+    .gt-option-content-wrapper {
+      background: #eef5eb;
+    }
+  }
+  .gt-option-content-wrapper {
+    width: 100%;
+    display: grid;
+    align-content: center;
+    grid-gap: 100px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    letter-spacing: 0.7px;
+
+    /* text color gray */
+
+    color: #55585e;
+    border-radius: 5px;
+    padding: 3px 3px 3px 27px;
+    cursor: pointer;
+    --selected: none;
+
+    .gt-option-content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .gt-option-prefix {
+        display: var(--selected);
+        align-content: center;
+      }
+      .gt-option-label {
+        display: grid;
+        align-content: center;
+        width: 100%;
+        p {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+      .gt-option-suffix {
+        display: grid;
+        align-content: center;
+      }
+    }
+  }
+}
