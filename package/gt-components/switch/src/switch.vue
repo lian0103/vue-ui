@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 
 const { modelValue, statusLabel } = defineProps({
   modelValue: {
-    type: Boolean,
+    // type: Boolean,
     default: false,
   },
   statusLabel: {
