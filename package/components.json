@@ -35,5 +35,7 @@
   "title": "./gt-components/title/index.js",
   "tooltip": "./gt-components/tooltip/index.js",
   "tree": "./gt-components/tree/index.js",
-  "upload-icon": "./gt-components/upload-icon/index.js"
+  "upload-icon": "./gt-components/upload-icon/index.js",
+  "select": "./gt-components/select/index.js",
+  "option": "./gt-components/option/index.js"
 }
