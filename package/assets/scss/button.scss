@@ -2,6 +2,7 @@
   --btn-color: #32a03d;
   --btn-color-hover: #eef5eb;
   --text-color: #fff;
+  --btn-font-weight: 500;
   &.gt-btn-round-no-border {
     --btn-color-hover: #26832f;
   }
@@ -11,6 +12,7 @@
   --btn-color: #517bba;
   --btn-color-hover: #dad9f3;
   --text-color: #fff;
+  --btn-font-weight: 500;
   &.gt-btn-round-no-border {
     --btn-color-hover: #40659f;
   }
@@ -20,6 +22,7 @@
   --btn-color: #faaf1d;
   --btn-color-hover: #fdedcd;
   --text-color: #fff;
+  --btn-font-weight: 500;
   &.gt-btn-round-no-border {
     --btn-color-hover: #e19e1b;
   }
@@ -29,6 +32,7 @@
   --btn-color: #fc806f;
   --btn-color-hover: #fcd8d8;
   --text-color: #fff;
+  --btn-font-weight: 500;
   &.gt-btn-round-no-border {
     --btn-color-hover: #ec7869;
   }
@@ -38,6 +42,7 @@
   --btn-color: #55585e;
   --btn-color-hover: #d9d9d9;
   --text-color: #55585e;
+  --btn-font-weight: 500;
   &.gt-btn-round-no-border {
     --btn-color: #f0f0f0;
     color: #55585e !important;
@@ -48,13 +53,25 @@
   --btn-color: #55585e;
   --btn-color-hover: #f0f0f0;
   --text-color: #55585e;
+  --btn-font-weight: 500;
+}
+
+.gt-btn-tag-bule {
+  --btn-color: #4f9ffc;
+  --btn-color-hover: #dad9f3;
+  --text-color: #fff;
+  --btn-font-weight: 400;
+  &.gt-btn-round-no-border {
+    --btn-font-weight: 500;
+    --btn-color-hover: #4f9ffc;
+  }
 }
 
 .gt-btn {
   height: 36px;
   letter-spacing: 0.7px;
   color: var(--btn-color);
-  font-weight: 500;
+  font-weight: --btn-font-weight;
   @apply flex justify-center items-center;
   @apply overflow-hidden text-center whitespace-nowrap;
   @apply relative py-2 px-4 cursor-pointer transition-all duration-300;

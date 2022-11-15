@@ -1,10 +1,20 @@
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
-const { flat , flatHover , pill, type, noBorder, icon, width, isLoading , iconClasses } = defineProps({
+const {
+  flat,
+  flatHover,
+  pill,
+  type,
+  noBorder,
+  icon,
+  width,
+  isLoading,
+  iconClasses,
+} = defineProps({
   flatHover: {
     type: Boolean,
-    default:true,
+    default: true,
   },
   flat: {
     type: Boolean,
@@ -14,14 +24,14 @@ const { flat , flatHover , pill, type, noBorder, icon, width, isLoading , iconCl
   },
   type: {
     type: String,
-    default: 'second',
+    default: "second",
   },
   noBorder: {
     type: Boolean,
   },
   icon: {
     type: String,
-    default:'btnIconName'
+    default: "btnIconName",
   },
   iconNarrowPadding: {
     type: Boolean,
@@ -29,7 +39,7 @@ const { flat , flatHover , pill, type, noBorder, icon, width, isLoading , iconCl
   },
   iconPosition: {
     type: String,
-    default: 'left',
+    default: "left",
   },
   width: {
     type: Number,
@@ -45,44 +55,47 @@ const { flat , flatHover , pill, type, noBorder, icon, width, isLoading , iconCl
 
 const classStr = computed(() => {
   if (flat) {
-    return flatHover ? 'gt-btn-flat' : 'gt-btn-flat no-hover';
+    return flatHover ? "gt-btn-flat" : "gt-btn-flat no-hover";
   }
   if (pill) {
-    return 'gt-btn-pill';
+    return "gt-btn-pill";
   }
   if (noBorder) {
-    return 'gt-btn-round-no-border';
+    return "gt-btn-round-no-border";
   }
 
-  return 'gt-btn-round-no-border';
+  return "gt-btn-round-no-border";
 });
 
 const typeStr = computed(() => {
   switch (type) {
-    case 'green': {
-      return 'gt-btn-green';
+    case "green": {
+      return "gt-btn-green";
     }
-    case 'second': {
-      return 'gt-btn-second';
+    case "second": {
+      return "gt-btn-second";
     }
-    case 'yellow': {
-      return 'gt-btn-yellow';
+    case "yellow": {
+      return "gt-btn-yellow";
     }
-    case 'red': {
-      return 'gt-btn-red';
+    case "red": {
+      return "gt-btn-red";
     }
-    case 'black': {
-      return 'gt-btn-black';
+    case "black": {
+      return "gt-btn-black";
     }
-    case 'white': {
-      return 'gt-btn-white';
+    case "white": {
+      return "gt-btn-white";
+    }
+    case "tag-bule": {
+      return "gt-btn-tag-bule";
     }
   }
 });
 </script>
 <script>
 export default {
-  name: 'GButton',
+  name: "GButton",
 };
 </script>
 <template>
@@ -97,9 +110,17 @@ export default {
     :style="width ? { width: `${width}px` } : {}"
   >
     <g-loading-icon v-if="isLoading" />
-    <g-icon :name="icon" :classes="iconClasses" v-if="(icon||iconClasses) && iconPosition == 'left' && !isLoading" />
+    <g-icon
+      :name="icon"
+      :classes="iconClasses"
+      v-if="(icon || iconClasses) && iconPosition == 'left' && !isLoading"
+    />
     <slot></slot>
-    <g-icon :name="icon"  :classes="iconClasses" v-if="(icon||iconClasses) && iconPosition == 'right' && !isLoading" />
+    <g-icon
+      :name="icon"
+      :classes="iconClasses"
+      v-if="(icon || iconClasses) && iconPosition == 'right' && !isLoading"
+    />
     <div class="textLine"></div>
   </button>
 </template>
