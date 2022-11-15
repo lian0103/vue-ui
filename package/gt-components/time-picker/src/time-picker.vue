@@ -49,7 +49,7 @@ const isMouseIn = ref(false);
 const isTimePickerShow = ref(false);
 const isHourPickerShow = ref(false);
 const curSelect =
-  modelValue.value === null
+  modelValue.value === null || modelValue.value === undefined
     ? rangeSelectMode.value
       ? ref([null, null])
       : ref(null)
@@ -64,7 +64,11 @@ const curCalenderInfo = reactive({
 const placeholderShow = computed(() => {
   let result = "";
   if (props.autoHideLabel) {
-    if (modelValue.value === null || modelValue.value === "") {
+    if (
+      modelValue.value === null ||
+      modelValue.value === "" ||
+      modelValue.value === undefined
+    ) {
       result = props.placeholder;
     }
   } else {
