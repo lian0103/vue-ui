@@ -1,26 +1,15 @@
 <script setup>
-import { computed, ref } from 'vue';
-import { isBoolean } from '@vueuse/core';
+import { computed, ref, toRefs } from "vue";
+import { isBoolean } from "@vueuse/core";
+
+const emit = defineEmits(["change", "update:modelValue"]);
 
 const CheckboxEnum = {
-  GREEN: 'box-green',
-  WHITE: 'box-white',
+  GREEN: "box-green",
+  WHITE: "box-white",
 };
 
-const {
-  name,
-  formParentValue,
-  disabled,
-  modelValue,
-  label,
-  value,
-  parentValue,
-  handleChildClick,
-  type,
-  validResult,
-  handleValChange,
-  handleRulesValid,
-} = defineProps({
+const props = defineProps({
   name: { default: null },
   formParentValue: { default: null },
   disabled: {
@@ -32,7 +21,6 @@ const {
     default: false,
   },
   label: {
-    type:String,
     default: null,
   },
   value: {
@@ -46,7 +34,7 @@ const {
   },
   type: {
     type: String,
-    default: 'GREEN',
+    default: "GREEN",
   },
   validResult: {
     default: {},
@@ -57,7 +45,30 @@ const {
   handleRulesValid: {
     type: Function,
   },
+  checkedIcon: {
+    type: String,
+    default: () => "check",
+  },
+  controlMode: {
+    type: Boolean,
+    default: () => false,
+  },
 });
+
+const {
+  name,
+  formParentValue,
+  disabled,
+  label,
+  value,
+  parentValue,
+  handleChildClick,
+  type,
+  validResult,
+  handleValChange,
+  handleRulesValid,
+} = props;
+const { modelValue, checkedIcon, controlMode } = toRefs(props);
 
 const errorMsg = computed(() => {
   return validResult[name]?.message;
@@ -65,21 +76,19 @@ const errorMsg = computed(() => {
 
 const isChecked = isBoolean(formParentValue)
   ? ref(formParentValue)
-  :  parentValue
+  : parentValue
   ? computed(() => parentValue?.value?.includes(value))
-  : ref(modelValue);
-
-const emit = defineEmits(['update:modelValue']);
+  : computed(() => modelValue.value);
 
 const classComputed = computed(() => {
   let arr = [
-    'checkmark',
+    "checkmark",
     CheckboxEnum[type.toUpperCase()]
       ? CheckboxEnum[type.toUpperCase()]
-      : CheckboxEnum['GREEN'],
+      : CheckboxEnum["GREEN"],
   ];
-  if (isChecked.value) arr.push('checked');
-  if (disabled) arr.push('disabled');
+  if (isChecked.value) arr.push("checked");
+  if (disabled) arr.push("disabled");
   return arr;
 });
 
@@ -90,37 +99,55 @@ const onClick = () => {
   if (!disabled && !handleChildClick) {
     let val = !isChecked.value;
     // console.log('val', val);
-    isChecked.value = val;
-    emit('update:modelValue', val);
+    // isChecked.value = val;
+    emit("update:modelValue", val);
+    emit("change", val);
 
     // console.log('formParentValue',formParentValue)
     if (handleValChange) {
-      console.log(val, name);
+      // console.log(val, name);
       handleValChange(val, name);
     }
   }
-
 };
+const labelShow = computed(() => {
+  if (label instanceof Function) {
+    return label();
+  } else {
+    return label;
+  }
+});
 </script>
 
 <script>
 export default {
-  name: 'GCheckbox',
+  name: "GCheckbox",
 };
 </script>
 
 <template>
   <div @click.prevent="onClick" class="gt-checkbox">
     <input :checked="isChecked" type="checkbox" />
-    <div :class="classComputed">
-      <g-icon class="icon" name="check" size="md" v-show="isChecked" />
-    </div>
+    <template v-if="!controlMode">
+      <div :class="classComputed">
+        <g-icon class="icon" :name="checkedIcon" size="md" v-show="isChecked" />
+      </div>
+    </template>
+    <template v-else>
+      <div
+        :class="
+          checkedIcon ? 'checkmark box-green checked' : 'checkmark box-white'
+        "
+      >
+        <g-icon v-if="checkedIcon" class="icon" :name="checkedIcon" size="md" />
+      </div>
+    </template>
     <span
       :class="disabled ? 'label-disabled' : ''"
       class="label select-none"
-      v-if="label"
-      >{{ label }}</span
+      v-if="labelShow"
+      >{{ labelShow }}</span
     >
-    <span  v-if="errorMsg" class="checkbox-error-msg">{{errorMsg}}</span>
+    <span v-if="errorMsg" class="checkbox-error-msg">{{ errorMsg }}</span>
   </div>
 </template>
