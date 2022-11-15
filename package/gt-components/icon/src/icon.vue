@@ -19,6 +19,12 @@ const props = defineProps({
     type: String,
     default: "md",
   },
+  style: {
+    type: Object,
+    default: () => {
+      return {};
+    },
+  },
 });
 const componentKey = ref(0);
 
@@ -49,6 +55,6 @@ watch(
 
 <template>
   <div class="gt-icon-wrapper" :key="componentKey">
-    <i :class="classesComputed" />
+    <i :style="style" :class="classesComputed" />
   </div>
 </template>
