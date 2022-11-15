@@ -332,7 +332,10 @@ export default {
             v-for="(rowItem, rowIdx) in dataComputed"
             class="row"
             :key="rowIdx"
-            :class="selectedList[String(rowIdx)] ? 'row-check' : ''"
+            :class="{
+              underline: underline,
+              'row-check': selectedList[String(rowIdx)],
+            }"
           >
             <div class="row-content">
               <div
