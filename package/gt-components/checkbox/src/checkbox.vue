@@ -98,14 +98,12 @@ const onClick = () => {
   }
   if (!disabled && !handleChildClick) {
     let val = !isChecked.value;
-    // console.log('val', val);
-    // isChecked.value = val;
+
     emit("update:modelValue", val);
     emit("change", val);
 
-    // console.log('formParentValue',formParentValue)
     if (handleValChange) {
-      // console.log(val, name);
+      isChecked.value = val;
       handleValChange(val, name);
     }
   }
