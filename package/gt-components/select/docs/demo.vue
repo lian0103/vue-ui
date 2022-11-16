@@ -30,7 +30,7 @@ const val4 = ref('123');
         <g-option label="789" value="3" />
     </g-select>
     <g-divider />
-    <g-title :level="2" class="mb-3">bindResult value</g-title>
+    <g-title :level="2" class="mb-3">bindResult label</g-title>
     current:{{ val4 }}
     <g-select v-model="val4" bindResult="label">
         <g-option label="123" value="1" />
