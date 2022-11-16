@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
 <template>
     <div class="w-full mx-auto mb-6 relative">
         <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
-        <g-form ref="formRef" v-model="inputs" :rules="formRule" name="form1">
+        <g-form class="fit" ref="formRef" v-model="inputs" :rules="formRule" name="form1">
             <g-input label="驗證1" name="test1" green clearable />
             <g-input label="驗證2" name="test2" green clearable />
             <g-input label="驗證3" name="test3" green clearable />

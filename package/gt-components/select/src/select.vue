@@ -61,7 +61,10 @@ const updateModelValue = (result, idx, option) => {
 
 const list = computed(() => {
   let options = [];
-  let result = findAllOption(slots.value.default()).map((child, idx) => {
+  let result = [];
+
+  if(typeof slots.value.default === 'function'){
+    result = findAllOption(slots.value.default()).map((child, idx) => {
     let option = {
       index: idx,
       label: child.props.label,
@@ -86,9 +89,11 @@ const list = computed(() => {
     };
     return result;
   });
+  }
+
   optionList.value = options;
   return result;
-});
+}) ;
 
 const findAllOption = (slots) => {
   let result = [];

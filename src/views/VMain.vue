@@ -29,7 +29,7 @@ const onlyOneLevel = ref(
 
 const appMenuCollaped = ref(localStorage.getItem('app-menu') === 'true');
 
-const ignoreItems = ['timelineitem', 'collapse-card-section','filter-chips-group'];
+const ignoreItems = ['timelineitem', 'collapse-card-section','filter-chips-group','option'];
 const packagesCompNameList = Object.keys(packageMap).filter(
   (item) => !ignoreItems.includes(item)
 );

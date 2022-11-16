@@ -785,7 +785,7 @@ const handleSubmit = async (e) => {
 <template>
     <div class="w-full mx-auto mb-6 relative">
         <g-title :level="2" class="mb-3">輸入框-驗證</g-title>
-        <g-form ref="formRef" v-model="inputs" :rules="formRule" name="form1">
+        <g-form class="fit" ref="formRef" v-model="inputs" :rules="formRule" name="form1">
             <g-input label="驗證1" name="test1" green clearable />
             <g-input label="驗證2" name="test2" green clearable />
             <g-input label="驗證3" name="test3" green clearable />
@@ -849,6 +849,7 @@ const icons = [
   'up',
   'arrow-down',
   'arrow-left',
+  'arrows-rotate',
   'calendar',
   'check',
   'chevron-down',
@@ -859,6 +860,10 @@ const icons = [
   'down',
   'download',
   'ellipsis',
+  'export',
+  'import',
+  'truck',
+  'google-circles-extended',
   'plus',
   'search',
   'sequence',
@@ -982,15 +987,17 @@ const handleKeyup = (e) => {
         <g-divider />
 
         <g-title :level="2" class="mb-3">search Select Mode</g-title>
-        <g-input
-            v-model="inputs.select"
-            size="sm"
-            green
-            clearable
-            searchSelectMode
-            :selectOptions="selectOptions"
-            @keyup="handleKeyup"
-        />
+        <div class="fit">
+            <g-input
+                v-model="inputs.select"
+                size="sm"
+                green
+                clearable
+                searchSelectMode
+                :selectOptions="selectOptions"
+                @keyup="handleKeyup"
+            />
+        </div>
 
         <g-divider />
 
@@ -1008,7 +1015,9 @@ const handleKeyup = (e) => {
         <g-divider />
 
         <g-title :level="2" class="mb-3">icon right </g-title>
-        <g-input v-model="inputs.input0" icon="search" />
+        <div class="fit">
+            <g-input v-model="inputs.input0" icon="search" />
+        </div>
 
         <g-divider />
 
@@ -1053,6 +1062,9 @@ const handleKeyup = (e) => {
     .gt-input {
         width: 243px;
     }
+}
+.fit {
+    width: fit-content;
 }
 </style>
   \`\`\`  `,
@@ -1413,6 +1425,11 @@ const handleMsgToast = () => {
   <g-message-toast text="儲存完成~!" />
 </template>
   \`\`\`  `,
+    'option': ` \`\`\` html 
+<script setup>
+</script>
+<template>
+</template>  \`\`\`  `,
     'pagination': ` \`\`\` html 
 <script setup>
 const handleUpdatePage = (val) => {console.log(val)};
@@ -1478,6 +1495,54 @@ const inputs = reactive({
   </div>
 </template>
   \`\`\`  `,
+    'select': ` \`\`\` html 
+<script setup>
+import { ref } from 'vue';
+const val = ref(0);
+const val2 = ref([0]);
+const val3 = ref(['1']);
+const val4 = ref('123');
+</script>
+<template>
+    <div class="w64box">
+    <g-title :level="2" class="mb-3">bindResult index</g-title>
+    current:{{ val }}
+    <g-select v-model="val">
+        <g-option label="123" value="1" />
+        <g-option label="456" value="2" />
+    </g-select>
+    <g-divider />
+    <g-title :level="2" class="mb-3">bindResult index & multiple</g-title>
+    current:{{ val2 }}
+    <g-select v-model="val2" multiple>
+        <g-option label="123" value="1" />
+        <g-option label="456" value="2" />
+        <g-option label="789" value="3" />
+    </g-select>
+    <g-divider />
+    <g-title :level="2" class="mb-3">bindResult value & multiple</g-title>
+    current:{{ val3 }}
+    <g-select v-model="val3" multiple bindResult="value">
+        <g-option label="123" value="1" />
+        <g-option label="456" value="2" />
+        <g-option label="789" value="3" />
+    </g-select>
+    <g-divider />
+    <g-title :level="2" class="mb-3">bindResult value</g-title>
+    current:{{ val4 }}
+    <g-select v-model="val4" bindResult="label">
+        <g-option label="123" value="1" />
+        <g-option label="456" value="2" />
+        <g-option label="789" value="3" />
+    </g-select>
+</div>
+</template>
+
+<style lang="scss">
+.w64box{
+    @apply w-64;
+}
+</style>  \`\`\`  `,
     'sort-label': ` \`\`\` html 
 <script setup>
 import { reactive } from 'vue';

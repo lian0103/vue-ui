@@ -34,8 +34,10 @@ import LOADINGICON from '../../docs/loading-icon/demo.vue';
 import MENU from '../../docs/menu/demo.vue';
 import MESSAGE from '../../docs/message/demo.vue';
 import MESSAGETOAST from '../../docs/message-toast/demo.vue';
+import OPTION from '../../docs/option/demo.vue';
 import PAGINATION from '../../docs/pagination/demo.vue';
 import RADIOBOX from '../../docs/radiobox/demo.vue';
+import SELECT from '../../docs/select/demo.vue';
 import SORTLABEL from '../../docs/sort-label/demo.vue';
 import SWITCH from '../../docs/switch/demo.vue';
 import TABLE from '../../docs/table/demo.vue';
@@ -78,8 +80,10 @@ const mapObj = {
     'menu' : MENU ,
     'message' : MESSAGE ,
     'message-toast' : MESSAGETOAST ,
+    'option' : OPTION ,
     'pagination' : PAGINATION ,
     'radiobox' : RADIOBOX ,
+    'select' : SELECT ,
     'sort-label' : SORTLABEL ,
     'switch' : SWITCH ,
     'table' : TABLE ,

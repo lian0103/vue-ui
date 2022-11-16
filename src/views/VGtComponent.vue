@@ -34,8 +34,10 @@ import LOADINGICON from '../../package/gt-components/loading-icon/docs/demo.vue'
 import MENU from '../../package/gt-components/menu/docs/demo.vue';
 import MESSAGE from '../../package/gt-components/message/docs/demo.vue';
 import MESSAGETOAST from '../../package/gt-components/message-toast/docs/demo.vue';
+import OPTION from '../../package/gt-components/option/docs/demo.vue';
 import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
 import RADIOBOX from '../../package/gt-components/radiobox/docs/demo.vue';
+import SELECT from '../../package/gt-components/select/docs/demo.vue';
 import SORTLABEL from '../../package/gt-components/sort-label/docs/demo.vue';
 import SWITCH from '../../package/gt-components/switch/docs/demo.vue';
 import TABLE from '../../package/gt-components/table/docs/demo.vue';
@@ -78,8 +80,10 @@ const mapObj = {
     'menu' : MENU ,
     'message' : MESSAGE ,
     'message-toast' : MESSAGETOAST ,
+    'option' : OPTION ,
     'pagination' : PAGINATION ,
     'radiobox' : RADIOBOX ,
+    'select' : SELECT ,
     'sort-label' : SORTLABEL ,
     'switch' : SWITCH ,
     'table' : TABLE ,

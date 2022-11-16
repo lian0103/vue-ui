@@ -73,7 +73,7 @@ const columnsComputed = computed(() => {
       } else if (typeof(cItem.width) === 'string') {
         width = cItem.width;
       } else {
-        width = "auto";
+        width = "80px";
       }
       return cItem.name
         ? {
@@ -129,8 +129,9 @@ watch(
 
 const tableWidthComputed = computed(() => {
   let width =
-    columnsComputed.value.map((item) => item.width).reduce((a, b) => a + b) +
+    columnsComputed.value.map((item) => parseInt((''+item.width).replace('px',''))).reduce((a, b) => a + b, 0) +
     80;
+    // console.log("width",width)
   return width;
 });
 

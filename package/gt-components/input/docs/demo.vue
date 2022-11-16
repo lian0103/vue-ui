@@ -41,15 +41,17 @@ const handleKeyup = (e) => {
         <g-divider />
 
         <g-title :level="2" class="mb-3">search Select Mode</g-title>
-        <g-input
-            v-model="inputs.select"
-            size="sm"
-            green
-            clearable
-            searchSelectMode
-            :selectOptions="selectOptions"
-            @keyup="handleKeyup"
-        />
+        <div class="fit">
+            <g-input
+                v-model="inputs.select"
+                size="sm"
+                green
+                clearable
+                searchSelectMode
+                :selectOptions="selectOptions"
+                @keyup="handleKeyup"
+            />
+        </div>
 
         <g-divider />
 
@@ -67,7 +69,9 @@ const handleKeyup = (e) => {
         <g-divider />
 
         <g-title :level="2" class="mb-3">icon right </g-title>
-        <g-input v-model="inputs.input0" icon="search" />
+        <div class="fit">
+            <g-input v-model="inputs.input0" icon="search" />
+        </div>
 
         <g-divider />
 
@@ -112,5 +116,8 @@ const handleKeyup = (e) => {
     .gt-input {
         width: 243px;
     }
+}
+.fit {
+    width: fit-content;
 }
 </style>
