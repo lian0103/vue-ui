@@ -22,11 +22,15 @@
   "menu": "./gt-components/menu/index.js",
   "message": "./gt-components/message/index.js",
   "message-toast": "./gt-components/message-toast/index.js",
+  "option": "./gt-components/option/index.js",
   "pagination": "./gt-components/pagination/index.js",
   "radiobox": "./gt-components/radiobox/index.js",
+  "select": "./gt-components/select/index.js",
   "sort-label": "./gt-components/sort-label/index.js",
   "switch": "./gt-components/switch/index.js",
   "table": "./gt-components/table/index.js",
+  "table-column": "./gt-components/table-column/index.js",
+  "table2": "./gt-components/table2/index.js",
   "tabs": "./gt-components/tabs/index.js",
   "tag": "./gt-components/tag/index.js",
   "time-picker": "./gt-components/time-picker/index.js",
@@ -35,9 +39,5 @@
   "title": "./gt-components/title/index.js",
   "tooltip": "./gt-components/tooltip/index.js",
   "tree": "./gt-components/tree/index.js",
-  "upload-icon": "./gt-components/upload-icon/index.js",
-  "table-column": "./gt-components/table-column/index.js",
-  "table2": "./gt-components/table2/index.js",
-  "select": "./gt-components/select/index.js",
-  "option": "./gt-components/option/index.js"
+  "upload-icon": "./gt-components/upload-icon/index.js"
 }

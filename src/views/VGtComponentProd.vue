@@ -41,6 +41,8 @@ import SELECT from '../../docs/select/demo.vue';
 import SORTLABEL from '../../docs/sort-label/demo.vue';
 import SWITCH from '../../docs/switch/demo.vue';
 import TABLE from '../../docs/table/demo.vue';
+import TABLECOLUMN from '../../docs/table-column/demo.vue';
+import TABLE2 from '../../docs/table2/demo.vue';
 import TABS from '../../docs/tabs/demo.vue';
 import TAG from '../../docs/tag/demo.vue';
 import TIMEPICKER from '../../docs/time-picker/demo.vue';
@@ -87,6 +89,8 @@ const mapObj = {
     'sort-label' : SORTLABEL ,
     'switch' : SWITCH ,
     'table' : TABLE ,
+    'table-column' : TABLECOLUMN ,
+    'table2' : TABLE2 ,
     'tabs' : TABS ,
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,

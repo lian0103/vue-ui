@@ -34,10 +34,8 @@ import LOADINGICON from '../../package/gt-components/loading-icon/docs/demo.vue'
 import MENU from '../../package/gt-components/menu/docs/demo.vue';
 import MESSAGE from '../../package/gt-components/message/docs/demo.vue';
 import MESSAGETOAST from '../../package/gt-components/message-toast/docs/demo.vue';
-import OPTION from '../../package/gt-components/option/docs/demo.vue';
 import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
 import RADIOBOX from '../../package/gt-components/radiobox/docs/demo.vue';
-import SELECT from '../../package/gt-components/select/docs/demo.vue';
 import SORTLABEL from '../../package/gt-components/sort-label/docs/demo.vue';
 import SWITCH from '../../package/gt-components/switch/docs/demo.vue';
 import TABLE from '../../package/gt-components/table/docs/demo.vue';
@@ -50,6 +48,10 @@ import TITLE from '../../package/gt-components/title/docs/demo.vue';
 import TOOLTIP from '../../package/gt-components/tooltip/docs/demo.vue';
 import TREE from '../../package/gt-components/tree/docs/demo.vue';
 import UPLOADICON from '../../package/gt-components/upload-icon/docs/demo.vue';
+import TABLECOLUMN from '../../package/gt-components/table-column/docs/demo.vue';
+import TABLE2 from '../../package/gt-components/table2/docs/demo.vue';
+import SELECT from '../../package/gt-components/select/docs/demo.vue';
+import OPTION from '../../package/gt-components/option/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -80,10 +82,8 @@ const mapObj = {
     'menu' : MENU ,
     'message' : MESSAGE ,
     'message-toast' : MESSAGETOAST ,
-    'option' : OPTION ,
     'pagination' : PAGINATION ,
     'radiobox' : RADIOBOX ,
-    'select' : SELECT ,
     'sort-label' : SORTLABEL ,
     'switch' : SWITCH ,
     'table' : TABLE ,
@@ -96,6 +96,10 @@ const mapObj = {
     'tooltip' : TOOLTIP ,
     'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
+    'table-column' : TABLECOLUMN ,
+    'table2' : TABLE2 ,
+    'select' : SELECT ,
+    'option' : OPTION ,
 }
 
 const componentName = computed(async () => {
