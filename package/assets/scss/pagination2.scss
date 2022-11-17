@@ -1,0 +1,50 @@
+.gt-pagination2 {
+  @apply flex justify-center items-center flex-nowrap;
+  padding: 2px 0px;
+
+  .pre-next {
+    @apply flex justify-center items-center flex-nowrap text-primaryDarker cursor-pointer select-none;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    &.pre {
+      margin-right: 28px;
+    }
+
+    &.next {
+      margin-left: 28px;
+    }
+    &.disable {
+      @apply text-gray0 cursor-not-allowed;
+    }
+  }
+
+  .pageNums {
+    @apply flex justify-center items-center;
+
+    .num {
+      @apply text-main cursor-pointer select-none;
+      width: 34px;
+      height: 40px;
+      font-weight: 400;
+      line-height: 34px;
+      text-align: center;
+      padding: 2px 0;
+      margin-right: 6px;
+      &.current {
+        width: 28px;
+        height: 28px;
+        line-height: 22px;
+        margin-right: 12px;
+
+        @apply bg-primaryDarker text-white rounded-full;
+      }
+      &.dot {
+        width: 24px;
+        padding: 8px 0;
+        transform: rotate(90deg);
+        @apply text-primaryDarker;
+      }
+    }
+  }
+}
