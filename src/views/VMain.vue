@@ -128,7 +128,7 @@ const menuChildrenComputed = computed({
     return (
       menuRoutes.filter(
         (item) => item.label === Router.currentRoute.value?.meta?.title
-      )[0]?.children.map(cItem=>{
+      )[0]?.children?.map(cItem=>{
         return {
           ...cItem,
           name:cItem.label
