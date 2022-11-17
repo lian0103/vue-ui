@@ -137,19 +137,21 @@ export default {
     @mouseleave="isMouseIn = false"
     :style="styleComputed"
   >
-    <div class="tabs" :id="name ? `${name}-tabRef` : ''" ref="tabRef">
-      <div
-        class="tab"
-        v-for="tab in tabs"
-        :key="tab.name"
-        :class="current == tab.name ? 'current' : ''"
-        @click="
-          () => {
-            handleTabChange(tab.name);
-          }
-        "
-      >
-        {{ tab.name }}
+    <div class="gt-tabs-content">
+      <div class="tabs" :id="name ? `${name}-tabRef` : ''" ref="tabRef">
+        <div
+          class="tab"
+          v-for="tab in tabs"
+          :key="tab.name"
+          :class="current == tab.name ? 'current' : ''"
+          @click="
+            () => {
+              handleTabChange(tab.name);
+            }
+          "
+        >
+          {{ tab.name }}
+        </div>
       </div>
     </div>
     <div :class="slotTabs.includes(current) ? 'content' : ''">

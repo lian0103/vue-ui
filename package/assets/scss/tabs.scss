@@ -17,9 +17,26 @@
 
   &.layoutMode {
     height: 45px;
-    margin-right: auto;
     overflow: hidden;
     padding-bottom: 10px;
+    padding-right: 70px;
+    .gt-tabs-content {
+      border-bottom-width: 1px;
+    }
+    .tabs {
+      margin-bottom: -1px;
+      border-bottom-width: 0;
+
+      .tab {
+        &:hover {
+          @apply text-gray4 bg-gray3;
+          border-bottom-width: 1px;
+          &.current {
+            @apply text-main;
+          }
+        }
+      }
+    }
   }
 
   &.overTabsWrapper {
@@ -63,7 +80,7 @@
         @apply text-main bg-gray3 border-primaryDarker;
         border-bottom-width: 3px !important;
       }
-      &:hover{
+      &:hover {
         @apply bg-color1 text-main;
         border-bottom-width: 3px;
       }

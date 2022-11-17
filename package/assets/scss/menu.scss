@@ -26,6 +26,7 @@
           width: 36px;
           height: 36px;
           &.collapesed {
+            border-radius: 4px;
             @apply bg-color2;
           }
         }

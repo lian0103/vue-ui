@@ -39,5 +39,6 @@
   "title": "./gt-components/title/index.js",
   "tooltip": "./gt-components/tooltip/index.js",
   "tree": "./gt-components/tree/index.js",
-  "upload-icon": "./gt-components/upload-icon/index.js"
+  "upload-icon": "./gt-components/upload-icon/index.js",
+  "pagination2": "./gt-components/pagination2/index.js"
 }

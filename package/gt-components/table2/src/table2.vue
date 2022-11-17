@@ -316,59 +316,55 @@ export default {
           </template>
         </div>
       </div>
-
       <div
         class="table-body"
         :class="isLoading ? 'overflow-with-hidden' : ''"
         :style="tableInnerStyleComputed"
       >
-        <template v-if="isLoading">
-          <div class="loading">
-            <g-loading-icon />
-          </div>
-        </template>
-        <template v-else>
-          <div
-            v-for="(rowItem, rowIdx) in dataComputed"
-            class="row"
-            :key="rowIdx"
-            :class="{
-              underline: underline,
-              'row-check': selectedList[String(rowIdx)],
-            }"
-          >
-            <div class="row-content">
-              <div
-                v-for="(column, columnIdx) in columnsComputed"
-                :key="columnIdx"
-                :style="column.style"
-                class="row-cell with-flex-grow"
-              >
-                <template v-if="column.scopedSlots?.customRender">
-                  <slot
-                    :name="column.scopedSlots?.customRender"
-                    v-bind="{
-                      prop: rowItem[column.prop],
-                      row: rowItem,
-                      column: column,
-                      $index: columnIdx,
-                    }"
-                  ></slot>
-                </template>
-                <template v-else-if="column.type === 'selection'">
-                  <g-checkbox
-                    type="white"
-                    v-model="selectedList[String(rowIdx)]"
-                  >
-                  </g-checkbox>
-                </template>
-                <template v-else>
-                  <span> {{ rowItem[column.prop] || "" }}</span>
-                </template>
-              </div>
+        <div
+          v-for="(rowItem, rowIdx) in dataComputed"
+          class="row"
+          :key="rowIdx"
+          :class="{
+            underline: underline,
+            'row-check': selectedList[String(rowIdx)],
+          }"
+        >
+          <div class="row-content">
+            <div
+              v-for="(column, columnIdx) in columnsComputed"
+              :key="columnIdx"
+              :style="column.style"
+              class="row-cell with-flex-grow"
+            >
+              <template v-if="column.scopedSlots?.customRender">
+                <slot
+                  :name="column.scopedSlots?.customRender"
+                  v-bind="{
+                    prop: rowItem[column.prop],
+                    row: rowItem,
+                    column: column,
+                    $index: rowIdx,
+                  }"
+                ></slot>
+              </template>
+              <template v-else-if="column.type === 'selection'">
+                <g-checkbox type="white" v-model="selectedList[String(rowIdx)]">
+                </g-checkbox>
+              </template>
+              <template v-else>
+                <span> {{ rowItem[column.prop] || "" }}</span>
+              </template>
             </div>
           </div>
-        </template>
+        </div>
+      </div>
+      <div
+        v-if="isLoading"
+        class="loading"
+        :style="dataComputed?.length ? { position: 'absolute' } : {}"
+      >
+        <g-loading-icon />
       </div>
     </div>
   </div>
