@@ -63,14 +63,17 @@
       z-index: 100;
       @apply flex flex-col;
       .gt-menu-box {
+        @apply grid;
+        align-content: space-between;
         animation: menuOpen 0.5s both;
         margin: auto;
         flex-grow: 2;
         @apply relative;
-        height: calc(100vh - 170px);
+        height: calc(100vh - 80px);
         @apply overflow-y-scroll;
         &::-webkit-scrollbar {
           width: 0px !important;
+          height: 0px !important;
         }
 
         .gt-menus {
@@ -83,19 +86,19 @@
 
       .gt-bottomLogo {
         @apply relative;
-        height: 45px;
+        height: 150px;
         img {
           &:nth-child(1) {
             transition: left 0.4s ease-in-out;
             @apply absolute;
-            top: 10px;
-            left: 76px;
+            left: 74px;
+            top: 0px;
           }
           &:nth-child(2) {
             transition: left 0.4s ease-in-out;
             @apply absolute;
-            top: 14.72px;
-            left: 113.44px;
+            top: 4.72px;
+            left: 111.44px;
           }
         }
       }
@@ -152,16 +155,16 @@
             width: 0px;
           }
           .gt-menus {
-            position: fixed;
-            left: 48px;
-            top: 80px;
+            position: relative;
+            left: 40px;
           }
         }
         .gt-bottomLogo {
           @apply relative;
           img {
             &:nth-child(1) {
-              left: 49px;
+              top: 0px;
+              left: 43px;
             }
           }
         }
