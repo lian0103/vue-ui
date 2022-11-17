@@ -48,5 +48,6 @@ export default {
     'tooltip': {"show":["prop","slot"],"prop":"\n## 屬性\n| 屬性 | 說明 | 類型 | 可選值 | 默認值 |\n| - | - | - |- | -  |\n| position | 提示位置 | String | right、left、top、bottom | right |\n\n","method":"\n## 方法\n| 方法 | 說明 | 參數 |\n| - | - | - |\n| | | \n\n","event":"\n## 事件\n| 事件 | 說明 | 參數 |\n| - | - | - |\n| | | |\n\n","slot":"\n## 插槽\n| 插槽 | 說明 | \n| - | - | \n| content | 提示內容 | \n\n"}, 
     'tree': {"show":["prop","expose"],"prop":"\n## 屬性\n| 屬性 | 說明 | 類型 | 可選值 | 默認值 |\n| - | - | - |- | -  |\n| data | tree結構資料 |Array[TreeItem] ; <br/> TreeItem:Object{label:String,value:Boolean,children?:Array[TreeItem],clickCallBack?:Function,disabled?:Boolean} |  |  |\n\n","expose":"\n## 暴露\n| 名稱 | 說明 | 參數 |\n| - | - | - |\n| data | 當前的樹狀資料 | \n\n","method":"\n## 方法\n| 方法 | 說明 | 參數 |\n| - | - | - |\n| | | \n\n","event":"\n## 事件\n| 事件 | 說明 | 參數 |\n| - | - | - |\n| | | |\n\n","slot":"\n## 插槽\n| 插槽 | 說明 | \n| - | - | \n| | | \n\n"}, 
     'upload-icon': {"show":["prop"],"prop":"\n## 屬性\n| 屬性 | 說明 | 類型 | 可選值 | 默認值 |\n| - | - | - |- | -  |\n| percent | 百分比 | Number | | 0 |\n| auto | 自動轉動 | Boolean | | false |\n\n","method":"\n## 方法\n| 方法 | 說明 | 參數 |\n| - | - | - |\n| | | \n\n","event":"\n## 事件\n| 事件 | 說明 | 參數 |\n| - | - | - |\n| | | |\n\n","slot":"\n## 插槽\n| 插槽 | 說明 | \n| - | - | \n| | | \n\n"}, 
+    'pagination2': {}, 
 };
 

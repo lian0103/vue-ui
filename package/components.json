@@ -24,6 +24,7 @@
   "message-toast": "./gt-components/message-toast/index.js",
   "option": "./gt-components/option/index.js",
   "pagination": "./gt-components/pagination/index.js",
+  "pagination2": "./gt-components/pagination2/index.js",
   "radiobox": "./gt-components/radiobox/index.js",
   "select": "./gt-components/select/index.js",
   "sort-label": "./gt-components/sort-label/index.js",
@@ -39,6 +40,5 @@
   "title": "./gt-components/title/index.js",
   "tooltip": "./gt-components/tooltip/index.js",
   "tree": "./gt-components/tree/index.js",
-  "upload-icon": "./gt-components/upload-icon/index.js",
-  "pagination2": "./gt-components/pagination2/index.js"
+  "upload-icon": "./gt-components/upload-icon/index.js"
 }

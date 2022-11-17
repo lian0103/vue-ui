@@ -36,6 +36,7 @@ import MESSAGE from '../../docs/message/demo.vue';
 import MESSAGETOAST from '../../docs/message-toast/demo.vue';
 import OPTION from '../../docs/option/demo.vue';
 import PAGINATION from '../../docs/pagination/demo.vue';
+import PAGINATION2 from '../../docs/pagination2/demo.vue';
 import RADIOBOX from '../../docs/radiobox/demo.vue';
 import SELECT from '../../docs/select/demo.vue';
 import SORTLABEL from '../../docs/sort-label/demo.vue';
@@ -84,6 +85,7 @@ const mapObj = {
     'message-toast' : MESSAGETOAST ,
     'option' : OPTION ,
     'pagination' : PAGINATION ,
+    'pagination2' : PAGINATION2 ,
     'radiobox' : RADIOBOX ,
     'select' : SELECT ,
     'sort-label' : SORTLABEL ,

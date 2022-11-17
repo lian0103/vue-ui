@@ -1643,6 +1643,23 @@ const tableInfo = reactive({
       label: '',
     },
   ],
+  columns2:[
+  {
+      name: 'product',
+      label: '商品名稱',
+      sort: false,
+      handleSortCallback: function () {
+        alert('custom sort callback');
+      },
+      width: 480,
+    },
+    {
+      name: 'price',
+      label: '價格',
+      width: 380,
+      sort: true,
+    },
+  ],
   data: [
     { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
     { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
@@ -1657,6 +1674,11 @@ const tableInfo = reactive({
     { product: 'cc', price: 300, storage: 5, id: uuidv4() },
     { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
     { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+  ],
+  data2: [
+    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
+    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
+    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
   ],
   filterOtions: {},
   isLoading: false,
@@ -1703,6 +1725,21 @@ const dialogInfo = reactive({
   show2: false,
 });
 
+const tableDemoData = ref({
+  data:tableInfo.data,
+  columns:tableInfo.columns
+});
+
+const switchData = ()=>{
+  tableDemoData.value = tableDemoData.value.data.length === tableInfo.data.length ? {
+    data:tableInfo.data2,
+    columns:tableInfo.columns2,
+  } :{
+    data:tableInfo.data,
+    columns:tableInfo.columns,
+  }
+}
+
 const showLoading = () => {
   tableInfo.isLoading = true;
   setTimeout(() => {
@@ -1735,8 +1772,8 @@ const showLoading = () => {
     <g-title :level="2" class="mb-3">表格</g-title>
     <g-table
       ref="tableRef"
-      :columns="tableInfo.columns"
-      :data="tableInfo.data"
+      :columns="tableDemoData.columns"
+      :data="tableDemoData.data" 
       :height="450"
       name="products"
       :isLoading="tableInfo.isLoading"
@@ -1778,6 +1815,17 @@ const showLoading = () => {
     </g-dialog>
 
     <g-dialog v-model="dialogInfo.show2" mode="delete"> 確定刪除嗎? </g-dialog>
+
+    
+    <g-button
+      class="mb-4 mt-4"
+      @click="
+        () => {
+          switchData();
+        }
+      "
+      >切換資料</g-button
+    >
     <g-button
       class="mb-4 mt-4"
       @click="
@@ -2328,5 +2376,10 @@ const getData = () => {
   </div>
 </template>
   \`\`\`  `,
+    'pagination2': ` \`\`\` html 
+<script setup>
+</script>
+<template>
+</template>  \`\`\`  `,
 };
 

@@ -52,6 +52,7 @@ import TITLE from '../../package/gt-components/title/docs/demo.vue';
 import TOOLTIP from '../../package/gt-components/tooltip/docs/demo.vue';
 import TREE from '../../package/gt-components/tree/docs/demo.vue';
 import UPLOADICON from '../../package/gt-components/upload-icon/docs/demo.vue';
+import PAGINATION2 from '../../package/gt-components/pagination2/docs/demo.vue';
 
 const Route = useRoute();
 const docTableRef = shallowRef(null);
@@ -100,6 +101,7 @@ const mapObj = {
     'tooltip' : TOOLTIP ,
     'tree' : TREE ,
     'upload-icon' : UPLOADICON ,
+    'pagination2' : PAGINATION2 ,
 }
 
 const componentName = computed(async () => {
