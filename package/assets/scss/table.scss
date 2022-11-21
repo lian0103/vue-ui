@@ -4,19 +4,24 @@
   border-radius: 8px;
   padding-bottom: 10px;
   @apply bg-white relative;
-  &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    background-color: #d9d9d9;
-    border-radius: 5px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #aaaaaa;
-    &:hover {
-      background-color: #666666;
+  > div{
+    padding-bottom: 10px;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      background-color: #d9d9d9;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #666666;
+      }
     }
   }
+
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
