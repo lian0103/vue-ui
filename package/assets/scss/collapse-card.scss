@@ -13,7 +13,7 @@
     letter-spacing: 0.8px;
     @apply text-gray4;
     @apply cursor-pointer;
-    .gt-icon-wrapper {
+    .gt-icon {
       transition: all 0.3s ease-in-out;
     }
   }
@@ -39,6 +39,7 @@
       height: fit-content;
       z-index: 1;
       opacity: 1;
+      overflow: visible;
     }
   }
 }

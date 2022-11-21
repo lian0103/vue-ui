@@ -13,7 +13,7 @@ const handleClick = (e) => {
 <template>
   <div class="w-full mx-auto mb-6 relative">
     <g-title :level="2" class="mb-3">下拉選項</g-title>
-    <div class="w-16">
+    <div>
       <g-dropdown-item
         :label="options[0].label"
         :value="options[0].value"

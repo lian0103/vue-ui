@@ -15,8 +15,7 @@ const {
   value,
   icon,
   parentValue,
-  handleChildClick,
-  withGDropdown,
+  handleChildClick
 } = defineProps({
   option: {
     default: {},
@@ -36,10 +35,6 @@ const {
   handleChildClick: {
     default: () => {},
   },
-  withGDropdown: {
-    type: Boolean,
-    default: false,
-  },
 });
 const isCurrentClick = ref(false);
 
@@ -54,9 +49,6 @@ const handleMouseLeave = () => {
 
 const classComputed = computed(() => {
   let arr = [];
-  if (!withGDropdown) {
-    arr.push('notWithGDropdown');
-  }
   if (isCurrentClick.value) {
     arr.push('curClicked');
   } else if (isCurrent.value) {
@@ -80,11 +72,9 @@ const handleClick = () => {
     :class="classComputed"
     @click="
       (e) => {
-        if (withGDropdown) {
           e.stopPropagation();
           if (handleChildClick) {
             handleChildClick(value || null);
-          }
         } else {
           handleClick();
         }

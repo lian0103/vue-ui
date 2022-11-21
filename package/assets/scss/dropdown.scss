@@ -1,12 +1,14 @@
 .gt-dropdown {
   @apply flex justify-start items-center relative cursor-pointer;
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.7px;
   .gt-dropdown-span {
     min-width: 92px;
     height: 36px;
-    font-size: 14px;
-    line-height: 20px;
     padding: 0 34px 0 14px;
-    letter-spacing: 0.7px;
+
     @apply bg-white border border-solid border-gray5 rounded-md select-none;
     @apply w-full leading-9 overflow-hidden;
     @apply flex justify-start items-center;
@@ -20,11 +22,10 @@
 
   .gt-dropdown-icon {
     @apply absolute;
-    top: 7px;
+    top: 0px;
     right: 0px;
-    svg {
-      width: 22px;
-    }
+    height: 36px;
+    line-height: 36px;
   }
 
   .gt-dropdown-items {
@@ -34,7 +35,7 @@
 
     &.tp-aniIn,
     &.tp-aniOut {
-      @apply flex flex-col z-100 opacity-100;
+      @apply block z-top opacity-100;
       @apply absolute;
     }
   }
@@ -54,6 +55,7 @@
 }
 
 .gt-dropdown-item {
+  @apply select-none;
   @apply w-full flex justify-start items-center cursor-pointer mx-auto;
   width: calc(100% - 14px);
   white-space: nowrap;
