@@ -7,7 +7,7 @@
   .gt-dropdown-span {
     min-width: 92px;
     height: 36px;
-    padding: 0 34px 0 14px;
+    padding: 0 24px 0 14px;
 
     @apply bg-white border border-solid border-gray5 rounded-md select-none;
     @apply w-full leading-9 overflow-hidden;
@@ -17,6 +17,11 @@
     }
     svg {
       width: 22px;
+    }
+    .span-text{
+      overflow: hidden;
+      width: 100%;
+      text-overflow: ellipsis;
     }
   }
 
@@ -56,7 +61,7 @@
 
 .gt-dropdown-item {
   @apply select-none;
-  @apply w-full flex justify-start items-center cursor-pointer mx-auto;
+  @apply flex justify-start items-center cursor-pointer mx-auto;
   width: calc(100% - 14px);
   white-space: nowrap;
   border-radius: 5px;
@@ -67,12 +72,13 @@
   svg {
     width: 22px;
   }
-  span {
-    @apply overflow-hidden;
+  > span {
+    overflow: hidden;
     height: 36px;
-    padding: 5px 15px 5px 0px;
+    padding: 5px 0px 5px 0px;
     .txt {
       @apply overflow-hidden;
+      text-overflow: ellipsis;
     }
   }
   &.current {
