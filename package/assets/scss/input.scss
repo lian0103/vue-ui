@@ -1,22 +1,24 @@
 .gt-input-wrapper {
   @apply relative;
   @apply flex justify-start items-center;
-  margin-right: 1px;
+  @apply outline-transparent;
   
   .gt-input-label {
+    white-space:nowrap;
     height: 36px;
     @apply text-sm leading-9 px-3;
   }
   .gt-input {
-    @apply w-full text-sm text-gray4 rounded-lg;
-    @apply outline outline-1;
+    @apply w-full text-sm text-gray4;
+    height: 36px;
+    border-radius: 8px;
+    @apply border border-solid border-gray2;
     @apply bg-color4;
-    @apply outline-gray2;
     padding: 10px 12px 10px 12px;
 
     &.gt-input-white,
     &.gt-input-transparent {
-      @apply outline-color3;
+      @apply border-color3;
       &.gt-input-white {
         @apply bg-white;
       }
@@ -27,11 +29,16 @@
 
     &:focus,
     &:hover {
+      @apply border-transparent outline-none;
       box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
     }
 
     &.gt-input-error {
-      @apply outline-danger;
+      @apply border-danger;
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
     }
 
     &.gt-input-sm {
@@ -41,6 +48,15 @@
 
     &.icon-left {
       padding: 6.5px 12px 6.5px 38px;
+    }
+
+    &.disabled{
+      @apply border-color3 bg-color2 text-gray0;
+      &:focus,
+      &:hover {
+        @apply border-color3 border-solid;
+        box-shadow: none;
+      }
     }
   }
 

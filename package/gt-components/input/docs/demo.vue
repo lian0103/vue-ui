@@ -36,6 +36,19 @@ const handleKeyup = (e) => {
 
 <template>
     <div class="w-full mx-auto mb-6 relative inputDemoBox">
+        <g-title :level="2" class="mb-3">box</g-title>
+        <div class="testBox">
+            <g-input green v-model="inputs.input0" />
+        </div>
+        <div class="testBox2">
+            <g-input green v-model="inputs.input0" />
+        </div>
+
+        <g-title :level="2" class="mb-3">disabled</g-title>
+        <g-input green v-model="inputs.input0" :disabled="true" />
+        <g-divider />
+
+
         <g-title :level="2" class="mb-3">input @keyup</g-title>
         <g-input green v-model="inputs.input0" @keyup="handleKeyup" />
         <g-divider />
@@ -113,11 +126,18 @@ const handleKeyup = (e) => {
 
 <style lang="scss">
 .inputDemoBox {
-    .gt-input {
+    .gt-input-wrapper {
         width: 243px;
     }
 }
 .fit {
     width: fit-content;
+}
+
+.testBox{
+    @apply p-0 m-2 outline-1 outline outline-purple-400;
+}
+.testBox2{
+    @apply p-1 m-2 outline-1 outline outline-purple-400;
 }
 </style>

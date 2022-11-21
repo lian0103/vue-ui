@@ -3,9 +3,7 @@ import {
   computed,
   ref,
   getCurrentInstance,
-  watch,
-  onMounted,
-  toRefs,
+  watch
 } from "vue";
 import { v4 as uuidv4 } from "uuid";
 
@@ -160,6 +158,9 @@ const classComputed = computed(() => {
   if (icon) {
     classStr.push(`icon-${iconPosition}`);
   }
+  if(props.disabled){
+    classStr.push('disabled')
+  }
 
   return classStr;
 });
@@ -193,7 +194,7 @@ const selectModeClassComputed = computed(() => {
 const selectModeStyleComputed = computed(() => {
   return {
     width: "100%",
-    // top: size === "sm" ? "40px" : "48px",
+    top: size === "sm" ? "40px" : "48px",
     left: "0px",
   };
 });
@@ -282,6 +283,7 @@ export default {
         @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
+        :disabled="disabled"
         class="gt-input"
         v-model="value"
         v-if="type !== 'textarea'"
@@ -298,6 +300,7 @@ export default {
         @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
+        :disabled="disabled"
         class="gt-input"
         v-model="value"
       ></textarea>
