@@ -37,7 +37,7 @@ export default {
     />
 
     <div class="content-row" :class="isOpenRef ? 'open' : ''">
-      <span> <slot name="content" /></span>
+      <div><slot name="content" /></div>
     </div>
   </div>
 </template>
