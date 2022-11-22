@@ -182,7 +182,12 @@ const inputs = reactive({
 
 <template>
     <div class="mb-3 px-2 w-full md:w-3/4">
-        inputs:{{ inputs }}
+        <g-title :level="2">勾選框 白底</g-title>
+        <div class="mb-3 flex w-full" >
+            <g-checkbox class="mr-4" v-model="inputs.checked1" type="white" label="選項1" />
+        </div>
+
+        <!-- inputs:{{ inputs }} -->
         <g-title :level="2">勾選框</g-title>
         <div class="mb-3 flex w-full">
             <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />
@@ -1468,30 +1473,31 @@ const handleMsgToast = () => {
 </template>  \`\`\`  `,
     'pagination': ` \`\`\` html 
 <script setup>
-const handleUpdatePage = (val) => {console.log(val)};
+const handleUpdatePage = (val) => {
+    console.log(val);
+};
 </script>
 
 <template>
-  <div class="w-full mx-auto mb-6">
-    <g-title :level="2" class="mb-3">分頁選擇</g-title>
-    <g-pagination
-      :pageInfo="{ currentPage: 1, total: 60, perPageNums: 15 }"
-      @updatePage="handleUpdatePage"
-    />    
-    <g-pagination
-      :pageInfo="{ currentPage: 2, total: 600, perPageNums: 100 }"
-      @updatePage="handleUpdatePage"
-    />
-    <g-pagination
-      :pageInfo="{ currentPage: 3, total: 420, perPageNums: 60 }"
-      @updatePage="handleUpdatePage"
-    />
+    <div class="w-full mx-auto mb-6">
+        <g-title :level="2" class="mb-3">分頁選擇</g-title>
+        <g-pagination :pageInfo="{ currentPage: 2, total: 600, perPageNums: 100 }" @updatePage="handleUpdatePage" />
+        <g-divider />
+        <g-title :level="2"> underline </g-title>
+        <g-pagination
+            :pageInfo="{ currentPage: 1, total: 60, perPageNums: 15 }"
+            @updatePage="handleUpdatePage"
+            :underline="true"
+        />
 
-    <g-pagination
-      :pageInfo="{ currentPage: 7, total: 600, perPageNums: 40 }"
-      @updatePage="handleUpdatePage"
-    />
-  </div>
+        <g-divider />
+        <g-title :level="2"> gap 10</g-title>
+        <g-pagination
+            :pageInfo="{ currentPage: 20, total: 6000, perPageNums: 40 }"
+            @updatePage="handleUpdatePage"
+            :gap="10"
+        />
+    </div>
 </template>
   \`\`\`  `,
     'pagination2': ` \`\`\` html 
@@ -1778,7 +1784,8 @@ const handleRowClick = (row, dialogType) => {
 };
 const handleTableChecked = () => {
     let arr = instance.refs.tableRef.getCheckedList();
-    arr = arr.map((obj) => obj.id);
+    // console.log('arr',arr)
+    arr = arr.map((obj) => obj.product);
     instance.appContext.config.globalProperties.handleMessageTrigger({
         type: 'info',
         title: '已選擇',
@@ -1837,7 +1844,7 @@ const showLoading = () => {
             ref="tableRef"
             :columns="tableDemoData.columns"
             :data="tableDemoData.data"
-            :height="450"
+            :height="500"
             :isCheckbox="true"
             name="products"
             :isLoading="tableInfo.isLoading"

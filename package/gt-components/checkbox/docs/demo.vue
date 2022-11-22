@@ -11,7 +11,12 @@ const inputs = reactive({
 
 <template>
     <div class="mb-3 px-2 w-full md:w-3/4">
-        inputs:{{ inputs }}
+        <g-title :level="2">勾選框 白底</g-title>
+        <div class="mb-3 flex w-full" >
+            <g-checkbox class="mr-4" v-model="inputs.checked1" type="white" label="選項1" />
+        </div>
+
+        <!-- inputs:{{ inputs }} -->
         <g-title :level="2">勾選框</g-title>
         <div class="mb-3 flex w-full">
             <g-checkbox class="mr-4" v-model="inputs.checked0" label="選項1" />

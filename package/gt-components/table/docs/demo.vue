@@ -136,7 +136,8 @@ const handleRowClick = (row, dialogType) => {
 };
 const handleTableChecked = () => {
     let arr = instance.refs.tableRef.getCheckedList();
-    arr = arr.map((obj) => obj.id);
+    // console.log('arr',arr)
+    arr = arr.map((obj) => obj.product);
     instance.appContext.config.globalProperties.handleMessageTrigger({
         type: 'info',
         title: '已選擇',
@@ -195,7 +196,7 @@ const showLoading = () => {
             ref="tableRef"
             :columns="tableDemoData.columns"
             :data="tableDemoData.data"
-            :height="450"
+            :height="500"
             :isCheckbox="true"
             name="products"
             :isLoading="tableInfo.isLoading"
