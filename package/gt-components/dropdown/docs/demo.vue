@@ -22,5 +22,18 @@ const options = [
 
         <g-title :level="2" class="mb-3">下拉選項停留模式</g-title>
         <g-dropdown v-model="inputs.dropdown1" :options="options" icon hover />
+
+        <g-divider />
+        <g-title :level="2" class="mb-3">width 180</g-title>
+        <div class="w180">
+            <g-dropdown v-model="inputs.dropdown1" :options="options" icon hover />
+        </div>
+
     </div>
 </template>
+
+<style lang="scss">
+.w180{
+    width: 180px;
+}
+</style>

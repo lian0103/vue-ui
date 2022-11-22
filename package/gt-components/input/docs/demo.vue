@@ -119,8 +119,8 @@ const handleKeyup = (e) => {
         <g-input v-model="inputs.input1" type="password" label="密碼" />
         <g-divider />
 
-        <g-title :level="2" class="mb-3">輸入框-green</g-title>
-        <g-input v-model="inputs.input0" green label="欄位" />
+        <g-title :level="2" class="mb-3">輸入框-white</g-title>
+        <g-input v-model="inputs.input0" theme="white" />
     </div>
 </template>
 

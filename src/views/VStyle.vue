@@ -7,6 +7,7 @@ const filesText = `
 \`\`\`css
 &::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
     background-color: #d9d9d9;
     border-radius: 5px;
     }
