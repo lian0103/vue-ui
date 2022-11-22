@@ -10,6 +10,14 @@ const props = defineProps({
       perPageNums: 15,
     },
   },
+  gap:{
+    type:Number,
+    default:5
+  },
+  underline:{
+    type:Boolean,
+    default:false
+  }
 });
 
 const emit = defineEmits(['updatePage']);
@@ -27,8 +35,6 @@ watch(
 );
 
 const pagesComputed = computed(() => {
-  let pagesAll = new Array(lastPage).fill(1).map((n, idx) => n + idx);
-  let curPageIndex = pagesAll.findIndex((num) => num == current.value);
   let headAndTail = false;
   let middle = false;
   if (current.value <= firstPage + 2 || current.value > lastPage - 3) {
@@ -95,12 +101,12 @@ const handleNextPage = () => {
 const handlePageChange = (num) => {
   switch (num) {
     case 'pre-dot': {
-      current.value = current.value - 5;
+      current.value = current.value - props.gap;
       break;
     }
 
     case 'next-dot': {
-      current.value = current.value + 5;
+      current.value = current.value + props.gap;
       break;
     }
     default: {
@@ -108,6 +114,15 @@ const handlePageChange = (num) => {
     }
   }
 };
+
+const getClass = (num)=>{
+  if(current.value == num && props.underline) return 'underline-text';
+  if(current.value == num) return 'current';
+  if(num == 'pre-dot' || num == 'next-dot') return num ;
+
+  return '';
+}
+
 </script>
 <script>
 export default {
@@ -122,7 +137,7 @@ export default {
         :class="current == firstPage ? 'disable' : ''"
         @click="handlePrePage"
       >
-        <g-icon name="chevron-left" class="w-8" />上一頁
+        <g-icon name="chevron-left"  />上一頁 
       </div>
 
       <div class="pageNums">
@@ -130,13 +145,7 @@ export default {
           class="num"
           v-for="num in pagesComputed"
           :key="'n' + num"
-          :class="
-            current == num
-              ? 'current'
-              : num == 'pre-dot' || num == 'next-dot'
-              ? num
-              : ''
-          "
+          :class="getClass(num)"
           @click="
             () => {
               handlePageChange(num);
@@ -144,7 +153,7 @@ export default {
           "
         >
           <template v-if="num != 'pre-dot' && num != 'next-dot'">
-            {{ num }}
+             <span>{{ num }}</span>
           </template>
           <template v-else>
             <g-icon v-if="pageInfo.total" name="ellipsis" size="md" />
@@ -156,7 +165,7 @@ export default {
         :class="current == lastPage ? 'disable' : ''"
         @click="handleNextPage"
       >
-        下一頁<g-icon name="chevron-right" class="w-8" />
+        下一頁<g-icon name="chevron-right"  />
       </div>
     </div>
   </div>

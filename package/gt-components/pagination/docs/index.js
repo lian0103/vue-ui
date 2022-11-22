@@ -5,7 +5,8 @@ module.exports = {
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
 | pageInfo | 頁籤資料 | Object{currentPage(Number),total(Number),perPageNums(Number)} | | |
-
+| underline | 底線強調 | Boolean | | false |
+| gap | 向前/向後的間距 | Number | | 5 |
 
 `,
   method: `
