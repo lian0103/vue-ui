@@ -16,7 +16,8 @@
   min-width: 17px;
   height: 22px;
   line-height: 22px;
-  @apply relative block cursor-pointer;
+  @apply cursor-pointer;
+  @apply flex justify-start items-center;
   input {
     @apply absolute w-0 h-0 opacity-0 cursor-pointer;
   }
@@ -24,8 +25,7 @@
   .checkmark {
     width: 17px;
     height: 17px;
-    @apply absolute left-0 rounded-sm;
-    top: 2px;
+    @apply rounded-sm;
     border-width: 1px;
     @apply border-solid;
     border-color: var(--border-color);
@@ -61,7 +61,7 @@
     }
   }
   .label {
-    padding: 0 10px 0 29px;
+    padding: 0 10px 0 12px;
     &.label-disabled {
       @apply cursor-not-allowed text-gray0;
     }
