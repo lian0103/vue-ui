@@ -246,11 +246,13 @@ const handleRowClick = (row) => {
 };
 
 const getCheckedList = () => {
-    return dataWithStatus.value.filter((dItem) => dItem.gtTableRowChecked).map(dItem=>{
-        let obj = {...dItem};
-        delete obj.gtTableRowChecked;
-        return obj;
-    });
+    return dataWithStatus.value
+        .filter((dItem) => dItem.gtTableRowChecked)
+        .map((dItem) => {
+            let obj = { ...dItem };
+            delete obj.gtTableRowChecked;
+            return obj;
+        });
 };
 
 defineExpose({
@@ -268,21 +270,17 @@ export default {
 </script>
 <template>
     <div :id="'gt-' + gtTableId" ref="gtTable" class="gt-table-wrapper" :style="width ? { width: width + 'px' } : {}">
-        <div :class="wrapperComputed" :style="{height:`${height}px`}" @mousemove="isHover=true" @mouseleave="isHover=false">
+        <div
+            :class="wrapperComputed"
+            :style="{ height: `${height}px` }"
+            @mousemove="isHover = true"
+            @mouseleave="isHover = false"
+        >
             <div class="gt-table" :style="{ width: tableWidthComputed + 'px' }">
                 <div class="table-head">
                     <template v-if="isCheckbox">
                         <div class="head-column checknoxColumn">
-                            <g-checkbox
-                                :controlMode="true"
-                                type="white"
-                                :checkedIcon="selectionIcon"
-                                @change="
-                                    (val) => {
-                                        selectionClick(val);
-                                    }
-                                "
-                            />
+                            <g-checkbox type="white" :checkedIcon="selectionIcon" @change="selectionClick" />
                         </div>
                     </template>
 
@@ -300,11 +298,7 @@ export default {
                                     :controlMode="true"
                                     type="white"
                                     :checkedIcon="selectionIcon"
-                                    @change="
-                                        (val) => {
-                                            selectionClick(val);
-                                        }
-                                    "
+                                    @change="selectionClick"
                                 />
                             </div>
                         </template>
