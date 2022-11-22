@@ -13,6 +13,7 @@
 
 .gt-checkbox {
   line-height: 20px;
+  @apply select-none;
   @apply cursor-pointer relative;
   @apply flex justify-start items-center;
   input {
@@ -20,11 +21,12 @@
   }
 
   .checkmark {
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
+    transform: scale(1.5) translateX(2px);
     @apply rounded-sm;
-    @apply outline outline-1;
-    outline-color: var(--border-color);
+    @apply border border-solid;
+    border-color: var(--border-color);
     background-color: var(--bg-color);
     @apply transition-all duration-300;
   }
@@ -33,12 +35,12 @@
     @apply bg-main;
     .gt-icon {
       @apply text-white;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      font-size: 18px;
+      width: 10px;
+      height: 10px;
+      line-height: 10px;
+      font-size: 12px;
       position: absolute;
-      left: 0px;
+      left: -1.5px;
       top: 0px;
     }
     &.disabled{
@@ -49,8 +51,7 @@
 
   }
   .disabled {
-    border-width: 1px;
-    @apply outline outline-1 outline-gray0;
+    @apply border border-gray0;
     @apply bg-white;
     @apply cursor-not-allowed;
     .icon {
@@ -58,7 +59,7 @@
     }
   }
   .label {
-    padding: 0 10px 0 12px;
+    padding: 0 10px 0 18px;
     &.label-disabled {
       @apply cursor-not-allowed text-gray0;
     }
