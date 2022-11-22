@@ -1,56 +1,47 @@
 <script>
-import { h, ref, computed, watch, toRef } from "vue";
+import { h, ref, computed, watch, toRef } from 'vue';
 
 export default {
-  name: "GCheckboxGroup",
-  props: ["modelValue"],
-  emits: ["update:modelValue", "change"],
-  setup(props, { slots, emit }) {
-    const handleChildClick = (val) => {
-      if (Array.isArray(props.modelValue)) {
-        let newArr = props.modelValue.includes(val)
-          ? props.modelValue.filter((item) => item != val)
-          : [...props.modelValue, val];
-        emit("update:modelValue", newArr);
-        emit("change", newArr);
-      } else {
-        emit("update:modelValue", [val]);
-        emit("change", [val]);
-      }
-    };
+    name: 'GCheckboxGroup',
+    props: ['modelValue'],
+    emits: ['update:modelValue', 'change'],
+    setup(props, { slots, emit }) {
+        const handleChildClick = (val) => {
+            if (Array.isArray(props.modelValue)) {
+                let newArr = props.modelValue.includes(val)
+                    ? props.modelValue.filter((item) => item != val)
+                    : [...props.modelValue, val];
+                emit('update:modelValue', newArr);
+                emit('change', newArr);
+                console.log('in~~~?');
+            } else {
+                emit('update:modelValue', [val]);
+                emit('change', [val]);
+            }
+        };
 
-    const findAllChips = (slots) => {
-      let result = [];
-      for (let i = 0; i < slots.length; i++) {
-        if (
-          slots[i].children?.length !== 0 &&
-          slots[i].children instanceof Array
-        ) {
-          result.push(...findAllChips(slots[i].children));
-        } else if (
-          slots[i].type instanceof Object &&
-          slots[i].type.name === "GCheckbox"
-        ) {
-          result.push(slots[i]);
-        }
-      }
-      return result;
-    };
+        const genNodeTree = (item) => {
+            return item.type.name === 'GCheckbox'
+                ? {
+                      ...item,
+                      props: {
+                          ...item.props,
+                          parentValue: computed(() => props.modelValue?.includes(item.props.value)),
+                          handleChildClick,
+                      },
+                  }
+                : {
+                      ...item,
+                      children: Array.isArray(item.children)
+                          ? item.children.map((cItem) => genNodeTree(cItem))
+                          : item.children,
+                  };
+        };
 
-    const validChilds = slots.default()
-      ? findAllChips(slots.default()).map((item) => {
-          return {
-            ...item,
-            props: {
-              ...item.props,
-              parentValue: computed(() => props.modelValue),
-              handleChildClick,
-            },
-          };
-        })
-      : [];
-    // console.log(validChilds);
-    return () => h("div", validChilds);
-  },
+        const validChilds = slots.default() ? slots.default().map((item) => genNodeTree(item)) : [];
+
+        // console.log(validChilds);
+        return () => h('div', validChilds);
+    },
 };
 </script>

@@ -44,6 +44,12 @@
       left: -2px;
       top: -3px;
     }
+    &.disabled{
+      .gt-icon {
+        @apply text-gray0;
+      }
+    }
+
   }
   .disabled {
     border-width: 1px;

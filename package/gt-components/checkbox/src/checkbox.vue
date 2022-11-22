@@ -42,9 +42,6 @@ const props = defineProps({
   handleValChange: {
     type: Function,
   },
-  handleRulesValid: {
-    type: Function,
-  },
   checkedIcon: {
     type: String,
     default: () => "check",
@@ -66,7 +63,6 @@ const {
   type,
   validResult,
   handleValChange,
-  handleRulesValid,
 } = props;
 const { modelValue, checkedIcon, controlMode } = toRefs(props);
 
@@ -77,7 +73,7 @@ const errorMsg = computed(() => {
 const isChecked = isBoolean(formParentValue)
   ? ref(formParentValue)
   : parentValue
-  ? computed(() => parentValue?.value?.includes(value))
+  ? computed(() => parentValue?.value)
   : computed(() => modelValue.value);
 
 const classComputed = computed(() => {
