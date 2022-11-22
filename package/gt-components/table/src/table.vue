@@ -105,7 +105,7 @@ const dataWithStatus = ref([
     ...props.data.map((dItem) => {
         return {
             ...dItem,
-            checked: false,
+            gtTableRowChecked: false,
         };
     }),
 ]);
@@ -120,7 +120,7 @@ const checkWidthHeight = () => {
     let height = parseInt(props.height) - 40;
     if (rowsHeight && height) {
         isOverflowY.value = rowsHeight > height ? true : false;
-        console.log('isOverflowY.value', isOverflowY.value);
+        // console.log('isOverflowY.value', isOverflowY.value);
     }
 };
 
@@ -131,7 +131,7 @@ watch(
             ...props.data.map((dItem) => {
                 return {
                     ...dItem,
-                    checked: false,
+                    gtTableRowChecked: false,
                 };
             }),
         ];
@@ -143,15 +143,15 @@ watch(
     }
 );
 
-watch(
-    () => dataWithStatus.value,
-    (newValue, oldValue) => {
-        emit('update:data', newValue.value);
-    },
-    {
-        deep: true,
-    }
-);
+// watch(
+//     () => dataWithStatus.value,
+//     (newValue, oldValue) => {
+//         emit('update:data', newValue.value);
+//     },
+//     {
+//         deep: true,
+//     }
+// );
 
 watch(
     () => isCheckAll.value,
@@ -159,7 +159,7 @@ watch(
         dataWithStatus.value = dataWithStatus.value.map((dItem) => {
             return {
                 ...dItem,
-                checked: isCheckAll.value,
+                gtTableRowChecked: isCheckAll.value,
             };
         });
     }
@@ -185,7 +185,7 @@ const tableInnerStyleComputed = computed(() => {
 });
 
 const selectionIcon = computed(() => {
-    let len = dataWithStatus.value.map((dataItem) => dataItem.checked).filter((bool) => bool).length;
+    let len = dataWithStatus.value.map((dataItem) => dataItem.gtTableRowChecked).filter((bool) => bool).length;
     if (len === 0 || dataWithStatus.value?.length === 0) {
         return null;
     } else if (len !== dataWithStatus.value?.length) {
@@ -202,7 +202,7 @@ const selectionClick = function () {
             dataWithStatus.value = dataWithStatus.value.map((item) => {
                 return {
                     ...item,
-                    checked: true,
+                    gtTableRowChecked: true,
                 };
             });
             break;
@@ -210,7 +210,7 @@ const selectionClick = function () {
             dataWithStatus.value = dataWithStatus.value.map((item) => {
                 return {
                     ...item,
-                    checked: false,
+                    gtTableRowChecked: false,
                 };
             });
             break;
@@ -242,11 +242,15 @@ const handleColumnSort = (cItem) => {
 const handleRowClick = (row) => {
     if (!props.rowClick) return false;
     // console.log(row)
-    row.checked = !row.checked;
+    row.gtTableRowChecked = !row.gtTableRowChecked;
 };
 
 const getCheckedList = () => {
-    return dataWithStatus.value.filter((dItem) => dItem.checked);
+    return dataWithStatus.value.filter((dItem) => dItem.gtTableRowChecked).map(dItem=>{
+        let obj = {...dItem};
+        delete obj.gtTableRowChecked;
+        return obj;
+    });
 };
 
 defineExpose({
@@ -337,7 +341,7 @@ export default {
                                 v-for="(rItem, rIdx) in dataWithStatus"
                                 class="row"
                                 :key="rIdx"
-                                :class="rItem.checked ? 'row-check' : underline ? 'underline' : ''"
+                                :class="rItem.gtTableRowChecked ? 'row-check' : underline ? 'underline' : ''"
                                 @click="
                                     () => {
                                         handleRowClick(rItem);
@@ -353,8 +357,7 @@ export default {
                                             }
                                         "
                                     >
-                                        <g-checkbox v-if="rItem.checked" v-model="rItem.checked" type="white" />
-                                        <g-checkbox v-if="!rItem.checked" v-model="rItem.checked" type="white" />
+                                        <g-checkbox v-model="rItem.gtTableRowChecked" type="white" />
                                     </div>
                                 </template>
                                 <div
@@ -375,7 +378,7 @@ export default {
                                                 }
                                             "
                                         >
-                                            <g-checkbox v-model="rItem.checked" type="white" />
+                                            <g-checkbox v-model="rItem.gtTableRowChecked" type="white" />
                                         </div>
                                     </template>
                                     <template v-else>
