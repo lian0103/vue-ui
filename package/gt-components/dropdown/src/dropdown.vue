@@ -27,6 +27,7 @@ export default {
     emits: ['update:modelValue'],
     setup(props, { slots, emit }) {
         // console.log(props);
+        // console.log(slots.valueOf())
         const id = uuidv4();
         const rootObj = {
             [id]: shallowRef(),
@@ -38,6 +39,7 @@ export default {
         const errorMsg = computed(() => {
             return props.validResult[props.name]?.message;
         });
+        const slotOption = ref([]);
 
         const handleIsShow = () => {
             if (props.clicked) {
@@ -78,30 +80,67 @@ export default {
         const labelComputed = computed(() => {
             return props.options && props.options.findIndex((item) => item.value === valRef.value) != -1
                 ? props.options.filter((item) => item.value === valRef.value)[0].label
+                : slotOption.value.findIndex((item) => item.value === valRef.value) != -1
+                ? slotOption.value.filter((item) => item.value === valRef.value)[0].label
                 : valRef.value;
         });
 
+        const genNodeTree = (item) => {
+            if (item.type.name === 'GDropdownItem') {
+                slotOption.value.push({
+                    label: item.props.label,
+                    value: item.props.value,
+                });
+            }
+
+            return item.type.name === 'GDropdownItem'
+                ? {
+                      ...item,
+                      props: {
+                          ...item.props,
+                          icon: props.icon,
+                          parentValue: computed(() => valRef.value),
+                          handleChildClick: (val) => {
+                              hasSelect.value = true;
+                              emit('update:modelValue', val);
+                              if (props.handleValChange) {
+                                  props.handleValChange(val, props.name);
+                              }
+                              valRef.value = val;
+                          },
+                      },
+                  }
+                : {
+                      ...item,
+                      children: Array.isArray(item.children)
+                          ? item.children.map((cItem) => genNodeTree(cItem))
+                          : item.children,
+                  };
+        };
+
         const childs = computed(() => {
-            let childArr =
-                props.options?.map((item) => {
-                    return h(GDropdownItem, {
-                        option: item,
-                        label: item.label,
-                        value: item.value,
-                        icon: props.icon,
-                        parentValue: computed(() => valRef.value),
-                        handleChildClick: (val) => {
-                            hasSelect.value = true;
-                            emit('update:modelValue', val);
-                            if (props.handleValChange) {
-                                props.handleValChange(val, props.name);
-                            }
-                            valRef.value = val;
-                        },
-                    });
-                }) || [];
+            let childArr = props.options
+                ? props.options?.map((item) => {
+                      return h(GDropdownItem, {
+                          option: item,
+                          label: item.label,
+                          value: item.value,
+                          icon: props.icon,
+                          parentValue: computed(() => valRef.value),
+                          handleChildClick: (val) => {
+                              hasSelect.value = true;
+                              emit('update:modelValue', val);
+                              if (props.handleValChange) {
+                                  props.handleValChange(val, props.name);
+                              }
+                              valRef.value = val;
+                          },
+                      });
+                  })
+                : slots?.default()?.map((item) => genNodeTree(item)) || [];
             return childArr;
         });
+        // console.log('childs',childs)
 
         const textClassComputed = computed(() => {
             let arr = [];
