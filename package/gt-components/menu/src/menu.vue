@@ -193,7 +193,7 @@ const handleRouteTo = (path, gIdx, cItemUuid, cItem) => {
     instance.appContext.config.globalProperties.$router.push(cItem);
   }
   if (collapsed.value) {
-    handleMenuHtmlEvent();
+    // handleMenuHtmlEvent();
   }
 };
 

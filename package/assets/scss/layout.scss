@@ -156,6 +156,7 @@
         .gt-menu-box {
           padding: 0 10px;
           animation: menuClose 0.5s both;
+          overflow: visible;
           &::after {
             width: 0px;
           }
