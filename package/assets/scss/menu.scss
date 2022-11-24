@@ -94,12 +94,12 @@
     &::after{
       content: '';
       background: transparent;
-      z-index: -1;
-      width: 50px;
+      z-index: 1;
+      width: 25px;
       height: 100%;
       position: absolute;
       top: 0;
-      right: -100%;
+      right: -25px;
     }
   }
 }
