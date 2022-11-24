@@ -11,7 +11,7 @@
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.8px;
-    @apply select-none;
+    @apply select-none relative;
     @apply bg-gray3;
     @apply text-gray1 flex flex-col items-center;
     .menu-text {
@@ -89,6 +89,17 @@
         opacity: 1;
         z-index: 100;
       }
+    }
+
+    &::after{
+      content: '';
+      background: transparent;
+      z-index: -1;
+      width: 50px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: -100%;
     }
   }
 }

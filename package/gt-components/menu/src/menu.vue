@@ -183,6 +183,23 @@ const handleGroupClick = (item, gIdx) => {
   // console.log(info);
 };
 
+const handleMenuGroupMouseenter = (item, gIdx)=>{
+  let { active } = item;
+  if(collapsed.value && !active){
+    info.menuGroupActive = gIdx + 1;
+    info.menuGroupActiveArr = [gIdx + 1];
+    isCollapsedAndHadOpenedOne.value = gIdx + 1;
+  }
+}
+
+const handleMenuGroupMouseleave = (item, gIdx)=>{
+  if(collapsed.value ){
+    info.menuGroupActive = [];
+    info.menuGroupActiveArr = [];
+    isCollapsedAndHadOpenedOne.value = false;
+  }
+}
+
 const handleRouteTo = (path, gIdx, cItemUuid, cItem) => {
   let arr = [...new Set([...info.menuGroupActiveArr, gIdx + 1])];
 
@@ -192,9 +209,6 @@ const handleRouteTo = (path, gIdx, cItemUuid, cItem) => {
   if (path && instance.appContext.config.globalProperties.$router) {
     instance.appContext.config.globalProperties.$router.push(cItem);
   }
-  if (collapsed.value) {
-    // handleMenuHtmlEvent();
-  }
 };
 
 defineExpose({
@@ -203,7 +217,13 @@ defineExpose({
   activePath,
 });
 
-const handleMenuHtmlEvent = () => {
+const handleChildBoxMouseleave = ()=>{
+  if (collapsed.value) {
+    handleMenuClose();
+  }
+}
+
+const handleMenuClose = () => {
   isCollapsedAndHadOpenedOne.value = false;
   info.menuGroupActiveArr = [];
 };
@@ -215,11 +235,11 @@ watch(
     if (val && document.getElementsByTagName("html")[0]) {
       document
         .getElementsByTagName("html")[0]
-        .addEventListener("click", handleMenuHtmlEvent, false);
+        .addEventListener("click", handleMenuClose, false);
     } else {
       document
         .getElementsByTagName("html")[0]
-        ?.removeEventListener("click", handleMenuHtmlEvent);
+        ?.removeEventListener("click", handleMenuClose);
     }
   }
 );
@@ -249,6 +269,7 @@ export default {
       :key="'group' + item.label"
       :class="item.active ? 'active' : ''"
       @click.stop="handleGroupClick(item, index)"
+      @mouseleave="handleMenuGroupMouseleave(item, index)"
     >
       <div
         class="menu-text"
@@ -262,7 +283,7 @@ export default {
             : false,
         }"
       >
-        <div class="left">
+        <div class="left" @mouseenter="handleMenuGroupMouseenter(item, index)" >
           <div class="iconBox" :class="collapsed ? 'collapesed' : ''">
             <g-icon
               v-if="item.icon || collapsed || item.iconClasses"
@@ -320,6 +341,7 @@ export default {
               : 'tp-aniOut-Notran'
           "
           @click.stop="() => {}"
+          @mouseleave="handleChildBoxMouseleave"
         >
           <div v-if="!collapsed" class="line"></div>
           <div
