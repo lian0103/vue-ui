@@ -77,13 +77,13 @@ const handleKeyup = (e) => {
         <g-divider />
 
         <g-title :level="2" class="mb-3">icon left </g-title>
-        <g-input v-model="inputs.input0" size="sm" icon="search" iconPosition="left" green />
+        <g-input v-model="inputs.input0" size="sm" iconClasses="fas fa-search" iconPosition="left" green />
 
         <g-divider />
 
         <g-title :level="2" class="mb-3">icon right </g-title>
         <div class="fit">
-            <g-input v-model="inputs.input0" icon="search" />
+            <g-input v-model="inputs.input0" iconClasses="fas fa-search" />
         </div>
 
         <g-divider />

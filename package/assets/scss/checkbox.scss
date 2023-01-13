@@ -24,11 +24,20 @@
     width: 10px;
     height: 10px;
     transform: scale(1.5) translateX(2px);
-    @apply rounded-sm;
+    @apply rounded-sm overflow-hidden;
     @apply border border-solid;
     border-color: var(--border-color);
     background-color: var(--bg-color);
     @apply transition-all duration-300;
+
+    svg{
+      width: 8px !important;
+      @apply text-white;
+      position: relative;
+      bottom: 7px;
+      left: 1px;
+
+    }
   }
 
   .checked {
@@ -44,7 +53,7 @@
       top: 0px;
     }
     &.disabled{
-      .gt-icon {
+      svg {
         @apply text-gray0;
       }
     }

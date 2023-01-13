@@ -1,0 +1,73 @@
+.gt-msgBox {
+  width: 500px;
+  overflow: hidden;
+  @apply flex flex-col fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+.gt-msg {
+  width: 100%;
+  margin: 10px 0;
+  padding: 16px 30px;
+  line-height: 23px;
+  border: 2px solid;
+  letter-spacing: 0.8px;
+  border-radius: 8px;
+  opacity: 0.3;
+
+  &.info {
+    border-color: #bac7e2;
+    background-color: #f6f7f9;
+    color: #55585e;
+  }
+  &.warning {
+    border-color: #ffedc3;
+    background-color: #fefaf1;
+    color: #55585e;
+  }
+  &.error {
+    border-color: #ffeae8;
+    background-color: #fef6f6;
+    color: #55585e;
+  }
+
+  .title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #303236;
+    margin-bottom: 5px;
+  }
+}
+
+.aniIn {
+  animation: fadeInDown 300ms ease-out forwards;
+}
+
+.aniOut {
+  animation: fadeOutUp 300ms ease-out forwards;
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

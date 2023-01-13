@@ -1,0 +1,19 @@
+.gt-collapse-card-section {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  .gt-collapse-card {
+    border-radius: 0px;
+  }
+
+  .gt-collapse-card {
+    @apply border-t border-solid border-color3;
+    margin: 1px 0;
+  }
+  .gt-collapse-card:nth-child(n + 1) {
+    margin-top: 4px;
+  }
+  .gt-collapse-card:last-child {
+    @apply border-b border-solid border-color3;
+  }
+}

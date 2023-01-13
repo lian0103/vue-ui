@@ -1,0 +1,239 @@
+.gt-wrapper {
+  z-index: 1;
+  overflow: hidden;
+  @apply grid h-screen bg-gray3;
+  transition: 0.4s width ease-in-out;
+  width: inherit;
+  grid-template-columns: 100px 190px 1fr;
+  grid-auto-rows: 80px 1fr;
+
+  .gt-headline-header {
+    @apply col-start-1 col-end-4 row-start-1 row-end-2;
+    @apply flex;
+    .gt-headline {
+      @apply text-main font-bold text-lg leading-6 flex justify-center;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      --tw-text-opacity: 1;
+      letter-spacing: 0.9px;
+      color: rgb(50 160 61 / var(--tw-text-opacity));
+      -webkit-animation: headlineOpen 0.5s both;
+      animation: headlineOpen 0.5s both;
+      height: 80px;
+      @apply relative;
+
+      .gt-icon {
+        @apply absolute;
+        top: 30px;
+        left: 51px;
+        cursor: pointer;
+      }
+      .head-text {
+        position: absolute;
+        top: 30px;
+        left: 82px;
+        transition: all 0.4s ease-in-out;
+        width: fit-content;
+        white-space: nowrap;
+        opacity: 1;
+        z-index: 1;
+      }
+    }
+
+    .gt-header {
+      flex-grow: 2;
+      @apply flex justify-between items-center;
+      @apply relative;
+      padding-left: 10px;
+      .title {
+        @apply flex;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .gt-sidebar-content {
+    @apply col-start-1 col-end-4 row-start-2 row-end-3;
+    @apply flex;
+    .gt-sidebar {
+      overflow: visible;
+      animation: sidebarOpen 0.5s both;
+      transition: 0.4s width ease-in-out;
+      z-index: 100;
+      @apply flex flex-col;
+      .gt-menu-box {
+        @apply grid;
+        align-content: space-between;
+        animation: menuOpen 0.5s both;
+        margin: auto;
+        flex-grow: 2;
+        @apply relative;
+        height: calc(100vh - 80px);
+        @apply overflow-y-scroll;
+        &::-webkit-scrollbar {
+          width: 0px !important;
+          height: 0px !important;
+        }
+
+        .gt-menus {
+          transition: left 0.4s ease-in-out;
+          position: relative;
+          top: 0px;
+          left: 73px;
+        }
+      }
+
+      .gt-bottomLogo {
+        @apply relative;
+        height: 220px;
+        display: grid;
+        align-content: center;
+        > div {
+          @apply relative;
+        }
+        img {
+          &:nth-child(1) {
+            transition: left 0.4s ease-in-out;
+            @apply absolute;
+            left: 74px;
+            top: 0px;
+          }
+          &:nth-child(2) {
+            transition: left 0.4s ease-in-out;
+            @apply absolute;
+            top: 4.72px;
+            left: 111.44px;
+          }
+        }
+      }
+    }
+
+    .gt-content-wrapper {
+      display: flex;
+      flex-grow: 2;
+      flex-direction: column;
+      transition: 0.4s width ease-in-out;
+    }
+
+    .gt-content {
+      padding-left: 10px;
+      padding-right: 80px;
+      @apply relative overflow-y-scroll;
+      height: calc(100vh - 80px);
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: #d9d9d9;
+        border-radius: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #aaaaaa;
+        &:hover {
+          background-color: #666666;
+        }
+      }
+    }
+  }
+}
+
+.gt-wrapper {
+  &.collapsed {
+    .gt-headline-header {
+      .gt-headline {
+        animation: headlineClose 0.5s both;
+        .head-text {
+          width: 0;
+          opacity: 0;
+          z-index: -1;
+        }
+      }
+    }
+
+    .gt-sidebar-content {
+      .gt-sidebar {
+        animation: sidebarClose 0.5s both;
+        .gt-menu-box {
+          padding: 0 10px;
+          animation: menuClose 0.5s both;
+          &::after {
+            width: 0px;
+          }
+          .gt-menus {
+            position: relative;
+            left: 40px;
+          }
+        }
+        .gt-bottomLogo {
+          @apply relative;
+          img {
+            &:nth-child(1) {
+              top: 0px;
+              left: 43px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes sidebarOpen {
+  0% {
+    width: 100px;
+    margin-right: 60px;
+  }
+  100% {
+    width: 280px;
+    margin-right: 0px;
+  }
+}
+@keyframes sidebarClose {
+  0% {
+    width: 280px;
+    margin-right: 0px;
+  }
+  100% {
+    width: 100px;
+    margin-right: 60px;
+  }
+}
+
+@keyframes menuOpen {
+  0% {
+    width: 100px;
+  }
+  100% {
+    width: 280px;
+  }
+}
+@keyframes menuClose {
+  0% {
+    width: 280px;
+  }
+  100% {
+    width: 100px;
+  }
+}
+
+@keyframes headlineOpen {
+  0% {
+    width: 100px;
+    margin-right: 60px;
+  }
+  100% {
+    width: 280px;
+    margin-right: 0px;
+  }
+}
+
+@keyframes headlineClose {
+  0% {
+    width: 280px;
+    margin-right: 0px;
+  }
+  100% {
+    width: 100px;
+    margin-right: 60px;
+  }
+}

@@ -1,0 +1,14 @@
+.gt-filter-chips {
+  width: fit-content;
+  @apply bg-white border border-solid border-gray0 text-gray1 cursor-pointer select-none;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.7px;
+  border-radius: 24px;
+  margin: 0 5px;
+  &.active {
+    @apply bg-color1 border-main text-main;
+  }
+}

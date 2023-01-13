@@ -1,0 +1,15 @@
+.gt-avatar {
+  @apply flex justify-center items-center rounded-full;
+  @apply bg-cover bg-no-repeat ;
+  @apply ring-color3 ring-2;
+  @apply cursor-pointer;
+
+  &.no-bg-img{
+    @apply bg-white;
+  }
+
+  &.size-md {
+    width: 48px;
+    height: 48px;
+  }
+}

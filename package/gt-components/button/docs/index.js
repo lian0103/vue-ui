@@ -9,7 +9,6 @@ module.exports = {
 | pill | 膠囊型 | Boolean | | |
 | flat | 文字型 | Boolean | | |
 | noBorder | 無框型 | Boolean | | |
-| icon | 圖示 | String | 參照icon項目 | |
 | iconPosition | 圖示位置 | String | left、right | left |
 | isLoading | 載入中 | Boolean | | |
 | iconClasses | 自定義icon樣式 | String | | |

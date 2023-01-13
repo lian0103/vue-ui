@@ -42,128 +42,106 @@ const toggleImg = () => {
   \`\`\`  `,
     'button': ` \`\`\` html 
 <template>
-  <div>
-    <g-title :level="1" class="mb-3">按鈕</g-title>
+    <div>
+        <g-title :level="1" class="mb-3">按鈕</g-title>
 
-    <div class="mb-3 px-2 w-full">
-      <g-title :level="2" class="mb-3"
-        >自定義icon按鈕 ex: font-awesome v5.15.4 (fas fa-user)</g-title
-      >
-      <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
-      <g-divider />
-      <g-title :level="2" class="mb-3">loading</g-title>
-      <div class="flex justify-between mb-3">
-        <g-button pill icon="search" :isLoading="true">按鈕</g-button>
-        <g-button pill icon="search" :isLoading="true" type="yellow"
-          >按鈕</g-button
-        >
-        <g-button pill icon="search" :isLoading="true" type="red"
-          >按鈕</g-button
-        >
-      </div>
-      <g-divider />
-      <g-title :level="2" class="mb-3">icon left</g-title>
-      <div class="flex justify-between mb-3">
-        <g-button pill icon="search">按鈕</g-button>
-        <g-button flat icon="search">按鈕</g-button>
-      </div>
-      <g-divider />
-      <g-title :level="2" class="mb-3">icon right</g-title>
-      <div class="flex justify-between mb-3">
-        <g-button pill icon="search" iconPosition="right">按鈕</g-button>
-        <g-button flat icon="search" iconPosition="right">按鈕</g-button>
-      </div>
+        <div class="mb-3 px-2 w-full">
+            <g-title :level="2" class="mb-3">自定義icon按鈕 ex: font-awesome v5.15.4 (fas fa-user)</g-title>
+            <g-button pill iconClasses="fas fa-user iconWidth">按鈕</g-button>
+            <g-divider />
+            <g-title :level="2" class="mb-3">loading</g-title>
+            <div class="flex justify-between mb-3">
+                <g-button pill iconClasses="fas fa-search" :isLoading="true">按鈕</g-button>
+                <g-button pill iconClasses="fas fa-search" :isLoading="true" type="yellow">按鈕</g-button>
+                <g-button pill iconClasses="fas fa-search" :isLoading="true" type="red">按鈕</g-button>
+            </div>
+            <g-divider />
+            <g-title :level="2" class="mb-3">icon left</g-title>
+            <div class="flex justify-between mb-3">
+                <g-button pill iconClasses="fas fa-search">按鈕</g-button>
+                <g-button flat iconClasses="fas fa-search">按鈕</g-button>
+            </div>
+            <g-divider />
+            <g-title :level="2" class="mb-3">icon right</g-title>
+            <div class="flex justify-between mb-3">
+                <g-button pill iconClasses="fas fa-search" iconPosition="right">按鈕</g-button>
+                <g-button flat iconClasses="fas fa-search" iconPosition="right">按鈕</g-button>
+            </div>
 
-      <g-divider />
-      <g-title :level="2" class="mb-3">width 200</g-title>
-      <g-button pill :width="200">按鈕</g-button>
-      <g-divider />
+            <g-divider />
+            <g-title :level="2" class="mb-3">width 200</g-title>
+            <g-button pill :width="200">按鈕</g-button>
+            <g-divider />
 
-      <g-title :level="2" class="mb-3">PILL</g-title>
-      <div class="flex justify-between mb-3">
-        <g-button pill>按鈕</g-button>
-        <g-button pill type="green">按鈕</g-button>
-        <g-button pill type="yellow">按鈕</g-button>
-        <g-button pill type="red">按鈕</g-button>
-        <g-button pill type="white">按鈕</g-button>
-      </div>
-      <g-divider />
-      <g-title :level="2" class="mb-3">FLAT</g-title>
+            <g-title :level="2" class="mb-3">PILL</g-title>
+            <div class="flex justify-between mb-3">
+                <g-button pill>按鈕</g-button>
+                <g-button pill type="green">按鈕</g-button>
+                <g-button pill type="yellow">按鈕</g-button>
+                <g-button pill type="red">按鈕</g-button>
+                <g-button pill type="white">按鈕</g-button>
+            </div>
+            <g-divider />
+            <g-title :level="2" class="mb-3">FLAT</g-title>
 
-      <div class="flex justify-between mb-3">
-        <g-button flat>按鈕</g-button>
-        <g-button flat type="green">按鈕</g-button>
-        <g-button flat type="yellow">按鈕</g-button>
-        <g-button flat type="red">按鈕</g-button>
-        <g-button flat type="white">按鈕</g-button>
-      </div>
-      <g-divider />
-      <g-title :level="2" class="mb-3">FLAT - no hover</g-title>
+            <div class="flex justify-between mb-3">
+                <g-button flat>按鈕</g-button>
+                <g-button flat type="green">按鈕</g-button>
+                <g-button flat type="yellow">按鈕</g-button>
+                <g-button flat type="red">按鈕</g-button>
+                <g-button flat type="white">按鈕</g-button>
+            </div>
+            <g-divider />
+            <g-title :level="2" class="mb-3">FLAT - no hover</g-title>
 
-      <div class="flex justify-between mb-3">
-        <g-button flat :flatHover="false">按鈕</g-button>
-        <g-button flat type="green" :flatHover="false">按鈕</g-button>
-        <g-button flat type="yellow" :flatHover="false">按鈕</g-button>
-        <g-button flat type="red" :flatHover="false">按鈕</g-button>
-        <g-button flat type="white" :flatHover="false">按鈕</g-button>
-      </div>
-      <g-divider />
-      <g-title :level="2" class="mb-3">FLAT with icon</g-title>
+            <div class="flex justify-between mb-3">
+                <g-button flat :flatHover="false">按鈕</g-button>
+                <g-button flat type="green" :flatHover="false">按鈕</g-button>
+                <g-button flat type="yellow" :flatHover="false">按鈕</g-button>
+                <g-button flat type="red" :flatHover="false">按鈕</g-button>
+                <g-button flat type="white" :flatHover="false">按鈕</g-button>
+            </div>
+            <g-divider />
+            <g-title :level="2" class="mb-3">FLAT with icon</g-title>
 
-      <div class="flex justify-between mb-3">
-        <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
-        <g-button flat type="green"
-          ><g-icon name="chevron-left" />上一頁</g-button
-        >
-        <g-button flat type="yellow"
-          ><g-icon name="chevron-left" />上一頁</g-button
-        >
-        <g-button flat type="red"
-          ><g-icon name="chevron-left" />上一頁</g-button
-        >
-        <g-button flat type="white"
-          ><g-icon name="chevron-left" />上一頁</g-button
-        >
-      </div>
-      <div class="flex justify-between mb-3">
-        <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
-        <g-button flat type="green"
-          ><g-icon name="chevron-right" />下一頁</g-button
-        >
-        <g-button flat type="yellow"
-          ><g-icon name="chevron-right" />下一頁</g-button
-        >
-        <g-button flat type="red"
-          ><g-icon name="chevron-right" />下一頁</g-button
-        >
-        <g-button flat type="white"
-          ><g-icon name="chevron-right" />下一頁</g-button
-        >
-      </div>
+            <div class="flex justify-between mb-3">
+                <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
+                <g-button flat type="green"><g-icon name="chevron-left" />上一頁</g-button>
+                <g-button flat type="yellow"><g-icon name="chevron-left" />上一頁</g-button>
+                <g-button flat type="red"><g-icon name="chevron-left" />上一頁</g-button>
+                <g-button flat type="white"><g-icon name="chevron-left" />上一頁</g-button>
+            </div>
+            <div class="flex justify-between mb-3">
+                <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
+                <g-button flat type="green"><g-icon name="chevron-right" />下一頁</g-button>
+                <g-button flat type="yellow"><g-icon name="chevron-right" />下一頁</g-button>
+                <g-button flat type="red"><g-icon name="chevron-right" />下一頁</g-button>
+                <g-button flat type="white"><g-icon name="chevron-right" />下一頁</g-button>
+            </div>
+        </div>
+
+        <g-divider />
+        <g-title :level="2" class="mb-3">ROUND</g-title>
+        <div class="flex justify-between">
+            <g-button round>按鈕</g-button>
+            <g-button round type="green">按鈕</g-button>
+            <g-button round type="yellow">按鈕</g-button>
+            <g-button round type="red">按鈕</g-button>
+            <g-button round type="black">按鈕</g-button>
+            <g-button round type="white">按鈕</g-button>
+        </div>
+        <g-divider />
+        <g-title :level="2" class="mb-3">ROUND-ICON</g-title>
+        <div class="w-full flex justify-start mb-3 p-4">
+            <g-button round type="black" icon="file" class="mr-4" iconNarrowPadding />
+        </div>
     </div>
-
-    <g-divider />
-    <g-title :level="2" class="mb-3">ROUND</g-title>
-    <div class="flex justify-between">
-      <g-button round>按鈕</g-button>
-      <g-button round type="green">按鈕</g-button>
-      <g-button round type="yellow">按鈕</g-button>
-      <g-button round type="red">按鈕</g-button>
-      <g-button round type="black">按鈕</g-button>
-      <g-button round type="white">按鈕</g-button>
-    </div>
-    <g-divider />
-    <g-title :level="2" class="mb-3">ROUND-ICON</g-title>
-    <div class="w-full flex justify-start mb-3 p-4">
-      <g-button round type="black" icon="file" class="mr-4" iconNarrowPadding />
-    </div>
-  </div>
 </template>
 
 <style lang="scss">
 .iconWidth {
-  width: 12px !important;
-  margin-right: 4px;
+    width: 12px !important;
+    margin-right: 4px;
 }
 </style>
 >
@@ -880,91 +858,35 @@ const handleSubmit = async (e) => {
     'icon': ` \`\`\` html 
 <script setup>
 import { ref } from 'vue';
-const icons = [
-  'up',
-  'arrow-down',
-  'arrow-left',
-  'arrows-rotate',
-  'calendar',
-  'check',
-  'chevron-down',
-  'chevron-left',
-  'chevron-right',
-  'chevron-up',
-  'circle',
-  'down',
-  'download',
-  'ellipsis',
-  'export',
-  'import',
-  'truck',
-  'google-circles-extended',
-  'plus',
-  'search',
-  'sequence',
-  'trash',
-  'x',
-  'distribute',
-  'home',
-  'lock',
-  'setting',
-  'store',
-  'tool',
-  'user',
-  'menu',
-  'file',
-  'information'
-];
 
 const customIconClasses = '寫法: <g-icon classes="fas fa-vote-yea" />。渲染結果:<i class="fas fa-vote-yea"></i>';
 
-const classArr = ['fas fa-vote-yea', 'fas fa-user' , 'far fa-file-code'];
+const classArr = ['fas fa-vote-yea', 'fas fa-user', 'far fa-file-code'];
 const classRef = ref(classArr[0]);
 
 const handleIconClassChange = () => {
-  let index = classArr.findIndex((item) => item == classRef.value);
-  // console.log(index);
-  classRef.value =
-    index + 1 <= classArr.length - 1 ? classArr[index + 1] : classArr[0];
+    let index = classArr.findIndex((item) => item == classRef.value);
+    // console.log(index);
+    classRef.value = index + 1 <= classArr.length - 1 ? classArr[index + 1] : classArr[0];
 };
 </script>
 
 <template>
-  <g-title :level="3" class="mb-3 w-full">sm:14px;md:24px;lg:36px;</g-title>
-  <div class="mb-3 px-2 w-full md:w-3/4 flex flex-wrap justify-between">
-    <span
-      class="flex justify-start mb-2 w-1/2"
-      v-for="(item, idx) in icons"
-      :key="item"
-    >
-      <div class="flex justify-center items-center leading-4">
-        <template v-if="idx % 2 == 0">
-          <g-icon :name="item" class="text-purple-600 mr-2" size="sm" />
-          <g-icon :name="item" class="text-purple-600 mr-2" size="md" />
-          <g-icon :name="item" class="text-purple-600 mr-2" size="lg" />
-        </template>
-        <template v-else>
-          <g-icon :name="item" class="text-blue-600" size="sm" />
-          <g-icon :name="item" class="text-blue-600" size="md" />
-          <g-icon :name="item" class="text-blue-600" size="lg" />
-        </template>
-        <span class="text-gray-600 leading-10">
-          {{ '<g-icon name="item}" />'}}
-        </span>
-      </div>
-    </span>
-  </div>
+    <g-title :level="2" class="mt-3 w-full">classes (fontawesome v5)</g-title>
+    <a class="text-purple-400" href="https://fontawesome.com/v5/search" target="_blank"> icon 搜尋</a>
 
-  <g-title :level="2" class="mt-3 w-full">自定義classes</g-title>
+    <div class="flex">
+        <g-icon class="text-purple-600" classes="fas fa-comment-dots" />
+        <g-icon class="text-purple-600" classes="fas fa-socks" />
+    </div>
 
-  <g-button @click="handleIconClassChange" :width="100" class="mt-3"
-    >資料更換</g-button
-  >
-  <div class="my-2">:classes = {{ classRef }}</div>
-  <div class="my-2">
-    <g-icon :classes="classRef" name="name" />
-  </div>
-  <div class="text-red-600 my-2"> {{ customIconClasses }} </div>
+
+    <g-button @click="handleIconClassChange" :width="100" class="mt-3">資料更換</g-button>
+    <div class="my-2">:classes = {{ classRef }}</div>
+    <div class="my-2">
+        <g-icon :classes="classRef" />
+    </div>
+    <div class="text-red-600 my-2">{{ customIconClasses }}</div>
 </template>
   \`\`\`  `,
     'img-upload': ` \`\`\` html 
@@ -1058,13 +980,13 @@ const handleKeyup = (e) => {
         <g-divider />
 
         <g-title :level="2" class="mb-3">icon left </g-title>
-        <g-input v-model="inputs.input0" size="sm" icon="search" iconPosition="left" green />
+        <g-input v-model="inputs.input0" size="sm" iconClasses="fas fa-search" iconPosition="left" green />
 
         <g-divider />
 
         <g-title :level="2" class="mb-3">icon right </g-title>
         <div class="fit">
-            <g-input v-model="inputs.input0" icon="search" />
+            <g-input v-model="inputs.input0" iconClasses="fas fa-search" />
         </div>
 
         <g-divider />

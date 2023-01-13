@@ -1,0 +1,47 @@
+.gt-tree-wrapper {
+  @apply text-gray1;
+  width: inherit;
+  margin: 0;
+  padding: 0;
+
+  .box-green {
+    --bg-color: #fff;
+    --border-color: #aaa;
+  }
+
+  ul {
+    position: relative;
+    list-style-type: none;
+  }
+  .gt-tree-item {
+    .collasped {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+  }
+  .gt-tree-item {
+    &.current {
+      @apply bg-color4;
+    }
+  }
+
+  .item-row {
+    @apply flex justify-start items-center;
+    height: 36px;
+    .gt-icon-wrapper {
+      transition: all 0.3s ease-in-out;
+    }
+    .gt-icon {
+      cursor: pointer;
+    }
+    .label {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.7px;
+      padding-left: 23px;
+    }
+  }
+}

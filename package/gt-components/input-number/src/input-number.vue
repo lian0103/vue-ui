@@ -71,7 +71,7 @@ export default {
         }
       "
     >
-      <g-icon name="minus" />
+      <g-icon classes="fas fa-minus" />
     </div>
 
     <div class="number">{{ modelValue }}</div>
@@ -85,7 +85,7 @@ export default {
         }
       "
     >
-      <g-icon name="plus" />
+      <g-icon classes="fas fa-plus" />
     </div>
   </div>
 </template>

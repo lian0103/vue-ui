@@ -1,0 +1,233 @@
+@font-face {
+	font-family: "gt.icon.font";
+	src: url('../fonts/greattree/icon/gt.icon.font.eot');
+	src: url('../fonts/greattree/icon/gt.icon.font.eot?#iefix') format('eot'),
+		url('../fonts/greattree/icon/gt.icon.font.woff2') format('woff2'),
+		url('../fonts/greattree/icon/gt.icon.font.woff') format('woff'),
+		url('../fonts/greattree/icon/gt.icon.font.ttf') format('truetype'),
+}
+
+.gt-icon {
+	display: flex;
+}
+
+.gt-icon-fix::before{
+	transform: translateX(20%) translateY(30%) !important;
+}
+
+.gt-icon:before {
+	font-family: "gt.icon.font";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.gt-icon-arrow-down:before {
+	content: "\E001";
+}
+
+.gt-icon-arrow-left:before {
+	content: "\E002";
+}
+
+.gt-icon-arrows-rotate:before {
+	content: "\E003";
+}
+
+.gt-icon-calendar:before {
+	content: "\E004";
+}
+
+.gt-icon-check:before {
+	content: "\E005";
+}
+
+.gt-icon-chevron-down:before {
+	content: "\E006";
+}
+
+.gt-icon-chevron-left-lg:before {
+	content: "\E007";
+}
+
+.gt-icon-chevron-left:before {
+	content: "\E008";
+}
+
+.gt-icon-chevron-right-lg:before {
+	content: "\E009";
+}
+
+.gt-icon-chevron-right:before {
+	content: "\E00A";
+}
+
+.gt-icon-chevron-up:before {
+	content: "\E00B";
+}
+
+.gt-icon-circle:before {
+	content: "\E00C";
+}
+
+.gt-icon-clock:before {
+	content: "\E00D";
+}
+
+.gt-icon-compress:before {
+	content: "\E00E";
+}
+
+.gt-icon-distribute:before {
+	content: "\E00F";
+}
+
+.gt-icon-divider:before {
+	content: "\E010";
+}
+
+.gt-icon-down:before {
+	content: "\E011";
+}
+
+.gt-icon-download:before {
+	content: "\E012";
+}
+
+.gt-icon-download_sm:before {
+	content: "\E013";
+}
+
+.gt-icon-edit:before {
+	content: "\E014";
+}
+
+.gt-icon-ellipsis:before {
+	content: "\E015";
+}
+
+.gt-icon-expand:before {
+	content: "\E016";
+}
+
+.gt-icon-export:before {
+	content: "\E017";
+}
+
+.gt-icon-eye-slash:before {
+	content: "\E018";
+}
+
+.gt-icon-eye:before {
+	content: "\E019";
+}
+
+.gt-icon-file:before {
+	content: "\E01A";
+}
+
+.gt-icon-home:before {
+	content: "\E01B";
+}
+
+.gt-icon-import:before {
+	content: "\E01C";
+}
+
+.gt-icon-information:before {
+	content: "\E01D";
+}
+
+.gt-icon-item:before {
+	content: "\E01E";
+}
+
+.gt-icon-language-a:before {
+	content: "\E01F";
+}
+
+.gt-icon-language-zh-tw:before {
+	content: "\E020";
+}
+
+.gt-icon-loading:before {
+	content: "\E021";
+}
+
+.gt-icon-lock:before {
+	content: "\E022";
+}
+
+.gt-icon-menu:before {
+	content: "\E023";
+}
+
+.gt-icon-minus:before {
+	content: "\E024";
+}
+
+.gt-icon-operation:before {
+	content: "\E025";
+}
+
+.gt-icon-plus:before {
+	content: "\E026";
+}
+
+.gt-icon-right:before {
+	content: "\E027";
+}
+
+.gt-icon-search:before {
+	content: "\E028";
+}
+
+.gt-icon-sequence:before {
+	content: "\E029";
+}
+
+.gt-icon-setting:before {
+	content: "\E02A";
+}
+
+.gt-icon-store:before {
+	content: "\E02B";
+}
+
+.gt-icon-text-size:before {
+	content: "\E02C";
+}
+
+.gt-icon-tool:before {
+	content: "\E02D";
+}
+
+.gt-icon-trash:before {
+	content: "\E02E";
+}
+
+.gt-icon-truck:before {
+	content: "\E02F";
+}
+
+.gt-icon-up:before {
+	content: "\E030";
+}
+
+.gt-icon-upload:before {
+	content: "\E031";
+}
+
+.gt-icon-user:before {
+	content: "\E032";
+}
+
+.gt-icon-x:before {
+	content: "\E033";
+}

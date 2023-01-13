@@ -1,0 +1,31 @@
+.gt-sort-label-wrapper {
+  @apply flex justify-start items-center;
+  > span {
+    height: 36px;
+    @apply text-base leading-9 px-3;
+  }
+}
+
+.gt-sort-label {
+  @apply border border-solid border-color3 cursor-pointer relative;
+  width: 112px;
+  height: 36px;
+  padding: 6px 31px 6px 14px;
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  font-weight: 500;
+  .icon {
+    @apply absolute;
+    @apply text-gray1;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &:hover {
+    @apply border-gray2;
+  }
+  &.clicked {
+    @apply text-main;
+  }
+}

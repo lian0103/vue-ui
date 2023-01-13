@@ -1,0 +1,166 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import 'google-fonts.scss';
+
+body {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.gt-relative {
+  @apply relative;
+}
+
+.gt-text-left {
+  @apply text-left;
+}
+
+.gt-text-center {
+  @apply text-center;
+}
+
+.gt-text-right {
+  @apply text-right;
+}
+.gt-cursor-pointer {
+  @apply cursor-pointer;
+}
+
+.overflow-with-x-scroll{
+  @apply overflow-x-scroll;
+}
+
+.overflow-with-hidden{
+  @apply overflow-hidden;
+}
+
+.gt-flex{
+  @apply flex;
+}
+
+.flexImportant {
+  display: flex !important;
+}
+
+.tp-aniIn {
+  animation-name: tpFadeIn;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.tp-aniOut {
+  animation-name: tpFadeOut;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.tp-aniIn-NoTran {
+  animation-name: tpFadeInNoTransform;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.tp-aniOut-Notran {
+  animation-name: tpFadeOutNoTransform;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+@keyframes tpFadeIn {
+  0% {
+    opacity: 0;
+    @apply z-top-10;
+    transform: translate3d(0, -25%, 0);
+  }
+  100% {
+    opacity: 1;
+    @apply z-top-10;
+    transform: none;
+  }
+}
+
+@keyframes tpFadeInNoTransform {
+  0% {
+    opacity: 0;
+    @apply z-top-10;
+  }
+  100% {
+    opacity: 1;
+    @apply z-top-10;
+  }
+}
+
+@keyframes tpFadeOut {
+  0% {
+    opacity: 1;
+    @apply z-top-10;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    z-index: -10;
+    transform: translate3d(0, -25%, 0);
+  }
+}
+
+@keyframes tpFadeOutNoTransform {
+  0% {
+    opacity: 1;
+    @apply z-top-10;
+  }
+  100% {
+    opacity: 0;
+    z-index: -10;
+  }
+}
+
+
+.gt-button-close {
+  padding: 6px;
+  &.gt-btn-white {
+    @apply text-gray2;
+  }
+  &:hover {
+    @apply text-gray1;
+  }
+}
+
+.gt-button-file {
+  padding: 6px !important;
+  &.gt-btn-black {
+    background-color: #f0f0f0 !important;
+  }
+  &:hover {
+    background-color: #d9d9d9 !important;
+  }
+}
+
+.gt-upload-icon {
+  width: 28px;
+  height: 28px;
+  @apply rounded-full bg-gray0 overflow-hidden relative;
+  .pie {
+    @apply absolute left-0 top-0;
+    width: 29px;
+    height: 29px;
+  }
+  .inner {
+    @apply absolute rounded-full bg-gray3;
+    left: 3px;
+    top: 3px;
+    width: 22px;
+    height: 22px;
+  }
+  .svgbox {
+    width: 28px;
+    height: 28px;
+  }
+  svg {
+    width: 10px;
+    height: 12px;
+    @apply relative text-gray1 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}

@@ -1,0 +1,70 @@
+.box-green {
+  --bg-color: #eef5eb;
+  --border-color: #32a03d;
+}
+
+.box-white {
+  --bg-color: #fff;
+  --border-color: #aaa;
+  &.checked {
+    --border-color: #32a03d;
+  }
+}
+
+.gt-checkbox {
+  width: fit-content;
+  min-width: 17px;
+  height: 22px;
+  line-height: 22px;
+  @apply relative block cursor-pointer;
+  input {
+    @apply absolute w-0 h-0 opacity-0 cursor-pointer;
+  }
+
+  .checkmark {
+    width: 17px;
+    height: 17px;
+    @apply absolute left-0 rounded-sm;
+    top: 2px;
+    border-width: 1px;
+    @apply border-solid;
+    border-color: var(--border-color);
+    background-color: var(--bg-color);
+    @apply transition-all duration-300;
+  }
+
+  .checked {
+    @apply bg-main;
+    .gt-icon {
+      @apply text-white;
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      position: relative;
+      left: -2px;
+      top: -3px;
+    }
+  }
+  .disabled {
+    border-width: 1px;
+    @apply border border-solid border-gray0;
+    @apply bg-white;
+    @apply cursor-not-allowed;
+    .icon {
+      @apply text-gray0;
+    }
+  }
+  .label {
+    padding: 0 10px 0 29px;
+    &.label-disabled {
+      @apply cursor-not-allowed text-gray0;
+    }
+  }
+
+  .checkbox-error-msg{
+    @apply absolute left-0.5 -bottom-4 text-danger;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+  }
+}

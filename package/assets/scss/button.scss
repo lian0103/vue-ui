@@ -1,176 +1,182 @@
 .gt-btn-green {
-  --btn-color: #32a03d;
-  --btn-color-hover: #eef5eb;
-  --text-color: #fff;
-  --btn-font-weight: 500;
-  &.gt-btn-round-no-border {
-    --btn-color-hover: #26832f;
-  }
+    --btn-color: #32a03d;
+    --btn-color-hover: #eef5eb;
+    --text-color: #fff;
+    --btn-font-weight: 500;
+    &.gt-btn-round-no-border {
+        --btn-color-hover: #26832f;
+    }
 }
 
 .gt-btn-second {
-  --btn-color: #517bba;
-  --btn-color-hover: #dad9f3;
-  --text-color: #fff;
-  --btn-font-weight: 500;
-  &.gt-btn-round-no-border {
-    --btn-color-hover: #40659f;
-  }
+    --btn-color: #517bba;
+    --btn-color-hover: #dad9f3;
+    --text-color: #fff;
+    --btn-font-weight: 500;
+    &.gt-btn-round-no-border {
+        --btn-color-hover: #40659f;
+    }
 }
 
 .gt-btn-yellow {
-  --btn-color: #faaf1d;
-  --btn-color-hover: #fdedcd;
-  --text-color: #fff;
-  --btn-font-weight: 500;
-  &.gt-btn-round-no-border {
-    --btn-color-hover: #e19e1b;
-  }
+    --btn-color: #faaf1d;
+    --btn-color-hover: #fdedcd;
+    --text-color: #fff;
+    --btn-font-weight: 500;
+    &.gt-btn-round-no-border {
+        --btn-color-hover: #e19e1b;
+    }
 }
 
 .gt-btn-red {
-  --btn-color: #fc806f;
-  --btn-color-hover: #fcd8d8;
-  --text-color: #fff;
-  --btn-font-weight: 500;
-  &.gt-btn-round-no-border {
-    --btn-color-hover: #ec7869;
-  }
+    --btn-color: #fc806f;
+    --btn-color-hover: #fcd8d8;
+    --text-color: #fff;
+    --btn-font-weight: 500;
+    &.gt-btn-round-no-border {
+        --btn-color-hover: #ec7869;
+    }
 }
 
 .gt-btn-black {
-  --btn-color: #55585e;
-  --btn-color-hover: #d9d9d9;
-  --text-color: #55585e;
-  --btn-font-weight: 500;
-  &.gt-btn-round-no-border {
-    --btn-color: #f0f0f0;
-    color: #55585e !important;
-  }
+    --btn-color: #55585e;
+    --btn-color-hover: #d9d9d9;
+    --text-color: #55585e;
+    --btn-font-weight: 500;
+    &.gt-btn-round-no-border {
+        --btn-color: #f0f0f0;
+        color: #55585e !important;
+    }
 }
 
 .gt-btn-white {
-  --btn-color: #55585e;
-  --btn-color-hover: #f0f0f0;
-  --text-color: #55585e;
-  --btn-font-weight: 500;
+    --btn-color: #55585e;
+    --btn-color-hover: #f0f0f0;
+    --text-color: #55585e;
+    --btn-font-weight: 500;
 }
 
 .gt-btn-tag-bule {
-  --btn-color: #4f9ffc;
-  --btn-color-hover: #dad9f3;
-  --text-color: #fff;
-  --btn-font-weight: 400;
-  &.gt-btn-round-no-border {
-    --btn-font-weight: 500;
-    --btn-color-hover: #4f9ffc;
-  }
+    --btn-color: #4f9ffc;
+    --btn-color-hover: #dad9f3;
+    --text-color: #fff;
+    --btn-font-weight: 400;
+    &.gt-btn-round-no-border {
+        --btn-font-weight: 500;
+        --btn-color-hover: #4f9ffc;
+    }
 }
 
 .gt-btn {
-  height: 36px;
-  letter-spacing: 0.7px;
-  color: var(--btn-color);
-  font-weight: --btn-font-weight;
-  @apply flex justify-center items-center;
-  @apply overflow-hidden text-center whitespace-nowrap;
-  @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
+    height: 36px;
+    letter-spacing: 0.7px;
+    color: var(--btn-color);
+    font-weight: --btn-font-weight;
+    @apply flex justify-center items-center;
+    @apply overflow-hidden text-center whitespace-nowrap;
+    @apply relative py-2 px-4 cursor-pointer transition-all duration-300;
 
-  .gt-loading-icon {
-    font-size: 18px;
-    margin-right: 2px;
-  }
+    .gt-loading-icon {
+        font-size: 18px;
+        margin-right: 2px;
+    }
+
+    .gt-icon-wrapper {
+        svg {
+            width: 12px !important;
+        }
+    }
 }
 
 .gt-btn-round {
-  @apply rounded-4  text-white border border-solid border-transparent;
-  background: var(--btn-color);
-  &:hover {
-    background: var(--btn-color-hover);
-    color: var(--btn-color);
-    border: 1px solid var(--btn-color);
-  }
-  &.gt-btn-white {
-    background-color: #fff;
-    color: var(--text-color);
-    @apply shadow-none;
+    @apply rounded-4  text-white border border-solid border-transparent;
+    background: var(--btn-color);
     &:hover {
-      @apply border-transparent;
-      background-color: var(--btn-color-hover);
+        background: var(--btn-color-hover);
+        color: var(--btn-color);
+        border: 1px solid var(--btn-color);
     }
-  }
+    &.gt-btn-white {
+        background-color: #fff;
+        color: var(--text-color);
+        @apply shadow-none;
+        &:hover {
+            @apply border-transparent;
+            background-color: var(--btn-color-hover);
+        }
+    }
 }
 
 .gt-btn-round-no-border {
-  font-weight: 400;
-  @apply rounded-4  text-white;
-  background: var(--btn-color);
-  &:hover {
-    background: var(--btn-color-hover);
-    color: var(--text-color);
-  }
-  &.gt-btn-white {
-    background-color: #fff;
-    color: var(--text-color);
-    @apply shadow-none;
+    font-weight: 400;
+    @apply rounded-4  text-white;
+    background: var(--btn-color);
     &:hover {
-      background-color: var(--btn-color-hover);
+        background: var(--btn-color-hover);
+        color: var(--text-color);
     }
-  }
+    &.gt-btn-white {
+        background-color: #fff;
+        color: var(--text-color);
+        @apply shadow-none;
+        &:hover {
+            background-color: var(--btn-color-hover);
+        }
+    }
 }
 
 .gt-btn-flat {
-  border: none !important;
-  padding: 0 2px;
-  @apply cursor-pointer relative;
-  color: var(--btn-color);
+    border: none !important;
+    padding: 0 2px;
+    @apply cursor-pointer relative;
+    color: var(--btn-color);
 
-  &:hover {
-    .textLine {
-      @apply absolute;
-      width: fit-content;
-      left: 0%;
-      bottom: 0;
-      border-bottom: 1px solid var(--btn-color);
-      animation: textLine 0.3s forwards;
+    &:hover {
+        .textLine {
+            @apply absolute;
+            width: fit-content;
+            left: 0%;
+            bottom: 0;
+            border-bottom: 1px solid var(--btn-color);
+            animation: textLine 0.3s forwards;
+        }
     }
-  }
 }
 .gt-btn-flat.no-hover {
-  font-weight: 400;
-  letter-spacing: 0.8px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
 
-  border: none !important;
-  padding: 0 2px;
-  @apply cursor-pointer relative;
-  color: var(--btn-color);
+    border: none !important;
+    padding: 0 2px;
+    @apply cursor-pointer relative;
+    color: var(--btn-color);
 
-  &:hover {
-    font-weight: 500;
-    .textLine {
-      border-bottom: 1px solid transparent;
+    &:hover {
+        font-weight: 500;
+        .textLine {
+            border-bottom: 1px solid transparent;
+        }
     }
-  }
 }
 
 .gt-btn-pill {
-  @apply bg-white rounded-3xl;
-  border: 1px solid var(--btn-color);
+    @apply bg-white rounded-3xl;
+    border: 1px solid var(--btn-color);
 
-  &:hover {
-    background: var(--btn-color-hover);
-  }
+    &:hover {
+        background: var(--btn-color-hover);
+    }
 }
 
 .gt-icon-narrow-padding {
-  padding: 6px !important;
+    padding: 6px !important;
 }
 
 @keyframes textLine {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 100%;
-  }
+    from {
+        width: 100%;
+    }
+    to {
+        width: 100%;
+    }
 }

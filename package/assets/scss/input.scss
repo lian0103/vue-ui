@@ -1,121 +1,126 @@
 .gt-input-wrapper {
-  @apply relative;
-  @apply flex justify-start items-center;
-  @apply outline-transparent;
-  
-  .gt-input-label {
-    white-space:nowrap;
-    height: 36px;
-    @apply text-sm leading-9 px-3;
-  }
-  .gt-input {
-    @apply w-full text-sm text-gray4;
-    height: 36px;
-    border-radius: 8px;
-    @apply border border-solid border-gray2;
-    @apply bg-color4;
-    padding: 10px 12px 10px 12px;
+    @apply relative;
+    @apply flex justify-start items-center;
+    @apply outline-transparent;
 
-    &.gt-input-white,
-    &.gt-input-transparent {
-      @apply border-color3;
-      &.gt-input-white {
-        @apply bg-white;
-      }
-      &.gt-input-transparent {
-        @apply bg-transparent;
-      }
+    .gt-input-label {
+        white-space: nowrap;
+        height: 36px;
+        @apply text-sm leading-9 px-3;
+    }
+    .gt-input {
+        @apply w-full text-sm text-gray4;
+        height: 36px;
+        border-radius: 8px;
+        @apply border border-solid border-gray2;
+        @apply bg-color4;
+        padding: 10px 12px 10px 12px;
+
+        &.gt-input-white,
+        &.gt-input-transparent {
+            @apply border-color3;
+            &.gt-input-white {
+                @apply bg-white;
+            }
+            &.gt-input-transparent {
+                @apply bg-transparent;
+            }
+        }
+
+        &:focus,
+        &:hover {
+            @apply border-transparent outline-none;
+            box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        &.gt-input-error {
+            @apply border-danger;
+            &:focus,
+            &:hover {
+                box-shadow: none;
+            }
+        }
+
+        &.gt-input-sm {
+            height: 36px;
+            padding: 6.5px 12px 6.5px 12px;
+        }
+
+        &.icon-left {
+            padding: 6.5px 12px 6.5px 38px;
+        }
+
+        &.disabled {
+            @apply border-color3 bg-color2 text-gray0;
+            &:focus,
+            &:hover {
+                @apply border-color3 border-solid;
+                box-shadow: none;
+            }
+        }
     }
 
-    &:focus,
-    &:hover {
-      @apply border-transparent outline-none;
-      box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+    .gt-input-error-msg {
+        @apply absolute left-0.5 text-danger;
+        letter-spacing: 0.6px;
+        font-size: 12px;
+        bottom: -20px;
     }
 
-    &.gt-input-error {
-      @apply border-danger;
-      &:focus,
-      &:hover {
-        box-shadow: none;
-      }
+    .gt-input:focus ~ .clear-icon,
+    &:hover .gt-input ~ .clear-icon {
+        @apply opacity-100;
+    }
+    .gt-icon-wrapper {
+        svg {
+            width: 12px !important;
+        }
     }
 
-    &.gt-input-sm {
-      height: 36px;
-      padding: 6.5px 12px 6.5px 12px;
+    .clear-icon {
+        width: 22px;
+        @apply text-gray0 opacity-0;
+        @apply absolute cursor-pointer transition-all duration-300;
+        right: 10px;
+        font-size: 22px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
-    &.icon-left {
-      padding: 6.5px 12px 6.5px 38px;
+    .gt-input-icon-left {
+        width: 22px;
+        @apply text-gray0;
+        @apply absolute cursor-pointer transition-all duration-300;
+        left: 12px;
+        font-size: 22px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
-    &.disabled{
-      @apply border-color3 bg-color2 text-gray0;
-      &:focus,
-      &:hover {
-        @apply border-color3 border-solid;
-        box-shadow: none;
-      }
+    .gt-input-icon-right {
+        width: 22px;
+        @apply text-gray0;
+        @apply absolute cursor-pointer transition-all duration-300;
+        right: 10px;
+        font-size: 22px;
+        top: 50%;
+        transform: translateY(-50%);
     }
-  }
 
-  .gt-input-error-msg {
-    @apply absolute left-0.5 text-danger;
-    letter-spacing: 0.6px;
-    font-size: 12px;
-    bottom: -20px;
-  }
-
-  .gt-input:focus ~ .clear-icon,
-  &:hover .gt-input ~ .clear-icon {
-    @apply opacity-100;
-  }
-
-  .clear-icon {
-    width: 22px;
-    @apply text-gray0 opacity-0;
-    @apply absolute cursor-pointer transition-all duration-300;
-    right: 10px;
-    font-size: 22px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .gt-input-icon-left {
-    width: 22px;
-    @apply text-gray0;
-    @apply absolute cursor-pointer transition-all duration-300;
-    left: 12px;
-    font-size: 22px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .gt-input-icon-right {
-    width: 22px;
-    @apply text-gray0;
-    @apply absolute cursor-pointer transition-all duration-300;
-    right: 10px;
-    font-size: 22px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .gt-input-select-mode {
-    width: 100%;
-    overflow: hidden;
-    transition: all 0.4s ease-in-out;
-    @apply bg-gray3 border border-gray5  border-solid rounded-xl;
-    @apply absolute;
-    .gt-input-select-option {
-      width: 98%;
-      padding: 6px 10px;
-      @apply cursor-pointer;
-      margin: 5px auto;
-      &:hover {
-        @apply bg-color1 text-main;
-      }
+    .gt-input-select-mode {
+        width: 100%;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+        @apply bg-gray3 border border-gray5  border-solid rounded-xl;
+        @apply absolute;
+        .gt-input-select-option {
+            width: 98%;
+            padding: 6px 10px;
+            @apply cursor-pointer;
+            margin: 5px auto;
+            &:hover {
+                @apply bg-color1 text-main;
+            }
+        }
     }
-  }
 }

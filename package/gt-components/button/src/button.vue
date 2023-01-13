@@ -112,14 +112,16 @@ export default {
     <g-loading-icon v-if="isLoading" />
     <g-icon
       :name="icon"
+      :style="{'margin-right':'4px'}"
       :classes="iconClasses"
-      v-if="(icon || iconClasses) && iconPosition == 'left' && !isLoading"
+      v-if="iconClasses && iconPosition == 'left' && !isLoading"
     />
     <slot></slot>
     <g-icon
       :name="icon"
+      :style="{'margin-left':'4px'}"
       :classes="iconClasses"
-      v-if="(icon || iconClasses) && iconPosition == 'right' && !isLoading"
+      v-if="iconClasses && iconPosition == 'right' && !isLoading"
     />
     <div class="textLine"></div>
   </button>

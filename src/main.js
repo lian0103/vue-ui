@@ -17,7 +17,7 @@ import '../package-chart/assets/scss/index.scss';
 import GtUIDev from '../package/index';
 import GtUIProd from '../dist/gt-ui.es.min.js';
 import GtUIChartDev from '../package-chart/index';
-import GtUIChartProd from '../dist/chart/gt-ui-chart.es.min.js';
+import GtUIChartProd from '../dist-chart/gt-ui-chart.es.min.js';
 
 const GtUI = import.meta.env.MODE === 'development' ? GtUIDev : GtUIProd;
 const GtUIChart = import.meta.env.MODE === 'development' ? GtUIChartDev : GtUIChartProd;

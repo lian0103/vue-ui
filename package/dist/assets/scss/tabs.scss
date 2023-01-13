@@ -1,0 +1,92 @@
+.gt-tabs-wrapper {
+  width: 100%;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: #d9d9d9;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #aaaaaa;
+    &:hover {
+      background-color: #666666;
+    }
+  }
+
+  &.layoutMode {
+    height: 45px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-right: 70px;
+    .gt-tabs-content {
+      border-bottom-width: 1px;
+    }
+    .tabs {
+      margin-bottom: -1px;
+      border-bottom-width: 0;
+
+      .tab {
+        &:hover {
+          @apply text-gray4 bg-gray3;
+          border-bottom-width: 1px;
+          &.current {
+            @apply text-main;
+          }
+        }
+      }
+    }
+  }
+
+  &.overTabsWrapper {
+    overflow-x: scroll !important;
+    overflow-y: hidden;
+  }
+
+  &.mouse-in {
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 4px;
+      background-color: #d9d9d9;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 0px;
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #666666;
+      }
+    }
+  }
+
+  .tabs {
+    width: fit-content;
+    @apply flex justify-start items-center;
+    height: 32px;
+    .tab {
+      @apply cursor-pointer;
+      width: fit-content;
+      white-space: nowrap;
+      height: 32px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.9px;
+      padding: 0 32px 7px 32px;
+      @apply text-gray4 bg-gray3;
+      @apply border-b border-solid border-color3;
+      &.current {
+        @apply text-main bg-gray3 border-primaryDarker;
+        border-bottom-width: 3px !important;
+      }
+      &:hover {
+        @apply bg-color1 text-main;
+        border-bottom-width: 3px;
+      }
+    }
+  }
+  .content {
+    min-height: 100px;
+  }
+}

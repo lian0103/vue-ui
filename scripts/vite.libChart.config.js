@@ -13,7 +13,7 @@ export default () => {
         name: 'gt-ui',
         fileName: (format) => `gt-ui-chart.${format}.min.js`,
       },
-      outDir: `./dist/chart/`,
+      outDir: `./dist-chart/`,
       minify:false,
       rollupOptions: {
         external: ['vue'],

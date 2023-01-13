@@ -1,4 +1,6 @@
-@import "./_icons.scss";
+.gt-icon{
+  @apply flex justify-center items-center overflow-hidden;
+}
 
 .gt-icon-wrapper {
   width: fit-content;
@@ -6,13 +8,19 @@
 }
 
 .gt-icon-sm {
+  width: 14px;
   font-size: 14px;
+  height: 14px;
 }
 .gt-icon-md {
+  width: 24px;
   font-size: 24px;
+  height: 24px;
 }
 .gt-icon-lg {
+  width: 36px;
   font-size: 36px;
+  height: 36px;
 }
 
 .gt-icon-rotate-45 {

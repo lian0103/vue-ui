@@ -1,0 +1,6 @@
+.gt-dropdown-item{
+    @apply select-none;
+    &.notWithGDropdown{
+        width: fit-content;
+    }
+}

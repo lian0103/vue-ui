@@ -1,8 +1,21 @@
 {
   "name": "gt-ui-dev",
+  "version": "0.1.0-beta-2",
+  "homepage": "https://github.com/lian0103/vue-ui#readme",
   "author": {
     "name": "Jason Lien",
     "email": "k1319900103@gmail.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/gt-ui.es.min.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gt-ui.es.js",
+      "require": "./dist/gt-ui.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite --config ./scripts/vite.dev.config.js",

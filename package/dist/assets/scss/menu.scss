@@ -1,0 +1,131 @@
+.gt-menus {
+  width: 212px;
+  padding: 0px;
+
+  .gt-menu-group {
+    width: 100%;
+    min-height: 36px;
+    padding: 0;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.8px;
+    @apply select-none;
+    @apply bg-gray3;
+    @apply text-gray1 flex flex-col items-center;
+    .menu-text {
+      @apply w-full flex justify-between items-center cursor-pointer;
+
+      .left {
+        @apply flex justify-center items-center;
+        .iconBox {
+          @apply flex justify-center items-center;
+          @apply bg-transparent;
+          transition: background 0.4s ease-in-out;
+          width: 36px;
+          height: 36px;
+          &.collapesed {
+            border-radius: 4px;
+            @apply bg-color2;
+          }
+        }
+      }
+
+      &:hover {
+        @apply text-main;
+        .group-icon {
+          color: #32a03d !important;
+          @apply transition-all duration-500;
+        }
+      }
+      &.active {
+        @apply text-main;
+        .child-icon {
+          color: #32a03d !important;
+        }
+        .left .iconBox.collapesed {
+          @apply bg-soft;
+        }
+      }
+    }
+
+    .childBox {
+      width: 212px;
+      overflow: hidden;
+      transition: 0.4s height ease-in-out;
+      .line {
+        width: 100%;
+        height: 1px;
+        @apply bg-color3;
+        margin: 19px 0;
+      }
+
+      .gt-menu-group-item {
+        padding: 6px 0 6px 30px;
+        letter-spacing: 0.8px;
+        border-radius: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        @apply text-gray1 flex justify-start items-center cursor-pointer;
+        .child-icon {
+          margin-right: 10px;
+        }
+        &:nth-child(n + 3) {
+          margin-top: 8px;
+        }
+        &:hover {
+          @apply bg-color1;
+        }
+        &.active {
+          @apply bg-soft text-main;
+          .child-icon {
+            color: #32a03d !important;
+          }
+        }
+      }
+
+      &.open {
+        opacity: 1;
+        z-index: 100;
+      }
+    }
+  }
+}
+
+.gt-menus {
+  &.collapsed {
+    width: 30px;
+
+    .menu-text {
+      @apply justify-center;
+    }
+    .gt-menu-group {
+      position: relative;
+      .childBox {
+        transition: 0.4s opacity ease-in-out;
+        width: 160px;
+        max-height: 50vh;
+        position: absolute;
+        top: 0px;
+        left: 45px;
+        @apply rounded-4;
+        @apply bg-gray3;
+        .gt-menu-group-item {
+          width: 160px;
+          padding-left: 10px;
+          &:nth-child(n + 2) {
+            margin-top: 8px;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          width: 0px !important;
+        }
+        &.open {
+          overflow-y: scroll;
+        }
+      }
+    }
+  }
+}

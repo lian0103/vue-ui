@@ -78,7 +78,7 @@ const props = defineProps({
     type: Function,
   },
 
-  icon: {
+  iconClasses: {
     type: String,
   },
   iconPosition: {
@@ -122,7 +122,7 @@ const {
   validResult,
   handleRulesValid,
   size,
-  icon,
+  iconClasses,
   iconPosition,
 } = props;
 
@@ -155,7 +155,7 @@ const classComputed = computed(() => {
   if (size === "sm") {
     classStr.push("gt-input-sm");
   }
-  if (icon) {
+  if (iconClasses) {
     classStr.push(`icon-${iconPosition}`);
   }
   if(props.disabled){
@@ -308,13 +308,13 @@ export default {
       <g-icon
         @click.stop="handleClear"
         class="clear-icon"
-        name="x"
-        v-if="clearable && !icon"
+        classes="far fa-times-circle"
+        v-if="clearable && !iconClasses"
       />
       <g-icon
         :class="`gt-input-icon-${iconPosition}`"
-        :name="icon"
-        v-if="icon"
+        :classes="iconClasses"
+        v-if="iconClasses"
       />
       <div class="gt-input-error-msg" v-if="errorMsg">{{ errorMsg }}</div>
       <div

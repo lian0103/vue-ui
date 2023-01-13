@@ -1,0 +1,93 @@
+.gt-dropdown {
+  @apply flex justify-start items-center relative cursor-pointer;
+  .gt-dropdown-span {
+    min-width: 92px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0 34px 0 14px;
+    letter-spacing: 0.7px;
+    @apply bg-white border border-solid border-gray5 rounded-md select-none;
+    @apply w-full leading-9 overflow-hidden;
+    @apply flex justify-start items-center;
+    .pre-icon {
+      margin-left: 5px;
+    }
+    svg {
+      width: 22px;
+    }
+  }
+
+  .gt-dropdown-icon {
+    @apply absolute;
+    top: 7px;
+    right: 0px;
+    svg {
+      width: 22px;
+    }
+  }
+
+  .gt-dropdown-items {
+    @apply hidden w-full -z-10 opacity-0;
+    @apply py-1 px-0 bg-gray3 rounded-10;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+
+    &.tp-aniIn,
+    &.tp-aniOut {
+      @apply flex flex-col z-100 opacity-100;
+      @apply absolute;
+    }
+  }
+}
+.gt-dropdown-hover {
+  .gt-dropdown-items {
+    @apply z-100 opacity-100;
+    @apply flex flex-col;
+    @apply absolute;
+    &::before {
+      content: "";
+      height: 50px;
+      @apply w-full block bg-transparent absolute left-0 -top-10 z-10;
+    }
+    animation: tpFadeIn 0.5s forwards;
+  }
+}
+
+.gt-dropdown-item {
+  @apply w-full flex justify-start items-center cursor-pointer mx-auto;
+  width: calc(100% - 14px);
+  white-space: nowrap;
+  border-radius: 5px;
+  letter-spacing: 0.7px;
+  &:hover {
+    @apply bg-color1 text-main;
+  }
+  svg {
+    width: 22px;
+  }
+  span {
+    @apply overflow-hidden;
+    height: 36px;
+    padding: 5px 15px 5px 0px;
+    .txt {
+      @apply overflow-hidden;
+    }
+  }
+  &.current {
+    @apply text-main;
+  }
+
+  &.curClicked {
+    @apply bg-gray2 text-main;
+  }
+
+  .icon {
+    margin-left: 3px;
+  }
+}
+
+.dropdown-error-msg {
+  @apply absolute left-0.5 -bottom-5 text-danger;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}

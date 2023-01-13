@@ -122,7 +122,7 @@ export default {
         <div :class="classComputed">
             <g-icon
                 class="icon"
-                :name="checkedIcon"
+                classes="fas fa-check"
                 size="md"
                 v-show="(checkedIcon === 'check' && isChecked) || (checkedIcon && checkedIcon !== 'check')"
             />
