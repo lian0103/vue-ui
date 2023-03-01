@@ -10,7 +10,7 @@
   ],
   "main": "./dist/index.js",
   "scripts": {
-    "gen": "npm run gen:google-fonts && npm run gen:css-index && npm run gen:pkg-index && npm run gen:svg2css",
+    "gen": "npm run gen:css-index && npm run gen:pkg-index",
     "gen:component": "node scripts/gen-component.cjs",
     "gen:pkg-index": "node scripts/gen-pkg-index.cjs",
     "gen:css-index": "node scripts/gen-css-index.cjs",
