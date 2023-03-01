@@ -118,6 +118,16 @@ export default {
                   };
         };
 
+        watch(
+            () => props.modelValue,
+            (val) => {
+                if (valRef.value != props.modelValue) {
+                    // console.log('change~~!!', val);
+                    valRef.value = props.modelValue;
+                }
+            }
+        );
+
         const childs = computed(() => {
             let childArr = props.options
                 ? props.options?.map((item) => {

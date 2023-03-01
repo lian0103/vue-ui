@@ -11,6 +11,7 @@ import { computed, shallowRef } from 'vue';
 import gtDocTable from '../gtDocTable';
 import gtDoc from '../gtDoc';
     
+import ADDRESSSELECT from '../../package/gt-components/address-select/docs/demo.vue';
 import AVATAR from '../../package/gt-components/avatar/docs/demo.vue';
 import BUTTON from '../../package/gt-components/button/docs/demo.vue';
 import CHECKBOX from '../../package/gt-components/checkbox/docs/demo.vue';
@@ -60,6 +61,7 @@ const demoRef = shallowRef(null);
 const demoSourceRef = shallowRef(null);
 
 const mapObj = {
+    'address-select' : ADDRESSSELECT ,
     'avatar' : AVATAR ,
     'button' : BUTTON ,
     'checkbox' : CHECKBOX ,
