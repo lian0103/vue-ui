@@ -42,12 +42,12 @@ const menuRoutes = [
         children: [
             {
                 label: 'GT元件使用',
-                icon: 'file',
+                iconClasses: 'far fa-list-alt',
                 path: '/doc',
             },
             {
                 label: 'Graph使用',
-                icon: 'file',
+                iconClasses: 'far fa-list-alt',
                 path: '/graph',
             },
         ],

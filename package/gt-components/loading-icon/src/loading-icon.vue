@@ -5,5 +5,5 @@ export default {
 </script>
 
 <template>
-  <i class="gt-icon gt-icon-loading gt-icon-spin gt-loading-icon"></i>
+  <i class="gt-icon fas fa-spinner gt-icon-spin gt-loading-icon"></i>
 </template>

@@ -120,18 +120,18 @@ const toggleImg = () => {
             <g-title :level="2" class="mb-3">FLAT with icon</g-title>
 
             <div class="flex justify-between mb-3">
-                <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="green"><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="yellow"><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="red"><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="white"><g-icon name="chevron-left" />上一頁</g-button>
+                <g-button flat><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="green"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="yellow"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="red"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="white"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
             </div>
             <div class="flex justify-between mb-3">
-                <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="green"><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="yellow"><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="red"><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="white"><g-icon name="chevron-right" />下一頁</g-button>
+                <g-button flat><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="green"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="yellow"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="red"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="white"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
             </div>
         </div>
 
@@ -954,13 +954,6 @@ const handleKeyup = (e) => {
 
 <template>
     <div class="w-full mx-auto mb-6 relative inputDemoBox">
-        <g-title :level="2" class="mb-3">box</g-title>
-        <div class="testBox">
-            <g-input green v-model="inputs.input0" />
-        </div>
-        <div class="testBox2">
-            <g-input green v-model="inputs.input0" />
-        </div>
 
         <g-title :level="2" class="mb-3">disabled</g-title>
         <g-input green v-model="inputs.input0" :disabled="true" />
@@ -1451,11 +1444,6 @@ const handleUpdatePage = (val) => {
     </div>
 </template>
   \`\`\`  `,
-    'pagination2': ` \`\`\` html 
-<script setup>
-</script>
-<template>
-</template>  \`\`\`  `,
     'radiobox': ` \`\`\` html 
 <script setup>
 import { reactive } from 'vue';
@@ -1493,54 +1481,6 @@ const inputs = reactive({
   </div>
 </template>
   \`\`\`  `,
-    'select': ` \`\`\` html 
-<script setup>
-import { ref } from 'vue';
-const val = ref(0);
-const val2 = ref([0]);
-const val3 = ref(['1']);
-const val4 = ref('123');
-</script>
-<template>
-    <div class="w64box">
-    <g-title :level="2" class="mb-3">bindResult index</g-title>
-    current:{{ val }}
-    <g-select v-model="val">
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-    </g-select>
-    <g-divider />
-    <g-title :level="2" class="mb-3">bindResult index & multiple</g-title>
-    current:{{ val2 }}
-    <g-select v-model="val2" multiple>
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-        <g-option label="789" value="3" />
-    </g-select>
-    <g-divider />
-    <g-title :level="2" class="mb-3">bindResult value & multiple</g-title>
-    current:{{ val3 }}
-    <g-select v-model="val3" multiple bindResult="value">
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-        <g-option label="789" value="3" />
-    </g-select>
-    <g-divider />
-    <g-title :level="2" class="mb-3">bindResult label</g-title>
-    current:{{ val4 }}
-    <g-select v-model="val4" bindResult="label">
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-        <g-option label="789" value="3" />
-    </g-select>
-</div>
-</template>
-
-<style lang="scss">
-.w64box{
-    @apply w-64;
-}
-</style>  \`\`\`  `,
     'sort-label': ` \`\`\` html 
 <script setup>
 import { reactive } from 'vue';
@@ -1879,208 +1819,6 @@ const showLoading = () => {
 </script>
 <template>
 </template>  \`\`\`  `,
-    'table2': ` \`\`\` html 
-<script setup>
-import { reactive, getCurrentInstance, onMounted, ref } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
-
-const instance = getCurrentInstance();
-
-const tableInfo = reactive({
-  columns: [
-    {
-      name: 'id',
-      label: 'ID',
-      width: 180,
-    },
-    {
-      name: 'product',
-      label: '商品名稱',
-      sort: false,
-      handleSortCallback: function () {
-        alert('custom sort callback');
-      },
-      width: 480,
-    },
-    {
-      name: 'price',
-      label: '價格',
-      width: 380,
-      sort: true,
-    },
-    {
-      name: 'storage',
-      label: '庫存',
-      sort: true,
-    },
-    {
-      name: 'tags',
-      width: 620,
-      label: '標籤',
-    },
-    {
-      name: 'btns',
-      width: 200,
-      label: '',
-    },
-  ],
-  data: [
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    {
-      product: 'dddddddddddddddddddddddd',
-      price: 400,
-      storage: 65,
-      id: uuidv4(),
-    },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-  ],
-  filterOtions: {},
-  isLoading: false,
-});
-
-const tableInfo2 = reactive({
-  columns: [
-    {
-      name: 'product',
-      label: '商品名稱',
-      sort: false,
-    },
-    {
-      name: 'price',
-      label: '價格',
-      sort: true,
-    },
-  ],
-  data: [
-    { product: 'aaa', price: 200, id: uuidv4() },
-    { product: 'bbbb', price: 100, id: uuidv4() },
-  ],
-  filterOtions: {},
-  isLoading: false,
-});
-
-const handleRowClick = (row, dialogType) => {
-  // console.log(row);
-  // handleDialog(dialogType);
-  dialogInfo['show' + dialogType] = true;
-};
-const handleTableChecked = () => {
-  let arr = instance.refs.tableRef.getCheckedList();
-  arr = arr.map((obj) => obj.id);
-  instance.appContext.config.globalProperties.handleMessageTrigger({
-    type: 'info',
-    title: '已選擇',
-    msg: 'row ids:arr.join(',')}',
-  });
-};
-
-const dialogInfo = reactive({
-  show1: false,
-  show2: false,
-});
-
-const showLoading = () => {
-  tableInfo.isLoading = true;
-  setTimeout(() => {
-    tableInfo.isLoading = false;
-  }, 3000);
-};
-</script>
-<template>
-  <div class="w-full mx-auto mb-6">
-    <g-title :level="2" class="mb-3">表格</g-title>
-    <g-table
-      :columns="tableInfo2.columns"
-      :data="tableInfo2.data"
-      :isCheckBox="false"
-      :height="350"
-      underline
-    />
-
-    <g-divider />
-
-    <g-title :level="2" class="mb-3">表格</g-title>
-    <g-table
-      :columns="tableInfo2.columns"
-      :data="tableInfo2.data"
-      :width="500"
-    />
-
-    <g-divider />
-
-    <g-title :level="2" class="mb-3">表格</g-title>
-    <g-table
-      ref="tableRef"
-      :columns="tableInfo.columns"
-      :data="tableInfo.data"
-      :height="450"
-      name="products"
-      :isLoading="tableInfo.isLoading"
-    >
-      <template v-slot:tags="{ row }">
-        <div class="flex justify-between">
-          <g-tag type="warning" border label="上架中" />
-          <g-tag type="second" border dot label="可出貨" />
-        </div>
-      </template>
-
-      <template v-slot:btns="{ row }">
-        <div class="flex justify-start">
-          <g-button
-            flat
-            class="mr-4"
-            @click.stop="
-              () => {
-                handleRowClick(row, 1);
-              }
-            "
-            >編輯</g-button
-          >
-          <g-button
-            flat
-            type="red"
-            @click.stop="
-              () => {
-                handleRowClick(row, 2);
-              }
-            "
-            >刪除</g-button
-          >
-        </div>
-      </template>
-    </g-table>
-    <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show1">
-      body~~
-    </g-dialog>
-
-    <g-dialog v-model="dialogInfo.show2" mode="delete"> 確定刪除嗎? </g-dialog>
-    <g-button
-      class="mb-4 mt-4"
-      @click="
-        () => {
-          handleTableChecked();
-        }
-      "
-      >當前選擇顯示</g-button
-    >
-    <g-button
-      class="mb-4 mt-4"
-      @click="
-        () => {
-          showLoading();
-        }
-      "
-      >載入中顯示</g-button
-    >
-  </div>
-  <g-message />
-</template>
-  \`\`\`  `,
     'tabs': ` \`\`\` html 
 <script setup>
 import { ref, getCurrentInstance } from 'vue';

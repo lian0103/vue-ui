@@ -37,14 +37,11 @@ import MESSAGE from '../../package/gt-components/message/docs/demo.vue';
 import MESSAGETOAST from '../../package/gt-components/message-toast/docs/demo.vue';
 import OPTION from '../../package/gt-components/option/docs/demo.vue';
 import PAGINATION from '../../package/gt-components/pagination/docs/demo.vue';
-import PAGINATION2 from '../../package/gt-components/pagination2/docs/demo.vue';
 import RADIOBOX from '../../package/gt-components/radiobox/docs/demo.vue';
-import SELECT from '../../package/gt-components/select/docs/demo.vue';
 import SORTLABEL from '../../package/gt-components/sort-label/docs/demo.vue';
 import SWITCH from '../../package/gt-components/switch/docs/demo.vue';
 import TABLE from '../../package/gt-components/table/docs/demo.vue';
 import TABLECOLUMN from '../../package/gt-components/table-column/docs/demo.vue';
-import TABLE2 from '../../package/gt-components/table2/docs/demo.vue';
 import TABS from '../../package/gt-components/tabs/docs/demo.vue';
 import TAG from '../../package/gt-components/tag/docs/demo.vue';
 import TIMEPICKER from '../../package/gt-components/time-picker/docs/demo.vue';
@@ -87,14 +84,11 @@ const mapObj = {
     'message-toast' : MESSAGETOAST ,
     'option' : OPTION ,
     'pagination' : PAGINATION ,
-    'pagination2' : PAGINATION2 ,
     'radiobox' : RADIOBOX ,
-    'select' : SELECT ,
     'sort-label' : SORTLABEL ,
     'switch' : SWITCH ,
     'table' : TABLE ,
     'table-column' : TABLECOLUMN ,
-    'table2' : TABLE2 ,
     'tabs' : TABS ,
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,

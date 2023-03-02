@@ -37,14 +37,11 @@ import MESSAGE from '../../docs/message/demo.vue';
 import MESSAGETOAST from '../../docs/message-toast/demo.vue';
 import OPTION from '../../docs/option/demo.vue';
 import PAGINATION from '../../docs/pagination/demo.vue';
-import PAGINATION2 from '../../docs/pagination2/demo.vue';
 import RADIOBOX from '../../docs/radiobox/demo.vue';
-import SELECT from '../../docs/select/demo.vue';
 import SORTLABEL from '../../docs/sort-label/demo.vue';
 import SWITCH from '../../docs/switch/demo.vue';
 import TABLE from '../../docs/table/demo.vue';
 import TABLECOLUMN from '../../docs/table-column/demo.vue';
-import TABLE2 from '../../docs/table2/demo.vue';
 import TABS from '../../docs/tabs/demo.vue';
 import TAG from '../../docs/tag/demo.vue';
 import TIMEPICKER from '../../docs/time-picker/demo.vue';
@@ -87,14 +84,11 @@ const mapObj = {
     'message-toast' : MESSAGETOAST ,
     'option' : OPTION ,
     'pagination' : PAGINATION ,
-    'pagination2' : PAGINATION2 ,
     'radiobox' : RADIOBOX ,
-    'select' : SELECT ,
     'sort-label' : SORTLABEL ,
     'switch' : SWITCH ,
     'table' : TABLE ,
     'table-column' : TABLECOLUMN ,
-    'table2' : TABLE2 ,
     'tabs' : TABS ,
     'tag' : TAG ,
     'time-picker' : TIMEPICKER ,

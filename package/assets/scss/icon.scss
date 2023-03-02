@@ -45,7 +45,7 @@
   transform: rotate(315deg);
 }
 
-.gt-icon-spin::before {
+.gt-icon-spin {
   animation: gt-icon-spin 1s infinite linear;
 }
 @keyframes gt-icon-spin {

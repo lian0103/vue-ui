@@ -41,7 +41,7 @@ export default {
     <div class="pie" :style="styleComputed"></div>
     <div class="inner"></div>
     <div class="iconBox">
-      <g-icon name="upload" />
+      <g-icon class="icon-upload" classes="fas fa-arrow-up" />
     </div>
   </div>
 </template>

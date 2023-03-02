@@ -1,101 +1,101 @@
 .gt-dropdown {
-  @apply flex justify-start items-center relative cursor-pointer;
-  width: 100%;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.7px;
-  .gt-dropdown-span {
-    min-width: 92px;
-    height: 36px;
-    padding: 0 24px 0 14px;
+    @apply flex justify-start items-center relative cursor-pointer;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.7px;
+    .gt-dropdown-span {
+        min-width: 92px;
+        height: 36px;
+        padding: 0 24px 0 14px;
 
-    @apply bg-white border border-solid border-gray5 rounded-md select-none;
-    @apply w-full leading-9 overflow-hidden;
-    @apply flex justify-start items-center;
-    .pre-icon {
-      margin-left: 5px;
+        @apply bg-white border border-solid border-gray5 rounded-md select-none;
+        @apply w-full leading-9 overflow-hidden;
+        @apply flex justify-start items-center;
+        .pre-icon {
+            margin-left: 5px;
+        }
+        svg {
+            width: 22px;
+        }
+        .span-text {
+            overflow: hidden;
+            width: 100%;
+            text-overflow: ellipsis;
+        }
     }
-    svg {
-      width: 22px;
-    }
-    .span-text{
-      overflow: hidden;
-      width: 100%;
-      text-overflow: ellipsis;
-    }
-  }
 
-  .gt-dropdown-icon {
-    @apply absolute;
-    top: 0px;
-    right: 0px;
-    height: 36px;
-    line-height: 36px;
-  }
-
-  .gt-dropdown-items {
-    @apply hidden w-full -z-10 opacity-0;
-    @apply py-1 px-0 bg-gray3 rounded-10;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
-
-    &.tp-aniIn,
-    &.tp-aniOut {
-      @apply block z-top opacity-100;
-      @apply absolute;
+    .gt-dropdown-icon {
+        @apply absolute;
+        top: 0px;
+        right: 0px;
+        height: 36px;
+        line-height: 36px;
     }
-  }
+
+    .gt-dropdown-items {
+        @apply hidden w-full -z-10 opacity-0;
+        @apply py-1 px-0 bg-gray3 rounded-10;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+
+        &.tp-aniIn,
+        &.tp-aniOut {
+            @apply block z-top opacity-100;
+            @apply absolute;
+        }
+    }
 }
 .gt-dropdown-hover {
-  .gt-dropdown-items {
-    @apply z-100 opacity-100;
-    @apply flex flex-col;
-    @apply absolute;
-    &::before {
-      content: "";
-      height: 50px;
-      @apply w-full block bg-transparent absolute left-0 -top-10 z-10;
+    .gt-dropdown-items {
+        @apply z-100 opacity-100;
+        @apply flex flex-col;
+        @apply absolute;
+        &::before {
+            content: '';
+            height: 50px;
+            @apply w-full block bg-transparent absolute left-0 -top-10 z-10;
+        }
+        animation: tpFadeIn 0.5s forwards;
     }
-    animation: tpFadeIn 0.5s forwards;
-  }
 }
 
 .gt-dropdown-item {
-  @apply select-none;
-  @apply flex justify-start items-center cursor-pointer mx-auto;
-  width: calc(100% - 14px);
-  white-space: nowrap;
-  border-radius: 5px;
-  letter-spacing: 0.7px;
-  &:hover {
-    @apply bg-color1 text-main;
-  }
-  svg {
-    width: 22px;
-  }
-  > span {
-    overflow: hidden;
-    height: 36px;
-    padding: 5px 0px 5px 0px;
-    .txt {
-      @apply overflow-hidden;
-      text-overflow: ellipsis;
+    @apply select-none;
+    @apply flex justify-start items-center cursor-pointer mx-auto;
+    width: calc(100% - 14px);
+    white-space: nowrap;
+    border-radius: 5px;
+    letter-spacing: 0.7px;
+    &:hover {
+        @apply bg-color1 text-main;
     }
-  }
-  &.current {
-    @apply text-main;
-  }
+    .icon {
+        @apply text-sm px-2;
+    }
+    > span {
+        overflow: hidden;
+        height: 36px;
+        padding: 5px 0px 5px 0px;
+        .txt {
+            @apply overflow-hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    &.current {
+        @apply text-main;
+    }
 
-  &.curClicked {
-    @apply bg-gray2 text-main;
-  }
+    &.curClicked {
+        @apply bg-gray2 text-main;
+    }
 
-  .icon {
-    margin-left: 3px;
-  }
+    .icon {
+        margin-left: 3px;
+    }
 }
 
 .dropdown-error-msg {
-  @apply absolute left-0.5 -bottom-5 text-danger;
-  letter-spacing: 0.6px;
-  white-space: nowrap;
+    @apply absolute left-0.5 -bottom-5 text-danger;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
 }

@@ -137,7 +137,7 @@ export default {
         :class="current == firstPage ? 'disable' : ''"
         @click="handlePrePage"
       >
-        <g-icon name="chevron-left"  />上一頁 
+      <g-icon classes="fas fa-angle-left" />上一頁  
       </div>
 
       <div class="pageNums">
@@ -165,7 +165,7 @@ export default {
         :class="current == lastPage ? 'disable' : ''"
         @click="handleNextPage"
       >
-        下一頁<g-icon name="chevron-right"  />
+        下一頁<g-icon classes="fas fa-angle-right" />
       </div>
     </div>
   </div>

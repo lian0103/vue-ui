@@ -1,19 +1,16 @@
 .gt-timepicker-box {
   @apply relative;
   .gt-icon-calendar {
-    @apply w-6 absolute left-2 text-gray0 cursor-pointer;
+    @apply absolute text-gray0 cursor-pointer;
     font-size: 20px;
-    top: 4.5px;
+    left: 12px;
+    top: 4px;
   }
-  .gt-icon-chevron-left,
-  .gt-icon-chevron-right {
-    @apply w-6 text-gray0 cursor-pointer;
-    font-size: 20px;
-  }
+
   .gt-time-input {
     height: 36px;
     padding: 8px 37px;
-    line-height: 20px;
+    line-height: 19px;
     border-radius: 8px;
     white-space: nowrap;
     @apply cursor-pointer select-none text-left;

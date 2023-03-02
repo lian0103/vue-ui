@@ -75,7 +75,7 @@ const handleClick = () => {
             }
         "
     >
-        <g-icon v-if="icon" class="icon" name="check" />
+        <g-icon v-if="icon" class="icon" classes="fas fa-check" />
         <span :class="isCurrent ? 'text-main' : ''" :style="icon ? {} : { 'padding-left': '14px' }"
             ><div class="txt">{{ label }}</div></span
         >

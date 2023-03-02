@@ -100,7 +100,7 @@ onUpdated(() => {
       }"
     >
       <div class="dialog-head">
-        {{ title }} <g-button-close class="closeIcon" @click="handleClose" />
+        {{ title }}
       </div>
       <div
         class="dialog-body"

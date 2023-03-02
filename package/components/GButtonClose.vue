@@ -5,6 +5,6 @@ import GButton from '../gt-components/button';
 
 <template>
   <g-button round noBorder type="white" class="gt-button-close"
-    ><g-icon name="x" size="md"
+    ><g-icon classes="far fa-times-circle"
   /></g-button>
 </template>

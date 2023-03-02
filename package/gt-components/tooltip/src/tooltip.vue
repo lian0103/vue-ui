@@ -117,7 +117,7 @@ export default {
 
         &.right {
             &::before {
-                left: -13px;
+                left: -11px;
                 top: 5px;
                 transform: rotate(-90deg) translateX(-50%);
             }
@@ -125,7 +125,7 @@ export default {
 
         &.left {
             &::before {
-                right: -13px;
+                right: -11px;
                 top: 11px;
                 transform: rotate(90deg);
             }
@@ -133,7 +133,7 @@ export default {
 
         &.top {
             &::before {
-                bottom: -12px;
+                bottom: -11px;
                 left: 50%;
                 transform: rotate(180deg) translateX(50%);
             }
@@ -141,7 +141,7 @@ export default {
 
         &.bottom {
             &::before {
-                top: -12px;
+                top: -11px;
                 left: 50%;
                 transform: translateX(-50%);
             }

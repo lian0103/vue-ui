@@ -446,8 +446,8 @@ const handleTimePick = () => {
       }}</span>
     </span>
     <g-icon
-      class="icon"
-      name="calendar"
+      class="gt-icon-calendar"
+      classes="fas fa-calendar-alt"
       size="sm"
       @click.stop="isTimePickerShow = !isTimePickerShow"
     />
@@ -460,11 +460,11 @@ const handleTimePick = () => {
     >
       <div class="calender" :class="rangeSelectMode ? 'rangeSelectMode' : ''">
         <span class="month-pre" @click.stop="handleMonthPre">
-          <g-icon name="chevron-left"
-        /></span>
+          <g-icon classes="fas fa-angle-left" />  
+        </span>
         <p class="month-all" @click.stop="handleMonthAll">{{ monthAll }}</p>
         <span class="month-next" @click.stop="handleMonthNext">
-          <g-icon name="chevron-right" />
+          <g-icon classes="fas fa-angle-right" />  
         </span>
 
         <template v-if="!isMonthAllShow">

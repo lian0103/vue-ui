@@ -62,18 +62,18 @@
             <g-title :level="2" class="mb-3">FLAT with icon</g-title>
 
             <div class="flex justify-between mb-3">
-                <g-button flat><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="green"><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="yellow"><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="red"><g-icon name="chevron-left" />上一頁</g-button>
-                <g-button flat type="white"><g-icon name="chevron-left" />上一頁</g-button>
+                <g-button flat><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="green"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="yellow"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="red"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
+                <g-button flat type="white"><g-icon classes="fas fa-angle-left" />上一頁</g-button>
             </div>
             <div class="flex justify-between mb-3">
-                <g-button flat><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="green"><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="yellow"><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="red"><g-icon name="chevron-right" />下一頁</g-button>
-                <g-button flat type="white"><g-icon name="chevron-right" />下一頁</g-button>
+                <g-button flat><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="green"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="yellow"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="red"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
+                <g-button flat type="white"><g-icon classes="fas fa-angle-right" />下一頁</g-button>
             </div>
         </div>
 
