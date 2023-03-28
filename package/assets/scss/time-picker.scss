@@ -1,4 +1,5 @@
 .gt-timepicker-box {
+  width: fit-content;
   @apply relative;
   .gt-icon-calendar {
     @apply absolute text-gray0 cursor-pointer;
