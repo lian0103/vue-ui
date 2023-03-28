@@ -4,7 +4,8 @@ module.exports = {
 ## 屬性
 | 屬性 | 說明 | 類型 | 可選值 | 默認值 |
 | - | - | - |- | -  |
-| data | tree結構資料 |Array[TreeItem] ; <br/> TreeItem:Object{label:String,value:Boolean,children?:Array[TreeItem],clickCallBack?:Function,disabled?:Boolean} |  |  |
+| data | tree結構資料 |Array[TreeItem] ; <br/> TreeItem:Object{label:String,value:Boolean, |  |  |
+|||children?:Array[TreeItem],clickCallBack?:Function,disabled?:Boolean} |||  
 
 `,
 expose: `

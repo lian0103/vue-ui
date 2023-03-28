@@ -69,7 +69,8 @@
         margin: auto;
         flex-grow: 2;
         @apply relative;
-        height: calc(100vh - 80px);
+        height: calc(100vh - 200px);
+        max-height: calc(100% - 120px);
         @apply overflow-y-scroll;
         &::-webkit-scrollbar {
           width: 0px !important;
@@ -86,7 +87,7 @@
 
       .gt-bottomLogo {
         @apply relative;
-        height: 220px;
+        height: 120px;
         display: grid;
         align-content: center;
         > div {

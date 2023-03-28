@@ -129,7 +129,8 @@ export default {
       <div class="gt-sidebar" :class="onlyOneLevel ? 'onlyOneLevel' : ''">
         <div class="gt-menu-box">
           <slot name="sidebar" />
-          <div class="gt-bottomLogo">
+        </div>
+        <div class="gt-bottomLogo">
             <div>
               <img
                 style="width: 28.58px; height: 28.09px"
@@ -144,7 +145,6 @@ export default {
               />
             </div>
           </div>
-        </div>
       </div>
 
       <div
