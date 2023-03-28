@@ -887,7 +887,8 @@ callValid | \u4F7F\u7528form\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C
 ## \u5C6C\u6027
 | \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
 | - | - | - |- | -  |
-| data | tree\u7D50\u69CB\u8CC7\u6599 |Array[TreeItem] ; <br/> TreeItem:Object{label:String,value:Boolean,children?:Array[TreeItem],clickCallBack?:Function,disabled?:Boolean} |  |  |
+| data | tree\u7D50\u69CB\u8CC7\u6599 |Array[TreeItem] ; <br/> TreeItem:Object{label:String,value:Boolean, |  |  |
+|||children?:Array[TreeItem],clickCallBack?:Function,disabled?:Boolean} |||  
 
 `,expose:`
 ## \u66B4\u9732
