@@ -1,4 +1,27 @@
-var e={avatar:{show:["prop"],prop:`
+var e={"address-select":{show:["prop"],prop:`
+## \u5C6C\u6027
+| \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
+| - | - | - |- | -  |
+| v-model | String |  | | |
+`,method:`
+## \u65B9\u6CD5
+| \u65B9\u6CD5 | \u8AAA\u660E | \u53C3\u6578 |
+| - | - | - |
+| | | |
+
+`,event:`
+## \u4E8B\u4EF6
+| \u4E8B\u4EF6 | \u8AAA\u660E | \u53C3\u6578 |
+| - | - | - |
+| | | |
+
+`,slot:`
+## \u63D2\u69FD
+| \u63D2\u69FD | \u8AAA\u660E | 
+| - | - | 
+| | | 
+
+`},avatar:{show:["prop"],prop:`
 ## \u5C6C\u6027
 | \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
 | - | - | - |- | -  |
@@ -474,6 +497,30 @@ callValid | \u4F7F\u7528form\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C
 | - | - | 
 | | | 
 
+`},"loading-icon":{show:["prop"],prop:`
+## \u5C6C\u6027
+| \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
+| - | - | - |- | -  |
+| \u7121 | |  | | |
+
+`,method:`
+## \u65B9\u6CD5
+| \u65B9\u6CD5 | \u8AAA\u660E | \u53C3\u6578 |
+| - | - | - |
+| | | 
+
+`,event:`
+## \u4E8B\u4EF6
+| \u4E8B\u4EF6 | \u8AAA\u660E | \u53C3\u6578 |
+| - | - | - |
+| | | |
+
+`,slot:`
+## \u63D2\u69FD
+| \u63D2\u69FD | \u8AAA\u660E | 
+| - | - | 
+| | | 
+
 `},menu:{show:["prop"],prop:`
 ## \u5C6C\u6027
 | \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
@@ -577,7 +624,7 @@ callValid | \u4F7F\u7528form\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C
 | - | - | 
 | | | 
 
-`},pagination2:{},radiobox:{show:["prop"],prop:`
+`},radiobox:{show:["prop"],prop:`
 ## \u5C6C\u6027
 | \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
 | - | - | - |- | -  |
@@ -589,32 +636,6 @@ callValid | \u4F7F\u7528form\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C
 | value | \u9078\u9805 | Any | |  |
 
 
-`,method:`
-## \u65B9\u6CD5
-| \u65B9\u6CD5 | \u8AAA\u660E | \u53C3\u6578 |
-| - | - | - |
-| | | 
-
-`,event:`
-## \u4E8B\u4EF6
-| \u4E8B\u4EF6 | \u8AAA\u660E | \u53C3\u6578 |
-| - | - | - |
-| | | |
-
-`,slot:`
-## \u63D2\u69FD
-| \u63D2\u69FD | \u8AAA\u660E | 
-| - | - | 
-| | | 
-
-`},select:{show:["prop"],prop:`
-## \u5C6C\u6027
-| \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
-| - | - | - |- | -  |
-| bindResult | \u56DE\u50B3\u503C\u5730\u7D81\u5B9A\u6A21\u5F0F  | String | index,value,label | index |
-| multiple | \u591A\u9078\u6A21\u5F0F  | Boolean | | false |
-| v-model | \u55AE\u9078\u6A21\u5F0F\u3001\u7D81\u5B9Aindex\u6642<br>\u55AE\u9078\u6A21\u5F0F\u3001\u7D81\u5B9Avalue\u6642<br/>\u55AE\u9078\u6A21\u5F0F\u3001\u7D81\u5B9Alabel\u6642 | index<br/>value<br/>label | | |
-| v-model | \u591A\u9078\u6A21\u5F0F\u3001\u7D81\u5B9Aindex\u6642<br>\u591A\u9078\u6A21\u5F0F\u3001\u7D81\u5B9Avalue\u6642<br/>\u591A\u9078\u6A21\u5F0F\u3001\u7D81\u5B9Alabel\u6642  | [index]<br/>[value]<br/>[label] | | |
 `,method:`
 ## \u65B9\u6CD5
 | \u65B9\u6CD5 | \u8AAA\u660E | \u53C3\u6578 |
@@ -713,36 +734,7 @@ callValid | \u4F7F\u7528form\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C
 | - | - | 
 | v-slot:**Column**="{ row }" | \u4F7F\u7528Column\u4F5C\u70BA\u63D2\u69FD\u540D\u7A31\uFF0Crow\u5373\u70BA\u8A72\u7B46\u8CC7\u6599\u7684Object| 
 
-`},"table-column":{},table2:{show:["prop","method","slot"],prop:`
-## \u5C6C\u6027
-| \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
-| - | - | - |- | -  |
-| name | \u8868\u540D\u7A31\u3002 | String |  |  |
-| columns | \u6B04\u4F4D | Array[ColumnObject{Column(String),label(String),<br>width(Number),sort(Boolean),handleSortCallback(function) }] |  |  |
-| data | \u8CC7\u6599 | Array[RowObject{ Column:DataCell(Any) }] |  |  |
-| isCheckBox | \u986F\u793A\u52FE\u9078\u6B04 | Boolean |  | true |
-| width | \u8868\u9AD8\u5EA6\u3002\u8D85\u904E\u5BEC\u5EA6\u5247\u6709X\u6372\u8EF8 | Number |  |  |
-| height | \u8868\u9AD8\u5EA6\u3002\u8D85\u904E\u9AD8\u5EA6\u5247\u6709Y\u6372\u8EF8 | Number |  |  |
-| rowClick | \u9EDE\u9078row\u5373\u53EF\u52FE\u9078 | Boolean |  | false |
-| isLoading | \u986F\u793A\u8F09\u5165\u6548\u679C | Boolean |  | false |
-| underline | row\u5E95\u7DDA | Boolean |  | false |
-`,method:`
-## \u65B9\u6CD5
-| \u65B9\u6CD5 | \u8AAA\u660E | \u53C3\u6578 |
-| - | - | - |
-| getCheckedList | \u547C\u53EB\u52FE\u9078\u6E05\u55AE\u3002\u4F7F\u7528table\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C6C\u6027\u4E2D\u3002,<br>\u4F8B\u5982name\u662Fproduct\uFF0CglobalProperties['gt-table-product']\u6703\u6709\u6B64\u65B9\u6CD5<br>\u6216\u4EE5instance.refs\u65B9\u5F0F\u4F7F\u7528 | |
-`,event:`
-## \u4E8B\u4EF6
-| \u4E8B\u4EF6 | \u8AAA\u660E | \u53C3\u6578 |
-| - | - | - |
-|  |  |  |
-`,slot:`
-## \u63D2\u69FD
-| \u63D2\u69FD | \u8AAA\u660E | 
-| - | - | 
-| v-slot:**Column**="{ row }" | \u4F7F\u7528Column\u4F5C\u70BA\u63D2\u69FD\u540D\u7A31\uFF0Crow\u5373\u70BA\u8A72\u7B46\u8CC7\u6599\u7684Object| 
-
-`},tabs:{show:["prop"],prop:`
+`},"table-column":{},tabs:{show:["prop"],prop:`
 ## \u5C6C\u6027
 | \u5C6C\u6027 | \u8AAA\u660E | \u985E\u578B | \u53EF\u9078\u503C | \u9ED8\u8A8D\u503C |
 | - | - | - |- | -  |
@@ -946,7 +938,21 @@ callValid | \u4F7F\u7528form\u7684\u540D\u7A31\u8A3B\u518A\u65BC\u5168\u5C40\u5C
 | - | - | 
 | | | 
 
-`}},t={avatar:` \`\`\` html 
+`}},t={"address-select":` \`\`\` html 
+<script setup>
+import { ref } from 'vue';
+const address = ref('');
+<\/script>
+<template>
+    <div>
+        <g-title :level="1" class="mb-3">\u53F0\u7063\u7E23\u5E02/\u884C\u653F\u5340 \u5730\u5740</g-title>
+        <p class="py-4">address:{{ address }}</p>
+        <g-address-select v-model="address" />
+    </div>
+</template>
+
+<style lang="scss"></style>
+  \`\`\`  `,avatar:` \`\`\` html 
 <script setup>
 import { ref } from 'vue';
 const imgs = [
@@ -1043,18 +1049,18 @@ const toggleImg = () => {
             <g-title :level="2" class="mb-3">FLAT with icon</g-title>
 
             <div class="flex justify-between mb-3">
-                <g-button flat><g-icon name="chevron-left" />\u4E0A\u4E00\u9801</g-button>
-                <g-button flat type="green"><g-icon name="chevron-left" />\u4E0A\u4E00\u9801</g-button>
-                <g-button flat type="yellow"><g-icon name="chevron-left" />\u4E0A\u4E00\u9801</g-button>
-                <g-button flat type="red"><g-icon name="chevron-left" />\u4E0A\u4E00\u9801</g-button>
-                <g-button flat type="white"><g-icon name="chevron-left" />\u4E0A\u4E00\u9801</g-button>
+                <g-button flat><g-icon classes="fas fa-angle-left" />\u4E0A\u4E00\u9801</g-button>
+                <g-button flat type="green"><g-icon classes="fas fa-angle-left" />\u4E0A\u4E00\u9801</g-button>
+                <g-button flat type="yellow"><g-icon classes="fas fa-angle-left" />\u4E0A\u4E00\u9801</g-button>
+                <g-button flat type="red"><g-icon classes="fas fa-angle-left" />\u4E0A\u4E00\u9801</g-button>
+                <g-button flat type="white"><g-icon classes="fas fa-angle-left" />\u4E0A\u4E00\u9801</g-button>
             </div>
             <div class="flex justify-between mb-3">
-                <g-button flat><g-icon name="chevron-right" />\u4E0B\u4E00\u9801</g-button>
-                <g-button flat type="green"><g-icon name="chevron-right" />\u4E0B\u4E00\u9801</g-button>
-                <g-button flat type="yellow"><g-icon name="chevron-right" />\u4E0B\u4E00\u9801</g-button>
-                <g-button flat type="red"><g-icon name="chevron-right" />\u4E0B\u4E00\u9801</g-button>
-                <g-button flat type="white"><g-icon name="chevron-right" />\u4E0B\u4E00\u9801</g-button>
+                <g-button flat><g-icon classes="fas fa-angle-right" />\u4E0B\u4E00\u9801</g-button>
+                <g-button flat type="green"><g-icon classes="fas fa-angle-right" />\u4E0B\u4E00\u9801</g-button>
+                <g-button flat type="yellow"><g-icon classes="fas fa-angle-right" />\u4E0B\u4E00\u9801</g-button>
+                <g-button flat type="red"><g-icon classes="fas fa-angle-right" />\u4E0B\u4E00\u9801</g-button>
+                <g-button flat type="white"><g-icon classes="fas fa-angle-right" />\u4E0B\u4E00\u9801</g-button>
             </div>
         </div>
 
@@ -1859,6 +1865,7 @@ const handleKeyup = (e) => {
 
 <template>
     <div class="w-full mx-auto mb-6 relative inputDemoBox">
+
         <g-title :level="2" class="mb-3">disabled</g-title>
         <g-input green v-model="inputs.input0" :disabled="true" />
         <g-divider />
@@ -2012,7 +2019,7 @@ const handleLoading = () => {
     <g-loading />
   </div>
 </template>
-  \`\`\`  `,menu:` \`\`\` html 
+  \`\`\`  `,"loading-icon":' ``` html \n<template>\n  <div class="mb-3 px-2 w-full md:w-3/4">\n    <g-title :level="2" class="mb-3">\u8F09\u5165\u4E2D</g-title>\n    <g-loading-icon />\n  </div>\n</template>  ```  ',menu:` \`\`\` html 
 <script setup>
 import { getCurrentInstance, ref } from 'vue';
 const instance = getCurrentInstance();
@@ -2328,7 +2335,7 @@ const handleUpdatePage = (val) => {
         />
     </div>
 </template>
-  \`\`\`  `,pagination2:" ``` html \n<script setup>\n<\/script>\n<template>\n</template>  ```  ",radiobox:` \`\`\` html 
+  \`\`\`  `,radiobox:` \`\`\` html 
 <script setup>
 import { reactive } from 'vue';
 const inputs = reactive({
@@ -2364,54 +2371,7 @@ const inputs = reactive({
     </g-radiobox-group>
   </div>
 </template>
-  \`\`\`  `,select:` \`\`\` html 
-<script setup>
-import { ref } from 'vue';
-const val = ref(0);
-const val2 = ref([0]);
-const val3 = ref(['1']);
-const val4 = ref('123');
-<\/script>
-<template>
-    <div class="w64box">
-    <g-title :level="2" class="mb-3">bindResult index</g-title>
-    current:{{ val }}
-    <g-select v-model="val">
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-    </g-select>
-    <g-divider />
-    <g-title :level="2" class="mb-3">bindResult index & multiple</g-title>
-    current:{{ val2 }}
-    <g-select v-model="val2" multiple>
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-        <g-option label="789" value="3" />
-    </g-select>
-    <g-divider />
-    <g-title :level="2" class="mb-3">bindResult value & multiple</g-title>
-    current:{{ val3 }}
-    <g-select v-model="val3" multiple bindResult="value">
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-        <g-option label="789" value="3" />
-    </g-select>
-    <g-divider />
-    <g-title :level="2" class="mb-3">bindResult label</g-title>
-    current:{{ val4 }}
-    <g-select v-model="val4" bindResult="label">
-        <g-option label="123" value="1" />
-        <g-option label="456" value="2" />
-        <g-option label="789" value="3" />
-    </g-select>
-</div>
-</template>
-
-<style lang="scss">
-.w64box{
-    @apply w-64;
-}
-</style>  \`\`\`  `,"sort-label":` \`\`\` html 
+  \`\`\`  `,"sort-label":` \`\`\` html 
 <script setup>
 import { reactive } from 'vue';
 
@@ -2741,208 +2701,7 @@ const showLoading = () => {
 }
 
 
-</style>  \`\`\`  `,"table-column":" ``` html \n<script setup>\n<\/script>\n<template>\n</template>  ```  ",table2:` \`\`\` html 
-<script setup>
-import { reactive, getCurrentInstance, onMounted, ref } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
-
-const instance = getCurrentInstance();
-
-const tableInfo = reactive({
-  columns: [
-    {
-      name: 'id',
-      label: 'ID',
-      width: 180,
-    },
-    {
-      name: 'product',
-      label: '\u5546\u54C1\u540D\u7A31',
-      sort: false,
-      handleSortCallback: function () {
-        alert('custom sort callback');
-      },
-      width: 480,
-    },
-    {
-      name: 'price',
-      label: '\u50F9\u683C',
-      width: 380,
-      sort: true,
-    },
-    {
-      name: 'storage',
-      label: '\u5EAB\u5B58',
-      sort: true,
-    },
-    {
-      name: 'tags',
-      width: 620,
-      label: '\u6A19\u7C64',
-    },
-    {
-      name: 'btns',
-      width: 200,
-      label: '',
-    },
-  ],
-  data: [
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    {
-      product: 'dddddddddddddddddddddddd',
-      price: 400,
-      storage: 65,
-      id: uuidv4(),
-    },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-    { product: 'cc', price: 300, storage: 5, id: uuidv4() },
-    { product: 'aaa', price: 200, storage: 25, id: uuidv4() },
-    { product: 'bbbb', price: 100, storage: 15, id: uuidv4() },
-  ],
-  filterOtions: {},
-  isLoading: false,
-});
-
-const tableInfo2 = reactive({
-  columns: [
-    {
-      name: 'product',
-      label: '\u5546\u54C1\u540D\u7A31',
-      sort: false,
-    },
-    {
-      name: 'price',
-      label: '\u50F9\u683C',
-      sort: true,
-    },
-  ],
-  data: [
-    { product: 'aaa', price: 200, id: uuidv4() },
-    { product: 'bbbb', price: 100, id: uuidv4() },
-  ],
-  filterOtions: {},
-  isLoading: false,
-});
-
-const handleRowClick = (row, dialogType) => {
-  // console.log(row);
-  // handleDialog(dialogType);
-  dialogInfo['show' + dialogType] = true;
-};
-const handleTableChecked = () => {
-  let arr = instance.refs.tableRef.getCheckedList();
-  arr = arr.map((obj) => obj.id);
-  instance.appContext.config.globalProperties.handleMessageTrigger({
-    type: 'info',
-    title: '\u5DF2\u9078\u64C7',
-    msg: 'row ids:arr.join(',')}',
-  });
-};
-
-const dialogInfo = reactive({
-  show1: false,
-  show2: false,
-});
-
-const showLoading = () => {
-  tableInfo.isLoading = true;
-  setTimeout(() => {
-    tableInfo.isLoading = false;
-  }, 3000);
-};
-<\/script>
-<template>
-  <div class="w-full mx-auto mb-6">
-    <g-title :level="2" class="mb-3">\u8868\u683C</g-title>
-    <g-table
-      :columns="tableInfo2.columns"
-      :data="tableInfo2.data"
-      :isCheckBox="false"
-      :height="350"
-      underline
-    />
-
-    <g-divider />
-
-    <g-title :level="2" class="mb-3">\u8868\u683C</g-title>
-    <g-table
-      :columns="tableInfo2.columns"
-      :data="tableInfo2.data"
-      :width="500"
-    />
-
-    <g-divider />
-
-    <g-title :level="2" class="mb-3">\u8868\u683C</g-title>
-    <g-table
-      ref="tableRef"
-      :columns="tableInfo.columns"
-      :data="tableInfo.data"
-      :height="450"
-      name="products"
-      :isLoading="tableInfo.isLoading"
-    >
-      <template v-slot:tags="{ row }">
-        <div class="flex justify-between">
-          <g-tag type="warning" border label="\u4E0A\u67B6\u4E2D" />
-          <g-tag type="second" border dot label="\u53EF\u51FA\u8CA8" />
-        </div>
-      </template>
-
-      <template v-slot:btns="{ row }">
-        <div class="flex justify-start">
-          <g-button
-            flat
-            class="mr-4"
-            @click.stop="
-              () => {
-                handleRowClick(row, 1);
-              }
-            "
-            >\u7DE8\u8F2F</g-button
-          >
-          <g-button
-            flat
-            type="red"
-            @click.stop="
-              () => {
-                handleRowClick(row, 2);
-              }
-            "
-            >\u522A\u9664</g-button
-          >
-        </div>
-      </template>
-    </g-table>
-    <g-dialog :title="dialogInfo.title" v-model="dialogInfo.show1">
-      body~~
-    </g-dialog>
-
-    <g-dialog v-model="dialogInfo.show2" mode="delete"> \u78BA\u5B9A\u522A\u9664\u55CE? </g-dialog>
-    <g-button
-      class="mb-4 mt-4"
-      @click="
-        () => {
-          handleTableChecked();
-        }
-      "
-      >\u7576\u524D\u9078\u64C7\u986F\u793A</g-button
-    >
-    <g-button
-      class="mb-4 mt-4"
-      @click="
-        () => {
-          showLoading();
-        }
-      "
-      >\u8F09\u5165\u4E2D\u986F\u793A</g-button
-    >
-  </div>
-  <g-message />
-</template>
-  \`\`\`  `,tabs:` \`\`\` html 
+</style>  \`\`\`  `,"table-column":" ``` html \n<script setup>\n<\/script>\n<template>\n</template>  ```  ",tabs:` \`\`\` html 
 <script setup>
 import { ref, getCurrentInstance } from 'vue';
 const instance = getCurrentInstance();
