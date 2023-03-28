@@ -81,7 +81,7 @@
     }
 
     .calDay {
-      @apply select-none cursor-pointer;
+      @apply select-none;
       line-height: 2;
       font-weight: 400;
 
@@ -98,11 +98,9 @@
       }
 
       &:hover {
-        width: 32px;
-        position: relative;
-        left: 5px;
+        @apply cursor-pointer;
         font-weight: 500;
-        @apply text-main bg-color1 rounded-full;
+        @apply text-main;
       }
 
       &.curSelectRange {

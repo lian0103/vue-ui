@@ -473,7 +473,7 @@ const handleTimePick = () => {
             :class="`wdStr wdStr${idx}`"
             :key="idx + 'bbb'"
             >{{ wdStr }}</span
-          >
+          > 
 
           <span
             v-for="(cdStr, idx) in calenderDays"
